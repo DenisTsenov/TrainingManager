@@ -56,13 +56,7 @@ class Migration extends Command
             'name'     => $name,
             '--create' => $create,
             '--table'  => $table,
-            '--path'   => 'database' .
-                          DIRECTORY_SEPARATOR .
-                          'migrations' .
-                          DIRECTORY_SEPARATOR .
-                          $date->year .
-                          DIRECTORY_SEPARATOR .
-                          $date->month,
+            '--path'   => substr($path, strlen(base_path()) + 1, strlen($path)),
         ]);
     }
 }

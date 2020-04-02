@@ -12,7 +12,7 @@ class Migration extends Command
      *
      * @var string
      */
-    protected $signature = 'Make:_migration {name}
+    protected $signature = 'make:_migration {name : The name of the migration file}
       {--create= : The table to be created}
       {--table= : The table to migrate}';
 

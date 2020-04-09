@@ -14,6 +14,9 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('permissions')->truncate();
+
         DB::table('permissions')->insert([
             ['name' => 'create_training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
             ['name' => 'assign_training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],

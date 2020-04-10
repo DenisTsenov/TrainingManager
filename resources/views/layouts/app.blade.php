@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <!-- JS -->
-    <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Training Manager - @yield('title')</title>
+    <title>{{ config('app.name') }} - @yield('title')</title>
+    @include('layouts.partials._head')
 </head>
 <body>
     <div id="app">
@@ -16,5 +10,6 @@
             @yield('content')
         </div>
     </div>
+    @include('layouts.partials._footer')
 </body>
 </html>

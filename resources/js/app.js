@@ -8,6 +8,7 @@ import Vue from 'vue';
 require('./bootstrap');
 
 import RegisterForm from './components/authenticate/RegisterForm';
+import LoginForm from "./components/authenticate/LoginForm";
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,6 +22,7 @@ import RegisterForm from './components/authenticate/RegisterForm';
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('register-form', RegisterForm);
+Vue.component('login-form', LoginForm);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,7 +32,6 @@ Vue.component('register-form', RegisterForm);
 
 const app = new Vue({
     el: '#app',
-    data: {
-    }
+    data: {}
 });
 

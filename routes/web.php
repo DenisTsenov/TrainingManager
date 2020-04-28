@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::namespace('Auth')->group(function () {
+    Route::get('/', 'LoginController@create');
+
+    Route::get('/login', 'LoginController@create')
+         ->name('login.show');
+
+    Route::get('/register', 'RegisterController@create')
+         ->name('register.show');
+
+    Route::post('/store', 'RegisterController@store')
+         ->name('register.store');
 });
+
+//Route::middleware(['auth'])->group(function (){
+//
+//});

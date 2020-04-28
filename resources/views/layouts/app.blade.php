@@ -4,7 +4,8 @@
     <title>{{ config('app.name') }} - @yield('title')</title>
     @include('layouts.partials._head')
 </head>
-<body class="">
+<body>
+    @include('layouts.partials._nav')
     <div id="app">
         <div class="container">
             @yield('content')

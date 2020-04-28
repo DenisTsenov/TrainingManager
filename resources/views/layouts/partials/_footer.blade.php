@@ -1,6 +1,6 @@
 <footer>
     <!-- JS -->
-    <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
     @stack('scripts')
 </footer>

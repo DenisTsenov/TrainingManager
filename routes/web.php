@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::namespace('Auth')->group(function () {
-    Route::get('/', 'LoginController@create');
+    Route::get('/', 'LoginController@showLoginForm');
 
-    Route::get('/login', 'LoginController@create')
+    Route::get('/login', 'LoginController@showLoginForm')
          ->name('login.show');
 
     Route::get('/register', 'RegisterController@create')
@@ -24,8 +24,16 @@ Route::namespace('Auth')->group(function () {
 
     Route::post('/store', 'RegisterController@store')
          ->name('register.store');
-});
 
-//Route::middleware(['auth'])->group(function (){
-//
-//});
+    Route::post('/login', 'LoginController@login')
+         ->name('login');
+
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/welcome', function () {
+            return view('home');
+        })->name('welcome');
+
+        Route::post('/logout', 'AuthController@logout')
+             ->name('logout');
+    });
+});

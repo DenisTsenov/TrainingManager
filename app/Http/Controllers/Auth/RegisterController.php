@@ -9,6 +9,14 @@ use App\Models\User;
 class RegisterController extends Controller
 {
     /**
+     * RegisterController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -17,7 +25,6 @@ class RegisterController extends Controller
     {
         return view('auth.register');
     }
-
 
     /**
      * Store a newly created resource in storage.

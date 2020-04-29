@@ -50,7 +50,6 @@
 
 <script>
     import FormMixin from "../../mixin/FormMixin";
-
     export default {
         mixins: [FormMixin],
 

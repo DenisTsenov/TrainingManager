@@ -3,5 +3,5 @@
 @section('title', 'Basic setup')
 
 @section('content')
-    <register-form></register-form>
+    <h3>Hello</h3>
 @endsection

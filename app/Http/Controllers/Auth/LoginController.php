@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
@@ -26,29 +27,24 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/welcome';
 
     public function __construct()
     {
-       $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logout');
     }
 
-    /**
-     * Show the form for creating a new resource/user.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function create()
+    public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function login(Request $request)
+    protected function sendLoginResponse(Request $request)
     {
+        $request->session()->regenerate();
 
+        $this->clearLoginAttempts($request);
+
+        return \response()->json(['route' => route('welcome')]);
     }
 }

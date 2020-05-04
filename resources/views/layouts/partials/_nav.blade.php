@@ -3,9 +3,19 @@
         <a class="navbar-brand btn btn-light btn-sm text-muted" href="{{ route('login.show') }}">Login</a>
         <a class="navbar-brand btn btn-light btn-sm text-muted" href="{{ route('register.show') }}">Register</a>
     @endguest
+
     @auth
-{{--            {{\Auth::logout()}}--}}
         <a class="navbar-brand btn btn-light btn-sm text-muted" href="">Profile</a>
-        <a class="navbar-brand btn btn-light btn-sm text-muted" href="">Logout</a>
+        <span id="logout">
+           <logout-button></logout-button>
+       </span>
     @endauth
 </nav>
+@push('scripts')
+    <script type="text/javascript">
+        new Vue({
+            el: '#logout',
+            data: {},
+        });
+    </script>
+@endpush

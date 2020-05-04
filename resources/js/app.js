@@ -9,6 +9,7 @@ require('./bootstrap');
 
 import RegisterForm from './components/authenticate/RegisterForm';
 import LoginForm from "./components/authenticate/LoginForm";
+import LogoutButton from "./components/authenticate/LogoutButton";
 
 /**
  * The following block of code may be used to automatically register your
@@ -23,6 +24,7 @@ import LoginForm from "./components/authenticate/LoginForm";
 
 Vue.component('register-form', RegisterForm);
 Vue.component('login-form', LoginForm);
+Vue.component('logout-button', LogoutButton);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

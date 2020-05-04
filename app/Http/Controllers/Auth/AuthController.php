@@ -65,6 +65,8 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('login.show');
+        session()->flash('logout', 'You have ben logged out successfully!');
+
+        return response()->json(['route' => route('login.show')]);
     }
 }

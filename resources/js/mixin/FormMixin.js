@@ -6,7 +6,7 @@ export default {
             success: false,
             loaded: true,
             action: '',
-            login: false
+            login: false,
         }
     },
     methods: {

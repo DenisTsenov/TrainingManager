@@ -4,8 +4,10 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 import Vue from 'vue';
-
+import Vuelidate from "vuelidate";
 require('./bootstrap');
+
+Vue.use(Vuelidate);
 
 import RegisterForm from './components/authenticate/RegisterForm';
 import LoginForm from "./components/authenticate/LoginForm";

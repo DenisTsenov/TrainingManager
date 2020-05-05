@@ -1,3 +1,5 @@
+import {required, minLength, email, sameAs,} from 'vuelidate/lib/validators';
+
 export default {
     data() {
         return {
@@ -14,39 +16,33 @@ export default {
             action: '',
             password: '',
             password_confirmation: '',
+            submitted: false,
+        }
+    },
+    validations: {
+        userData: {
+            first_name: {required,},
+            last_name: {required,},
+            email: {required, email,},
+            password: {required, minLength: minLength(8)},
+            password_confirmation: {required, sameAsPassword: sameAs('password')},
         }
     },
     props: {
-        user: {
-            first_name: {
-                type: String,
-                required: true,
-            },
-            last_name: {
-                type: String,
-                required: true,
-            },
-            email: {
-                type: String,
-                required: true,
-            },
-            password: {
-                type: String,
-                required: true,
-                validator: function (value) {
-                    // The value must match the conf pass
-                    return value === this.confirm_password;
-                }
-            },
-            confirm_password: {
-                type: String,
-                required: true,
-            }
-        }
+        user: Object,
     },
     methods: {
         submit() {
+            this.submitted = true;
+
+            this.$v.$touch();
+
+            if (this.$v.$invalid) {
+                return;
+            }
+
             if (this.loaded) {
+                this.submitted = false;
                 this.loaded  = false;
                 this.success = false;
                 this.errors  = {};

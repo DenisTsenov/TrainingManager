@@ -4,13 +4,16 @@ export default {
     data() {
         return {
             userData: {
-                'first_name': this.user.first_name,
-                'last_name': this.user.last_name,
-                'email': this.user.email,
+                'first_name': this.first_name,
+                'last_name': this.last_name,
+                'email': this.email,
                 'password': this.password,
                 'password_confirmation': this.password_confirmation,
             },
             action: '',
+            first_name: '',
+            last_name: '',
+            email: '',
             password: '',
             password_confirmation: '',
             errors: {},
@@ -29,9 +32,6 @@ export default {
             password_confirmation: {required, sameAsPassword: sameAs('password')},
         }
     },
-    props: {
-        user: Object,
-    },
     methods: {
         submit() {
             this.hasBeenSend = true;
@@ -45,11 +45,10 @@ export default {
                 this.errors      = {};
                 axios.post(this.action, this.userData)
                      .then(response => {
-                         this.userData.password              = '';
-                         this.userData.password_confirmation = '';
-                         this.sendAllowed                    = true;
-                         this.success                        = true;
-                         this.hasBeenSend                    = false; // if back end validation do not pass we shall be able to send the form again with front end validation
+                         this.userData    = {};
+                         this.sendAllowed = true;
+                         this.success     = true;
+                         this.hasBeenSend = false; // if back end validation do not pass we shall be able to send the form again with front end validation
                      }).catch(error => {
                     if (error.response.status === 422) {
                         this.sendAllowed = true;

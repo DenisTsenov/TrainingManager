@@ -1983,6 +1983,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_EditMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -2040,6 +2053,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_LoginMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -2047,49 +2070,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       'action': '/login'
     };
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/LogoutButton.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/authenticate/LogoutButton.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      serverErr: false,
-      loaded: true
-    };
-  },
-  methods: {
-    logout: function logout(event) {
-      var _this = this;
-
-      if (this.loaded) {
-        this.loaded = false;
-        axios.post('/logout', {}).then(function (response) {
-          window.location = response.data.route;
-        })["catch"](function (error) {
-          if (error.length) {
-            _this.serverErr = true;
-          }
-        });
-      }
-    }
   }
 });
 
@@ -2105,6 +2085,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixin_RegisterMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixin/RegisterMixin */ "./resources/js/mixin/RegisterMixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37837,261 +37830,279 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row justify-content-center mt-3" }, [
     _c("div", { staticClass: "col-6" }, [
-      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Edit your account")]),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          staticClass: "form",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.submit($event)
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "first_name" } }, [
-              _vm._v("First name")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.userData.first_name,
-                  expression: "userData.first_name"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "first_name", id: "first_name" },
-              domProps: { value: _vm.userData.first_name },
+      _c("div", { staticClass: "card" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "form",
+            {
+              staticClass: "form",
               on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.userData, "first_name", $event.target.value)
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.submit($event)
                 }
               }
-            }),
-            _vm._v(" "),
-            _vm.hasBeenSend && !_vm.$v.userData.first_name.required
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v("\n\t\t\t\t\tFirst name is required.\n\t\t\t\t")
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.errors && _vm.errors.first_name
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v(_vm._s(_vm.errors.first_name[0]) + "\n\t\t\t\t")
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "last_name" } }, [_vm._v("Last name")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.userData.last_name,
-                  expression: "userData.last_name"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "last_name", id: "last_name" },
-              domProps: { value: _vm.userData.last_name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+            },
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "first_name" } }, [
+                  _vm._v("First name")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userData.first_name,
+                      expression: "userData.first_name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "first_name", id: "first_name" },
+                  domProps: { value: _vm.userData.first_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.userData, "first_name", $event.target.value)
+                    }
                   }
-                  _vm.$set(_vm.userData, "last_name", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.hasBeenSend && !_vm.$v.userData.last_name.required
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v("\n\t\t\t\t\tLast Name is required.\n\t\t\t\t")
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.errors && _vm.errors.last_name
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v(_vm._s(_vm.errors.last_name[0]) + "\n\t\t\t\t")
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "email" } }, [_vm._v("E-mail")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.userData.email,
-                  expression: "userData.email"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "email", name: "email", id: "email" },
-              domProps: { value: _vm.userData.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                }),
+                _vm._v(" "),
+                _vm.hasBeenSend && !_vm.$v.userData.first_name.required
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\tFirst name is required.\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.first_name
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        _vm._s(_vm.errors.first_name[0]) + "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "last_name" } }, [
+                  _vm._v("Last name")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userData.last_name,
+                      expression: "userData.last_name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "last_name", id: "last_name" },
+                  domProps: { value: _vm.userData.last_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.userData, "last_name", $event.target.value)
+                    }
                   }
-                  _vm.$set(_vm.userData, "email", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.hasBeenSend && _vm.$v.userData.email.$error
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  !_vm.$v.userData.email.required
-                    ? _c("span", [_vm._v("Email is required.")])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.$v.userData.email.email
-                    ? _c("span", [_vm._v("Email is invalid format.")])
-                    : _vm._e()
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.errors && _vm.errors.email
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v(_vm._s(_vm.errors.email[0]))
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "password" } }, [_vm._v("Password")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.userData.password,
-                  expression: "userData.password"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "password", name: "password", id: "password" },
-              domProps: { value: _vm.userData.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                }),
+                _vm._v(" "),
+                _vm.hasBeenSend && !_vm.$v.userData.last_name.required
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\tLast Name is required.\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.last_name
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(_vm._s(_vm.errors.last_name[0]) + "\n\t\t\t\t\t\t")
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "email" } }, [_vm._v("E-mail")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userData.email,
+                      expression: "userData.email"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "email", name: "email", id: "email" },
+                  domProps: { value: _vm.userData.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.userData, "email", $event.target.value)
+                    }
                   }
-                  _vm.$set(_vm.userData, "password", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.hasBeenSend && _vm.$v.userData.password.$error
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  !_vm.$v.userData.password.required
-                    ? _c("span", [_vm._v("Password is required.")])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.$v.userData.password.minLength
-                    ? _c("span", [
-                        _vm._v("Password must be at least 8 characters.")
-                      ])
-                    : _vm._e()
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.errors && _vm.errors.password
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v(_vm._s(_vm.errors.password[0]))
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "password_confirmation" } }, [
-              _vm._v("Confirm password")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.userData.password_confirmation,
-                  expression: "userData.password_confirmation"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                type: "password",
-                name: "password_confirmation",
-                id: "password_confirmation"
-              },
-              domProps: { value: _vm.userData.password_confirmation },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                }),
+                _vm._v(" "),
+                _vm.hasBeenSend && _vm.$v.userData.email.$error
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      !_vm.$v.userData.email.required
+                        ? _c("span", [_vm._v("Email is required.")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.$v.userData.email.email
+                        ? _c("span", [_vm._v("Email is invalid format.")])
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.email
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(_vm._s(_vm.errors.email[0]) + "\n\t\t\t\t\t\t")
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "password" } }, [
+                  _vm._v("Password")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userData.password,
+                      expression: "userData.password"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "password", name: "password", id: "password" },
+                  domProps: { value: _vm.userData.password },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.userData, "password", $event.target.value)
+                    }
                   }
-                  _vm.$set(
-                    _vm.userData,
-                    "password_confirmation",
-                    $event.target.value
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.hasBeenSend && _vm.$v.userData.password_confirmation.$error
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  !_vm.$v.userData.password_confirmation.required
-                    ? _c("span", [_vm._v("Confirm password is required.")])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.$v.userData.password_confirmation.sameAsPassword
-                    ? _c("span", [_vm._v("Passwords must match.")])
-                    : _vm._e()
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.errors && _vm.errors.password_confirmation
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v(
-                    "\n\t\t\t\t\t" +
-                      _vm._s(_vm.errors.password_confirmation[0]) +
-                      "\n\t\t\t\t"
-                  )
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _vm._m(0),
+                }),
+                _vm._v(" "),
+                _vm.hasBeenSend && _vm.$v.userData.password.$error
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      !_vm.$v.userData.password.required
+                        ? _c("span", [_vm._v("Password is required.")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.$v.userData.password.minLength
+                        ? _c("span", [
+                            _vm._v("Password must be at least 8 characters.")
+                          ])
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.password
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(_vm._s(_vm.errors.password[0]) + "\n\t\t\t\t\t\t")
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "password_confirmation" } }, [
+                  _vm._v("Confirm password")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userData.password_confirmation,
+                      expression: "userData.password_confirmation"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "password",
+                    name: "password_confirmation",
+                    id: "password_confirmation"
+                  },
+                  domProps: { value: _vm.userData.password_confirmation },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.userData,
+                        "password_confirmation",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.hasBeenSend && _vm.$v.userData.password_confirmation.$error
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      !_vm.$v.userData.password_confirmation.required
+                        ? _c("span", [_vm._v("Confirm password is required.")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.$v.userData.password_confirmation.sameAsPassword
+                        ? _c("span", [_vm._v("Passwords must match.")])
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.password_confirmation
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.errors.password_confirmation[0]) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm.serverErr
+                ? _c("div", { staticClass: "alert alert-danger" }, [
+                    _vm._v(
+                      "Something went wrong. Please try again later..\n\t\t\t\t\t"
+                    )
+                  ])
+                : _vm._e()
+            ]
+          ),
           _vm._v(" "),
           _vm.success
             ? _c("div", { staticClass: "alert alert-success mt-3" }, [
-                _vm._v("\n\t\t\t\tThe profile is edited successfully\n\t\t\t")
+                _vm._v(
+                  "\n\t\t\t\t\tThe profile is edited successfully\n\t\t\t\t"
+                )
               ])
             : _vm._e()
-        ]
-      ),
-      _vm._v(" "),
-      _vm.serverErr
-        ? _c("div", { staticClass: "alert alert-danger" }, [
-            _vm._v("Something went wrong. Please try again later..")
-          ])
-        : _vm._e()
+        ])
+      ])
     ])
   ])
 }
@@ -38100,11 +38111,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Edit your account")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group text-center" }, [
       _c(
         "button",
         { staticClass: "btn btn-primary w-50", attrs: { type: "submit" } },
-        [_vm._v("Edit")]
+        [_vm._v("Send")]
       )
     ])
   }
@@ -38132,123 +38151,139 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row justify-content-center mt-3" }, [
     _c("div", { staticClass: "col-6" }, [
-      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Sign In")]),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          staticClass: "form",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.submit($event)
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "email" } }, [_vm._v("E-mail")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.userData.email,
-                  expression: "userData.email"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "email", name: "email", id: "email" },
-              domProps: { value: _vm.userData.email },
+      _c("div", { staticClass: "card" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "form",
+            {
+              staticClass: "form",
               on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.userData, "email", $event.target.value)
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.submit($event)
                 }
               }
-            }),
-            _vm._v(" "),
-            _vm.submitted && _vm.$v.userData.email.$error
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  !_vm.$v.userData.email.required
-                    ? _c("span", [_vm._v("Email is required.")])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.$v.userData.email.email
-                    ? _c("span", [_vm._v("Email is invalid.")])
-                    : _vm._e()
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.errors && _vm.errors.email
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v(_vm._s(_vm.errors.email[0]))
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "password" } }, [_vm._v("Password")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.userData.password,
-                  expression: "userData.password"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "password", name: "password", id: "password" },
-              domProps: { value: _vm.userData.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+            },
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "email" } }, [_vm._v("E-mail")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userData.email,
+                      expression: "userData.email"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "email", name: "email", id: "email" },
+                  domProps: { value: _vm.userData.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.userData, "email", $event.target.value)
+                    }
                   }
-                  _vm.$set(_vm.userData, "password", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.submitted && _vm.$v.userData.password.$error
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  !_vm.$v.userData.password.required
-                    ? _c("span", [_vm._v("Password is required.")])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.$v.userData.password.minLength
-                    ? _c("span", [
-                        _vm._v("Password must be at least 8 characters.")
-                      ])
-                    : _vm._e()
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.errors && _vm.errors.password
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v(_vm._s(_vm.errors.password[0]))
-                ])
-              : _vm._e()
-          ]),
+                }),
+                _vm._v(" "),
+                _vm.submitted && _vm.$v.userData.email.$error
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      !_vm.$v.userData.email.required
+                        ? _c("span", [_vm._v("Email is required.")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.$v.userData.email.email
+                        ? _c("span", [_vm._v("Email is invalid.")])
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.email
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(_vm._s(_vm.errors.email[0]) + "\n\t\t\t\t\t\t")
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "password" } }, [
+                  _vm._v("Password")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userData.password,
+                      expression: "userData.password"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "password", name: "password", id: "password" },
+                  domProps: { value: _vm.userData.password },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.userData, "password", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.submitted && _vm.$v.userData.password.$error
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      !_vm.$v.userData.password.required
+                        ? _c("span", [_vm._v("Password is required.")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.$v.userData.password.minLength
+                        ? _c("span", [
+                            _vm._v("Password must be at least 8 characters.")
+                          ])
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.password
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(_vm._s(_vm.errors.password[0]) + "\n\t\t\t\t\t\t")
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ]
+          ),
           _vm._v(" "),
-          _vm._m(0)
-        ]
-      ),
-      _vm._v(" "),
-      _vm.serverErr
-        ? _c("div", { staticClass: "alert alert-danger" }, [
-            _vm._v("Something went wrong. Please try again later..")
-          ])
-        : _vm._e()
+          _vm.serverErr
+            ? _c("div", { staticClass: "alert alert-danger" }, [
+                _vm._v(
+                  "Something went wrong. Please try again later..\n\t\t\t\t"
+                )
+              ])
+            : _vm._e()
+        ])
+      ])
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Sign In")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -38262,46 +38297,6 @@ var staticRenderFns = [
     ])
   }
 ]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/LogoutButton.vue?vue&type=template&id=51438fbb&scoped=true&":
-/*!****************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/authenticate/LogoutButton.vue?vue&type=template&id=51438fbb&scoped=true& ***!
-  \****************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "button",
-      {
-        staticClass: "navbar-brand btn btn-light text-muted",
-        attrs: { type: "button" },
-        on: { click: _vm.logout }
-      },
-      [_vm._v("Logout")]
-    ),
-    _vm._v(" "),
-    _vm.serverErr
-      ? _c("span", { staticClass: "badge badge-danger" }, [
-          _vm._v("Something went wrong")
-        ])
-      : _vm._e()
-  ])
-}
-var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38325,261 +38320,275 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row justify-content-center mt-3" }, [
     _c("div", { staticClass: "col-6" }, [
-      _c("p", { staticClass: "h3 text-center" }, [
-        _vm._v(" Create your account")
+      _c("div", { staticClass: "card" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "form",
+            {
+              staticClass: "form",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.submit($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "first_name" } }, [
+                  _vm._v("First name")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userData.first_name,
+                      expression: "userData.first_name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "first_name", id: "first_name" },
+                  domProps: { value: _vm.userData.first_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.userData, "first_name", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.hasBeenSend && !_vm.$v.userData.first_name.required
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\tFirst name is required.\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.first_name
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        _vm._s(_vm.errors.first_name[0]) + "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "last_name" } }, [
+                  _vm._v("Last name")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userData.last_name,
+                      expression: "userData.last_name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "last_name", id: "last_name" },
+                  domProps: { value: _vm.userData.last_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.userData, "last_name", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.hasBeenSend && !_vm.$v.userData.last_name.required
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\tLast Name is required.\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.last_name
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(_vm._s(_vm.errors.last_name[0]) + "\n\t\t\t\t\t\t")
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "email" } }, [_vm._v("E-mail")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userData.email,
+                      expression: "userData.email"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "email", name: "email", id: "email" },
+                  domProps: { value: _vm.userData.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.userData, "email", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.hasBeenSend && _vm.$v.userData.email.$error
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      !_vm.$v.userData.email.required
+                        ? _c("span", [_vm._v("Email is required.")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.$v.userData.email.email
+                        ? _c("span", [_vm._v("Email is invalid format.")])
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.email
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(_vm._s(_vm.errors.email[0]) + "\n\t\t\t\t\t\t")
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "password" } }, [
+                  _vm._v("Password")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userData.password,
+                      expression: "userData.password"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "password", name: "password", id: "password" },
+                  domProps: { value: _vm.userData.password },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.userData, "password", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.hasBeenSend && _vm.$v.userData.password.$error
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      !_vm.$v.userData.password.required
+                        ? _c("span", [_vm._v("Password is required.")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.$v.userData.password.minLength
+                        ? _c("span", [
+                            _vm._v("Password must be at least 8 characters.")
+                          ])
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.password
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(_vm._s(_vm.errors.password[0]) + "\n\t\t\t\t\t\t")
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "password_confirmation" } }, [
+                  _vm._v("Confirm password")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.userData.password_confirmation,
+                      expression: "userData.password_confirmation"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "password",
+                    name: "password_confirmation",
+                    id: "password_confirmation"
+                  },
+                  domProps: { value: _vm.userData.password_confirmation },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.userData,
+                        "password_confirmation",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.hasBeenSend && _vm.$v.userData.password_confirmation.$error
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      !_vm.$v.userData.password_confirmation.required
+                        ? _c("span", [_vm._v("Confirm password is required.")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.$v.userData.password_confirmation.sameAsPassword
+                        ? _c("span", [_vm._v("Passwords must match.")])
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.password_confirmation
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.errors.password_confirmation[0]) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm.serverErr
+                ? _c("div", { staticClass: "alert alert-danger" }, [
+                    _vm._v(
+                      "Something went wrong. Please try again\n\t\t\t\t\t\tlater..\n\t\t\t\t\t"
+                    )
+                  ])
+                : _vm._e()
+            ]
+          )
+        ])
       ]),
       _vm._v(" "),
-      _c(
-        "form",
-        {
-          staticClass: "form",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.submit($event)
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "first_name" } }, [
-              _vm._v("First name")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.userData.first_name,
-                  expression: "userData.first_name"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "first_name", id: "first_name" },
-              domProps: { value: _vm.userData.first_name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.userData, "first_name", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.hasBeenSend && !_vm.$v.userData.first_name.required
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v("\n\t\t\t\t\tFirst name is required.\n\t\t\t\t")
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.errors && _vm.errors.first_name
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v(_vm._s(_vm.errors.first_name[0]) + "\n\t\t\t\t")
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "last_name" } }, [_vm._v("Last name")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.userData.last_name,
-                  expression: "userData.last_name"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "last_name", id: "last_name" },
-              domProps: { value: _vm.userData.last_name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.userData, "last_name", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.hasBeenSend && !_vm.$v.userData.last_name.required
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v("\n\t\t\t\t\tLast Name is required.\n\t\t\t\t")
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.errors && _vm.errors.last_name
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v(_vm._s(_vm.errors.last_name[0]) + "\n\t\t\t\t")
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "email" } }, [_vm._v("E-mail")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.userData.email,
-                  expression: "userData.email"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "email", name: "email", id: "email" },
-              domProps: { value: _vm.userData.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.userData, "email", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.hasBeenSend && _vm.$v.userData.email.$error
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  !_vm.$v.userData.email.required
-                    ? _c("span", [_vm._v("Email is required.")])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.$v.userData.email.email
-                    ? _c("span", [_vm._v("Email is invalid format.")])
-                    : _vm._e()
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.errors && _vm.errors.email
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v(_vm._s(_vm.errors.email[0]))
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "password" } }, [_vm._v("Password")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.userData.password,
-                  expression: "userData.password"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "password", name: "password", id: "password" },
-              domProps: { value: _vm.userData.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.userData, "password", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.hasBeenSend && _vm.$v.userData.password.$error
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  !_vm.$v.userData.password.required
-                    ? _c("span", [_vm._v("Password is required.")])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.$v.userData.password.minLength
-                    ? _c("span", [
-                        _vm._v("Password must be at least 8 characters.")
-                      ])
-                    : _vm._e()
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.errors && _vm.errors.password
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v(_vm._s(_vm.errors.password[0]))
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "password_confirmation" } }, [
-              _vm._v("Confirm password")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.userData.password_confirmation,
-                  expression: "userData.password_confirmation"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                type: "password",
-                name: "password_confirmation",
-                id: "password_confirmation"
-              },
-              domProps: { value: _vm.userData.password_confirmation },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.userData,
-                    "password_confirmation",
-                    $event.target.value
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.hasBeenSend && _vm.$v.userData.password_confirmation.$error
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  !_vm.$v.userData.password_confirmation.required
-                    ? _c("span", [_vm._v("Confirm password is required.")])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.$v.userData.password_confirmation.sameAsPassword
-                    ? _c("span", [_vm._v("Passwords must match.")])
-                    : _vm._e()
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.errors && _vm.errors.password_confirmation
-              ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                  _vm._v(
-                    "\n\t\t\t\t\t" +
-                      _vm._s(_vm.errors.password_confirmation[0]) +
-                      "\n\t\t\t\t"
-                  )
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _vm.success
-            ? _c("div", { staticClass: "alert alert-success mt-3" }, [
-                _vm._v("\n\t\t\t\tThe profile is created successfully\n\t\t\t")
-              ])
-            : _vm._e()
-        ]
-      ),
-      _vm._v(" "),
-      _vm.serverErr
-        ? _c("div", { staticClass: "alert alert-danger" }, [
-            _vm._v("Something went wrong. Please try again later..")
+      _vm.success
+        ? _c("div", { staticClass: "alert alert-success mt-3" }, [
+            _vm._v("\n\t\t\tThe profile is created successfully\n\t\t")
           ])
         : _vm._e()
     ])
@@ -38590,11 +38599,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("p", { staticClass: "h3 text-center" }, [
+        _vm._v(" Create your account")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group text-center" }, [
       _c(
         "button",
         { staticClass: "btn btn-primary w-50", attrs: { type: "submit" } },
-        [_vm._v("Register")]
+        [_vm._v("Send")]
       )
     ])
   }
@@ -52933,75 +52952,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/authenticate/LogoutButton.vue":
-/*!***************************************************************!*\
-  !*** ./resources/js/components/authenticate/LogoutButton.vue ***!
-  \***************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LogoutButton_vue_vue_type_template_id_51438fbb_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LogoutButton.vue?vue&type=template&id=51438fbb&scoped=true& */ "./resources/js/components/authenticate/LogoutButton.vue?vue&type=template&id=51438fbb&scoped=true&");
-/* harmony import */ var _LogoutButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LogoutButton.vue?vue&type=script&lang=js& */ "./resources/js/components/authenticate/LogoutButton.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _LogoutButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _LogoutButton_vue_vue_type_template_id_51438fbb_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _LogoutButton_vue_vue_type_template_id_51438fbb_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "51438fbb",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/authenticate/LogoutButton.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/authenticate/LogoutButton.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************!*\
-  !*** ./resources/js/components/authenticate/LogoutButton.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LogoutButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./LogoutButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/LogoutButton.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LogoutButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/authenticate/LogoutButton.vue?vue&type=template&id=51438fbb&scoped=true&":
-/*!**********************************************************************************************************!*\
-  !*** ./resources/js/components/authenticate/LogoutButton.vue?vue&type=template&id=51438fbb&scoped=true& ***!
-  \**********************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LogoutButton_vue_vue_type_template_id_51438fbb_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./LogoutButton.vue?vue&type=template&id=51438fbb&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/LogoutButton.vue?vue&type=template&id=51438fbb&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LogoutButton_vue_vue_type_template_id_51438fbb_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LogoutButton_vue_vue_type_template_id_51438fbb_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/authenticate/RegisterForm.vue":
 /*!***************************************************************!*\
   !*** ./resources/js/components/authenticate/RegisterForm.vue ***!
@@ -53331,16 +53281,13 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_authenticate_RegisterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/authenticate/RegisterForm */ "./resources/js/components/authenticate/RegisterForm.vue");
 /* harmony import */ var _components_authenticate_LoginForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../components/authenticate/LoginForm */ "./resources/js/components/authenticate/LoginForm.vue");
-/* harmony import */ var _components_authenticate_LogoutButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../components/authenticate/LogoutButton */ "./resources/js/components/authenticate/LogoutButton.vue");
-/* harmony import */ var _components_authenticate_EditProfileForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../components/authenticate/EditProfileForm */ "./resources/js/components/authenticate/EditProfileForm.vue");
-
+/* harmony import */ var _components_authenticate_EditProfileForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../components/authenticate/EditProfileForm */ "./resources/js/components/authenticate/EditProfileForm.vue");
 
 
 
 Vue.component('register-form', _components_authenticate_RegisterForm__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component('login-form', _components_authenticate_LoginForm__WEBPACK_IMPORTED_MODULE_1__["default"]);
-Vue.component('logout-button', _components_authenticate_LogoutButton__WEBPACK_IMPORTED_MODULE_2__["default"]);
-Vue.component('edit-profile-from', _components_authenticate_EditProfileForm__WEBPACK_IMPORTED_MODULE_3__["default"]);
+Vue.component('edit-profile-from', _components_authenticate_EditProfileForm__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 /***/ }),
 

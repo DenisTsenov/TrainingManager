@@ -21,9 +21,7 @@ class AuthController extends Controller
      */
     public function edit()
     {
-        $user = User::where('id', Auth::id())->first()->toArray();
-
-        return view('auth.profile', compact('user'));
+        return view('auth.profile');
     }
 
     /**

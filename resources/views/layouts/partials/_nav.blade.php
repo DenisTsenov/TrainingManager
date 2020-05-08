@@ -11,7 +11,7 @@
                     <a class="nav-link dropdown-toggle btn-light rounded" href="#" id="navbarDropdownMenuLink"
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <i class="far fa-user-circle"></i><span class="h5">Profile</span>
+                        <i class="far fa-user-circle"></i><span class="h5"> Profile</span>
                     </a>
                     <div class="dropdown-menu text-left" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item btn btn-light" href="{{ route('profile.edit') }}">

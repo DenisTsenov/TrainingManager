@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <title>{{ config('app.name') }} - @yield('title')</title>
+    <title>{{ config('app.name') }} @yield('title')</title>
     @include('layouts.partials._head')
 </head>
 <body>

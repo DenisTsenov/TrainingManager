@@ -5,7 +5,6 @@
 				<div class="card-header">
 					<p class="h3 text-center">Edit your account</p>
 				</div>
-				<!--This component and RegisterForm.vue should be refactored to use one and same form -->
 				<div class="card-body">
 					<form class="form" @submit.prevent="submit">
 						<div class="form-group">
@@ -16,8 +15,7 @@
 								First name is required.
 							</div>
 							<div v-if="errors && errors.first_name" class="alert alert-danger mt-3">{{
-								errors.first_name[0]
-								}}
+								errors.first_name[0] }}
 							</div>
 						</div>
 
@@ -70,16 +68,18 @@
 								{{ errors.password_confirmation[0] }}
 							</div>
 						</div>
+
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-primary w-50">Send</button>
 						</div>
-						<div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again later..
-						</div>
 					</form>
-					<div v-if="success" class="alert alert-success mt-3">
-						The profile is edited successfully
-					</div>
 				</div>
+			</div>
+			<div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again
+				later..
+			</div>
+			<div v-if="success" class="alert alert-success mt-3">
+				The profile is edited successfully
 			</div>
 		</div>
 	</div>
@@ -90,11 +90,8 @@
 
     export default {
         mixins: [EditMixin],
-
         data() {
-            return {
-                'action': '/profile/' + this.user.id,
-            }
+            return {}
         }
     }
 </script>

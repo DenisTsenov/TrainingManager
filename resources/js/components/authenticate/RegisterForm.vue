@@ -1,10 +1,9 @@
 <template>
 	<div class="row justify-content-center mt-3">
 		<div class="col-6">
-			<!--This component and EditProfileForm.vue should be refactored to use one and same form -->
 			<div class="card">
 				<div class="card-header">
-					<p class="h3 text-center"> Create your account</p>
+					<p class="h3 text-center">Create your account</p>
 				</div>
 				<div class="card-body">
 					<form class="form" @submit.prevent="submit">
@@ -69,14 +68,15 @@
 								{{ errors.password_confirmation[0] }}
 							</div>
 						</div>
+
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-primary w-50">Send</button>
 						</div>
-						<div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again
-							later..
-						</div>
 					</form>
 				</div>
+			</div>
+			<div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again
+				later..
 			</div>
 			<div v-if="success" class="alert alert-success mt-3">
 				The profile is created successfully
@@ -90,11 +90,8 @@
 
     export default {
         mixins: [RegisterMixin],
-
         data() {
-            return {
-                'action': '/store',
-            }
+            return {}
         }
     }
 </script>

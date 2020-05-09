@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title') Login @endsection
+@section('title', 'Login')
 @section('content')
     @if (session('logout'))
         <div class="alert alert-success mt-3">

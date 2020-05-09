@@ -1,7 +1,7 @@
 import RegisterForm from './../components/authenticate/RegisterForm';
 import LoginForm from "./../components/authenticate/LoginForm";
-import EditProfileForm from "./../components/authenticate/EditProfileForm";
+import EditForm from "../components/authenticate/EditForm";
 
 Vue.component('register-form', RegisterForm);
 Vue.component('login-form', LoginForm);
-Vue.component('edit-profile-from', EditProfileForm);
+Vue.component('edit-from', EditForm);

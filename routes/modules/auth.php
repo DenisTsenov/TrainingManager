@@ -6,10 +6,10 @@ Route::get('/welcome', function () {
     return view('home');
 })->name('welcome');
 
-Route::get('/profile', 'AuthController@edit')
+Route::get('/profile/edit', 'AuthController@edit')
      ->name('profile.edit');
 
-Route::post('/profile/{user}', 'AuthController@update')
+Route::post('/profile/{user}/update', 'AuthController@update')
      ->name('profile.update');
 
 Route::post('/logout', 'AuthController@logout')

@@ -10,7 +10,6 @@ export default {
                 'password': this.password,
                 'password_confirmation': this.password_confirmation,
             },
-            action: '',
             first_name: '',
             last_name: '',
             email: '',
@@ -43,7 +42,7 @@ export default {
             if (this.sendAllowed) {
                 this.sendAllowed = false;
                 this.errors      = {};
-                axios.post(this.action, this.userData)
+                axios.post('/store', this.userData)
                      .then(response => {
                          this.userData    = {};
                          this.sendAllowed = true;

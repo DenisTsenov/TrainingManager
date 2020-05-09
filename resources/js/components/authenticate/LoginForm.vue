@@ -35,8 +35,7 @@
 							<button type="submit" class="btn btn-primary w-50">Sign in</button>
 						</div>
 					</form>
-					<div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again later..
-					</div>
+					<div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again later</div>
 				</div>
 			</div>
 		</div>
@@ -48,7 +47,6 @@
 
     export default {
         mixins: [LoginMixin],
-
         data() {
             return {
                 'action': '/login',

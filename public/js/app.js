@@ -1899,10 +1899,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/EditProfileForm.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/authenticate/EditProfileForm.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/EditForm.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/authenticate/EditForm.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2000,9 +2000,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_EditMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
-    return {
-      'action': '/profile/' + this.user.id
-    };
+    return {};
   }
 });
 
@@ -2018,7 +2016,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixin_LoginMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixin/LoginMixin */ "./resources/js/mixin/LoginMixin.js");
-//
 //
 //
 //
@@ -2176,9 +2173,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_RegisterMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
-    return {
-      'action': '/store'
-    };
+    return {};
   }
 });
 
@@ -37813,10 +37808,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/EditProfileForm.vue?vue&type=template&id=628128d8&scoped=true&":
-/*!*******************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/authenticate/EditProfileForm.vue?vue&type=template&id=628128d8&scoped=true& ***!
-  \*******************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/EditForm.vue?vue&type=template&id=02d272cd&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/authenticate/EditForm.vue?vue&type=template&id=02d272cd&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38082,27 +38077,25 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _vm._m(1),
-              _vm._v(" "),
-              _vm.serverErr
-                ? _c("div", { staticClass: "alert alert-danger" }, [
-                    _vm._v(
-                      "Something went wrong. Please try again later..\n\t\t\t\t\t"
-                    )
-                  ])
-                : _vm._e()
+              _vm._m(1)
             ]
-          ),
-          _vm._v(" "),
-          _vm.success
-            ? _c("div", { staticClass: "alert alert-success mt-3" }, [
-                _vm._v(
-                  "\n\t\t\t\t\tThe profile is edited successfully\n\t\t\t\t"
-                )
-              ])
-            : _vm._e()
+          )
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _vm.serverErr
+        ? _c("div", { staticClass: "alert alert-danger" }, [
+            _vm._v(
+              "Something went wrong. Please try again\n\t\t\tlater..\n\t\t"
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.success
+        ? _c("div", { staticClass: "alert alert-success mt-3" }, [
+            _vm._v("\n\t\t\tThe profile is edited successfully\n\t\t")
+          ])
+        : _vm._e()
     ])
   ])
 }
@@ -38265,9 +38258,7 @@ var render = function() {
           _vm._v(" "),
           _vm.serverErr
             ? _c("div", { staticClass: "alert alert-danger" }, [
-                _vm._v(
-                  "Something went wrong. Please try again later..\n\t\t\t\t"
-                )
+                _vm._v("Something went wrong. Please try again later")
               ])
             : _vm._e()
         ])
@@ -38572,19 +38563,19 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _vm._m(1),
-              _vm._v(" "),
-              _vm.serverErr
-                ? _c("div", { staticClass: "alert alert-danger" }, [
-                    _vm._v(
-                      "Something went wrong. Please try again\n\t\t\t\t\t\tlater..\n\t\t\t\t\t"
-                    )
-                  ])
-                : _vm._e()
+              _vm._m(1)
             ]
           )
         ])
       ]),
+      _vm._v(" "),
+      _vm.serverErr
+        ? _c("div", { staticClass: "alert alert-danger" }, [
+            _vm._v(
+              "Something went wrong. Please try again\n\t\t\tlater..\n\t\t"
+            )
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _vm.success
         ? _c("div", { staticClass: "alert alert-success mt-3" }, [
@@ -38601,7 +38592,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("p", { staticClass: "h3 text-center" }, [
-        _vm._v(" Create your account")
+        _vm._v("Create your account")
       ])
     ])
   },
@@ -52814,17 +52805,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/authenticate/EditProfileForm.vue":
-/*!******************************************************************!*\
-  !*** ./resources/js/components/authenticate/EditProfileForm.vue ***!
-  \******************************************************************/
+/***/ "./resources/js/components/authenticate/EditForm.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/authenticate/EditForm.vue ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EditProfileForm_vue_vue_type_template_id_628128d8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditProfileForm.vue?vue&type=template&id=628128d8&scoped=true& */ "./resources/js/components/authenticate/EditProfileForm.vue?vue&type=template&id=628128d8&scoped=true&");
-/* harmony import */ var _EditProfileForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditProfileForm.vue?vue&type=script&lang=js& */ "./resources/js/components/authenticate/EditProfileForm.vue?vue&type=script&lang=js&");
+/* harmony import */ var _EditForm_vue_vue_type_template_id_02d272cd_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditForm.vue?vue&type=template&id=02d272cd&scoped=true& */ "./resources/js/components/authenticate/EditForm.vue?vue&type=template&id=02d272cd&scoped=true&");
+/* harmony import */ var _EditForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditForm.vue?vue&type=script&lang=js& */ "./resources/js/components/authenticate/EditForm.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -52834,50 +52825,50 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _EditProfileForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _EditProfileForm_vue_vue_type_template_id_628128d8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _EditProfileForm_vue_vue_type_template_id_628128d8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _EditForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditForm_vue_vue_type_template_id_02d272cd_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditForm_vue_vue_type_template_id_02d272cd_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "628128d8",
+  "02d272cd",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/authenticate/EditProfileForm.vue"
+component.options.__file = "resources/js/components/authenticate/EditForm.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/authenticate/EditProfileForm.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/components/authenticate/EditProfileForm.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************/
+/***/ "./resources/js/components/authenticate/EditForm.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/authenticate/EditForm.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditProfileForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditProfileForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/EditProfileForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditProfileForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/EditForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/authenticate/EditProfileForm.vue?vue&type=template&id=628128d8&scoped=true&":
-/*!*************************************************************************************************************!*\
-  !*** ./resources/js/components/authenticate/EditProfileForm.vue?vue&type=template&id=628128d8&scoped=true& ***!
-  \*************************************************************************************************************/
+/***/ "./resources/js/components/authenticate/EditForm.vue?vue&type=template&id=02d272cd&scoped=true&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/authenticate/EditForm.vue?vue&type=template&id=02d272cd&scoped=true& ***!
+  \******************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditProfileForm_vue_vue_type_template_id_628128d8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditProfileForm.vue?vue&type=template&id=628128d8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/EditProfileForm.vue?vue&type=template&id=628128d8&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditProfileForm_vue_vue_type_template_id_628128d8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditForm_vue_vue_type_template_id_02d272cd_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditForm.vue?vue&type=template&id=02d272cd&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/EditForm.vue?vue&type=template&id=02d272cd&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditForm_vue_vue_type_template_id_02d272cd_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditProfileForm_vue_vue_type_template_id_628128d8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditForm_vue_vue_type_template_id_02d272cd_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -53043,7 +53034,6 @@ __webpack_require__.r(__webpack_exports__);
         'password': this.password,
         'password_confirmation': this.password_confirmation
       },
-      action: '',
       password: '',
       password_confirmation: '',
       errors: {},
@@ -53089,7 +53079,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.sendAllowed) {
         this.sendAllowed = false;
         this.errors = {};
-        axios.post(this.action, this.userData).then(function (response) {
+        axios.post('/profile/' + this.user.id + '/update', this.userData).then(function (response) {
           _this.userData.password = '';
           _this.userData.password_confirmation = '';
           _this.sendAllowed = true;
@@ -53201,7 +53191,6 @@ __webpack_require__.r(__webpack_exports__);
         'password': this.password,
         'password_confirmation': this.password_confirmation
       },
-      action: '',
       first_name: '',
       last_name: '',
       email: '',
@@ -53247,7 +53236,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.sendAllowed) {
         this.sendAllowed = false;
         this.errors = {};
-        axios.post(this.action, this.userData).then(function (response) {
+        axios.post('/store', this.userData).then(function (response) {
           _this.userData = {};
           _this.sendAllowed = true;
           _this.success = true;
@@ -53281,13 +53270,13 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_authenticate_RegisterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/authenticate/RegisterForm */ "./resources/js/components/authenticate/RegisterForm.vue");
 /* harmony import */ var _components_authenticate_LoginForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../components/authenticate/LoginForm */ "./resources/js/components/authenticate/LoginForm.vue");
-/* harmony import */ var _components_authenticate_EditProfileForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../components/authenticate/EditProfileForm */ "./resources/js/components/authenticate/EditProfileForm.vue");
+/* harmony import */ var _components_authenticate_EditForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/authenticate/EditForm */ "./resources/js/components/authenticate/EditForm.vue");
 
 
 
 Vue.component('register-form', _components_authenticate_RegisterForm__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component('login-form', _components_authenticate_LoginForm__WEBPACK_IMPORTED_MODULE_1__["default"]);
-Vue.component('edit-profile-from', _components_authenticate_EditProfileForm__WEBPACK_IMPORTED_MODULE_2__["default"]);
+Vue.component('edit-from', _components_authenticate_EditForm__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 /***/ }),
 

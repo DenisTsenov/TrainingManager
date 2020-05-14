@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/welcome', function () {
-    return view('home');
-})->name('welcome');
+Route::view('/welcome', 'home')->name('welcome');
 
 Route::get('/profile/edit', 'AuthController@edit')
      ->name('profile.edit');

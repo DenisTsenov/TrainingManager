@@ -15,10 +15,15 @@
                     </a>
                     <div class="dropdown-menu text-left" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item btn btn-light" href="{{ route('profile.edit') }}">
-                            <i class="fas fa-edit"></i>Edit
+                            <i class="fas fa-edit"></i> Edit
                         </a>
+                        @admin
+                            <a class="dropdown-item btn btn-light" href="{{ route('admin.manage.roles') }}">
+                                <i class="fas fa-users-cog"></i> Manage users roles
+                            </a>
+                        @endadmin
                         <a class="dropdown-item btn btn-light" v-on:click="logout">
-                            <i class="fas fa-sign-out-alt"></i>Logout
+                            <i class="fas fa-sign-out-alt"></i> Logout
                         </a>
                     </div>
                 </li>

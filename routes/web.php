@@ -30,5 +30,13 @@ Route::namespace('Auth')->group(function () {
 
     Route::middleware(['auth'])->group(function () {
         require 'modules/auth.php';
+
+        Route::middleware('admin')
+             ->namespace('Admin')
+             ->prefix('admin')
+             ->group(function () {
+                 Route::get('/manage-roles', 'ManageRolesController@index')
+                      ->name('admin.manage.roles');
+             });
     });
 });

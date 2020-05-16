@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div class="col-8 offset-2">
-            <roles-checkboxes v-bind:role="{{ json_encode($roles) }}"></roles-checkboxes>
+            <roles-checkboxes :roles="{{ json_encode($roles) }}"></roles-checkboxes>
         </div>
     </div>
 @endsection

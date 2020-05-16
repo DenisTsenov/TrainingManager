@@ -2194,12 +2194,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RolesCheckboxes",
   data: function data() {
-    return {
-      roles: this.roles
-    };
+    return {};
+  },
+  props: {
+    roles: Array
   }
 });
 
@@ -38681,7 +38688,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "input-group mt-3" })
+  return _c(
+    "div",
+    { staticClass: "input-group mt-5" },
+    _vm._l(_vm.roles, function(role) {
+      return _c("div", { key: role.id }, [
+        _c("div", { staticClass: "form-check-inline" }, [
+          _c("label", { staticClass: "form-check-label mr-2" }, [
+            _c("span", { staticClass: "mr-2" }, [_vm._v(_vm._s(role.name))]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-check-inline",
+              attrs: { type: "checkbox" },
+              domProps: { value: role.id }
+            })
+          ])
+        ])
+      ])
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53144,14 +53170,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************************!*\
   !*** ./resources/js/components/authenticate/admin/RolesCheckboxes.vue ***!
   \************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RolesCheckboxes_vue_vue_type_template_id_7aa8ed82_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RolesCheckboxes.vue?vue&type=template&id=7aa8ed82&scoped=true& */ "./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=template&id=7aa8ed82&scoped=true&");
 /* harmony import */ var _RolesCheckboxes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RolesCheckboxes.vue?vue&type=script&lang=js& */ "./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _RolesCheckboxes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _RolesCheckboxes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -53181,7 +53208,7 @@ component.options.__file = "resources/js/components/authenticate/admin/RolesChec
 /*!*************************************************************************************************!*\
   !*** ./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

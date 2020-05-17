@@ -5,6 +5,7 @@
 				<div class="card-header">
 					<p class="h3 text-center">Edit your account</p>
 				</div>
+				<!-- Need to refactor in order this form to be used here and in RegisterFrom component -->
 				<div class="card-body">
 					<form class="form" @submit.prevent="submit">
 						<div class="form-group">

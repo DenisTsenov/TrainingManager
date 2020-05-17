@@ -1,10 +1,10 @@
 <template>
-	<div class="input-group mt-5">
+	<div class="input-group">
 		<div v-for="role in roles" :key="role.id">
-			<div class="form-check-inline">
-				<label class="form-check-label mr-2"><span class="mr-2">{{ role.name}}</span>
-				<input type="checkbox" class="form-check-inline" :value="role.id" >
-				</label>
+			<div class="custom-control custom-switch my-1 mr-sm-2">
+				<input type="checkbox" class="custom-control-input" :id="role.id"
+					   :name="name + '[' + role.id + ']' " :value="role.id">
+				<label class="custom-control-label" :for="role.id">{{ role.name }}</label>
 			</div>
 		</div>
 	</div>
@@ -14,10 +14,22 @@
     export default {
         name: "RolesCheckboxes",
         data() {
-            return {}
+            return {
+                name: 'role'
+            }
         },
         props: {
-            roles: Array,
+            roles: {
+                type: Array,
+                name: {
+                    type: String,
+                    required: true,
+                },
+                id: {
+                    type: Number,
+                    required: true,
+                }
+            },
         },
     }
 </script>

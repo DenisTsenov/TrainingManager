@@ -1996,6 +1996,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_EditMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -2203,10 +2204,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RolesCheckboxes",
   data: function data() {
-    return {};
+    return {
+      name: 'role'
+    };
   },
   props: {
-    roles: Array
+    roles: {
+      type: Array,
+      name: {
+        type: String,
+        required: true
+      },
+      id: {
+        type: Number,
+        required: true
+      }
+    }
   }
 });
 
@@ -38690,20 +38703,30 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "input-group mt-5" },
+    { staticClass: "input-group" },
     _vm._l(_vm.roles, function(role) {
       return _c("div", { key: role.id }, [
-        _c("div", { staticClass: "form-check-inline" }, [
-          _c("label", { staticClass: "form-check-label mr-2" }, [
-            _c("span", { staticClass: "mr-2" }, [_vm._v(_vm._s(role.name))]),
-            _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "custom-control custom-switch my-1 mr-sm-2" },
+          [
             _c("input", {
-              staticClass: "form-check-inline",
-              attrs: { type: "checkbox" },
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                id: role.id,
+                name: _vm.name + "[" + role.id + "]"
+              },
               domProps: { value: role.id }
-            })
-          ])
-        ])
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "custom-control-label", attrs: { for: role.id } },
+              [_vm._v(_vm._s(role.name))]
+            )
+          ]
+        )
       ])
     }),
     0

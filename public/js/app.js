@@ -2000,6 +2000,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_EditMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  name: 'EditForm',
   data: function data() {
     return {};
   }
@@ -2064,6 +2065,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_LoginMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  name: 'LoginForm',
   data: function data() {
     return {
       'action': '/login'
@@ -2173,6 +2175,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_RegisterMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  name: 'RegisterForm',
   data: function data() {
     return {};
   }
@@ -2234,6 +2237,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _authenticate_admin_RolesCheckboxes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../authenticate/admin/RolesCheckboxes */ "./resources/js/components/authenticate/admin/RolesCheckboxes.vue");
 //
 //
 //
@@ -2244,8 +2248,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "SearchField"
+  name: "SearchField",
+  components: {
+    RolesCheckboxes: _authenticate_admin_RolesCheckboxes__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      searched_users: {
+        identifier: '',
+        roles: {}
+      },
+      results: []
+    };
+  },
+  watch: {
+    searched_users: function searched_users(after, before) {
+      this.findUser();
+    }
+  },
+  props: {
+    roles: {}
+  },
+  methods: {
+    findUser: function findUser() {
+      var _this = this;
+
+      if (this.searched_users.identifier.length > 1) {
+        axios.post('/admin/find-user/' + this.searched_users.identifier, {
+          identifier: this.searched_users.identifier
+        }).then(function (response) {
+          _this.results = response.data;
+        })["catch"](function (error) {});
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -38754,31 +38819,105 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-8 offset-2" }, [
+        _c("div", { staticClass: "input-group mt-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.searched_users.identifier,
+                expression: "searched_users.identifier"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              placeholder: "User Name or email",
+              "aria-label": "User Name...",
+              "aria-describedby": "User Name or email",
+              name: "identifier",
+              autocomplete: "off"
+            },
+            domProps: { value: _vm.searched_users.identifier },
+            on: {
+              keyup: _vm.findUser,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.searched_users, "identifier", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._m(0)
+        ]),
+        _vm._v(" "),
+        _vm.results.length > 0 && _vm.searched_users.identifier.length
+          ? _c(
+              "div",
+              { staticClass: "list-group" },
+              _vm._l(_vm.results.slice(0, 5), function(result) {
+                return _c(
+                  "a",
+                  {
+                    key: result.id,
+                    staticClass:
+                      "list-group-item list-group-item-action list-group-item-info"
+                  },
+                  [
+                    _c("div", {
+                      domProps: { textContent: _vm._s(result.full_name) }
+                    })
+                  ]
+                )
+              }),
+              0
+            )
+          : _vm._e()
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-8 offset-2 mt-5" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("fieldset", { attrs: { disabled: "" } }, [
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [_c("roles-checkboxes", { attrs: { roles: _vm.roles } })],
+              1
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group mt-3" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          placeholder: "User Name...",
-          "aria-label": "User Name...",
-          "aria-describedby": "User Name..."
-        }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group-append" }, [
-        _c(
-          "span",
-          { staticClass: "input-group-text", attrs: { id: "basic-addon2" } },
-          [_vm._v("User name")]
-        )
-      ])
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon2" } },
+        [_vm._v("User name/Email")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Roles")])
     ])
   }
 ]
@@ -53193,15 +53332,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************************!*\
   !*** ./resources/js/components/authenticate/admin/RolesCheckboxes.vue ***!
   \************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RolesCheckboxes_vue_vue_type_template_id_7aa8ed82_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RolesCheckboxes.vue?vue&type=template&id=7aa8ed82&scoped=true& */ "./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=template&id=7aa8ed82&scoped=true&");
 /* harmony import */ var _RolesCheckboxes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RolesCheckboxes.vue?vue&type=script&lang=js& */ "./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _RolesCheckboxes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _RolesCheckboxes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -53231,7 +53369,7 @@ component.options.__file = "resources/js/components/authenticate/admin/RolesChec
 /*!*************************************************************************************************!*\
   !*** ./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

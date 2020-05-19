@@ -91,6 +91,7 @@
 
     export default {
         mixins: [EditMixin],
+        name: 'EditForm',
         data() {
             return {}
         }

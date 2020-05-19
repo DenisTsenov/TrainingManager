@@ -90,6 +90,7 @@
 
     export default {
         mixins: [RegisterMixin],
+        name: 'RegisterForm',
         data() {
             return {}
         }

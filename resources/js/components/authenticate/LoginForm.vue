@@ -47,6 +47,7 @@
 
     export default {
         mixins: [LoginMixin],
+        name: 'LoginForm',
         data() {
             return {
                 'action': '/login',

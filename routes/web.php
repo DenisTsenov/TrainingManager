@@ -35,8 +35,7 @@ Route::namespace('Auth')->group(function () {
              ->namespace('Admin')
              ->prefix('admin')
              ->group(function () {
-                 Route::get('/manage-roles', 'ManageRolesController@index')
-                      ->name('admin.manage.roles');
+                 require 'modules/admin.php';
              });
     });
 });

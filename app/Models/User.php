@@ -41,11 +41,22 @@ class User extends Authenticatable
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function role()
     {
-        return $this->hasOne(Role::class);
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * @param        $query
+     * @param string $userName
+     * @return mixed
+     */
+    public function scopeWhereLike($query, string $identifier)
+    {
+        return $query->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", $identifier . "%")
+                     ->orWhereRaw("email LIKE ?", $identifier . "%");
     }
 
     /**

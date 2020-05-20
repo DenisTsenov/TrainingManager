@@ -18,17 +18,17 @@ class ManageRolesController extends Controller
     }
 
     /**
-     * @param Request $name
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function find(Request $name)
+    public function find(Request $request)
     {
-        $name->validate([
-            'identifier' => ['required', 'string',],
+        $request->validate([
+            'term' => ['required', 'string',],
         ]);
 
         $user = User::selectRaw("id, CONCAT(first_name, ' ', last_name) as full_name, role_id")
-                    ->whereLike($name->input('identifier'))
+                    ->whereLike($request->input('term'))
                     ->orderByRaw('first_name ASC, last_name ASC')
                     ->limit(5)
                     ->get();

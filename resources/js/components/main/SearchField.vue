@@ -1,21 +1,23 @@
 <template>
 	<div>
 		<div class="row">
-			<div class="col-8 offset-2">
-				<div class="input-group mt-3">
-					<input type="text" class="form-control" placeholder="User Name or email" aria-label="User Name..."
-						   aria-describedby="User Name or email" v-model="searched_users.identifier"
-						   @keyup="findUser" name="identifier" autocomplete="off">
-					<div class="input-group-append">
-						<span class="input-group-text" id="basic-addon2">User name/Email</span>
-					</div>
-				</div>
-				<div class="list-group" v-if="results.length > 0 && searched_users.identifier.length">
-					<a class="list-group-item list-group-item-action list-group-item-info"
-					   v-for="result in results.slice(0,5)" :key="result.id">
-						<div v-text="result.full_name"></div>
-					</a>
-				</div>
+			<div class="col-8 offset-2 mt-3">
+				<vue-select label="full_name" :filterable="false" :options="options" @search="onSearch"
+							v-model="selected_user">
+					<template slot="no-options">
+						Type user name or email address...
+					</template>
+					<template slot="option" slot-scope="option">
+						<div class="d-center">
+							{{ option.full_name }}
+						</div>
+					</template>
+					<template slot="selected-option" slot-scope="option">
+						<div class="selected d-center">
+							{{ option.full_name }}
+						</div>
+					</template>
+				</vue-select>
 			</div>
 		</div>
 		<div class="row">
@@ -24,9 +26,9 @@
 					<div class="card-header">
 						<p class="h3 text-center">Roles</p>
 					</div>
-					<fieldset disabled>
+					<fieldset>
 						<div class="card-body">
-							<roles-checkboxes :roles="roles"></roles-checkboxes>
+							<roles-checkboxes :roles="roles" :selected_user="selected_user"></roles-checkboxes>
 						</div>
 					</fieldset>
 				</div>
@@ -45,33 +47,30 @@
         },
         data() {
             return {
-                searched_users: {
-                    identifier: '',
-                    roles: {},
-                },
-                results: []
-            }
-        },
-        watch: {
-            searched_users(after, before) {
-                this.findUser();
+                options: [],
+                selected_user: ''
             }
         },
         props: {
             roles: {},
         },
         methods: {
-            findUser() {
-                if (this.searched_users.identifier.length > 1) {
-                    axios.post('/admin/find-user/' + this.searched_users.identifier, {identifier: this.searched_users.identifier})
-                         .then(response => {
-                             this.results = response.data;
-                         })
-                         .catch(error => {
-
-                         });
-                }
-            }
+            onSearch(search, loading) {
+                loading(true);
+                this.search(loading, search, this);
+            },
+            search: _.debounce((loading, search, vm) => {
+                axios.get('/admin/find-user/' + escape(search), {
+                    params: {
+                        term: escape(search)
+                    }
+                }).then(response => {
+                    vm.options = response.data;
+                    loading(false);
+                }).catch(error => {
+                    loading(false);
+                });
+            }, 350),
         }
     }
 </script>

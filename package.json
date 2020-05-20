@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.0",
+        "vue-select": "^3.10.3",
         "vuelidate": "^0.7.5"
     }
 }

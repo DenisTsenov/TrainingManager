@@ -8,12 +8,12 @@
 						Type user name or email address...
 					</template>
 					<template slot="option" slot-scope="option">
-						<div class="d-center">
+						<div>
 							{{ option.full_name }}
 						</div>
 					</template>
-					<template slot="selected-option" slot-scope="option">
-						<div class="selected d-center">
+					<template slot="selected-option" slot-scope="option" >
+						<div>
 							{{ option.full_name }}
 						</div>
 					</template>
@@ -26,7 +26,7 @@
 					<div class="card-header">
 						<p class="h3 text-center">Roles</p>
 					</div>
-					<fieldset>
+					<fieldset :disabled="selected_user === null || selected_user === '' ">
 						<div class="card-body">
 							<roles-checkboxes :roles="roles" :selected_user="selected_user"></roles-checkboxes>
 						</div>
@@ -48,7 +48,7 @@
         data() {
             return {
                 options: [],
-                selected_user: ''
+                selected_user: '',
             }
         },
         props: {

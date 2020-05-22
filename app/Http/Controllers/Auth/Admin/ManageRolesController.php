@@ -21,7 +21,7 @@ class ManageRolesController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function find(Request $request)
+    public function findUser(Request $request)
     {
         $request->validate([
             'term' => ['required', 'string',],
@@ -34,5 +34,22 @@ class ManageRolesController extends Controller
                     ->get();
 
         return \response()->json($user);
+    }
+
+    /**
+     * @param User    $user
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function changeRole(User $user, Request $request)
+    {
+        $request->validate([
+            'user' => ['required', 'integer', 'exists:users,id'],
+            'role' => ['required', 'integer', 'exists:roles,id'],
+        ]);
+
+        $user->update(['role_id' => $request->input('role')]);
+
+        return \response()->json(true);
     }
 }

@@ -2204,11 +2204,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RolesCheckboxes",
   data: function data() {
     return {
-      name: 'role'
+      name: 'role',
+      load: false
     };
   },
   props: {
@@ -2234,6 +2247,24 @@ __webpack_require__.r(__webpack_exports__);
         type: Number,
         required: true
       }
+    }
+  },
+  methods: {
+    changeRole: function changeRole(role) {
+      var _this = this;
+
+      if (this.selected_user === null || !role) return;
+      if (this.selected_user.role_id === role) return;
+      this.load = true;
+      axios.post('/admin/change-role/' + this.selected_user.id + '/' + role, {
+        user: this.selected_user.id,
+        role: role
+      }).then(function (response) {
+        _this.selected_user.role_id = role;
+        _this.load = false;
+      })["catch"](function (error) {
+        _this.load = false;
+      });
     }
   }
 });
@@ -38777,41 +38808,69 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "input-group" },
-    _vm._l(_vm.roles, function(role) {
-      return _c("div", { key: role.id }, [
-        _c(
+  return _c("div", { staticClass: "input-group" }, [
+    _vm.load ? _c("div", [_vm._m(0)]) : _vm._e(),
+    _vm._v(" "),
+    _vm.load === false
+      ? _c(
           "div",
-          { staticClass: "custom-control custom-switch my-1 mr-sm-2" },
-          [
-            _c("input", {
-              staticClass: "custom-control-input",
-              attrs: {
-                type: "checkbox",
-                id: role.id,
-                name: _vm.name + "[" + role.id + "]"
-              },
-              domProps: {
-                value: role.id,
-                checked: role.id == _vm.selected_user.role_id
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "custom-control-label", attrs: { for: role.id } },
-              [_vm._v(_vm._s(role.name))]
-            )
-          ]
+          { staticClass: "row" },
+          _vm._l(_vm.roles, function(role) {
+            return _c("div", { key: role.id, staticClass: "ml-3" }, [
+              _c(
+                "div",
+                { staticClass: "custom-control custom-switch my-1 mr-sm-2" },
+                [
+                  _c("input", {
+                    staticClass: "custom-control-input",
+                    attrs: {
+                      type: "checkbox",
+                      id: role.name.toLowerCase(),
+                      disabled:
+                        _vm.selected_user !== null &&
+                        role.id === _vm.selected_user.role_id
+                    },
+                    domProps: {
+                      checked:
+                        _vm.selected_user !== null &&
+                        role.id === _vm.selected_user.role_id
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.changeRole(role.id)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "custom-control-label",
+                      attrs: { for: role.name.toLowerCase() }
+                    },
+                    [_vm._v(_vm._s(role.name))]
+                  )
+                ]
+              )
+            ])
+          }),
+          0
         )
-      ])
-    }),
-    0
-  )
+      : _vm._e()
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("div", { staticClass: "spinner-border", attrs: { role: "status" } }, [
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -38853,7 +38912,7 @@ var render = function() {
                   key: "option",
                   fn: function(option) {
                     return [
-                      _c("div", { staticClass: "d-center" }, [
+                      _c("div", [
                         _vm._v(
                           "\n\t\t\t\t\t\t" +
                             _vm._s(option.full_name) +
@@ -38867,7 +38926,7 @@ var render = function() {
                   key: "selected-option",
                   fn: function(option) {
                     return [
-                      _c("div", { staticClass: "selected d-center" }, [
+                      _c("div", [
                         _vm._v(
                           "\n\t\t\t\t\t\t" +
                             _vm._s(option.full_name) +
@@ -38905,18 +38964,29 @@ var render = function() {
         _c("div", { staticClass: "card" }, [
           _vm._m(0),
           _vm._v(" "),
-          _c("fieldset", [
-            _c(
-              "div",
-              { staticClass: "card-body" },
-              [
-                _c("roles-checkboxes", {
-                  attrs: { roles: _vm.roles, selected_user: _vm.selected_user }
-                })
-              ],
-              1
-            )
-          ])
+          _c(
+            "fieldset",
+            {
+              attrs: {
+                disabled: _vm.selected_user === null || _vm.selected_user === ""
+              }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("roles-checkboxes", {
+                    attrs: {
+                      roles: _vm.roles,
+                      selected_user: _vm.selected_user
+                    }
+                  })
+                ],
+                1
+              )
+            ]
+          )
         ])
       ])
     ])

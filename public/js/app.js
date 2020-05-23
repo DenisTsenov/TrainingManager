@@ -53872,15 +53872,27 @@ Vue.component('vue-select', vue_select_dist_vue_select__WEBPACK_IMPORTED_MODULE_
 
 /***/ }),
 
+/***/ "./resources/sass/custom.scss":
+/*!************************************!*\
+  !*** ./resources/sass/custom.scss ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!******************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/custom.scss ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Apache24\htdocs\TrainingManager\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Apache24\htdocs\TrainingManager\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Apache24\htdocs\TrainingManager\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Apache24\htdocs\TrainingManager\resources\sass\custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

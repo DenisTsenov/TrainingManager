@@ -2,11 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/manage-roles', 'ManageRolesController@index')
-     ->name('admin.manage.roles');
+/*
+ * User Roles Routes
+ */
+Route::get('/manage-user-roles', 'ManageUserRoleController@index')
+     ->name('admin.manage.user.roles');
 
-Route::get('/find-user/{name}', 'ManageRolesController@findUser')
+Route::get('/find-user/{name}', 'ManageUserRoleController@findUser')
      ->name('admin.find.user');
 
-Route::post('/change-role/{user}/{role}', 'ManageRolesController@changeRole')
+Route::post('/change-role/{user}/{role}', 'ManageUserRoleController@changeRole')
      ->name('admin.change.role');
+
+/*
+ * Role Permission Routes
+ */
+Route::get('/manage-role-permission', 'ManageRolePermissionController@index')
+     ->name('admin.manage.role.permission');

@@ -7,14 +7,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ManageRolesController extends Controller
+class ManageUserRoleController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        return view('auth.admin.index', ['roles' => Role::get()]);
+        return view('auth.admin.manage_user_role', ['roles' => Role::get()]);
     }
 
     /**

@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     /**
      * @param        $query
-     * @param string $userName
+     * @param string $identifier
      * @return mixed
      */
     public function scopeWhereLike($query, string $identifier)

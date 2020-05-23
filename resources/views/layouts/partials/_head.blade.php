@@ -4,4 +4,7 @@
 
 <!-- Styles -->
 <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
+@admin
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}"/>
+@endadmin
 @stack('styles')

@@ -64,11 +64,10 @@
                 axios.post('/admin/change-role/' + this.selected_user.id + '/' + role, {
                     user: this.selected_user.id,
                     role: role,
-                })
-                     .then(response => {
-                         this.selected_user.role_id = role;
-                         this.load                  = false;
-                     }).catch(error => {
+                }).then(response => {
+                    this.selected_user.role_id = role;
+                    this.load                  = false;
+                }).catch(error => {
                     this.load = false;
                 });
             }

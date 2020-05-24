@@ -2,9 +2,7 @@
 	<div class="input-group">
 		<div v-if="load">
 			<div class="text-center">
-				<div class="spinner-border" role="status">
-					<span class="sr-only">Loading...</span>
-				</div>
+				<loading></loading>
 			</div>
 		</div>
 		<div class="row" v-if="load === false">

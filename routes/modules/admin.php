@@ -15,7 +15,13 @@ Route::post('/change-role/{user}/{role}', 'ManageUserRoleController@changeRole')
      ->name('admin.change.role');
 
 /*
- * Role Permission Routes
+ * Roles and Permissions Routes
  */
-Route::get('/manage-role-permission', 'ManageRolePermissionController@index')
+Route::view('/manage-role-permission', 'auth.admin.manage_role_permission')
      ->name('admin.manage.role.permission');
+
+Route::get('/manage-role', 'ManageRoleController@index')
+     ->name('admin.manage.role');
+
+Route::get('/manage-permission', 'ManagePermissionController@index')
+     ->name('admin.manage.permission');

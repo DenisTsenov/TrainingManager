@@ -24,6 +24,7 @@ class UsersTableSeeder extends Seeder
             'email'      => 'denis@test.bg',
             'password'   => 'password',
             'is_admin'   => true,
+            'role_id'    => 1,
         ]);
     }
 }

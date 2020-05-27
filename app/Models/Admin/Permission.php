@@ -11,10 +11,5 @@ class Permission extends Model
 
     protected $fillable = ['name'];
 
-    public function getNameAttribute($value)
-    {
-//        return Str::of($value)->replace('_', ' ')->title();
-        return ucfirst(str_replace('_', ' ', $value));
-    }
-
+    protected $hidden = ['pivot'];
 }

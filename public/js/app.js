@@ -2233,13 +2233,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RolePermissions",
   data: function data() {
     return {
       roles: [],
-      permissions: [],
-      loading: true
+      permissionsData: [],
+      loading: true,
+      roleId: false
     };
   },
   mounted: function mounted() {
@@ -2250,17 +2255,68 @@ __webpack_require__.r(__webpack_exports__);
     getRoles: function getRoles() {
       var _this = this;
 
-      axios.get('/admin/manage-role', {}).then(function (response) {
+      axios.get('/admin/role/manage-role', {}).then(function (response) {
         _this.roles = response.data.roles;
       })["catch"](function (error) {});
     },
     getPermissions: function getPermissions() {
       var _this2 = this;
 
-      axios.get('/admin/manage-permission', {}).then(function (response) {
-        _this2.permissions = response.data.permissions;
+      axios.get('/admin/permission/manage-permission', {}).then(function (response) {
+        response.data.permissions.forEach(function (permission) {
+          permission.checked = false;
+        });
+        _this2.permissionsData = response.data.permissions;
         _this2.loading = false;
       })["catch"](function (error) {});
+    },
+    fillPermissions: function fillPermissions(roleId, index) {
+      if (!this.roles[index] || this.roleId === this.roles[index].id) return;
+      this.clearPermissions();
+      this.roleId = this.roles[index].id;
+      var permissionsData = this.$data.permissionsData;
+
+      var rolePermissions = _.map(this.roles[index].permissions, 'id');
+
+      rolePermissions.forEach(function (rolePermissionId) {
+        permissionsData.forEach(function (permissionData) {
+          if (rolePermissionId === permissionData.id) {
+            permissionData.checked = true;
+            return false;
+          }
+        });
+      });
+    },
+    assignPermission: function assignPermission(permission, index) {
+      var _this3 = this;
+
+      axios.post('/admin/role/assign-permission', {
+        role: this.roleId,
+        permission: permission.id
+      }).then(function (response) {
+        permission.checked === false ? permission.checked = true : permission.checked = false;
+        var assignFlag = true;
+        var self = _this3; // in order to delete role permission if uncheck role
+
+        _this3.roles[_this3.roleId - 1].permissions.forEach(function (rolePermission, id) {
+          if (rolePermission.id === permission.id) {
+            Vue["delete"](self.roles[self.roleId - 1].permissions, id);
+            assignFlag = false;
+            return false;
+          }
+        });
+
+        if (assignFlag) {
+          _this3.roles[_this3.roleId - 1].permissions.push(permission);
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    clearPermissions: function clearPermissions() {
+      this.permissionsData.forEach(function (permissionData) {
+        permissionData.checked = false;
+      });
     }
   }
 });
@@ -38945,15 +39001,33 @@ var render = function() {
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  _vm._l(_vm.roles, function(role) {
+                  _vm._l(_vm.roles, function(role, index) {
                     return _c(
                       "div",
                       { key: role.id, staticClass: "list-group-item" },
                       [
                         _c(
                           "button",
-                          { staticClass: "btn bt-primary rounded" },
-                          [_vm._v(_vm._s(role.name))]
+                          {
+                            staticClass: "btn rounded",
+                            class: {
+                              "btn-success": _vm.roleId === role.id,
+                              "btn-primary": _vm.roleId !== role.id
+                            },
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.fillPermissions(role.id, index)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t" +
+                                _vm._s(role.name) +
+                                "\n\t\t\t\t\t"
+                            )
+                          ]
                         )
                       ]
                     )
@@ -38987,7 +39061,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  _vm._l(_vm.permissions, function(permission) {
+                  _vm._l(_vm.permissionsData, function(permission, index) {
                     return _c(
                       "div",
                       { key: permission.id, staticClass: "list-group-item" },
@@ -39003,9 +39077,16 @@ var render = function() {
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
+                                disabled: !_vm.roleId,
                                 id: permission.name
-                                  .toLowerCase()
-                                  .replace(" ", "_")
+                              },
+                              domProps: {
+                                checked: permission.checked === true
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.assignPermission(permission, index)
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -39013,11 +39094,7 @@ var render = function() {
                               "label",
                               {
                                 staticClass: "custom-control-label",
-                                attrs: {
-                                  for: permission.name
-                                    .toLowerCase()
-                                    .replace(" ", "_")
-                                }
+                                attrs: { for: permission.name }
                               },
                               [
                                 _vm._v(

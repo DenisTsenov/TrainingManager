@@ -18,11 +18,11 @@ class PermissionsTableSeeder extends Seeder
         DB::table('permissions')->truncate();
 
         DB::table('permissions')->insert([
-            ['name' => 'create_training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['name' => 'assign_training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['name' => 'edit_training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['name' => 'roll_back_training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['name' => 'training_complete', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['name' => 'Create Training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['name' => 'Assign Training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['name' => 'Edit Training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['name' => 'Roll back training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['name' => 'Training complete', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
         ]);
     }
 }

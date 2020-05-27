@@ -11,8 +11,12 @@ class Role extends Model
 
     protected $fillable = ['name'];
 
-    public function getNameAttribute($value)
+    protected $with = ['permissions'];
+
+    protected $hidden = ['pivot'];
+
+    public function permissions()
     {
-        return Str::title($value);
+        return $this->belongsToMany(Permission::class);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -7,7 +9,7 @@ use Carbon\Carbon;
 class PermissionsTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeders.
      * set 'created_at' => Carbon::now(), 'updated_at' => Carbon::now() because QueryBuilder dose not know
      * what to insert automatically unlike Eloquent
      * @return void

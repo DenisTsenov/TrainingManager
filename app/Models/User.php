@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Role;
+use App\Models\Admin\Team;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -48,6 +50,11 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function team()
+    {
+        return $this->hasOne(Team::class, 'trainer_id');
+    }
+
     /**
      * @param        $query
      * @param string $identifier
@@ -55,8 +62,8 @@ class User extends Authenticatable
      */
     public function scopeWhereLike($query, string $identifier)
     {
-        return $query->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", $identifier . "%")
-                     ->orWhereRaw("email LIKE ?", $identifier . "%");
+        return $query->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?",  "$identifier%")
+                     ->orWhereRaw("email LIKE ?", "$identifier%");
     }
 
     /**

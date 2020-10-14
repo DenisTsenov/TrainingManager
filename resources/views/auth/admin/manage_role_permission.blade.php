@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'User roles management')
+@section('title', 'Roles management')
 
 @section('content')
     <roles-permissions></roles-permissions>

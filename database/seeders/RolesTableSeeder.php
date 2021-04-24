@@ -20,11 +20,11 @@ class RolesTableSeeder extends Seeder
         DB::table('permission_role')->truncate();
 
         DB::table('roles')->insert([
-            ['name' => 'Trainer', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['name' => 'Competitor', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['name' => config('constants.roles.' . Role::TRAINER), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['name' => config('constants.roles.' . Role::COMPETITOR), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
         ]);
 
-        Role::where('id', 1)->first()->permissions()->attach([1, 2]);
-        Role::where('id', 2)->first()->permissions()->attach([5]);
+        Role::where('id', Role::TRAINER)->first()->permissions()->attach([1, 2]);
+        Role::where('id', Role::COMPETITOR)->first()->permissions()->attach([5]);
     }
 }

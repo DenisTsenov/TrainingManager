@@ -6,13 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
+    const TRAINER      = 1;
+    const COMPETITOR   = 2;
+
     protected $table = 'roles';
 
     protected $fillable = ['name'];
 
     protected $with = ['permissions'];
 
-    protected $hidden = ['pivot'];
+//    protected $hidden = ['pivot'];
 
     public function permissions()
     {

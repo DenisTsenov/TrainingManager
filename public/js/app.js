@@ -2353,13 +2353,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RolesCheckboxes",
   data: function data() {
     return {
       name: 'role',
-      load: false
+      loading: false
     };
   },
   props: {
@@ -2392,16 +2391,22 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if (this.selected_user === null || !role) return;
-      if (this.selected_user.role_id === role) return;
-      this.load = true;
+      this.loading = true;
       axios.post('/admin/change-role/' + this.selected_user.id + '/' + role, {
         user: this.selected_user.id,
         role: role
       }).then(function (response) {
-        _this.selected_user.role_id = role;
-        _this.load = false;
+        if (response.data == 'new role') {
+          _this.selected_user.role_id = role;
+        }
+
+        if (response.data == 'no role') {
+          _this.selected_user.role_id = 0;
+        }
+
+        _this.loading = false;
       })["catch"](function (error) {
-        _this.load = false;
+        _this.loading = false;
       });
     }
   }
@@ -39140,13 +39145,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "input-group" }, [
-    _vm.load
+    _vm.loading
       ? _c("div", [
           _c("div", { staticClass: "text-center" }, [_c("loading")], 1)
         ])
       : _vm._e(),
     _vm._v(" "),
-    _vm.load === false
+    _vm.loading === false
       ? _c(
           "div",
           { staticClass: "row" },
@@ -39158,13 +39163,7 @@ var render = function() {
                 [
                   _c("input", {
                     staticClass: "custom-control-input",
-                    attrs: {
-                      type: "checkbox",
-                      id: role.name.toLowerCase(),
-                      disabled:
-                        _vm.selected_user !== null &&
-                        role.id === _vm.selected_user.role_id
-                    },
+                    attrs: { type: "checkbox", id: role.name.toLowerCase() },
                     domProps: {
                       checked:
                         _vm.selected_user !== null &&
@@ -54393,9 +54392,9 @@ Vue.component('loading', _components_main_Loading__WEBPACK_IMPORTED_MODULE_2__["
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Apache24\htdocs\TrainingManager\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Apache24\htdocs\TrainingManager\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Apache24\htdocs\TrainingManager\resources\sass\custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

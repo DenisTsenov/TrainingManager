@@ -27,13 +27,13 @@ class ManageUserRoleController extends Controller
             'term' => ['required', 'string',],
         ]);
 
-        $user = User::selectRaw("id, CONCAT(first_name, ' ', last_name) as full_name, role_id")
-                    ->whereLike($request->input('term'))
-                    ->orderByRaw('first_name ASC, last_name ASC')
-                    ->limit(5)
-                    ->get();
+        $users = User::selectRaw("id, CONCAT(first_name, ' ', last_name) as full_name, role_id")
+                     ->whereLike($request->input('term'))
+                     ->orderByRaw('first_name ASC, last_name ASC')
+                     ->limit(5)
+                     ->get();
 
-        return \response()->json($user);
+        return \response()->json($users);
     }
 
     /**
@@ -44,12 +44,19 @@ class ManageUserRoleController extends Controller
     public function changeRole(User $user, Request $request)
     {
         $request->validate([
-            'user' => ['required', 'integer', 'exists:users,id'],
             'role' => ['required', 'integer', 'exists:roles,id'],
         ]);
 
-        $user->update(['role_id' => $request->input('role')]);
+        $role     = $request->input('role');
+        $response = 'new role';
 
-        return \response()->json(true);
+        if ($request->input('role') == ($user->role->id ?? null)) {
+            $role     = null;
+            $response = 'no role';
+        }
+
+        $user->update(['role_id' => $role]);
+
+        return \response()->json($response);
     }
 }

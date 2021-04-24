@@ -12,30 +12,29 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'LoginController@showLoginForm');
 
-Route::namespace('Auth')->group(function () {
-    Route::get('/', 'LoginController@showLoginForm');
+Route::get('/login', 'LoginController@showLoginForm')
+     ->name('login.show');
 
-    Route::get('/login', 'LoginController@showLoginForm')
-         ->name('login.show');
+Route::get('/register', 'RegisterController@create')
+     ->name('register.show');
 
-    Route::get('/register', 'RegisterController@create')
-         ->name('register.show');
+Route::post('/store', 'RegisterController@store')
+     ->name('register.store');
 
-    Route::post('/store', 'RegisterController@store')
-         ->name('register.store');
+Route::post('/login', 'LoginController@login')
+     ->name('login');
 
-    Route::post('/login', 'LoginController@login')
-         ->name('login');
+Route::namespace('Auth')
+     ->middleware(['auth'])
+     ->group(function () {
+         require 'modules/auth.php';
 
-    Route::middleware(['auth'])->group(function () {
-        require 'modules/auth.php';
-
-        Route::middleware('admin')
-             ->namespace('Admin')
-             ->prefix('admin')
-             ->group(function () {
-                 require 'modules/admin.php';
-             });
-    });
-});
+         Route::namespace('Admin')
+              ->middleware('admin')
+              ->prefix('admin')
+              ->group(function () {
+                  require 'modules/admin.php';
+              });
+     });

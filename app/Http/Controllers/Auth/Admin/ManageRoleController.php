@@ -23,9 +23,7 @@ class ManageRoleController extends Controller
             'permission' => ['required', 'integer', 'exists:permissions,id'],
         ]);
 
-        $role = Role::find($request->input('role'));
-
-        $role->permissions()->toggle($request->input(['permission']));
+        Role::find($request->input('role'))->permissions()->toggle($request->input(['permission']));
 
         return response()->json(['success' => true]);
     }

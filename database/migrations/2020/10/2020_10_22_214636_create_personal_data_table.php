@@ -15,14 +15,10 @@ class CreatePersonalDataTable extends Migration
     {
         Schema::create('personal_data', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('sport_id');
-            $table->unsignedBigInteger('settlement_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('sport_id')->constrained();
+            $table->foreignId('settlement_id')->constrained();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('sport_id')->references('id')->on('sports');
-            $table->foreign('settlement_id')->references('id')->on('settlements');
         });
     }
 

@@ -15,23 +15,18 @@ class CreateTeamsTables extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('trainer_id');
+            $table->foreignId('trainer_id')->constrained('users');
             $table->date('created_at');
-
-            $table->foreign('trainer_id')->references('id')->on('users');
         });
 
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('team_id');
-            $table->unsignedBigInteger('competitor_id');
+            $table->foreignId('team_id')->constrained('teams');
+            $table->foreignId('competitor_id')->constrained('users');
             $table->date('joined_at');
             $table->date('left_at');
 
             $table->index(['team_id', 'competitor_id']);
-
-            $table->foreign('team_id')->references('id')->on('teams');
-            $table->foreign('competitor_id')->references('id')->on('users');
         });
     }
 

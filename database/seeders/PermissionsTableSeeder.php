@@ -22,8 +22,8 @@ class PermissionsTableSeeder extends Seeder
             ['name' => 'Create Training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
             ['name' => 'Assign Training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
             ['name' => 'Edit Training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['name' => 'Roll back training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['name' => 'Training complete', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['name' => 'Rollback Training', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['name' => 'Training Complete', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
         ]);
     }
 }

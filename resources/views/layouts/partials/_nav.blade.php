@@ -42,12 +42,12 @@
                             {{--                                </ul>--}}
                             {{--                            </li>--}}
                             <li class="dropdown-item">
-                                <a class="dropdown-item btn btn-light" href="{{ route('admin.manage.user.roles') }}">
+                                <a class="dropdown-item btn btn-light" href="{{ route('admin.manage_user_roles') }}">
                                     <i class="fas fa-users-cog"></i> Manage user role
                                 </a>
                             </li>
                             <li class="dropdown-item">
-                                <a class="dropdown-item btn btn-light" href="{{ route('admin.manage.role.permission') }}">
+                                <a class="dropdown-item btn btn-light" href="{{ route('admin.manage_role_permission') }}">
                                     <i class="fas fa-tasks"></i> Manage role permission
                                 </a>
                             </li>

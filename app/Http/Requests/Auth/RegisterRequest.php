@@ -33,6 +33,9 @@ class RegisterRequest extends FormRequest
             'settlement_id' => ['required', 'exists:settlements:id'],
             'sport_id'      => ['required', 'exists:sports,id'],
         ];
+//        TODO test -> Rule::exists('settlements_sports')->where(function ($query) {
+//                                    return $query->where('settlement_id', $this->input('settlement_id'));
+//                                }),
     }
 
     /**
@@ -48,7 +51,7 @@ class RegisterRequest extends FormRequest
                 $settlementSport = \DB::table('settlements_sports')
                                       ->where('settlement_id', $this->input('settlement_id'))
                                       ->where('sport_id', $this->input('sport_id'))
-                                      ->exist();
+                                      ->exists();
 
                 if (!$settlementSport) {
                     $validator->errors()->add('sport_id', 'No such a sport in this settlement.');

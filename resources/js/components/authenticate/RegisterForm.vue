@@ -42,6 +42,30 @@
 							</div>
 						</div>
 
+                        <div class="form-group">
+                            <label for="settlement">Settlement</label>
+                            <select name="settlement_id" id="settlement" class="form-control" v-model="settlements">
+                                <option v-for="settlement in settlements" v-bind:id="settlement.id">{{ settlement.name}}</option>
+                            </select>
+                            <div v-if="hasBeenSend && !$v.userData.settlement_id.required" class="alert alert-danger mt-3">
+                                Settlement is required.
+                            </div>
+                            <div v-if="errors && errors.settlement_id" class="alert alert-danger mt-3">{{
+                                    errors.settlement_id[0] }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sport">Sport</label>
+                            <select name="sport_id" id="sport" class="form-control" v-model="userData.sport_id"></select>
+                            <div v-if="hasBeenSend && !$v.userData.sport_id.required" class="alert alert-danger mt-3">
+                                Sport is required.
+                            </div>
+                            <div v-if="errors && errors.sport_id" class="alert alert-danger mt-3">{{
+                                    errors.sport_id[0] }}
+                            </div>
+                        </div>
+
 						<div class="form-group">
 							<label for="password">Password</label>
 							<input type="password" class="form-control" name="password" id="password"
@@ -92,7 +116,9 @@
         mixins: [RegisterMixin],
         name: 'RegisterForm',
         data() {
-            return {}
+            return {
+
+            }
         }
     }
 </script>

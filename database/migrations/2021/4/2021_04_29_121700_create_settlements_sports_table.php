@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePersonalDataTable extends Migration
+class CreateSettlementsSportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePersonalDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('personal_data', function (Blueprint $table) {
+        Schema::create('settlements_sports', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('sport_id')->constrained();
             $table->foreignId('settlement_id')->constrained();
-            $table->timestamps();
+            $table->foreignId('sport_id')->constrained();
+
+            $table->unique(['settlement_id', 'sport_id']);
         });
     }
 
@@ -29,6 +29,6 @@ class CreatePersonalDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personal_data');
+        Schema::dropIfExists('settlements_sports');
     }
 }

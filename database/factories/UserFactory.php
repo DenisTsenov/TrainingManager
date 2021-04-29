@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 /** @var \Illuminate\Database\Eloquent\Factories\Factory $factory */
 
+use App\Models\Settlemet;
+use App\Models\Sport;
 use App\Models\User;
 use Faker\Generator as Faker;
 
@@ -19,10 +21,15 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $settlementsCount = Settlemet::query()->count();
+    $sportsCount      = Sport::query()->count();
+
     return [
-        'first_name' => $faker->name,
-        'last_name'  => $faker->name,
-        'email'      => $faker->unique()->safeEmail,
-        'password'   => 'password',
+        'first_name'    => $faker->name,
+        'last_name'     => $faker->name,
+        'email'         => $faker->unique()->safeEmail,
+        'password'      => 'password',
+        'settlement_id' => rand(1, $settlementsCount),
+        'sport_id'      => rand(1, $sportsCount),
     ];
 });

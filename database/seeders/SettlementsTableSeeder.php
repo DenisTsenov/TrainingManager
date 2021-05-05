@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Settlemet;
 use Illuminate\Database\Seeder;
 
 class SettlementsTableSeeder extends Seeder

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Settlemet;
+use App\Models\Settlement;
 use App\Models\Sport;
 use Illuminate\Database\Seeder;
 
@@ -15,14 +15,14 @@ class SettlementsSportsTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('settlements_sports')->truncate();
+        \DB::table('settlement_sport')->truncate();
 
-        $settlements = Settlemet::get();
+        $settlements = Settlement::get();
         $sports      = Sport::get();
 
         for ($settlementId = 1; $settlementId <= $settlements->count(); $settlementId++) {
             for ($sportId = 1; $sportId <= rand(1, $sports->count()); $sportId++) {
-                \DB::table('settlements_sports')->insert([
+                \DB::table('settlement_sport')->insert([
                     'settlement_id' => $settlementId,
                     'sport_id'      => $sportId,
                 ]);

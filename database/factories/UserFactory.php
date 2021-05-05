@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 /** @var \Illuminate\Database\Eloquent\Factories\Factory $factory */
 
-use App\Models\Settlemet;
+use App\Models\Settlement;
 use App\Models\Sport;
 use App\Models\User;
 use Faker\Generator as Faker;
@@ -21,7 +21,7 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    $settlementsCount = Settlemet::query()->count();
+    $settlementsCount = Settlement::query()->count();
     $sportsCount      = Sport::query()->count();
 
     return [

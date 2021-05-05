@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Models\Settlemet;
 use App\Models\User;
 
 class RegisterController extends Controller
@@ -23,7 +22,7 @@ class RegisterController extends Controller
      */
     public function create()
     {
-        return view('auth.register', ['settlements' => Settlemet::query()->pluck('name', 'id')->toJson()]);
+        return view('auth.register');
     }
 
     /**

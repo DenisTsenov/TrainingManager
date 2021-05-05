@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Sport;
 use Illuminate\Database\Seeder;
 
 class SportsTableSeeder extends Seeder

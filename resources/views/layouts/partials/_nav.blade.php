@@ -27,20 +27,6 @@
                     <li class="dropdown-submenu text-center">
                         <a class="dropdown-item" tabindex="-1" href="#"><i class="fas fa-user-shield"></i>Admin</a>
                         <ul class="dropdown-menu">
-                            {{--                            <li class="dropdown-submenu">--}}
-                            {{--                                <a class="dropdown-item" href="#">Even More..</a>--}}
-                            {{--                                <ul class="dropdown-menu">--}}
-                            {{--                                    <li class="dropdown-item"><a href="#">3rd level</a></li>--}}
-                            {{--                                    <li class="dropdown-submenu"><a class="dropdown-item" href="#">another level</a>--}}
-                            {{--                                        <ul class="dropdown-menu">--}}
-                            {{--                                            <li class="dropdown-item"><a href="#">4th level</a></li>--}}
-                            {{--                                            <li class="dropdown-item"><a href="#">4th level</a></li>--}}
-                            {{--                                            <li class="dropdown-item"><a href="#">4th level</a></li>--}}
-                            {{--                                        </ul>--}}
-                            {{--                                    </li>--}}
-                            {{--                                    <li class="dropdown-item"><a href="#">3rd level</a></li>--}}
-                            {{--                                </ul>--}}
-                            {{--                            </li>--}}
                             <li class="dropdown-item">
                                 <a class="dropdown-item btn btn-light" href="{{ route('admin.manage_user_roles') }}">
                                     <i class="fas fa-users-cog"></i> Manage user role

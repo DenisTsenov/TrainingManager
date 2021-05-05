@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'role_id',
+        'first_name', 'last_name', 'email', 'password', 'role_id', 'settlement_id', 'sport_id',
     ];
 
     /**
@@ -62,7 +62,7 @@ class User extends Authenticatable
      */
     public function scopeWhereLike($query, string $identifier)
     {
-        return $query->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?",  "$identifier%")
+        return $query->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", "$identifier%")
                      ->orWhereRaw("email LIKE ?", "$identifier%");
     }
 

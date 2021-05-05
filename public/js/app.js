@@ -2172,6 +2172,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_RegisterMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -38701,7 +38738,7 @@ var render = function() {
                 _vm.hasBeenSend && !_vm.$v.userData.first_name.required
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
                       _vm._v(
-                        "\n\t\t\t\t\t\t\tFirst name is required.\n\t\t\t\t\t\t"
+                        "\n                            First name is required.\n                        "
                       )
                     ])
                   : _vm._e(),
@@ -38709,7 +38746,9 @@ var render = function() {
                 _vm.errors && _vm.errors.first_name
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
                       _vm._v(
-                        _vm._s(_vm.errors.first_name[0]) + "\n\t\t\t\t\t\t"
+                        "\n                            " +
+                          _vm._s(_vm.errors.first_name[0]) +
+                          "\n                        "
                       )
                     ])
                   : _vm._e()
@@ -38745,14 +38784,18 @@ var render = function() {
                 _vm.hasBeenSend && !_vm.$v.userData.last_name.required
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
                       _vm._v(
-                        "\n\t\t\t\t\t\t\tLast Name is required.\n\t\t\t\t\t\t"
+                        "\n                            Last Name is required.\n                        "
                       )
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.errors && _vm.errors.last_name
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                      _vm._v(_vm._s(_vm.errors.last_name[0]) + "\n\t\t\t\t\t\t")
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.errors.last_name[0]) +
+                          "\n                        "
+                      )
                     ])
                   : _vm._e()
               ]),
@@ -38796,7 +38839,158 @@ var render = function() {
                 _vm._v(" "),
                 _vm.errors && _vm.errors.email
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                      _vm._v(_vm._s(_vm.errors.email[0]) + "\n\t\t\t\t\t\t")
+                      _vm._v(
+                        _vm._s(_vm.errors.email[0]) +
+                          "\n                        "
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "settlement" } }, [
+                  _vm._v("Settlement")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.settlement,
+                        expression: "settlement"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "settlement_id", id: "settlement" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.settlement = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
+                          return _vm.getSports($event, _vm.settlement)
+                        }
+                      ]
+                    }
+                  },
+                  _vm._l(_vm.settlements, function(settlement, id) {
+                    return _c("option", { key: id, domProps: { value: id } }, [
+                      _vm._v(
+                        _vm._s(settlement) + "\n                            "
+                      )
+                    ])
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _vm.hasBeenSend && !_vm.$v.userData.settlement_id.required
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n                            Settlement is required.\n                        "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.settlement_id
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.errors.settlement_id[0]) +
+                          "\n                        "
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "sport" } }, [_vm._v("Sport")]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.sport,
+                        expression: "sport"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "sport_id", id: "sport" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.sport = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
+                          return _vm.setSport($event, _vm.sport)
+                        }
+                      ]
+                    }
+                  },
+                  [
+                    !_vm.settlementSelected
+                      ? _c(
+                          "option",
+                          { attrs: { value: "0", selected: "selected" } },
+                          [
+                            _vm._v(
+                              "\n                                select settlement first...\n                            "
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm._l(_vm.sports, function(sport, id) {
+                      return _c(
+                        "option",
+                        { key: id, domProps: { value: id } },
+                        [_vm._v(_vm._s(sport))]
+                      )
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _vm.hasBeenSend && !_vm.$v.userData.sport_id.required
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n                            Sport is required.\n                        "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.sport_id
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.errors.sport_id[0]) +
+                          "\n                        "
+                      )
                     ])
                   : _vm._e()
               ]),
@@ -38844,7 +39038,10 @@ var render = function() {
                 _vm._v(" "),
                 _vm.errors && _vm.errors.password
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                      _vm._v(_vm._s(_vm.errors.password[0]) + "\n\t\t\t\t\t\t")
+                      _vm._v(
+                        _vm._s(_vm.errors.password[0]) +
+                          "\n                        "
+                      )
                     ])
                   : _vm._e()
               ]),
@@ -38899,9 +39096,9 @@ var render = function() {
                 _vm.errors && _vm.errors.password_confirmation
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
                       _vm._v(
-                        "\n\t\t\t\t\t\t\t" +
+                        "\n                            " +
                           _vm._s(_vm.errors.password_confirmation[0]) +
-                          "\n\t\t\t\t\t\t"
+                          "\n                        "
                       )
                     ])
                   : _vm._e()
@@ -38916,14 +39113,16 @@ var render = function() {
       _vm.serverErr
         ? _c("div", { staticClass: "alert alert-danger" }, [
             _vm._v(
-              "Something went wrong. Please try again\n\t\t\tlater..\n\t\t"
+              "Something went wrong. Please try again\n            later..\n        "
             )
           ])
         : _vm._e(),
       _vm._v(" "),
       _vm.success
         ? _c("div", { staticClass: "alert alert-success mt-3" }, [
-            _vm._v("\n\t\t\tThe profile is created successfully\n\t\t")
+            _vm._v(
+              "\n            The profile is created successfully\n        "
+            )
           ])
         : _vm._e()
     ])
@@ -54230,6 +54429,8 @@ __webpack_require__.r(__webpack_exports__);
       userData: {
         'first_name': this.first_name,
         'last_name': this.last_name,
+        'settlement_id': this.settlement_id,
+        'sport_id': this.sport_id,
         'email': this.email,
         'password': this.password,
         'password_confirmation': this.password_confirmation
@@ -54239,10 +54440,15 @@ __webpack_require__.r(__webpack_exports__);
       email: '',
       password: '',
       password_confirmation: '',
-      errors: {},
+      settlements: {},
+      settlement: '',
+      sports: {},
+      sport: '',
+      settlementSelected: false,
       success: false,
       sendAllowed: true,
       hasBeenSend: false,
+      errors: {},
       serverErr: false
     };
   },
@@ -54252,6 +54458,12 @@ __webpack_require__.r(__webpack_exports__);
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
       },
       last_name: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      settlement_id: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      sport_id: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
       },
       email: {
@@ -54281,6 +54493,9 @@ __webpack_require__.r(__webpack_exports__);
         this.errors = {};
         axios.post('/store', this.userData).then(function (response) {
           _this.userData = {};
+          _this.settlement = {};
+          _this.sport = {};
+          _this.settlementSelected = false;
           _this.sendAllowed = true;
           _this.success = true;
           _this.hasBeenSend = false; // if back end validation do not pass we shall be able to send the form again with front end validation
@@ -54296,7 +54511,45 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
+    },
+    getSettlements: function getSettlements() {
+      var _this2 = this;
+
+      axios.get('/settlements').then(function (response) {
+        _this2.settlements = response.data;
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this2.errors = error.response.data.errors || {};
+        } else {
+          _this2.serverErr = true;
+        }
+      });
+    },
+    getSports: function getSports(e, settlementId) {
+      var _this3 = this;
+
+      axios.get('/settlement/sports', {
+        params: {
+          settlement_id: settlementId
+        }
+      }).then(function (response) {
+        _this3.settlementSelected = true;
+        _this3.userData.settlement_id = settlementId;
+        _this3.sports = response.data;
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this3.errors = error.response.data.errors || {};
+        } else {
+          _this3.serverErr = true;
+        }
+      });
+    },
+    setSport: function setSport(e, sport) {
+      this.userData.sport_id = sport;
     }
+  },
+  created: function created() {
+    this.getSettlements();
   }
 });
 
@@ -54392,9 +54645,9 @@ Vue.component('loading', _components_main_Loading__WEBPACK_IMPORTED_MODULE_2__["
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /var/www/trainingmanager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/trainingmanager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /var/www/trainingmanager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

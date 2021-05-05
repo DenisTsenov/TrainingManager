@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Sport;
 use Illuminate\Database\Seeder;
 
 class SportsTableSeeder extends Seeder
@@ -14,14 +13,14 @@ class SportsTableSeeder extends Seeder
      */
     public function run()
     {
-        $sports = [
-            'Weightlifting', 'Tennis', 'Snooker', 'Darts', 'Powerlifting',
-        ];
+        \DB::table('sports')->truncate();
 
-        foreach ($sports as $sport) {
-            Sport::create([
-                'name' => $sport,
-            ]);
-        }
+        \DB::table('sports')->insert([
+            ['name' => 'Weightlifting'],
+            ['name' => 'Tennis'],
+            ['name' => 'Snooker'],
+            ['name' => 'Darts'],
+            ['name' => 'Powerlifting'],
+        ]);
     }
 }

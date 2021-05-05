@@ -17,15 +17,17 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->truncate();
 
-        factory(User::class, 50)->create();
+        factory(User::class, 20)->create();
 
         User::create([
-            'first_name' => 'Denis',
-            'last_name'  => 'Tsenov',
-            'email'      => 'denis@test.bg',
-            'password'   => 'password',
-            'is_admin'   => true,
-            'role_id'    => 1,
+            'first_name'    => 'Denis',
+            'last_name'     => 'Tsenov',
+            'email'         => 'denis@test.bg',
+            'password'      => 'password',
+            'is_admin'      => true,
+            'role_id'       => 1,
+            'settlement_id' => 1,
+            'sport_id'      => 5,
         ]);
     }
 }

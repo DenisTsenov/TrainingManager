@@ -26,10 +26,21 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => ['required', 'string', 'max:50'],
-            'last_name'  => ['required', 'string', 'max:50'],
-            'email'      => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::id()),],
-            'password'   => ['required', 'string', 'min:8', 'confirmed'],
+            'first_name'    => ['required', 'string', 'max:50'],
+            'last_name'     => ['required', 'string', 'max:50'],
+            'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::id()),],
+            'password'      => ['required', 'string', 'min:8', 'confirmed'],
+            'settlement_id' => ['required', 'exists:settlements,id',],
+            'sport_id'      => ['required', 'exists:sports,id',
+                                Rule::exists('settlement_sport')
+                                    ->where('sport_id', $this->input('sport_id'))
+                                    ->where('settlement_id', $this->input('settlement_id')),
+            ],
         ];
+    }
+
+    public function messages()
+    {
+        return ['exists' => 'There is no such a value'];
     }
 }

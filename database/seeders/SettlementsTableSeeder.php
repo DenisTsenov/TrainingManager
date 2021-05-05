@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Settlemet;
 use Illuminate\Database\Seeder;
 
 class SettlementsTableSeeder extends Seeder
@@ -14,14 +13,14 @@ class SettlementsTableSeeder extends Seeder
      */
     public function run()
     {
-        $settlements = [
-            'Sofiq', 'Varna', 'Plovdiv', 'Sliven', 'Kneja',
-        ];
+        \DB::table('settlements')->truncate();
 
-        foreach ($settlements as $settlement) {
-            Settlemet::create([
-                'name' => $settlement
-            ]);
-        }
+        \DB::table('settlements')->insert([
+            ['name' => 'Sofiq'],
+            ['name' => 'Varna'],
+            ['name' => 'Plovdiv'],
+            ['name' => 'Sliven'],
+            ['name' => 'Kneja'],
+        ]);
     }
 }

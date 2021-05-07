@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth\Settlements;
 
 use App\Models\Settlement;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SettlementController extends Controller
 {
@@ -15,7 +16,27 @@ class SettlementController extends Controller
         return response()->json($settlements);
     }
 
-    public function sports(Request $request)
+    public function create()
+    {
+        return view('auth.settlements.create');
+    }
+
+    public function store(Request $request)
+    {
+
+    }
+
+    public function edit(Request $request)
+    {
+
+    }
+
+    public function update(Request $request)
+    {
+
+    }
+
+    public function sports(Request $request): JsonResponse
     {
         $request->validate([
             'settlement_id' => ['required', 'exists:settlements,id'],

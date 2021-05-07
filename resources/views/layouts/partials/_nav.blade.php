@@ -42,6 +42,21 @@
                                     <i class="fas fa-users"></i> Teams
                                 </a>
                             </li>
+                            <li class="dropdown-item">
+                                <a class="dropdown-item btn btn-light" href="{{ route('admin.settlement.create') }}">
+                                    <i class="fas fa-city"></i> Add settlement
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a class="dropdown-item btn btn-light" href="{{ route('admin.sport.create') }}">
+                                    <i class="fas fa-table-tennis"></i> Add sport
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a class="dropdown-item disabled btn btn-light" href="#">
+                                    <i class="fas fa-sheqel"></i> Add sport to settlement
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     @endadmin

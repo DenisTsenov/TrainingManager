@@ -7,6 +7,9 @@ use App\Http\Controllers\Auth\Admin\ManagePermissionController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\TeamController;
 use App\Http\Controllers\Auth\AjaxController;
+use App\Http\Controllers\Auth\Settlements\SettlementController;
+use App\Http\Controllers\Auth\Sports\SportController;
+
 /*
  * User Roles Routes
  */
@@ -60,3 +63,19 @@ Route::get('/for-distribution', [DashboardController::class, 'forDistribution'])
 
 Route::get('/team/trainers', [AjaxController::class, 'getTrainers'])
     ->name('admin.trainers');
+
+/*
+ * Settlements and sports
+ */
+Route::get('/settlement/create', [SettlementController::class, 'create'])
+     ->name('admin.settlement.create');
+
+Route::get('/settlement/store', [SettlementController::class, 'store'])
+     ->name('admin.settlement.store');
+
+Route::get('/sport/create', [SportController::class, 'create'])
+     ->name('admin.sport.create');
+
+Route::get('/sport/store', [SportController::class, 'store'])
+     ->name('admin.sport.store');
+

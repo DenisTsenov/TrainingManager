@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Settlements;
+namespace App\Http\Controllers\Auth\Admin;
 
 use App\Models\Settlement;
 use Illuminate\Http\JsonResponse;
@@ -18,12 +18,18 @@ class SettlementController extends Controller
 
     public function create()
     {
-        return view('auth.settlements.create');
+        return view('auth.admin.settlements.create');
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:settlements,name',
+        ]);
 
+        Settlement::create(['name' => $request->input('name')]);
+
+        return response()->json();
     }
 
     public function edit(Request $request)

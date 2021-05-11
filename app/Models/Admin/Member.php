@@ -15,6 +15,11 @@ class Member extends Model
 
     public $timestamps = false;
 
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
+
     public function competitors()
     {
         return $this->hasMany(User::class, 'competitor_id');

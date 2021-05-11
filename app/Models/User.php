@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Member;
 use App\Models\Admin\Role;
 use App\Models\Admin\Team;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, LaravelVueDatatableTrait;
 
     protected $table = 'users';
 
@@ -42,6 +44,46 @@ class User extends Authenticatable
         'is_admin' => 'boolean',
     ];
 
+    protected $dataTableColumns = [
+        'id'         => [
+            'searchable' => false,
+        ],
+        'first_name' => [
+            'searchable' => true,
+        ],
+        'last_name'  => [
+            'searchable' => true,
+        ],
+        'email'      => [
+            'searchable' => true,
+        ],
+    ];
+
+    protected $dataTableRelationships = [
+        "belongsTo"     => [
+            "sport"      => [
+                "model"       => Sport::class,
+                "foreign_key" => "sport_id",
+                "columns"     => [
+                    "name" => [
+                        "searchable" => true,
+                    ],
+                ],
+            ],
+            "settlement" => [
+                "model"       => Settlement::class,
+                "foreign_key" => "settlement_id",
+                "columns"     => [
+                    "name" => [
+                        "searchable" => true,
+                    ],
+                ],
+            ],
+        ],
+        "hasMany"       => [],
+        "belongsToMany" => [],
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -55,6 +97,21 @@ class User extends Authenticatable
         return $this->hasOne(Team::class, 'trainer_id');
     }
 
+    public function membership()
+    {
+        return $this->belongsTo(Member::class, 'id', 'competitor_id');
+    }
+
+    public function settlement()
+    {
+        return $this->belongsTo(Settlement::class);
+    }
+
+    public function sport()
+    {
+        return $this->belongsTo(Sport::class);
+    }
+
     /**
      * @param        $query
      * @param string $identifier
@@ -64,6 +121,11 @@ class User extends Authenticatable
     {
         return $query->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", "$identifier%")
                      ->orWhereRaw("email LIKE ?", "$identifier%");
+    }
+
+    public function scopeNotAdmin($query)
+    {
+        return $query->where('is_admin', 0);
     }
 
     /**

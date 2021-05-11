@@ -11,12 +11,13 @@ class Team extends Model
 
     protected $fillable = ['trainer_id'];
 
-    protected $dates = ['created_at'];
-
-    public $timestamps = false;
-
     public function trainer()
     {
-        return $this->belongsTo(User::class, 'trainer_id');
+        return $this->hasOne(User::class, 'trainer_id');
+    }
+
+    public function members()
+    {
+        return $this->hasMany(Member::class);
     }
 }

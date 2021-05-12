@@ -1,12 +1,12 @@
 <template>
     <data-table
         :columns="columns"
-        url="http://trainingmanager.test/for-distribution">
+        url="http://trainingmanager.test/admin/for-distribution">
     </data-table>
 </template>
 
 <script>
-import ApproveButton from "../../main/ApproveButton";
+import ReviewUserButton from "../main/ReviewUserButton";
 
 export default {
     name: "DistributeCompetitor",
@@ -61,13 +61,13 @@ export default {
                     },
                     event: "click",
                     handler: this.showTeams,
-                    component: ApproveButton,
+                    component: ReviewUserButton,
                 },
             ],
         }
     },
     components: {
-        ApproveButton,
+        ReviewUserButton,
     },
     methods: {
         showTeams(data) {

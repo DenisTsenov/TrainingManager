@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\Admin\ManageUserRoleController;
 use App\Http\Controllers\Auth\Admin\ManageRoleController;
 use App\Http\Controllers\Auth\Admin\ManagePermissionController;
+use App\Http\Controllers\Auth\DashboardController;
 
 /*
  * User Roles Routes
@@ -31,3 +32,11 @@ Route::get('/permission/manage-permission', [ManagePermissionController::class, 
 
 Route::post('/role/toggle-permission', [ManageRoleController::class, 'togglePermission'])
      ->name('admin.role.toggle_permission');
+
+/*
+ * Distribution users. Create teams
+ */
+Route::get('/create-team');
+
+Route::get('/for-distribution', [DashboardController::class, 'forDistribution'])
+     ->name('for-distribution');

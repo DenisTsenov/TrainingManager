@@ -1,7 +1,7 @@
 <template>
-    <button :class="classes" @click="click(data)" title="Approve">
+    <button :class="classes" @click="click(data)" title="Review">
         <span>
-            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+            <i class="fa fa-eye" aria-hidden="true"></i>
         </span>
         &nbsp;
         {{ name }}
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    name: "ApproveButton",
+    name: "ReviewUserButton",
     props: {
         data: {},
         name: {},

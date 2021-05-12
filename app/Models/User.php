@@ -75,7 +75,7 @@ class User extends Authenticatable
                     ],
                 ],
             ],
-            "settlement" => [ // TODO: Check from time to time if the search error is corrected
+            "settlement" => [ // TODO: Check from time to time if the search bug is fixed
                 "model"       => Settlement::class,
                 "foreign_key" => "settlement_id",
                 "columns"     => [

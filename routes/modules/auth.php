@@ -2,13 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\DashboardController;
 
-Route::get('/welcome', [DashboardController::class, 'index'])
-     ->name('welcome');
-
-Route::get('/for-distribution', [DashboardController::class, 'forDistribution'])
-     ->name('for-distribution');
+Route::view('/welcome', 'home')->name('welcome');
 
 Route::get('/profile/edit', [AuthController::class, 'edit'])
      ->name('profile.edit');

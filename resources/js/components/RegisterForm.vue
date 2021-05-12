@@ -123,7 +123,7 @@
 </template>
 
 <script>
-import RegisterMixin from "../../mixin/RegisterMixin";
+import RegisterMixin from "../mixin/RegisterMixin";
 
 export default {
     mixins: [RegisterMixin],

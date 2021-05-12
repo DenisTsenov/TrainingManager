@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
 class DashboardController extends Controller
 {
-    public function index()
-    {
-        return view('home');
-    }
-
     public function forDistribution(Request $request)
     {
         $length  = $request->input('length');

@@ -2276,6 +2276,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _main_ApproveButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../main/ApproveButton */ "./resources/js/components/main/ApproveButton.vue");
 //
 //
 //
@@ -2283,6 +2284,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DistributeCompetitor",
   data: function data() {
@@ -2290,7 +2292,7 @@ __webpack_require__.r(__webpack_exports__);
       columns: [{
         label: 'ID',
         name: 'id',
-        orderable: true
+        orderable: false
       }, {
         label: 'First name',
         name: 'first_name',
@@ -2306,13 +2308,39 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         label: 'Sport',
         name: 'sport.name',
-        orderable: false
+        columnName: 'sports.name',
+        orderable: true
       }, {
         label: 'Settlement',
         name: 'settlement.name',
-        orderable: false
+        columnName: 'settlements.name',
+        orderable: true
+      }, {
+        label: 'Created at',
+        name: 'created_at',
+        orderable: true
+      }, {
+        label: '',
+        name: '',
+        orderable: false,
+        classes: {
+          'btn': true,
+          'btn-primary': true,
+          'btn-sm': true
+        },
+        event: "click",
+        handler: this.showTeams,
+        component: _main_ApproveButton__WEBPACK_IMPORTED_MODULE_0__["default"]
       }]
     };
+  },
+  components: {
+    ApproveButton: _main_ApproveButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
+    showTeams: function showTeams(data) {
+      alert("You clicked row ".concat(data.id));
+    }
   }
 });
 
@@ -2543,6 +2571,49 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         _this.loading = false;
       });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/ApproveButton.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/main/ApproveButton.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "ApproveButton",
+  props: {
+    data: {},
+    name: {},
+    click: {
+      type: Function,
+      "default": function _default() {}
+    },
+    classes: {
+      type: Object,
+      "default": function _default() {
+        return {
+          'btn': true,
+          'btn-primary': true,
+          'btn-sm': true
+        };
+      }
     }
   }
 });
@@ -57338,7 +57409,7 @@ var render = function() {
   return _c("data-table", {
     attrs: {
       columns: _vm.columns,
-      url: "http://trainingmanager.test/distribution"
+      url: "http://trainingmanager.test/for-distribution"
     }
   })
 }
@@ -57584,6 +57655,54 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/ApproveButton.vue?vue&type=template&id=34ea8bf4&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/main/ApproveButton.vue?vue&type=template&id=34ea8bf4&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      class: _vm.classes,
+      attrs: { title: "Approve" },
+      on: {
+        click: function($event) {
+          return _vm.click(_vm.data)
+        }
+      }
+    },
+    [_vm._m(0), _vm._v("\n     \n    " + _vm._s(_vm.name) + "\n")]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", {
+        staticClass: "fa fa-thumbs-up",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -72380,6 +72499,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/main/ApproveButton.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/main/ApproveButton.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ApproveButton_vue_vue_type_template_id_34ea8bf4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ApproveButton.vue?vue&type=template&id=34ea8bf4&scoped=true& */ "./resources/js/components/main/ApproveButton.vue?vue&type=template&id=34ea8bf4&scoped=true&");
+/* harmony import */ var _ApproveButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ApproveButton.vue?vue&type=script&lang=js& */ "./resources/js/components/main/ApproveButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ApproveButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ApproveButton_vue_vue_type_template_id_34ea8bf4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ApproveButton_vue_vue_type_template_id_34ea8bf4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "34ea8bf4",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/main/ApproveButton.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/main/ApproveButton.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/main/ApproveButton.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ApproveButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ApproveButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/ApproveButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ApproveButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/main/ApproveButton.vue?vue&type=template&id=34ea8bf4&scoped=true&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/main/ApproveButton.vue?vue&type=template&id=34ea8bf4&scoped=true& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApproveButton_vue_vue_type_template_id_34ea8bf4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ApproveButton.vue?vue&type=template&id=34ea8bf4&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/ApproveButton.vue?vue&type=template&id=34ea8bf4&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApproveButton_vue_vue_type_template_id_34ea8bf4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApproveButton_vue_vue_type_template_id_34ea8bf4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/main/Loading.vue":
 /*!**************************************************!*\
   !*** ./resources/js/components/main/Loading.vue ***!
@@ -72874,12 +73062,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_select_dist_vue_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-select/dist/vue-select */ "./node_modules/vue-select/dist/vue-select.js");
 /* harmony import */ var vue_select_dist_vue_select__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_select_dist_vue_select__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_main_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/main/Loading */ "./resources/js/components/main/Loading.vue");
+/* harmony import */ var _components_main_ApproveButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/main/ApproveButton */ "./resources/js/components/main/ApproveButton.vue");
+
 
 
 
 Vue.component('search-field', _components_main_SearchField__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component('vue-select', vue_select_dist_vue_select__WEBPACK_IMPORTED_MODULE_1___default.a);
 Vue.component('loading', _components_main_Loading__WEBPACK_IMPORTED_MODULE_2__["default"]);
+Vue.component('approve-button', _components_main_ApproveButton__WEBPACK_IMPORTED_MODULE_3__["default"]);
 
 /***/ }),
 

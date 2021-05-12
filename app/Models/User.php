@@ -41,7 +41,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'is_admin' => 'boolean',
+        'is_admin'   => 'boolean',
+        'created_at' => 'datetime:Y-m-d H:i',
     ];
 
     protected $dataTableColumns = [
@@ -57,6 +58,9 @@ class User extends Authenticatable
         'email'      => [
             'searchable' => true,
         ],
+        'created_at' => [
+            'searchable' => true,
+        ],
     ];
 
     protected $dataTableRelationships = [
@@ -67,15 +71,17 @@ class User extends Authenticatable
                 "columns"     => [
                     "name" => [
                         "searchable" => true,
+                        "orderable"  => true,
                     ],
                 ],
             ],
-            "settlement" => [
+            "settlement" => [ // TODO: Check from time to time if the search error is corrected
                 "model"       => Settlement::class,
                 "foreign_key" => "settlement_id",
                 "columns"     => [
                     "name" => [
                         "searchable" => true,
+                        "orderable"  => true,
                     ],
                 ],
             ],

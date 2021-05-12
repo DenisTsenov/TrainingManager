@@ -7,8 +7,8 @@ use App\Http\Controllers\DashboardController;
 Route::get('/welcome', [DashboardController::class, 'index'])
      ->name('welcome');
 
-Route::get('/distribution', [DashboardController::class, 'distribution'])
-     ->name('distribution');
+Route::get('/for-distribution', [DashboardController::class, 'forDistribution'])
+     ->name('for-distribution');
 
 Route::get('/profile/edit', [AuthController::class, 'edit'])
      ->name('profile.edit');

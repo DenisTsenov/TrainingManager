@@ -17,6 +17,9 @@ class CreateTeamsTables extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('trainer_id')->constrained('users');
+            $table->foreignId('sport_id')->constrained('sports');
+            $table->foreignId('settlement_id')->constrained('settlements');
+            $table->foreignId('created_by')->constrained('users');
             $table->timestamps();
         });
 

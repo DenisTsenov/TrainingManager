@@ -2577,10 +2577,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2596,73 +2596,107 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "RolesCheckboxes",
+  name: "EditTeamButton",
+  props: {
+    data: {},
+    name: {},
+    click: {
+      type: Function,
+      "default": function _default() {}
+    },
+    classes: {
+      type: Object,
+      "default": function _default() {
+        return {
+          'btn': true,
+          'btn-success': true,
+          'btn-sm': true
+        };
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/TeamsList.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/TeamsList.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditTeamButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditTeamButton */ "./resources/js/components/auth/teams/EditTeamButton.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "TeamsList",
   data: function data() {
     return {
-      name: 'role',
-      loading: false
+      columns: [{
+        label: 'ID',
+        name: 'id',
+        orderable: false
+      }, {
+        label: 'Name',
+        name: 'name',
+        orderable: true
+      }, {
+        label: 'Trainer',
+        name: 'trainer.first_name',
+        columnName: 'users.first_name',
+        orderable: true
+      }, {
+        label: 'Sport',
+        name: 'sport.name',
+        columnName: 'sports.name',
+        orderable: true
+      }, {
+        label: 'Settlement',
+        name: 'settlement.name',
+        columnName: 'settlements.name',
+        orderable: true
+      }, {
+        label: 'Created at',
+        name: 'created_at',
+        orderable: true
+      }, {
+        label: 'Actions',
+        name: '',
+        orderable: false,
+        classes: {
+          'btn': true,
+          'btn-success': true,
+          'btn-sm': true
+        },
+        event: "click",
+        handler: this.editTeam,
+        component: _EditTeamButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+      }]
     };
   },
-  props: {
-    roles: {
-      type: Array,
-      name: {
-        type: String,
-        required: true
-      },
-      id: {
-        type: Number,
-        required: true
-      }
-    },
-    selected_user: {
-      id: {
-        type: Number
-      },
-      full_name: {
-        type: String
-      },
-      role_id: {
-        type: Number,
-        required: true
-      }
-    }
+  components: {
+    EditTeamButton: _EditTeamButton__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
-    changeRole: function changeRole(role) {
-      var _this = this;
-
-      if (this.selected_user === null || !role) return;
-      this.loading = true;
-      axios.post('/admin/change-role/' + this.selected_user.id + '/' + role, {
-        user: this.selected_user.id,
-        role: role
-      }).then(function (response) {
-        if (response.data == 'new role') {
-          _this.selected_user.role_id = role;
-        }
-
-        if (response.data == 'no role') {
-          _this.selected_user.role_id = 0;
-        }
-
-        _this.loading = false;
-      })["catch"](function (error) {
-        _this.loading = false;
-      });
+    editTeam: function editTeam(data) {
+      window.location = 'team/edit/' + data.id;
     }
+  },
+  props: {
+    route: ''
   }
 });
 
@@ -2743,7 +2777,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _authenticate_admin_RolesCheckboxes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../authenticate/admin/RolesCheckboxes */ "./resources/js/components/authenticate/admin/RolesCheckboxes.vue");
+/* harmony import */ var _auth_admin_RolesCheckboxes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auth/admin/RolesCheckboxes */ "./resources/js/components/auth/admin/RolesCheckboxes.vue");
 //
 //
 //
@@ -2787,7 +2821,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SearchField",
   components: {
-    RolesCheckboxes: _authenticate_admin_RolesCheckboxes__WEBPACK_IMPORTED_MODULE_0__["default"]
+    RolesCheckboxes: _auth_admin_RolesCheckboxes__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
@@ -57752,10 +57786,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=template&id=7aa8ed82&scoped=true&":
-/*!*************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=template&id=7aa8ed82&scoped=true& ***!
-  \*************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -57767,54 +57801,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "input-group" }, [
-    _vm.loading
-      ? _c("div", [
-          _c("div", { staticClass: "text-center" }, [_c("loading")], 1)
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.loading === false
-      ? _c(
-          "div",
-          { staticClass: "row" },
-          _vm._l(_vm.roles, function(role) {
-            return _c("div", { key: role.id, staticClass: "ml-3" }, [
-              _c(
-                "div",
-                { staticClass: "custom-control custom-switch my-1 mr-sm-2" },
-                [
-                  _c("input", {
-                    staticClass: "custom-control-input",
-                    attrs: { type: "checkbox", id: role.name.toLowerCase() },
-                    domProps: {
-                      checked:
-                        _vm.selected_user !== null &&
-                        role.id === _vm.selected_user.role_id
-                    },
-                    on: {
-                      click: function($event) {
-                        return _vm.changeRole(role.id)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "custom-control-label",
-                      attrs: { for: role.name.toLowerCase() }
-                    },
-                    [_vm._v(_vm._s(role.name))]
-                  )
-                ]
-              )
-            ])
-          }),
-          0
-        )
-      : _vm._e()
-  ])
+  return _c(
+    "button",
+    {
+      class: _vm.classes,
+      attrs: { title: "Edit" },
+      on: {
+        click: function($event) {
+          return _vm.click(_vm.data)
+        }
+      }
+    },
+    [_vm._m(0), _vm._v("\n     \n    " + _vm._s(_vm.name) + "\n")]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa fa-edit", attrs: { "aria-hidden": "true" } })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/TeamsList.vue?vue&type=template&id=60389ac2&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/TeamsList.vue?vue&type=template&id=60389ac2&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-success btn-xl mb-3 text-white",
+          attrs: { href: _vm.route }
+        },
+        [_vm._v("New team")]
+      ),
+      _vm._v(" "),
+      _c("data-table", {
+        attrs: {
+          columns: _vm.columns,
+          url: "http://trainingmanager.test/admin/teams-list"
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -72658,17 +72710,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/authenticate/admin/RolesCheckboxes.vue":
-/*!************************************************************************!*\
-  !*** ./resources/js/components/authenticate/admin/RolesCheckboxes.vue ***!
-  \************************************************************************/
+/***/ "./resources/js/components/auth/teams/EditTeamButton.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/auth/teams/EditTeamButton.vue ***!
+  \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _RolesCheckboxes_vue_vue_type_template_id_7aa8ed82_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RolesCheckboxes.vue?vue&type=template&id=7aa8ed82&scoped=true& */ "./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=template&id=7aa8ed82&scoped=true&");
-/* harmony import */ var _RolesCheckboxes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RolesCheckboxes.vue?vue&type=script&lang=js& */ "./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=script&lang=js&");
+/* harmony import */ var _EditTeamButton_vue_vue_type_template_id_5d05e604_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true& */ "./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true&");
+/* harmony import */ var _EditTeamButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditTeamButton.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -72678,50 +72730,119 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _RolesCheckboxes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _RolesCheckboxes_vue_vue_type_template_id_7aa8ed82_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _RolesCheckboxes_vue_vue_type_template_id_7aa8ed82_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _EditTeamButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditTeamButton_vue_vue_type_template_id_5d05e604_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditTeamButton_vue_vue_type_template_id_5d05e604_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "7aa8ed82",
+  "5d05e604",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/authenticate/admin/RolesCheckboxes.vue"
+component.options.__file = "resources/js/components/auth/teams/EditTeamButton.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************/
+/***/ "./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RolesCheckboxes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./RolesCheckboxes.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RolesCheckboxes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTeamButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditTeamButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTeamButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=template&id=7aa8ed82&scoped=true&":
-/*!*******************************************************************************************************************!*\
-  !*** ./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=template&id=7aa8ed82&scoped=true& ***!
-  \*******************************************************************************************************************/
+/***/ "./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true& ***!
+  \**********************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RolesCheckboxes_vue_vue_type_template_id_7aa8ed82_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./RolesCheckboxes.vue?vue&type=template&id=7aa8ed82&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/authenticate/admin/RolesCheckboxes.vue?vue&type=template&id=7aa8ed82&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RolesCheckboxes_vue_vue_type_template_id_7aa8ed82_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTeamButton_vue_vue_type_template_id_5d05e604_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTeamButton_vue_vue_type_template_id_5d05e604_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RolesCheckboxes_vue_vue_type_template_id_7aa8ed82_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTeamButton_vue_vue_type_template_id_5d05e604_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/teams/TeamsList.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/auth/teams/TeamsList.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TeamsList_vue_vue_type_template_id_60389ac2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TeamsList.vue?vue&type=template&id=60389ac2&scoped=true& */ "./resources/js/components/auth/teams/TeamsList.vue?vue&type=template&id=60389ac2&scoped=true&");
+/* harmony import */ var _TeamsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TeamsList.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/teams/TeamsList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TeamsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TeamsList_vue_vue_type_template_id_60389ac2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TeamsList_vue_vue_type_template_id_60389ac2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "60389ac2",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/auth/teams/TeamsList.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/teams/TeamsList.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/auth/teams/TeamsList.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TeamsList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/TeamsList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/teams/TeamsList.vue?vue&type=template&id=60389ac2&scoped=true&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/auth/teams/TeamsList.vue?vue&type=template&id=60389ac2&scoped=true& ***!
+  \*****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamsList_vue_vue_type_template_id_60389ac2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TeamsList.vue?vue&type=template&id=60389ac2&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/TeamsList.vue?vue&type=template&id=60389ac2&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamsList_vue_vue_type_template_id_60389ac2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamsList_vue_vue_type_template_id_60389ac2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -73266,6 +73387,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_LoginForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../components/LoginForm */ "./resources/js/components/LoginForm.vue");
 /* harmony import */ var _components_auth_EditForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/auth/EditForm */ "./resources/js/components/auth/EditForm.vue");
 /* harmony import */ var _components_auth_DistributeCompetitors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/auth/DistributeCompetitors */ "./resources/js/components/auth/DistributeCompetitors.vue");
+/* harmony import */ var _components_auth_teams_TeamsList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/auth/teams/TeamsList */ "./resources/js/components/auth/teams/TeamsList.vue");
+/* harmony import */ var _components_auth_teams_EditTeamButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/teams/EditTeamButton */ "./resources/js/components/auth/teams/EditTeamButton.vue");
+
+
 
 
 
@@ -73274,6 +73399,8 @@ Vue.component('register-form', _components_RegisterForm__WEBPACK_IMPORTED_MODULE
 Vue.component('login-form', _components_LoginForm__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Vue.component('edit-from', _components_auth_EditForm__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.component('distribute-competitors', _components_auth_DistributeCompetitors__WEBPACK_IMPORTED_MODULE_3__["default"]);
+Vue.component('team-list', _components_auth_teams_TeamsList__WEBPACK_IMPORTED_MODULE_4__["default"]);
+Vue.component('edit-team-button', _components_auth_teams_EditTeamButton__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
 /***/ }),
 

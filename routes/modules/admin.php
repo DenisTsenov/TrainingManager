@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\Admin\ManageUserRoleController;
 use App\Http\Controllers\Auth\Admin\ManageRoleController;
 use App\Http\Controllers\Auth\Admin\ManagePermissionController;
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\TeamController;
 
 /*
  * User Roles Routes
@@ -36,7 +37,23 @@ Route::post('/role/toggle-permission', [ManageRoleController::class, 'togglePerm
 /*
  * Distribution users. Create teams
  */
-Route::get('/create-team');
+Route::get('/team', [TeamController::class, 'index'])
+     ->name('admin.team');
+
+Route::get('/teams-list', [TeamController::class, 'teamsList'])
+     ->name('admin.teams_list');
+
+Route::get('/team/create', [TeamController::class, 'create'])
+     ->name('admin.team.create');
+
+Route::post('/team/store', [TeamController::class, 'store'])
+     ->name('admin.team.store');
+
+Route::get('/team/edit/{team}', [TeamController::class, 'edit'])
+     ->name('admin.team.edit');
+
+Route::post('/team/update/{team}', [TeamController::class, 'update'])
+     ->name('admin.team.update');
 
 Route::get('/for-distribution', [DashboardController::class, 'forDistribution'])
-     ->name('for-distribution');
+     ->name('admin.for-distribution');

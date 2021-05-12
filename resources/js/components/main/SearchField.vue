@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    import RolesCheckboxes from "../authenticate/admin/RolesCheckboxes";
+    import RolesCheckboxes from "../auth/admin/RolesCheckboxes";
 
     export default {
         name: "SearchField",

@@ -5,7 +5,7 @@
             <a class="navbar-brand btn btn-light btn-sm text-muted" href="{{ route('register.show') }}">Register</a>
         @endguest
         @auth
-            <a class="navbar-brand btn btn-light text-muted" href="{{ route('welcome') }}">Home</a>
+            <a class="navbar-brand btn btn-light" href="{{ route('welcome') }}">Home</a>
             <div class="dropdown">
                 <a class="nav-link dropdown-toggle btn-light rounded" href="#" id="navbarDropdownMenuLink"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,6 +35,11 @@
                             <li class="dropdown-item">
                                 <a class="dropdown-item btn btn-light" href="{{ route('admin.manage_role_permission') }}">
                                     <i class="fas fa-tasks"></i> Manage role permission
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a class="dropdown-item btn btn-light" href="{{ route('admin.team') }}">
+                                    <i class="fas fa-users"></i> Teams
                                 </a>
                             </li>
                         </ul>

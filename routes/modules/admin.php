@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\Admin\ManageRoleController;
 use App\Http\Controllers\Auth\Admin\ManagePermissionController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\TeamController;
-
+use App\Http\Controllers\Auth\AjaxController;
 /*
  * User Roles Routes
  */
@@ -57,3 +57,6 @@ Route::post('/team/update/{team}', [TeamController::class, 'update'])
 
 Route::get('/for-distribution', [DashboardController::class, 'forDistribution'])
      ->name('admin.for-distribution');
+
+Route::get('/team/trainers', [AjaxController::class, 'getTrainers'])
+    ->name('admin.trainers');

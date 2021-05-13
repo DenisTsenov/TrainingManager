@@ -19,6 +19,8 @@ class UsersTableSeeder extends Seeder
 
         factory(User::class, 20)->create();
 
+        $settlementSports = \DB::table('settlement_sport')->inRandomOrder()->first();
+
         User::create([
             'first_name'    => 'Denis',
             'last_name'     => 'Tsenov',
@@ -26,8 +28,8 @@ class UsersTableSeeder extends Seeder
             'password'      => 'password',
             'is_admin'      => true,
             'role_id'       => 1,
-            'settlement_id' => 1,
-            'sport_id'      => 5,
+            'settlement_id' => $settlementSports->settlement_id,
+            'sport_id'      => $settlementSports->sport_id,
         ]);
     }
 }

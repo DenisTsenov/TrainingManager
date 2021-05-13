@@ -76,14 +76,14 @@ class User extends Authenticatable
                 ],
             ],
             "settlement" => [ // TODO: Check from time to time if the search bug is fixed
-                "model"       => Settlement::class,
-                "foreign_key" => "settlement_id",
-                "columns"     => [
-                    "name" => [
-                        "searchable" => true,
-                        "orderable"  => true,
-                    ],
-                ],
+                              "model"       => Settlement::class,
+                              "foreign_key" => "settlement_id",
+                              "columns"     => [
+                                  "name" => [
+                                      "searchable" => true,
+                                      "orderable"  => true,
+                                  ],
+                              ],
             ],
         ],
         "hasMany"       => [],
@@ -134,11 +134,26 @@ class User extends Authenticatable
         return $query->where('is_admin', 0);
     }
 
+    public function scopeTrainers($query)
+    {
+        return $query->where('role_id', Role::TRAINER)->orderBy('first_name');
+    }
+
+    public function scopeUnactiveTrainers($query)
+    {
+        return $query->trainers()->whereNotNull('deleted_at');
+    }
+
     /**
      * @param $value
      */
     public function setPasswordAttribute($value): void
     {
         $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function getFullNameAttribute(): string
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 }

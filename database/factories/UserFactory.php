@@ -21,15 +21,14 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    $settlementsCount = Settlement::query()->count();
-    $sportsCount      = Sport::query()->count();
+    $settlementSports = \DB::table('settlement_sport')->inRandomOrder()->first();
 
     return [
         'first_name'    => $faker->name,
         'last_name'     => $faker->name,
         'email'         => $faker->unique()->safeEmail,
         'password'      => 'password',
-        'settlement_id' => rand(1, $settlementsCount),
-        'sport_id'      => rand(1, $sportsCount),
+        'settlement_id' => $settlementSports->settlement_id,
+        'sport_id'      => $settlementSports->sport_id,
     ];
 });

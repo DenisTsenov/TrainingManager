@@ -35,7 +35,9 @@ class TeamController extends Controller
 
     public function store(TeamRequest $request)
     {
+        Team::create($request->validated());
 
+        return response()->json(['route' => route('admin.team')]);
     }
 
     public function edit(Team $team)

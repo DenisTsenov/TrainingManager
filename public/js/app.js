@@ -2335,6 +2335,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_EditMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -2577,6 +2583,79 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/CreateEditForm.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/CreateEditForm.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixin_CreateEditMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../mixin/CreateEditMixin */ "./resources/js/mixin/CreateEditMixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixin_CreateEditMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  name: 'CreateEditForm',
+  data: function data() {
+    return {};
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js& ***!
@@ -2697,6 +2776,30 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     route: ''
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/WaitingCompetitorsList.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/WaitingCompetitorsList.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "WaitingCompetitorsList",
+  data: function data() {
+    return {};
   }
 });
 
@@ -57289,7 +57392,7 @@ var render = function() {
                 _vm.hasBeenSend && !_vm.$v.userData.first_name.required
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
                       _vm._v(
-                        "\n\t\t\t\t\t\t\tFirst name is required.\n\t\t\t\t\t\t"
+                        "\n                            First name is required.\n                        "
                       )
                     ])
                   : _vm._e(),
@@ -57297,7 +57400,8 @@ var render = function() {
                 _vm.errors && _vm.errors.first_name
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
                       _vm._v(
-                        _vm._s(_vm.errors.first_name[0]) + "\n\t\t\t\t\t\t"
+                        _vm._s(_vm.errors.first_name[0]) +
+                          "\n                        "
                       )
                     ])
                   : _vm._e()
@@ -57333,14 +57437,17 @@ var render = function() {
                 _vm.hasBeenSend && !_vm.$v.userData.last_name.required
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
                       _vm._v(
-                        "\n\t\t\t\t\t\t\tLast Name is required.\n\t\t\t\t\t\t"
+                        "\n                            Last Name is required.\n                        "
                       )
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.errors && _vm.errors.last_name
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                      _vm._v(_vm._s(_vm.errors.last_name[0]) + "\n\t\t\t\t\t\t")
+                      _vm._v(
+                        _vm._s(_vm.errors.last_name[0]) +
+                          "\n                        "
+                      )
                     ])
                   : _vm._e()
               ]),
@@ -57384,7 +57491,10 @@ var render = function() {
                 _vm._v(" "),
                 _vm.errors && _vm.errors.email
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                      _vm._v(_vm._s(_vm.errors.email[0]) + "\n\t\t\t\t\t\t")
+                      _vm._v(
+                        _vm._s(_vm.errors.email[0]) +
+                          "\n                        "
+                      )
                     ])
                   : _vm._e()
               ]),
@@ -57432,7 +57542,10 @@ var render = function() {
                 _vm._v(" "),
                 _vm.errors && _vm.errors.password
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                      _vm._v(_vm._s(_vm.errors.password[0]) + "\n\t\t\t\t\t\t")
+                      _vm._v(
+                        _vm._s(_vm.errors.password[0]) +
+                          "\n                        "
+                      )
                     ])
                   : _vm._e()
               ]),
@@ -57487,9 +57600,9 @@ var render = function() {
                 _vm.errors && _vm.errors.password_confirmation
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
                       _vm._v(
-                        "\n\t\t\t\t\t\t\t" +
+                        "\n                            " +
                           _vm._s(_vm.errors.password_confirmation[0]) +
-                          "\n\t\t\t\t\t\t"
+                          "\n                        "
                       )
                     ])
                   : _vm._e()
@@ -57504,14 +57617,14 @@ var render = function() {
       _vm.serverErr
         ? _c("div", { staticClass: "alert alert-danger" }, [
             _vm._v(
-              "Something went wrong. Please try again\n\t\t\tlater..\n\t\t"
+              "Something went wrong. Please try again\n            later..\n        "
             )
           ])
         : _vm._e(),
       _vm._v(" "),
       _vm.success
         ? _c("div", { staticClass: "alert alert-success mt-3" }, [
-            _vm._v("\n\t\t\tThe profile is edited successfully\n\t\t")
+            _vm._v("\n            The profile is edited successfully\n        ")
           ])
         : _vm._e()
     ])
@@ -57786,6 +57899,213 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/CreateEditForm.vue?vue&type=template&id=c54a2422&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/CreateEditForm.vue?vue&type=template&id=c54a2422&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row justify-content-center mt-3" }, [
+    _c("div", { staticClass: "col-6" }, [
+      _c("div", { staticClass: "card" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "form",
+            {
+              staticClass: "form",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.send($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "name" } }, [_vm._v("Team name")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "name", id: "name" },
+                  domProps: { value: _vm.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.hasBeenSend && !_vm.$v.name.required
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n                            Last Name is required.\n                        "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.hasBeenSend && !_vm.$v.name.minLength
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n                           Min length is 2 chars.\n                        "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.name
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.errors.name[0]) +
+                          "\n                        "
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "trainer" } }, [_vm._v("Trainer")]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.trainer,
+                        expression: "trainer"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "trainer_id", id: "trainer" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.trainer = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
+                          return _vm.getCompetitors($event, _vm.trainer)
+                        }
+                      ]
+                    }
+                  },
+                  _vm._l(_vm.trainers, function(trainer) {
+                    return _c(
+                      "option",
+                      { key: trainer.id, domProps: { value: trainer } },
+                      [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(
+                              trainer.first_name +
+                                trainer.last_name +
+                                " (" +
+                                trainer.sport.name +
+                                "/" +
+                                trainer.settlement.name +
+                                ")"
+                            ) +
+                            "\n                            "
+                        )
+                      ]
+                    )
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _vm.hasBeenSend && !_vm.$v.trainer.required
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n                            Trainer is required.\n                        "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.trainer
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.errors.trainer[0]) +
+                          "\n                        "
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.serverErr
+        ? _c("div", { staticClass: "alert alert-danger" }, [
+            _vm._v("Something went wrong. Please try again later..")
+          ])
+        : _vm._e()
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Create team")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group text-center" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary w-50", attrs: { type: "submit" } },
+        [_vm._v("Send")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true&":
 /*!****************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true& ***!
@@ -57869,6 +58189,37 @@ var render = function() {
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/WaitingCompetitorsList.vue?vue&type=template&id=a2ad5286&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/WaitingCompetitorsList.vue?vue&type=template&id=a2ad5286&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v("Hello")])])
+  }
+]
 render._withStripped = true
 
 
@@ -72710,6 +73061,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/auth/teams/CreateEditForm.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/auth/teams/CreateEditForm.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreateEditForm_vue_vue_type_template_id_c54a2422_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateEditForm.vue?vue&type=template&id=c54a2422&scoped=true& */ "./resources/js/components/auth/teams/CreateEditForm.vue?vue&type=template&id=c54a2422&scoped=true&");
+/* harmony import */ var _CreateEditForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateEditForm.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/teams/CreateEditForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateEditForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateEditForm_vue_vue_type_template_id_c54a2422_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateEditForm_vue_vue_type_template_id_c54a2422_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "c54a2422",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/auth/teams/CreateEditForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/teams/CreateEditForm.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/auth/teams/CreateEditForm.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEditForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateEditForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/CreateEditForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEditForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/teams/CreateEditForm.vue?vue&type=template&id=c54a2422&scoped=true&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/auth/teams/CreateEditForm.vue?vue&type=template&id=c54a2422&scoped=true& ***!
+  \**********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEditForm_vue_vue_type_template_id_c54a2422_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateEditForm.vue?vue&type=template&id=c54a2422&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/CreateEditForm.vue?vue&type=template&id=c54a2422&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEditForm_vue_vue_type_template_id_c54a2422_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEditForm_vue_vue_type_template_id_c54a2422_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/auth/teams/EditTeamButton.vue":
 /*!***************************************************************!*\
   !*** ./resources/js/components/auth/teams/EditTeamButton.vue ***!
@@ -72843,6 +73263,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamsList_vue_vue_type_template_id_60389ac2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamsList_vue_vue_type_template_id_60389ac2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/teams/WaitingCompetitorsList.vue":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/auth/teams/WaitingCompetitorsList.vue ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _WaitingCompetitorsList_vue_vue_type_template_id_a2ad5286_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WaitingCompetitorsList.vue?vue&type=template&id=a2ad5286&scoped=true& */ "./resources/js/components/auth/teams/WaitingCompetitorsList.vue?vue&type=template&id=a2ad5286&scoped=true&");
+/* harmony import */ var _WaitingCompetitorsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WaitingCompetitorsList.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/teams/WaitingCompetitorsList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _WaitingCompetitorsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _WaitingCompetitorsList_vue_vue_type_template_id_a2ad5286_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _WaitingCompetitorsList_vue_vue_type_template_id_a2ad5286_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "a2ad5286",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/auth/teams/WaitingCompetitorsList.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/teams/WaitingCompetitorsList.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/auth/teams/WaitingCompetitorsList.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WaitingCompetitorsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./WaitingCompetitorsList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/WaitingCompetitorsList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WaitingCompetitorsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/teams/WaitingCompetitorsList.vue?vue&type=template&id=a2ad5286&scoped=true&":
+/*!******************************************************************************************************************!*\
+  !*** ./resources/js/components/auth/teams/WaitingCompetitorsList.vue?vue&type=template&id=a2ad5286&scoped=true& ***!
+  \******************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WaitingCompetitorsList_vue_vue_type_template_id_a2ad5286_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./WaitingCompetitorsList.vue?vue&type=template&id=a2ad5286&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/WaitingCompetitorsList.vue?vue&type=template&id=a2ad5286&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WaitingCompetitorsList_vue_vue_type_template_id_a2ad5286_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WaitingCompetitorsList_vue_vue_type_template_id_a2ad5286_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -73052,6 +73541,95 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchField_vue_vue_type_template_id_15e97107_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/mixin/CreateEditMixin.js":
+/*!***********************************************!*\
+  !*** ./resources/js/mixin/CreateEditMixin.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_auth_teams_WaitingCompetitorsList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/auth/teams/WaitingCompetitorsList */ "./resources/js/components/auth/teams/WaitingCompetitorsList.vue");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    WaitingCompetitorsList: _components_auth_teams_WaitingCompetitorsList__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      name: '',
+      trainer: '',
+      trainers: {},
+      errors: {},
+      sendAllowed: true,
+      hasBeenSend: false,
+      serverErr: false
+    };
+  },
+  validations: {
+    name: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
+      minLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["minLength"])(2)
+    },
+    trainer: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+    }
+  },
+  methods: {
+    loadTrainers: function loadTrainers() {
+      var _this = this;
+
+      axios.get('/admin/team/trainers').then(function (response) {
+        _this.trainers = response.data;
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this.errors = error.response.data.errors || {};
+        } else {
+          _this.serverErr = true;
+        }
+      });
+    },
+    getCompetitors: function getCompetitors(e, trainer) {},
+    send: function send() {
+      var _this2 = this;
+
+      this.hasBeenSend = true;
+      this.$v.$touch();
+
+      if (this.sendAllowed) {
+        this.sendAllowed = false;
+        this.errors = {};
+        axios.post('/admin/team/store', {
+          'name': this.name,
+          'trainer_id': this.trainer.id,
+          'sport_id': this.trainer.sport_id,
+          'settlement_id': this.trainer.settlement_id
+        }).then(function (response) {
+          window.location = response.data.route;
+        })["catch"](function (error) {
+          if (error.response.status === 422) {
+            _this2.sendAllowed = true;
+            _this2.errors = error.response.data.errors || {};
+          } else {
+            _this2.serverErr = true;
+          }
+        });
+      }
+
+      this.hasBeenSend = false;
+    }
+  },
+  created: function created() {
+    this.loadTrainers();
+  }
+});
 
 /***/ }),
 
@@ -73367,10 +73945,16 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_admin_RolesCheckboxes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/auth/admin/RolesCheckboxes */ "./resources/js/components/auth/admin/RolesCheckboxes.vue");
 /* harmony import */ var _components_auth_admin_RolePermissions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/auth/admin/RolePermissions */ "./resources/js/components/auth/admin/RolePermissions.vue");
+/* harmony import */ var _components_auth_teams_CreateEditForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/auth/teams/CreateEditForm */ "./resources/js/components/auth/teams/CreateEditForm.vue");
+/* harmony import */ var _components_auth_teams_WaitingCompetitorsList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/auth/teams/WaitingCompetitorsList */ "./resources/js/components/auth/teams/WaitingCompetitorsList.vue");
+
+
 
 
 Vue.component('roles-checkboxes', _components_auth_admin_RolesCheckboxes__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component('roles-permissions', _components_auth_admin_RolePermissions__WEBPACK_IMPORTED_MODULE_1__["default"]);
+Vue.component('create-edit-form', _components_auth_teams_CreateEditForm__WEBPACK_IMPORTED_MODULE_2__["default"]);
+Vue.component('waiting-competitors-list', _components_auth_teams_WaitingCompetitorsList__WEBPACK_IMPORTED_MODULE_3__["default"]);
 
 /***/ }),
 

@@ -14,7 +14,7 @@ class Team extends Model
 
     protected $table = 'teams';
 
-    protected $fillable = ['name', 'trainer_id', 'sport_id'];
+    protected $fillable = ['name', 'trainer_id', 'sport_id', 'settlement_id'];
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i',

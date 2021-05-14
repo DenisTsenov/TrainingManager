@@ -4,8 +4,6 @@ namespace Database\Factories;
 
 /** @var \Illuminate\Database\Eloquent\Factories\Factory $factory */
 
-use App\Models\Settlement;
-use App\Models\Sport;
 use App\Models\User;
 use Faker\Generator as Faker;
 

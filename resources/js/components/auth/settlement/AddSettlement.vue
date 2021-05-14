@@ -8,13 +8,13 @@
         <div class="card-body">
           <form class="form" @submit.prevent="create">
             <div class="form-group">
-              <label for="settlement"></label>
+              <label for="settlement">Settlement</label>
               <input type="text" id="settlement" v-model="settlement" name="settlement" class="form-control">
               <div v-if="hasBeenSend && !$v.settlement.required" class="alert alert-danger mt-3">
-                Settlement is required.
+                Settlement field is required.
               </div>
               <div v-if="hasBeenSend && !$v.settlement.minLength" class="alert alert-danger mt-3">
-                Must have at least 2 letters.
+                The name must be at least 2 characters.
               </div>
               <div v-if="errors && errors.name" class="alert alert-danger mt-3">
                 {{ errors.name[0] }}
@@ -26,15 +26,19 @@
           </form>
         </div>
       </div>
+      <div v-if="success" class="alert alert-success mt-3">
+        The settlement is created successfully
+      </div>
+      <div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again later..</div>
     </div>
   </div>
 </template>
 
 <script>
-import AddSettlement from "../../../mixin/AddSettlement";
+import AddSettlementMixin from "../../../mixin/AddSettlementMixin";
 
 export default {
-  mixins: [AddSettlement],
+  mixins: [AddSettlementMixin],
   name: 'AddSettlement',
   data() {
     return {}

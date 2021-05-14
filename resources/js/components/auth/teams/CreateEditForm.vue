@@ -12,10 +12,10 @@
                             <input type="text" class="form-control" name="name" id="name"
                                    v-model="name"/>
                             <div v-if="hasBeenSend && !$v.name.required" class="alert alert-danger mt-3">
-                                Last Name is required.
+                              The name field is required.
                             </div>
                             <div v-if="hasBeenSend && !$v.name.minLength" class="alert alert-danger mt-3">
-                               Min length is 2 chars.
+                              The name must be at least 2 characters.
                             </div>
                             <div v-if="errors && errors.name" class="alert alert-danger mt-3">
                                 {{ errors.name[0] }}
@@ -32,7 +32,7 @@
                                 </option>
                             </select>
                             <div v-if="hasBeenSend && !$v.trainer.required" class="alert alert-danger mt-3">
-                                Trainer is required.
+                                Trainer field is required.
                             </div>
                             <div v-if="errors && errors.trainer" class="alert alert-danger mt-3">
                                 {{ errors.trainer[0] }}

@@ -8,7 +8,7 @@
         <div class="card-body">
           <form class="form" @submit.prevent="create">
             <div class="form-group">
-              <label for="sport"></label>
+              <label for="sport">Name</label>
               <input type="text" id="sport" v-model="sport" name="sport" class="form-control">
               <div v-if="hasBeenSend && !$v.sport.required" class="alert alert-danger mt-3">
                 Settlement is required.
@@ -26,15 +26,19 @@
           </form>
         </div>
       </div>
+      <div v-if="success" class="alert alert-success mt-3">
+        The sport is created successfully
+      </div>
+      <div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again later..</div>
     </div>
   </div>
 </template>
 
 <script>
-import AddSport from "../../../mixin/AddSport";
+import AddSportMixin from "../../../mixin/AddSportMixin";
 
 export default {
-  mixins: [AddSport],
+  mixins: [AddSportMixin],
   name: 'AddSport',
   data() {
     return {}

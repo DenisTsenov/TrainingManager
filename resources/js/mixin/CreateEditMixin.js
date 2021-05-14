@@ -40,6 +40,8 @@ export default {
             this.hasBeenSend = true;
             this.$v.$touch();
 
+            if (this.$v.$invalid) return;
+
             if (this.sendAllowed) {
                 this.sendAllowed = false;
                 this.errors      = {};
@@ -50,7 +52,7 @@ export default {
                     'settlement_id': this.trainer.settlement_id
                 })
                      .then(response => {
-                         window.location = response.data.route
+                         window.location = response.data.route;
                      }).catch(error => {
                     if (error.response.status === 422) {
                         this.sendAllowed = true;
@@ -60,7 +62,6 @@ export default {
                     }
                 });
             }
-            this.hasBeenSend = false;
         },
     },
     created: function () {

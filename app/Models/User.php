@@ -151,9 +151,4 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
-
-    public function getFullNameAttribute(): string
-    {
-        return $this->first_name . ' ' . $this->last_name;
-    }
 }

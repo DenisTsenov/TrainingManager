@@ -43,7 +43,7 @@
 </template>
 
 <script>
-    import LoginMixin from "../../mixin/LoginMixin";
+    import LoginMixin from "../mixin/LoginMixin";
 
     export default {
         mixins: [LoginMixin],

@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Member;
 use App\Models\Admin\Role;
 use App\Models\Admin\Team;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, LaravelVueDatatableTrait;
 
     protected $table = 'users';
 
@@ -39,7 +41,53 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'is_admin' => 'boolean',
+        'is_admin'   => 'boolean',
+        'created_at' => 'datetime:Y-m-d H:i',
+    ];
+
+    protected $dataTableColumns = [
+        'id'         => [
+            'searchable' => false,
+        ],
+        'first_name' => [
+            'searchable' => true,
+        ],
+        'last_name'  => [
+            'searchable' => true,
+        ],
+        'email'      => [
+            'searchable' => true,
+        ],
+        'created_at' => [
+            'searchable' => true,
+        ],
+    ];
+
+    protected $dataTableRelationships = [
+        "belongsTo"     => [
+            "sport"      => [
+                "model"       => Sport::class,
+                "foreign_key" => "sport_id",
+                "columns"     => [
+                    "name" => [
+                        "searchable" => true,
+                        "orderable"  => true,
+                    ],
+                ],
+            ],
+            "settlement" => [ // TODO: Check from time to time if the search bug is fixed
+                              "model"       => Settlement::class,
+                              "foreign_key" => "settlement_id",
+                              "columns"     => [
+                                  "name" => [
+                                      "searchable" => true,
+                                      "orderable"  => true,
+                                  ],
+                              ],
+            ],
+        ],
+        "hasMany"       => [],
+        "belongsToMany" => [],
     ];
 
     /**
@@ -55,6 +103,21 @@ class User extends Authenticatable
         return $this->hasOne(Team::class, 'trainer_id');
     }
 
+    public function membership()
+    {
+        return $this->belongsTo(Member::class, 'id', 'competitor_id');
+    }
+
+    public function settlement()
+    {
+        return $this->belongsTo(Settlement::class);
+    }
+
+    public function sport()
+    {
+        return $this->belongsTo(Sport::class);
+    }
+
     /**
      * @param        $query
      * @param string $identifier
@@ -66,11 +129,31 @@ class User extends Authenticatable
                      ->orWhereRaw("email LIKE ?", "$identifier%");
     }
 
+    public function scopeNotAdmin($query)
+    {
+        return $query->where('is_admin', 0);
+    }
+
+    public function scopeTrainers($query)
+    {
+        return $query->where('role_id', Role::TRAINER)->orderBy('first_name');
+    }
+
+    public function scopeUnactiveTrainers($query)
+    {
+        return $query->trainers()->whereNotNull('deleted_at');
+    }
+
     /**
      * @param $value
      */
     public function setPasswordAttribute($value): void
     {
         $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function getFullNameAttribute(): string
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 }

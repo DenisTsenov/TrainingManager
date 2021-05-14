@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\Admin\ManageUserRoleController;
 use App\Http\Controllers\Auth\Admin\ManageRoleController;
 use App\Http\Controllers\Auth\Admin\ManagePermissionController;
-
+use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\TeamController;
+use App\Http\Controllers\Auth\AjaxController;
 /*
  * User Roles Routes
  */
@@ -31,3 +33,30 @@ Route::get('/permission/manage-permission', [ManagePermissionController::class, 
 
 Route::post('/role/toggle-permission', [ManageRoleController::class, 'togglePermission'])
      ->name('admin.role.toggle_permission');
+
+/*
+ * Distribution users. Create teams
+ */
+Route::get('/team', [TeamController::class, 'index'])
+     ->name('admin.team');
+
+Route::get('/teams-list', [TeamController::class, 'teamsList'])
+     ->name('admin.teams_list');
+
+Route::get('/team/create', [TeamController::class, 'create'])
+     ->name('admin.team.create');
+
+Route::post('/team/store', [TeamController::class, 'store'])
+     ->name('admin.team.store');
+
+Route::get('/team/edit/{team}', [TeamController::class, 'edit'])
+     ->name('admin.team.edit');
+
+Route::post('/team/update/{team}', [TeamController::class, 'update'])
+     ->name('admin.team.update');
+
+Route::get('/for-distribution', [DashboardController::class, 'forDistribution'])
+     ->name('admin.for-distribution');
+
+Route::get('/team/trainers', [AjaxController::class, 'getTrainers'])
+    ->name('admin.trainers');

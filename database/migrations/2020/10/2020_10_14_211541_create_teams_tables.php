@@ -15,8 +15,12 @@ class CreateTeamsTables extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->foreignId('trainer_id')->constrained('users');
-            $table->date('created_at');
+            $table->foreignId('sport_id')->constrained('sports');
+            $table->foreignId('settlement_id')->constrained('settlements');
+            $table->foreignId('created_by')->constrained('users');
+            $table->timestamps();
         });
 
         Schema::create('team_members', function (Blueprint $table) {
@@ -26,7 +30,7 @@ class CreateTeamsTables extends Migration
             $table->date('joined_at');
             $table->date('left_at');
 
-            $table->index(['team_id', 'competitor_id']);
+            $table->unique(['team_id', 'competitor_id']);
         });
     }
 

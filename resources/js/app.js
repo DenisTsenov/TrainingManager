@@ -5,9 +5,12 @@
  */
 import Vue from 'vue';
 import Vuelidate from "vuelidate";
+import DataTable from "laravel-vue-datatable";
+
 require('./bootstrap');
 
 Vue.use(Vuelidate);
+Vue.use(DataTable);
 
 require('./registered_components/auth');
 require('./registered_components/main');

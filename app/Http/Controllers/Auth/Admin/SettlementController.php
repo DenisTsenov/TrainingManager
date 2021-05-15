@@ -11,7 +11,7 @@ class SettlementController extends Controller
 {
     public function index(): JsonResponse
     {
-        $settlements = Settlement::query()->orderBy('name')->pluck('name', 'id');
+        $settlements = Settlement::query()->has('sports')->orderBy('name')->pluck('name', 'id');
 
         return response()->json($settlements);
     }

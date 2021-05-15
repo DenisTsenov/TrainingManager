@@ -7,13 +7,21 @@ export default {
     },
     data() {
         return {
-            name: '',
+            name: this.team.name,
             trainer: '',
             trainers: {},
             errors: {},
             sendAllowed: true,
             hasBeenSend: false,
             serverErr: false,
+            selectedTrainer: this.team.trainer.id !== undefined ? this.team.trainer : '',
+        }
+    },
+    props: {
+        team: {
+            required: false,
+            type: Object,
+            default: false,
         }
     },
     validations: {

@@ -42,7 +42,7 @@ export default {
             if (this.sendAllowed) {
                 this.sendAllowed = false;
                 this.errors      = {};
-                axios.post('/profile/' + this.user.id + '/update', this.userData)
+                axios.put('/profile/' + this.user.id + '/update', this.userData)
                      .then(response => {
                          this.userData.password              = '';
                          this.userData.password_confirmation = '';

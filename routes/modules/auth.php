@@ -8,8 +8,10 @@ Route::view('/welcome', 'home')->name('welcome');
 Route::get('/profile/edit', [AuthController::class, 'edit'])
      ->name('profile.edit');
 
-Route::post('/profile/{user}/update', [AuthController::class, 'update'])
-     ->name('profile.update');
+Route::middleware('ajax')->group(function () {
+    Route::put('/profile/{user}/update', [AuthController::class, 'update'])
+         ->name('profile.update');
 
-Route::post('/logout', [AuthController::class, 'logout'])
-     ->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout'])
+         ->name('logout');
+});

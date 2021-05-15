@@ -36,6 +36,7 @@ export default {
                 axios.post(this.route, {name: this.sport})
                      .then(response => {
                          this.success = true;
+                         this.sendAllowed = true;
                      })
                      .catch(error => {
                          if (error.response.status === 422) {

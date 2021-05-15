@@ -42,6 +42,8 @@ class TeamController extends Controller
 
     public function edit(Team $team)
     {
+        $team->load('trainer');
+
         return view('auth.team.create_edit', compact('team'));
     }
 

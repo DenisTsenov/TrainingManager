@@ -35,6 +35,7 @@ export default {
                 this.errors      = {};
                 axios.post(this.route, {name: this.settlement})
                      .then(response => {
+                         this.sendAllowed = true;
                          this.success = true;
                      })
                      .catch(error => {

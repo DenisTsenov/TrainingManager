@@ -57131,15 +57131,11 @@ var render = function() {
                   },
                   [
                     !_vm.settlementSelected
-                      ? _c(
-                          "option",
-                          { attrs: { value: "0", selected: "selected" } },
-                          [
-                            _vm._v(
-                              "\n                                select settlement first...\n                            "
-                            )
-                          ]
-                        )
+                      ? _c("option", { attrs: { disabled: "" } }, [
+                          _vm._v(
+                            "\n                                select settlement first...\n                            "
+                          )
+                        ])
                       : _vm._e(),
                     _vm._v(" "),
                     _vm._l(_vm.sports, function(sport, id) {
@@ -74031,6 +74027,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post(this.route, {
           name: this.settlement
         }).then(function (response) {
+          _this.sendAllowed = true;
           _this.success = true;
         })["catch"](function (error) {
           if (error.response.status === 422) {
@@ -74099,6 +74096,7 @@ __webpack_require__.r(__webpack_exports__);
           name: this.sport
         }).then(function (response) {
           _this.success = true;
+          _this.sendAllowed = true;
         })["catch"](function (error) {
           if (error.response.status === 422) {
             _this.sendAllowed = true;
@@ -74136,14 +74134,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      name: '',
+      name: this.team.name,
       trainer: '',
       trainers: {},
       errors: {},
       sendAllowed: true,
       hasBeenSend: false,
-      serverErr: false
+      serverErr: false,
+      selectedTrainer: this.team.trainer.id !== undefined ? this.team.trainer : ''
     };
+  },
+  props: {
+    team: {
+      required: false,
+      type: Object,
+      "default": false
+    }
   },
   validations: {
     name: {
@@ -74271,7 +74277,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.sendAllowed) {
         this.sendAllowed = false;
         this.errors = {};
-        axios.post('/profile/' + this.user.id + '/update', this.userData).then(function (response) {
+        axios.put('/profile/' + this.user.id + '/update', this.userData).then(function (response) {
           _this.userData.password = '';
           _this.userData.password_confirmation = '';
           _this.sendAllowed = true;

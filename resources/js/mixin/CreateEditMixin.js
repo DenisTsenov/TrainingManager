@@ -7,14 +7,14 @@ export default {
     },
     data() {
         return {
-            name: this.team.name,
+            name: this.team !== null ? this.team.name : '',
             trainer: '',
             trainers: {},
             errors: {},
             sendAllowed: true,
             hasBeenSend: false,
             serverErr: false,
-            selectedTrainer: this.team.trainer.id !== undefined ? this.team.trainer : '',
+            selectedTrainer: this.team !== null ? this.team.trainer : this.trainer,
         }
     },
     props: {
@@ -22,7 +22,11 @@ export default {
             required: false,
             type: Object,
             default: false,
-        }
+        },
+        actionType: {
+            required: true,
+            type: String,
+        },
     },
     validations: {
         name: {required, minLength: minLength(2)},

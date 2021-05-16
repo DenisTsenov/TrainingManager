@@ -58216,7 +58216,11 @@ var render = function() {
   return _c("div", { staticClass: "row justify-content-center mt-3" }, [
     _c("div", { staticClass: "col-6" }, [
       _c("div", { staticClass: "card" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "card-header" }, [
+          _c("p", { staticClass: "h3 text-center" }, [
+            _vm._v(_vm._s(_vm.actionType) + " team")
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           _c(
@@ -58321,25 +58325,21 @@ var render = function() {
                     }
                   },
                   _vm._l(_vm.trainers, function(trainer) {
-                    return _c(
-                      "option",
-                      { key: trainer.id, domProps: { value: trainer } },
-                      [
-                        _vm._v(
-                          "\n                                " +
-                            _vm._s(
-                              trainer.first_name +
-                                trainer.last_name +
-                                " (" +
-                                trainer.sport.name +
-                                "/" +
-                                trainer.settlement.name +
-                                ")"
-                            ) +
-                            "\n                            "
-                        )
-                      ]
-                    )
+                    return _c("option", { key: trainer.id }, [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(
+                            trainer.first_name +
+                              trainer.last_name +
+                              " (" +
+                              trainer.sport.name +
+                              "/" +
+                              trainer.settlement.name +
+                              ")"
+                          ) +
+                          "\n                            "
+                      )
+                    ])
                   }),
                   0
                 ),
@@ -58363,7 +58363,7 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _vm._m(1)
+              _vm._m(0)
             ]
           )
         ])
@@ -58378,14 +58378,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Create team")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -74134,14 +74126,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      name: this.team.name,
+      name: this.team !== null ? this.team.name : '',
       trainer: '',
       trainers: {},
       errors: {},
       sendAllowed: true,
       hasBeenSend: false,
       serverErr: false,
-      selectedTrainer: this.team.trainer.id !== undefined ? this.team.trainer : ''
+      selectedTrainer: this.team !== null ? this.team.trainer : this.trainer
     };
   },
   props: {
@@ -74149,6 +74141,10 @@ __webpack_require__.r(__webpack_exports__);
       required: false,
       type: Object,
       "default": false
+    },
+    actionType: {
+      required: true,
+      type: String
     }
   },
   validations: {

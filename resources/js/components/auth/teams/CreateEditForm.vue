@@ -3,7 +3,7 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-header">
-                    <p class="h3 text-center">Create team</p>
+                    <p class="h3 text-center">{{ actionType }} team</p>
                 </div>
                 <div class="card-body">
                     <form class="form" @submit.prevent="send">
@@ -27,7 +27,7 @@
                             <select name="trainer_id" id="trainer" class="form-control"
                                     @change='getCompetitors($event, trainer)'
                                     v-model="trainer">
-                                <option v-for="trainer in trainers" :value="trainer" :key="trainer.id">
+                                <option v-for="trainer in trainers"  :key="trainer.id">
                                     {{ trainer.first_name + trainer.last_name + ' (' + trainer.sport.name + '/' + trainer.settlement.name + ')' }}
                                 </option>
                             </select>

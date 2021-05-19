@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 class MigrationServiceProvider extends ServiceProvider
 {
@@ -22,10 +24,10 @@ class MigrationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $iter = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator(database_path('migrations'), \RecursiveDirectoryIterator::SKIP_DOTS),
-            \RecursiveIteratorIterator::SELF_FIRST,
-            \RecursiveIteratorIterator::CATCH_GET_CHILD // Ignore "Permission denied"
+        $iter = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator(database_path('migrations'), RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::SELF_FIRST,
+            RecursiveIteratorIterator::CATCH_GET_CHILD // Ignore "Permission denied"
         );
 
         $paths = [];

@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    const TRAINER      = 1;
-    const COMPETITOR   = 2;
+    const TRAINER    = 1;
+    const COMPETITOR = 2;
 
     protected $table = 'roles';
 

@@ -58325,21 +58325,25 @@ var render = function() {
                     }
                   },
                   _vm._l(_vm.trainers, function(trainer) {
-                    return _c("option", { key: trainer.id }, [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(
-                            trainer.first_name +
-                              trainer.last_name +
-                              " (" +
-                              trainer.sport.name +
-                              "/" +
-                              trainer.settlement.name +
-                              ")"
-                          ) +
-                          "\n                            "
-                      )
-                    ])
+                    return _c(
+                      "option",
+                      { key: trainer.id, domProps: { value: trainer } },
+                      [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(
+                              trainer.first_name +
+                                trainer.last_name +
+                                " (" +
+                                trainer.sport.name +
+                                "/" +
+                                trainer.settlement.name +
+                                ")"
+                            ) +
+                            "\n                            "
+                        )
+                      ]
+                    )
                   }),
                   0
                 ),
@@ -74126,14 +74130,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      name: this.team !== null ? this.team.name : '',
+      name: '',
       trainer: '',
       trainers: {},
       errors: {},
       sendAllowed: true,
       hasBeenSend: false,
-      serverErr: false,
-      selectedTrainer: this.team !== null ? this.team.trainer : this.trainer
+      serverErr: false
     };
   },
   props: {
@@ -74143,6 +74146,10 @@ __webpack_require__.r(__webpack_exports__);
       "default": false
     },
     actionType: {
+      required: true,
+      type: String
+    },
+    route: {
       required: true,
       type: String
     }
@@ -74174,6 +74181,7 @@ __webpack_require__.r(__webpack_exports__);
     send: function send() {
       var _this2 = this;
 
+      console.log(this.name, this.trainer);
       this.hasBeenSend = true;
       this.$v.$touch();
       if (this.$v.$invalid) return;
@@ -74181,7 +74189,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.sendAllowed) {
         this.sendAllowed = false;
         this.errors = {};
-        axios.post('/admin/team/store', {
+        axios.post(this.route, {
           'name': this.name,
           'trainer_id': this.trainer.id,
           'sport_id': this.trainer.sport_id,
@@ -74201,6 +74209,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.loadTrainers();
+
+    if (this.team != null) {
+      this.name = this.team.name;
+      this.trainer = this.team.trainer;
+    }
   }
 });
 

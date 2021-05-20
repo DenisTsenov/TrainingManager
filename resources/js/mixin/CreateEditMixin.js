@@ -1,4 +1,4 @@
-import {required, minLength} from 'vuelidate/lib/validators';
+import {minLength, required} from 'vuelidate/lib/validators';
 import WaitingCompetitorsList from '../components/auth/teams/WaitingCompetitorsList';
 
 export default {
@@ -7,14 +7,13 @@ export default {
     },
     data() {
         return {
-            name: this.team !== null ? this.team.name : '',
+            name: '',
             trainer: '',
             trainers: {},
             errors: {},
             sendAllowed: true,
             hasBeenSend: false,
             serverErr: false,
-            selectedTrainer: this.team !== null ? this.team.trainer : this.trainer,
         }
     },
     props: {
@@ -24,6 +23,10 @@ export default {
             default: false,
         },
         actionType: {
+            required: true,
+            type: String,
+        },
+        route: {
             required: true,
             type: String,
         },
@@ -49,6 +52,7 @@ export default {
 
         },
         send() {
+            console.log(this.name, this.trainer)
             this.hasBeenSend = true;
             this.$v.$touch();
 
@@ -57,7 +61,7 @@ export default {
             if (this.sendAllowed) {
                 this.sendAllowed = false;
                 this.errors      = {};
-                axios.post('/admin/team/store', {
+                axios.post(this.route, {
                     'name': this.name,
                     'trainer_id': this.trainer.id,
                     'sport_id': this.trainer.sport_id,
@@ -76,7 +80,11 @@ export default {
             }
         },
     },
-    created: function () {
+    created() {
         this.loadTrainers();
+        if (this.team != null) {
+            this.name    = this.team.name;
+            this.trainer = this.team.trainer;
+        }
     },
 }

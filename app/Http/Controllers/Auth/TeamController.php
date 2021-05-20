@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Requests\Auth\TeamRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\TeamRequest;
 use App\Models\Admin\Team;
 use Illuminate\Http\Request;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
@@ -30,7 +30,9 @@ class TeamController extends Controller
 
     public function create()
     {
-        return view('auth.team.create_edit');
+        $route = route('admin.team.store');
+
+        return view('auth.team.create_edit', compact('route'));
     }
 
     public function store(TeamRequest $request)
@@ -44,11 +46,13 @@ class TeamController extends Controller
     {
         $team->load('trainer');
 
-        return view('auth.team.create_edit', compact('team'));
+        $route = route('admin.team.update', $team);
+
+        return view('auth.team.create_edit', compact('team', 'route'));
     }
 
-    public function update(TeamRequest $request)
+    public function update(TeamRequest $request, Team $team)
     {
-
+        dd($request->all());
     }
 }

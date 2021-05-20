@@ -27,7 +27,7 @@
                             <select name="trainer_id" id="trainer" class="form-control"
                                     @change='getCompetitors($event, trainer)'
                                     v-model="trainer">
-                                <option v-for="trainer in trainers"  :key="trainer.id">
+                                <option v-for="trainer in trainers"  :key="trainer.id" :value="trainer">
                                     {{ trainer.first_name + trainer.last_name + ' (' + trainer.sport.name + '/' + trainer.settlement.name + ')' }}
                                 </option>
                             </select>

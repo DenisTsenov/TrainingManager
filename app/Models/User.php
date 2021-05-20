@@ -42,7 +42,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'is_admin'   => 'boolean',
-        'created_at' => 'datetime:Y-m-d H:i',
+        'created_at' => 'datetime:Y-m-d',
     ];
 
     protected $dataTableColumns = [

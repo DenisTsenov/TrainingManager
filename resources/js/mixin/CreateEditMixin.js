@@ -63,9 +63,7 @@ export default {
                 this.errors      = {};
                 axios.post(this.route, {
                     'name': this.name,
-                    'trainer_id': this.trainer.id,
-                    'sport_id': this.trainer.sport_id,
-                    'settlement_id': this.trainer.settlement_id
+                    'trainer_id': this.trainer,
                 })
                      .then(response => {
                          window.location = response.data.route;
@@ -84,7 +82,7 @@ export default {
         this.loadTrainers();
         if (this.team != null) {
             this.name    = this.team.name;
-            this.trainer = this.team.trainer;
+            this.trainer = this.team.trainer.id;
         }
     },
 }

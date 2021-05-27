@@ -15,6 +15,8 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes, LaravelVueDatatableTrait;
 
+    const SEED = 20;
+
     protected $table = 'users';
 
     /**

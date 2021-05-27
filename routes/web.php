@@ -30,8 +30,8 @@ Route::middleware('ajax')->group(function () {
     Route::post('/login', [LoginController::class, 'login'])
          ->name('login');
 
-    Route::get('/settlements', [SettlementController::class, 'index'])
-         ->name('settlements');
+    Route::get('/settlements', [SettlementController::class, 'withSports'])
+         ->name('settlements.with_sports');
 
     Route::get('/settlement/sports', [SettlementController::class, 'sports'])
          ->name('settlement.sports');

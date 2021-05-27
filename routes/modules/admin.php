@@ -48,8 +48,8 @@ Route::middleware('ajax')->group(function () {
 Route::get('/team', [TeamController::class, 'index'])
      ->name('admin.team');
 
-Route::get('/teams-list', [TeamController::class, 'teamsList'])
-     ->name('admin.teams_list');
+Route::get('/team/list', [TeamController::class, 'list'])
+     ->name('admin.teams.list');
 
 Route::get('/team/create', [TeamController::class, 'create'])
      ->name('admin.team.create');
@@ -74,12 +74,28 @@ Route::get('/team/trainers', [AjaxController::class, 'getTrainers'])
 /*
  * Settlements and sports
  */
+Route::get('/settlement', [SettlementController::class, 'index'])
+     ->name('admin.settlement');
+
+Route::get('/settlement/list', [SettlementController::class, 'list'])
+     ->name('admin.settlement.list');
+
 Route::get('/settlement/create', [SettlementController::class, 'create'])
      ->name('admin.settlement.create');
 
 Route::post('/settlement/store', [SettlementController::class, 'store'])
      ->middleware('ajax')
      ->name('admin.settlement.store');
+
+Route::get('/settlement/edit/{settlement}', [SettlementController::class, 'edit'])
+     ->name('admin.settlement.edit');
+
+Route::post('/settlement/update/{settlement}', [SettlementController::class, 'update'])
+     ->middleware('ajax')
+     ->name('admin.settlement.update');
+
+Route::get('/sport/list', [SportController::class, 'list'])
+     ->name('admin.sport.list');
 
 Route::get('/sport/create', [SportController::class, 'create'])
      ->name('admin.sport.create');

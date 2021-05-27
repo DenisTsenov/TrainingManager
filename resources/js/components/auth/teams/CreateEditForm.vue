@@ -28,7 +28,7 @@
                                     @change='getCompetitors($event, trainer)'
                                     v-model="trainer">
                                 <option v-for="trainer in trainers"  :key="trainer.id" :value="trainer.id">
-                                    {{ trainer.first_name + trainer.last_name + ' (' + trainer.sport.name + '/' + trainer.settlement.name + ')' }}
+                                    {{ trainer.full_name + ' (' + trainer.sport.name + '/' + trainer.settlement.name + ')' }}
                                 </option>
                             </select>
                             <div v-if="hasBeenSend && !$v.trainer.required" class="alert alert-danger mt-3">

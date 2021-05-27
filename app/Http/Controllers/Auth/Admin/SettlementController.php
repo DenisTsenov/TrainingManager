@@ -2,18 +2,37 @@
 
 namespace App\Http\Controllers\Auth\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Settlement;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
 class SettlementController extends Controller
 {
-    public function index(): JsonResponse
+    public function withSports(): JsonResponse
     {
-        $settlements = Settlement::query()->has('sports')->orderBy('name')->pluck('name', 'id');
+        $settlements = Settlement::has('sports')->orderBy('name')->pluck('name', 'id');
 
         return response()->json($settlements);
+    }
+
+    public function index()
+    {
+        return view('auth.admin.settlements.list');
+    }
+
+    public function list(Request $request)
+    {
+        $length  = $request->input('length');
+        $sortBy  = $request->input('column');
+        $orderBy = $request->input('dir', 'desc');
+        $search  = $request->input('search');
+
+        $query = Settlement::eloquentQuery($sortBy, $orderBy, $search, ['createdBy'])->withCount('sports');
+        $data  = $query->paginate($length);
+
+        return new DataTableCollectionResource($data);
     }
 
     public function create()
@@ -37,7 +56,7 @@ class SettlementController extends Controller
 
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Settlement $settlement)
     {
 
     }

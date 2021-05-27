@@ -23,8 +23,17 @@ class CreateUsersTable extends Migration
             $table->foreignId('sport_id')->constrained();
             $table->foreignId('settlement_id')->constrained();
             $table->unsignedBigInteger('role_id')->nullable();
+            $table->string('full_name')->virtualAs("CONCAT_WS(' ', first_name, last_name)");
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        Schema::table('settlements', function(Blueprint $table){
+            $table->foreignId('created_by')->after('name')->constrained('users');
+        });
+
+        Schema::table('sports', function(Blueprint $table){
+            $table->foreignId('created_by')->after('name')->constrained('users');
         });
     }
 
@@ -35,6 +44,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('users');
     }
 }

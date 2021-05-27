@@ -52,7 +52,6 @@ export default {
 
         },
         send() {
-            console.log(this.name, this.trainer)
             this.hasBeenSend = true;
             this.$v.$touch();
 

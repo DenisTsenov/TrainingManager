@@ -16,7 +16,7 @@ class TeamController extends Controller
         return view('auth.team.index', ['route' => route('admin.team.create')]);
     }
 
-    public function teamsList(Request $request)
+    public function list(Request $request)
     {
         $length  = $request->input('length');
         $sortBy  = $request->input('column');

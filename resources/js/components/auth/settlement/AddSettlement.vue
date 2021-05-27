@@ -8,7 +8,7 @@
         <div class="card-body">
           <form class="form" @submit.prevent="create">
             <div class="form-group">
-              <label for="settlement">Settlement</label>
+              <label for="settlement">Name</label>
               <input type="text" id="settlement" v-model="settlement" name="settlement" class="form-control">
               <div v-if="hasBeenSend && !$v.settlement.required" class="alert alert-danger mt-3">
                 Settlement field is required.

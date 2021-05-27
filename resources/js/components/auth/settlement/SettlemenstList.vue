@@ -1,18 +1,17 @@
 <template>
     <div>
-        <a class="btn btn-success btn-xl mb-3 text-white" :href="route">New team</a>
         <data-table
             :columns="columns"
-            url="http://trainingmanager.test/admin/team/list">
+            url="http://trainingmanager.test/admin/settlement/list">
         </data-table>
     </div>
 </template>
-
 <script>
-import EditTeamButton from "./EditTeamButton";
+
+import EditTeamButton from "../teams/EditTeamButton";
 
 export default {
-    name: "TeamsList",
+    name: "SettlementList",
     data() {
         return {
             columns: [
@@ -27,26 +26,24 @@ export default {
                     orderable: true,
                 },
                 {
-                    label: 'Trainer',
-                    name: 'trainer.full_name',
+                    label: 'Created by',
+                    name: 'created_by.full_name',
                     columnName: 'users.full_name',
-                    orderable: true,
-                },
-                {
-                    label: 'Sport',
-                    name: 'sport.name',
-                    columnName: 'sports.name',
-                    orderable: true,
-                },
-                {
-                    label: 'Settlement',
-                    name: 'settlement.name',
-                    columnName: 'settlements.name',
                     orderable: true,
                 },
                 {
                     label: 'Created at',
                     name: 'created_at',
+                    orderable: true,
+                },
+                {
+                    label: 'Updated at',
+                    name: 'updated_at',
+                    orderable: true,
+                },
+                {
+                    label: 'Sports count',
+                    name: 'sports_count',
                     orderable: true,
                 },
                 {
@@ -70,7 +67,7 @@ export default {
     },
     methods: {
         editTeam(data) {
-            window.location = 'team/edit/' + data.id
+            window.location = 'settlement/edit/' + data.id
         },
     },
     props:{

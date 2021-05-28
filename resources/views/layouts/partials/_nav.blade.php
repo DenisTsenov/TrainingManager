@@ -75,7 +75,7 @@
 
                             <li class="dropdown-submenu">
                                 <a class="dropdown-item btn btn-light  ml-4" tabindex="-1" href="#">
-                                    <i class="fas fa-table-tennis"></i> Settlements
+                                    <i class="fas fa-table-tennis"></i> Sports
                                 </a>
                                 <ul class="dropdown-menu">
                                     <a class="dropdown-item btn btn-light" href="{{ route('admin.sport.create') }}">

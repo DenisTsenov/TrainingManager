@@ -1,4 +1,4 @@
-import {required, minLength} from 'vuelidate/lib/validators';
+import {required, minLength, maxLength} from 'vuelidate/lib/validators';
 
 export default {
     data() {
@@ -14,14 +14,24 @@ export default {
     validations: {
         settlement: {
             required,
-            minLength: minLength(2)
+            minLength: minLength(2),
+            maxLength: maxLength(50),
         }
     },
     props: {
         route: {
             required: true,
             type: String,
-        }
+        },
+        actionType: {
+            required: true,
+            type: String,
+        },
+        settlementEdit: {
+            required: false,
+            type: Object,
+            default: false,
+        },
     },
     methods: {
         create() {
@@ -35,8 +45,7 @@ export default {
                 this.errors      = {};
                 axios.post(this.route, {name: this.settlement})
                      .then(response => {
-                         this.sendAllowed = true;
-                         this.success = true;
+                         window.location = response.data.route;
                      })
                      .catch(error => {
                          if (error.response.status === 422) {
@@ -45,9 +54,16 @@ export default {
                          } else {
                              this.serverErr = true;
                          }
-                         this.hasBeenSend = false;
                      });
+                this.hasBeenSend = false;
             }
         }
+    },
+    created() {
+        if (this.settlementEdit != null) {
+            this.settlement = this.settlementEdit.name;
+            return;
+        }
+        this.settlement = ''
     },
 }

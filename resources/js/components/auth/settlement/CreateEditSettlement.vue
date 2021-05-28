@@ -3,7 +3,7 @@
     <div class="col-6">
       <div class="card">
         <div class="card-header">
-          <p class="h3 text-center">Create settlement</p>
+          <p class="h3 text-center">{{ actionType }} settlement</p>
         </div>
         <div class="card-body">
           <form class="form" @submit.prevent="create">
@@ -16,6 +16,9 @@
               <div v-if="hasBeenSend && !$v.settlement.minLength" class="alert alert-danger mt-3">
                 The name must be at least 2 characters.
               </div>
+              <div v-if="hasBeenSend && !$v.settlement.maxLength" class="alert alert-danger mt-3">
+                The name may not be greater than 50 characters.
+              </div>
               <div v-if="errors && errors.name" class="alert alert-danger mt-3">
                 {{ errors.name[0] }}
               </div>
@@ -27,7 +30,7 @@
         </div>
       </div>
       <div v-if="success" class="alert alert-success mt-3">
-        The settlement is created successfully
+        Operation pass successfully
       </div>
       <div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again later..</div>
     </div>
@@ -35,11 +38,11 @@
 </template>
 
 <script>
-import AddSettlementMixin from "../../../mixin/AddSettlementMixin";
+import CreateEditSettlementMixin from "../../../mixin/CreateEditSettlementMixin";
 
 export default {
-  mixins: [AddSettlementMixin],
-  name: 'AddSettlement',
+  mixins: [CreateEditSettlementMixin],
+  name: 'CreateEditSettlement',
   data() {
     return {}
   },

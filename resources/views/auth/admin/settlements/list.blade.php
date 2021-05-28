@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Create settlement')
+@section('title', 'Settlements list')
 @section('content')
     <br>
     <settlements-list></settlements-list>

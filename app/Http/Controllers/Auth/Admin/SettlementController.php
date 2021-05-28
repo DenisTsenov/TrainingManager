@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\Admin\SettlementRequest;
 use App\Models\Settlement;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -37,28 +38,30 @@ class SettlementController extends Controller
 
     public function create()
     {
-        return view('auth.admin.settlements.create');
+        $route = route('admin.settlement.store');
+
+        return view('auth.admin.settlements.create_edit', compact('route'));
     }
 
-    public function store(Request $request)
+    public function store(SettlementRequest $request)
     {
-        $request->validate([
-            'name' => 'required|unique:settlements,name',
-        ]);
+        Settlement::create($request->validated());
 
-        Settlement::create(['name' => $request->input('name')]);
-
-        return response()->json();
+        return response()->json(['route' => route('admin.settlement')]);
     }
 
-    public function edit(Request $request)
+    public function edit(Settlement $settlement)
     {
+        $route = route('admin.settlement.update', ['settlement' => $settlement]);
 
+        return view('auth.admin.settlements.create_edit', compact('route', 'settlement'));
     }
 
-    public function update(Request $request, Settlement $settlement)
+    public function update(SettlementRequest $request, Settlement $settlement)
     {
+        $settlement->update($request->validated());
 
+        return response()->json(['route' => route('admin.settlement')]);
     }
 
     public function sports(Request $request): JsonResponse

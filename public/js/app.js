@@ -2238,6 +2238,49 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/EditButton.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/EditButton.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "EditButton",
+  props: {
+    data: {},
+    name: {},
+    click: {
+      type: Function,
+      "default": function _default() {}
+    },
+    classes: {
+      type: Object,
+      "default": function _default() {
+        return {
+          'btn': true,
+          'btn-success': true,
+          'btn-sm': true
+        };
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/EditForm.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/EditForm.vue?vue&type=script&lang=js& ***!
@@ -2653,7 +2696,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _teams_EditTeamButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../teams/EditTeamButton */ "./resources/js/components/auth/teams/EditTeamButton.vue");
+/* harmony import */ var _EditButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../EditButton */ "./resources/js/components/auth/EditButton.vue");
 //
 //
 //
@@ -2703,12 +2746,12 @@ __webpack_require__.r(__webpack_exports__);
         },
         event: "click",
         handler: this.editSettlement,
-        component: _teams_EditTeamButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+        component: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
       }]
     };
   },
   components: {
-    EditTeamButton: _teams_EditTeamButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+    EditButton: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
     editSettlement: function editSettlement(data) {
@@ -2787,9 +2830,76 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/sport/SportList.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/vagrant/www/TrainingManager/resources/js/components/auth/sport/SportList.vue: Unexpected token (29:30)\n\n\u001b[0m \u001b[90m 27 |\u001b[39m         }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 28 |\u001b[39m         {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 |\u001b[39m           label\u001b[33m:\u001b[39m \u001b[32m'Created by'\u001b[39m\u001b[33m,\u001b[39m\u001b[33m.\u001b[39m \u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 30 |\u001b[39m           name\u001b[33m:\u001b[39m \u001b[32m'created_by.full_name'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 31 |\u001b[39m           columnName\u001b[33m:\u001b[39m \u001b[32m'users.full_name'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 32 |\u001b[39m           orderable\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n    at Parser._raise (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:810:17)\n    at Parser.raiseWithData (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:803:17)\n    at Parser.raise (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:764:17)\n    at Parser.unexpected (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:9965:16)\n    at Parser.parseIdentifierName (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:12146:18)\n    at Parser.parseIdentifier (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:12119:23)\n    at Parser.parseMaybePrivateName (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11446:19)\n    at Parser.parsePropertyName (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11933:151)\n    at Parser.parsePropertyDefinition (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11818:22)\n    at Parser.parseObjectLike (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11733:25)\n    at Parser.parseExprAtom (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11284:23)\n    at Parser.parseExprSubscripts (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10938:23)\n    at Parser.parseUpdate (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10918:21)\n    at Parser.parseMaybeUnary (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10896:23)\n    at Parser.parseExprOps (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10753:23)\n    at Parser.parseMaybeConditional (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10727:23)\n    at Parser.parseMaybeAssign (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10690:21)\n    at /home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10657:39\n    at Parser.allowInAnd (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:12351:12)\n    at Parser.parseMaybeAssignAllowIn (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10657:17)\n    at Parser.parseExprListItem (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:12111:18)\n    at Parser.parseExprList (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:12081:22)\n    at Parser.parseArrayLike (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11973:26)\n    at Parser.parseExprAtom (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11273:23)\n    at Parser.parseExprSubscripts (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10938:23)\n    at Parser.parseUpdate (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10918:21)\n    at Parser.parseMaybeUnary (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10896:23)\n    at Parser.parseExprOps (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10753:23)\n    at Parser.parseMaybeConditional (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10727:23)\n    at Parser.parseMaybeAssign (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10690:21)\n    at /home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10657:39\n    at Parser.allowInAnd (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:12351:12)\n    at Parser.parseMaybeAssignAllowIn (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10657:17)\n    at Parser.parseObjectProperty (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11894:101)\n    at Parser.parseObjPropValue (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11919:100)\n    at Parser.parsePropertyDefinition (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11843:10)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../EditButton */ "./resources/js/components/auth/EditButton.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "SportList",
+  data: function data() {
+    return {
+      columns: [{
+        label: 'ID',
+        name: 'id',
+        orderable: false
+      }, {
+        label: 'Name',
+        name: 'name',
+        orderable: true
+      }, {
+        label: 'Created by',
+        name: 'created_by.full_name',
+        columnName: 'users.full_name',
+        orderable: true
+      }, {
+        label: 'Created at',
+        name: 'created_at',
+        orderable: true
+      }, {
+        label: 'Updated at',
+        name: 'updated_at',
+        orderable: true
+      }, {
+        label: 'In settlements',
+        name: 'settlements_count',
+        orderable: true
+      }, {
+        label: 'Actions',
+        name: '',
+        orderable: false,
+        classes: {
+          'btn': true,
+          'btn-success': true,
+          'btn-sm': true
+        },
+        event: "click",
+        handler: this.editSport,
+        component: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+      }]
+    };
+  },
+  components: {
+    EditButton: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
+    editSport: function editSport(data) {
+      window.location = 'sport/edit/' + data.id;
+    }
+  },
+  props: {
+    route: ''
+  }
+});
 
 /***/ }),
 
@@ -2866,49 +2976,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "EditTeamButton",
-  props: {
-    data: {},
-    name: {},
-    click: {
-      type: Function,
-      "default": function _default() {}
-    },
-    classes: {
-      type: Object,
-      "default": function _default() {
-        return {
-          'btn': true,
-          'btn-success': true,
-          'btn-sm': true
-        };
-      }
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/TeamsList.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/TeamsList.vue?vue&type=script&lang=js& ***!
@@ -2918,7 +2985,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EditTeamButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditTeamButton */ "./resources/js/components/auth/teams/EditTeamButton.vue");
+/* harmony import */ var _EditButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../EditButton */ "./resources/js/components/auth/EditButton.vue");
 //
 //
 //
@@ -2972,12 +3039,12 @@ __webpack_require__.r(__webpack_exports__);
         },
         event: "click",
         handler: this.editTeam,
-        component: _EditTeamButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+        component: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
       }]
     };
   },
   components: {
-    EditTeamButton: _EditTeamButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+    EditButton: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
     editTeam: function editTeam(data) {
@@ -57455,6 +57522,51 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/EditButton.vue?vue&type=template&id=1023b3c8&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/EditButton.vue?vue&type=template&id=1023b3c8&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      class: _vm.classes,
+      attrs: { title: "Edit" },
+      on: {
+        click: function($event) {
+          return _vm.click(_vm.data)
+        }
+      }
+    },
+    [_vm._m(0), _vm._v("\n     \n    " + _vm._s(_vm.name) + "\n")]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa fa-edit", attrs: { "aria-hidden": "true" } })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/EditForm.vue?vue&type=template&id=a21db04c&scoped=true&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/EditForm.vue?vue&type=template&id=a21db04c&scoped=true& ***!
@@ -58560,51 +58672,6 @@ var staticRenderFns = [
         { staticClass: "btn btn-primary w-50", attrs: { type: "submit" } },
         [_vm._v("Send")]
       )
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true&":
-/*!****************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true& ***!
-  \****************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      class: _vm.classes,
-      attrs: { title: "Edit" },
-      on: {
-        click: function($event) {
-          return _vm.click(_vm.data)
-        }
-      }
-    },
-    [_vm._m(0), _vm._v("\n     \n    " + _vm._s(_vm.name) + "\n")]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [
-      _c("i", { staticClass: "fa fa-edit", attrs: { "aria-hidden": "true" } })
     ])
   }
 ]
@@ -73314,6 +73381,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/auth/EditButton.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/auth/EditButton.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditButton_vue_vue_type_template_id_1023b3c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditButton.vue?vue&type=template&id=1023b3c8&scoped=true& */ "./resources/js/components/auth/EditButton.vue?vue&type=template&id=1023b3c8&scoped=true&");
+/* harmony import */ var _EditButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditButton.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/EditButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditButton_vue_vue_type_template_id_1023b3c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditButton_vue_vue_type_template_id_1023b3c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "1023b3c8",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/auth/EditButton.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/EditButton.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/auth/EditButton.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/EditButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/EditButton.vue?vue&type=template&id=1023b3c8&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/auth/EditButton.vue?vue&type=template&id=1023b3c8&scoped=true& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_template_id_1023b3c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditButton.vue?vue&type=template&id=1023b3c8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/EditButton.vue?vue&type=template&id=1023b3c8&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_template_id_1023b3c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_template_id_1023b3c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/auth/EditForm.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/auth/EditForm.vue ***!
@@ -73861,75 +73997,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEditForm_vue_vue_type_template_id_c54a2422_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEditForm_vue_vue_type_template_id_c54a2422_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/auth/teams/EditTeamButton.vue":
-/*!***************************************************************!*\
-  !*** ./resources/js/components/auth/teams/EditTeamButton.vue ***!
-  \***************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EditTeamButton_vue_vue_type_template_id_5d05e604_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true& */ "./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true&");
-/* harmony import */ var _EditTeamButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditTeamButton.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _EditTeamButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _EditTeamButton_vue_vue_type_template_id_5d05e604_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _EditTeamButton_vue_vue_type_template_id_5d05e604_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "5d05e604",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/auth/teams/EditTeamButton.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************!*\
-  !*** ./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTeamButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditTeamButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTeamButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true&":
-/*!**********************************************************************************************************!*\
-  !*** ./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true& ***!
-  \**********************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTeamButton_vue_vue_type_template_id_5d05e604_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/EditTeamButton.vue?vue&type=template&id=5d05e604&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTeamButton_vue_vue_type_template_id_5d05e604_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTeamButton_vue_vue_type_template_id_5d05e604_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -74906,7 +74973,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_EditForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/auth/EditForm */ "./resources/js/components/auth/EditForm.vue");
 /* harmony import */ var _components_auth_DistributeCompetitors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/auth/DistributeCompetitors */ "./resources/js/components/auth/DistributeCompetitors.vue");
 /* harmony import */ var _components_auth_teams_TeamsList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/auth/teams/TeamsList */ "./resources/js/components/auth/teams/TeamsList.vue");
-/* harmony import */ var _components_auth_teams_EditTeamButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/teams/EditTeamButton */ "./resources/js/components/auth/teams/EditTeamButton.vue");
+/* harmony import */ var _components_auth_EditButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/EditButton */ "./resources/js/components/auth/EditButton.vue");
 
 
 
@@ -74918,7 +74985,7 @@ Vue.component('login-form', _components_LoginForm__WEBPACK_IMPORTED_MODULE_1__["
 Vue.component('edit-from', _components_auth_EditForm__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.component('distribute-competitors', _components_auth_DistributeCompetitors__WEBPACK_IMPORTED_MODULE_3__["default"]);
 Vue.component('team-list', _components_auth_teams_TeamsList__WEBPACK_IMPORTED_MODULE_4__["default"]);
-Vue.component('edit-team-button', _components_auth_teams_EditTeamButton__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('edit-button', _components_auth_EditButton__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
 /***/ }),
 
@@ -74976,9 +75043,9 @@ Vue.component('review-user-button', _components_main_ReviewUserButton__WEBPACK_I
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /var/www/trainingmanager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/trainingmanager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /var/www/trainingmanager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

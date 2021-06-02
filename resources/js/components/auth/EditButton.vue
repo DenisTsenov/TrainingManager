@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    name: "EditTeamButton",
+    name: "EditButton",
     props: {
         data: {},
         name: {},

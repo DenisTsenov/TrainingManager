@@ -44,8 +44,8 @@
                                 </a>
                             </li>
                             <li class="dropdown-submenu">
-                                <a class="dropdown-item btn btn-light  ml-4" tabindex="-1" href="#">
-                                    <i class="fas fa-city"></i> Settlements
+                                <a class="dropdown-item btn btn-light" tabindex="-1" href="#">
+                                    <i class="fas fa-city ml-4"></i> Settlements
                                 </a>
                                 <ul class="dropdown-menu">
                                     <a class="dropdown-item btn btn-light" href="{{ route('admin.settlement.create') }}">
@@ -74,8 +74,8 @@
                             </li>
 
                             <li class="dropdown-submenu">
-                                <a class="dropdown-item btn btn-light  ml-4" tabindex="-1" href="#">
-                                    <i class="fas fa-table-tennis"></i> Sports
+                                <a class="dropdown-item btn btn-light" tabindex="-1" href="#">
+                                    <i class="fas fa-table-tennis ml-4"></i> Sports
                                 </a>
                                 <ul class="dropdown-menu">
                                     <a class="dropdown-item btn btn-light" href="{{ route('admin.sport.create') }}">
@@ -101,11 +101,6 @@
                                     {{--                                    </li>--}}
 
                                 </ul>
-                            </li>
-                            <li class="dropdown-item">
-                                <a class="dropdown-item disabled btn btn-light" href="#">
-                                    <i class="fas fa-sheqel"></i> Add sport to settlement
-                                </a>
                             </li>
                         </ul>
                     </li>

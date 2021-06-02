@@ -8,7 +8,7 @@
 </template>
 <script>
 
-import EditTeamButton from "../teams/EditTeamButton";
+import EditButton from "../EditButton";
 
 export default {
     name: "SettlementList",
@@ -57,13 +57,13 @@ export default {
                     },
                     event: "click",
                     handler: this.editSettlement,
-                    component: EditTeamButton,
+                    component: EditButton,
                 },
             ],
         }
     },
     components: {
-        EditTeamButton,
+        EditButton,
     },
     methods: {
       editSettlement(data) {

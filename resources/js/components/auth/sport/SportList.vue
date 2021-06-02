@@ -8,7 +8,7 @@
 </template>
 <script>
 
-import EditTeamButton from "../teams/EditTeamButton";
+import EditButton from "../EditButton";
 
 export default {
   name: "SportList",
@@ -26,7 +26,7 @@ export default {
           orderable: true,
         },
         {
-          label: 'Created by',. 
+          label: 'Created by',
           name: 'created_by.full_name',
           columnName: 'users.full_name',
           orderable: true,
@@ -57,13 +57,13 @@ export default {
           },
           event: "click",
           handler: this.editSport,
-          component: EditTeamButton,
+          component: EditButton,
         },
       ],
     }
   },
   components: {
-    EditTeamButton,
+      EditButton,
   },
   methods: {
     editSport(data) {

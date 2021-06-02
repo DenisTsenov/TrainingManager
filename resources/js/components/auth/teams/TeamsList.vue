@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import EditTeamButton from "./EditTeamButton";
+import EditButton from "../EditButton";
 
 export default {
     name: "TeamsList",
@@ -60,13 +60,13 @@ export default {
                     },
                     event: "click",
                     handler: this.editTeam,
-                    component: EditTeamButton,
+                    component: EditButton,
                 },
             ],
         }
     },
     components: {
-        EditTeamButton,
+        EditButton,
     },
     methods: {
         editTeam(data) {

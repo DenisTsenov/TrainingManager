@@ -3,20 +3,28 @@
 namespace App\Http\Controllers\Auth\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\Admin\SportRequest;
 use App\Models\Sport;
 use Illuminate\Http\Request;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
 class SportController extends Controller
 {
+    public function index()
+    {
+        $route = route('admin.sport.list');
+
+        return view('auth.admin.sports.list', compact('route'));
+    }
+
     public function list(Request $request)
     {
         $length  = $request->input('length');
         $sortBy  = $request->input('column');
-        $orderBy = $request->input('dir');
+        $orderBy = $request->input('dir', 'asc');
         $search  = $request->input('search');
 
-        $query = Sport::eloquentQuery($sortBy, $orderBy, $search);
+        $query = Sport::eloquentQuery($sortBy, $orderBy, $search, ['createdBy'])->withCount('settlements');
         $data  = $query->paginate($length);
 
         return new DataTableCollectionResource($data);
@@ -24,27 +32,29 @@ class SportController extends Controller
 
     public function create()
     {
-        return view('auth.admin.sports.create');
+        $route = route('admin.sport.store');
+
+        return view('auth.admin.sports.create_edit', compact('route'));
     }
 
-    public function store(Request $request)
+    public function store(SportRequest $request)
     {
-        $request->validate([
-            'name' => 'required|unique:sports,name',
-        ]);
+        Sport::create($request->validated());
 
-        Sport::create(['name' => $request->input('name')]);
-
-        return response()->json();
+        return response()->json(['route' => route('admin.sport.create')]);
     }
 
-    public function edit(Request $request)
+    public function edit(Sport $sport)
     {
+        $route = route('admin.sport.update', ['sport' => $sport]);
 
+        return view('auth.admin.sports.create_edit', compact('route', 'sport'));
     }
 
-    public function update(Request $request)
+    public function update(SportRequest $request, Sport $sport)
     {
+        $sport->update($request->validated());
 
+        return response()->json(['route' => route('admin.sport')]);
     }
 }

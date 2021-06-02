@@ -81,6 +81,9 @@
                                     <a class="dropdown-item btn btn-light" href="{{ route('admin.sport.create') }}">
                                         <i class="fas fa-plus"></i> Add sport
                                     </a>
+                                    <a class="dropdown-item btn btn-light" href="{{ route('admin.sport') }}">
+                                        <i class="fas fa-list"></i> List
+                                    </a>
                                     {{--                                    <li class="dropdown-submenu">--}}
                                     {{--                                        <a class="dropdown-item" href="#">Even More..</a>--}}
                                     {{--                                        <ul class="dropdown-menu">--}}

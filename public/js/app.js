@@ -2702,7 +2702,7 @@ __webpack_require__.r(__webpack_exports__);
           'btn-sm': true
         },
         event: "click",
-        handler: this.editTeam,
+        handler: this.editSettlement,
         component: _teams_EditTeamButton__WEBPACK_IMPORTED_MODULE_0__["default"]
       }]
     };
@@ -2711,7 +2711,7 @@ __webpack_require__.r(__webpack_exports__);
     EditTeamButton: _teams_EditTeamButton__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
-    editTeam: function editTeam(data) {
+    editSettlement: function editSettlement(data) {
       window.location = 'settlement/edit/' + data.id;
     }
   },
@@ -2722,16 +2722,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/sport/AddSport.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/sport/AddSport.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/sport/CreateEditSport.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/sport/CreateEditSport.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mixin_AddSportMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../mixin/AddSportMixin */ "./resources/js/mixin/AddSportMixin.js");
+/* harmony import */ var _mixin_CreateEditSportMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../mixin/CreateEditSportMixin */ "./resources/js/mixin/CreateEditSportMixin.js");
+//
+//
+//
 //
 //
 //
@@ -2770,12 +2773,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixin_AddSportMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
-  name: 'AddSport',
+  mixins: [_mixin_CreateEditSportMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  name: 'CreateEditSport',
   data: function data() {
     return {};
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/sport/SportList.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/sport/SportList.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/vagrant/www/TrainingManager/resources/js/components/auth/sport/SportList.vue: Unexpected token (29:30)\n\n\u001b[0m \u001b[90m 27 |\u001b[39m         }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 28 |\u001b[39m         {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 |\u001b[39m           label\u001b[33m:\u001b[39m \u001b[32m'Created by'\u001b[39m\u001b[33m,\u001b[39m\u001b[33m.\u001b[39m \u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 30 |\u001b[39m           name\u001b[33m:\u001b[39m \u001b[32m'created_by.full_name'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 31 |\u001b[39m           columnName\u001b[33m:\u001b[39m \u001b[32m'users.full_name'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 32 |\u001b[39m           orderable\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n    at Parser._raise (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:810:17)\n    at Parser.raiseWithData (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:803:17)\n    at Parser.raise (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:764:17)\n    at Parser.unexpected (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:9965:16)\n    at Parser.parseIdentifierName (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:12146:18)\n    at Parser.parseIdentifier (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:12119:23)\n    at Parser.parseMaybePrivateName (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11446:19)\n    at Parser.parsePropertyName (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11933:151)\n    at Parser.parsePropertyDefinition (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11818:22)\n    at Parser.parseObjectLike (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11733:25)\n    at Parser.parseExprAtom (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11284:23)\n    at Parser.parseExprSubscripts (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10938:23)\n    at Parser.parseUpdate (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10918:21)\n    at Parser.parseMaybeUnary (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10896:23)\n    at Parser.parseExprOps (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10753:23)\n    at Parser.parseMaybeConditional (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10727:23)\n    at Parser.parseMaybeAssign (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10690:21)\n    at /home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10657:39\n    at Parser.allowInAnd (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:12351:12)\n    at Parser.parseMaybeAssignAllowIn (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10657:17)\n    at Parser.parseExprListItem (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:12111:18)\n    at Parser.parseExprList (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:12081:22)\n    at Parser.parseArrayLike (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11973:26)\n    at Parser.parseExprAtom (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11273:23)\n    at Parser.parseExprSubscripts (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10938:23)\n    at Parser.parseUpdate (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10918:21)\n    at Parser.parseMaybeUnary (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10896:23)\n    at Parser.parseExprOps (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10753:23)\n    at Parser.parseMaybeConditional (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10727:23)\n    at Parser.parseMaybeAssign (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10690:21)\n    at /home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10657:39\n    at Parser.allowInAnd (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:12351:12)\n    at Parser.parseMaybeAssignAllowIn (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:10657:17)\n    at Parser.parseObjectProperty (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11894:101)\n    at Parser.parseObjPropValue (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11919:100)\n    at Parser.parsePropertyDefinition (/home/vagrant/www/TrainingManager/node_modules/@babel/parser/lib/index.js:11843:10)");
 
 /***/ }),
 
@@ -58183,10 +58197,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/sport/AddSport.vue?vue&type=template&id=19f25e7a&scoped=true&":
-/*!**********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/sport/AddSport.vue?vue&type=template&id=19f25e7a&scoped=true& ***!
-  \**********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/sport/CreateEditSport.vue?vue&type=template&id=76b9b497&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/sport/CreateEditSport.vue?vue&type=template&id=76b9b497&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -58201,7 +58215,11 @@ var render = function() {
   return _c("div", { staticClass: "row justify-content-center mt-3" }, [
     _c("div", { staticClass: "col-6" }, [
       _c("div", { staticClass: "card" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "card-header" }, [
+          _c("p", { staticClass: "h3 text-center" }, [
+            _vm._v(_vm._s(_vm.actionType) + " sport")
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           _c(
@@ -58243,9 +58261,7 @@ var render = function() {
                 _vm._v(" "),
                 _vm.hasBeenSend && !_vm.$v.sport.required
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                      _vm._v(
-                        "\n              Settlement is required.\n            "
-                      )
+                      _vm._v("\n              Sport is required.\n            ")
                     ])
                   : _vm._e(),
                 _vm._v(" "),
@@ -58253,6 +58269,14 @@ var render = function() {
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
                       _vm._v(
                         "\n              Must have at least 2 letters.\n            "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.hasBeenSend && !_vm.$v.sport.maxLength
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n              The name may not be greater than 50 characters.\n            "
                       )
                     ])
                   : _vm._e(),
@@ -58268,7 +58292,7 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _vm._m(1)
+              _vm._m(0)
             ]
           )
         ])
@@ -58276,7 +58300,7 @@ var render = function() {
       _vm._v(" "),
       _vm.success
         ? _c("div", { staticClass: "alert alert-success mt-3" }, [
-            _vm._v("\n      The sport is created successfully\n    ")
+            _vm._v("\n      Operation pass successfully\n    ")
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -58293,14 +58317,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Create sport")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group text-center" }, [
       _c(
         "button",
@@ -58310,6 +58326,41 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/sport/SportList.vue?vue&type=template&id=f85d28ca&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/sport/SportList.vue?vue&type=template&id=f85d28ca&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("data-table", {
+        attrs: {
+          columns: _vm.columns,
+          url: "http://trainingmanager.test/admin/sport/list"
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -73608,17 +73659,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/sport/AddSport.vue":
-/*!*********************************************************!*\
-  !*** ./resources/js/components/auth/sport/AddSport.vue ***!
-  \*********************************************************/
+/***/ "./resources/js/components/auth/sport/CreateEditSport.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/auth/sport/CreateEditSport.vue ***!
+  \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _AddSport_vue_vue_type_template_id_19f25e7a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddSport.vue?vue&type=template&id=19f25e7a&scoped=true& */ "./resources/js/components/auth/sport/AddSport.vue?vue&type=template&id=19f25e7a&scoped=true&");
-/* harmony import */ var _AddSport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddSport.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/sport/AddSport.vue?vue&type=script&lang=js&");
+/* harmony import */ var _CreateEditSport_vue_vue_type_template_id_76b9b497_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateEditSport.vue?vue&type=template&id=76b9b497&scoped=true& */ "./resources/js/components/auth/sport/CreateEditSport.vue?vue&type=template&id=76b9b497&scoped=true&");
+/* harmony import */ var _CreateEditSport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateEditSport.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/sport/CreateEditSport.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -73628,50 +73679,119 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _AddSport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _AddSport_vue_vue_type_template_id_19f25e7a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _AddSport_vue_vue_type_template_id_19f25e7a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _CreateEditSport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateEditSport_vue_vue_type_template_id_76b9b497_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateEditSport_vue_vue_type_template_id_76b9b497_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "19f25e7a",
+  "76b9b497",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/auth/sport/AddSport.vue"
+component.options.__file = "resources/js/components/auth/sport/CreateEditSport.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/sport/AddSport.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/auth/sport/AddSport.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************/
+/***/ "./resources/js/components/auth/sport/CreateEditSport.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/auth/sport/CreateEditSport.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AddSport.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/sport/AddSport.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEditSport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateEditSport.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/sport/CreateEditSport.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEditSport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/sport/AddSport.vue?vue&type=template&id=19f25e7a&scoped=true&":
-/*!****************************************************************************************************!*\
-  !*** ./resources/js/components/auth/sport/AddSport.vue?vue&type=template&id=19f25e7a&scoped=true& ***!
-  \****************************************************************************************************/
+/***/ "./resources/js/components/auth/sport/CreateEditSport.vue?vue&type=template&id=76b9b497&scoped=true&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/auth/sport/CreateEditSport.vue?vue&type=template&id=76b9b497&scoped=true& ***!
+  \***********************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSport_vue_vue_type_template_id_19f25e7a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AddSport.vue?vue&type=template&id=19f25e7a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/sport/AddSport.vue?vue&type=template&id=19f25e7a&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSport_vue_vue_type_template_id_19f25e7a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEditSport_vue_vue_type_template_id_76b9b497_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateEditSport.vue?vue&type=template&id=76b9b497&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/sport/CreateEditSport.vue?vue&type=template&id=76b9b497&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEditSport_vue_vue_type_template_id_76b9b497_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddSport_vue_vue_type_template_id_19f25e7a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateEditSport_vue_vue_type_template_id_76b9b497_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/sport/SportList.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/auth/sport/SportList.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SportList_vue_vue_type_template_id_f85d28ca_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SportList.vue?vue&type=template&id=f85d28ca&scoped=true& */ "./resources/js/components/auth/sport/SportList.vue?vue&type=template&id=f85d28ca&scoped=true&");
+/* harmony import */ var _SportList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SportList.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/sport/SportList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SportList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SportList_vue_vue_type_template_id_f85d28ca_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SportList_vue_vue_type_template_id_f85d28ca_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "f85d28ca",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/auth/sport/SportList.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/sport/SportList.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/auth/sport/SportList.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SportList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./SportList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/sport/SportList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SportList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/sport/SportList.vue?vue&type=template&id=f85d28ca&scoped=true&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/auth/sport/SportList.vue?vue&type=template&id=f85d28ca&scoped=true& ***!
+  \*****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SportList_vue_vue_type_template_id_f85d28ca_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./SportList.vue?vue&type=template&id=f85d28ca&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/sport/SportList.vue?vue&type=template&id=f85d28ca&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SportList_vue_vue_type_template_id_f85d28ca_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SportList_vue_vue_type_template_id_f85d28ca_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -74160,74 +74280,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/mixin/AddSportMixin.js":
-/*!*********************************************!*\
-  !*** ./resources/js/mixin/AddSportMixin.js ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      sport: '',
-      hasBeenSend: false,
-      errors: {},
-      success: false,
-      sendAllowed: true,
-      serverErr: false
-    };
-  },
-  validations: {
-    sport: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
-      minLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["minLength"])(2)
-    }
-  },
-  props: {
-    route: {
-      required: true,
-      type: String
-    }
-  },
-  methods: {
-    create: function create() {
-      var _this = this;
-
-      this.hasBeenSend = true;
-      this.$v.$touch();
-      if (this.$v.$invalid) return;
-
-      if (this.sendAllowed) {
-        this.sendAllowed = false;
-        this.errors = {};
-        axios.post(this.route, {
-          name: this.sport
-        }).then(function (response) {
-          _this.success = true;
-          _this.sendAllowed = true;
-        })["catch"](function (error) {
-          if (error.response.status === 422) {
-            _this.sendAllowed = true;
-            _this.errors = error.response.data.errors || {};
-          } else {
-            _this.serverErr = true;
-          }
-
-          _this.hasBeenSend = false;
-        });
-      }
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./resources/js/mixin/CreateEditMixin.js":
 /*!***********************************************!*\
   !*** ./resources/js/mixin/CreateEditMixin.js ***!
@@ -74413,6 +74465,91 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     this.settlement = '';
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/mixin/CreateEditSportMixin.js":
+/*!****************************************************!*\
+  !*** ./resources/js/mixin/CreateEditSportMixin.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      sport: '',
+      hasBeenSend: false,
+      errors: {},
+      success: false,
+      sendAllowed: true,
+      serverErr: false
+    };
+  },
+  validations: {
+    sport: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
+      minLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["minLength"])(2),
+      maxLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["maxLength"])(50)
+    }
+  },
+  props: {
+    route: {
+      required: true,
+      type: String
+    },
+    actionType: {
+      required: true,
+      type: String
+    },
+    sportEdit: {
+      required: false,
+      type: String,
+      "default": false
+    }
+  },
+  methods: {
+    create: function create() {
+      var _this = this;
+
+      this.hasBeenSend = true;
+      this.$v.$touch();
+      if (this.$v.$invalid) return;
+
+      if (this.sendAllowed) {
+        this.sendAllowed = false;
+        this.errors = {};
+        axios.post(this.route, {
+          name: this.sport
+        }).then(function (response) {
+          window.location = response.data.route;
+        })["catch"](function (error) {
+          if (error.response.status === 422) {
+            _this.sendAllowed = true;
+            _this.errors = error.response.data.errors || {};
+          } else {
+            _this.serverErr = true;
+          }
+
+          _this.hasBeenSend = false;
+        });
+      }
+    }
+  },
+  created: function created() {
+    if (this.sportEdit != null) {
+      this.sport = this.sportEdit.name;
+      return;
+    }
+
+    this.sport = '';
   }
 });
 
@@ -74733,8 +74870,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_teams_CreateEditForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/auth/teams/CreateEditForm */ "./resources/js/components/auth/teams/CreateEditForm.vue");
 /* harmony import */ var _components_auth_teams_WaitingCompetitorsList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/auth/teams/WaitingCompetitorsList */ "./resources/js/components/auth/teams/WaitingCompetitorsList.vue");
 /* harmony import */ var _components_auth_settlement_CreateEditSettlement__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/auth/settlement/CreateEditSettlement */ "./resources/js/components/auth/settlement/CreateEditSettlement.vue");
-/* harmony import */ var _components_auth_sport_AddSport__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/sport/AddSport */ "./resources/js/components/auth/sport/AddSport.vue");
+/* harmony import */ var _components_auth_sport_CreateEditSport__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/sport/CreateEditSport */ "./resources/js/components/auth/sport/CreateEditSport.vue");
 /* harmony import */ var _components_auth_settlement_SettlemenstList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/auth/settlement/SettlemenstList */ "./resources/js/components/auth/settlement/SettlemenstList.vue");
+/* harmony import */ var _components_auth_sport_SportList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/auth/sport/SportList */ "./resources/js/components/auth/sport/SportList.vue");
+
 
 
 
@@ -74747,8 +74886,9 @@ Vue.component('roles-permissions', _components_auth_admin_RolePermissions__WEBPA
 Vue.component('create-edit-form', _components_auth_teams_CreateEditForm__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.component('waiting-competitors-list', _components_auth_teams_WaitingCompetitorsList__WEBPACK_IMPORTED_MODULE_3__["default"]);
 Vue.component('create-edit-settlement', _components_auth_settlement_CreateEditSettlement__WEBPACK_IMPORTED_MODULE_4__["default"]);
-Vue.component('add-sport', _components_auth_sport_AddSport__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('create-edit-sport', _components_auth_sport_CreateEditSport__WEBPACK_IMPORTED_MODULE_5__["default"]);
 Vue.component('settlements-list', _components_auth_settlement_SettlemenstList__WEBPACK_IMPORTED_MODULE_6__["default"]);
+Vue.component('sport-list', _components_auth_sport_SportList__WEBPACK_IMPORTED_MODULE_7__["default"]);
 
 /***/ }),
 

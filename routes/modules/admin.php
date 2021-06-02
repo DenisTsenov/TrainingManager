@@ -94,6 +94,9 @@ Route::post('/settlement/update/{settlement}', [SettlementController::class, 'up
      ->middleware('ajax')
      ->name('admin.settlement.update');
 
+Route::get('/sports', [SportController::class, 'index'])
+     ->name('admin.sport');
+
 Route::get('/sport/list', [SportController::class, 'list'])
      ->name('admin.sport.list');
 
@@ -103,3 +106,10 @@ Route::get('/sport/create', [SportController::class, 'create'])
 Route::post('/sport/store', [SportController::class, 'store'])
      ->middleware('ajax')
      ->name('admin.sport.store');
+
+Route::get('/sport/edit/{sport}', [SportController::class, 'edit'])
+     ->name('admin.sport.edit');
+
+Route::post('/sport/update/{sport}', [SportController::class, 'update'])
+     ->middleware('ajax')
+     ->name('admin.sport.update');

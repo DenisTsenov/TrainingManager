@@ -37,5 +37,54 @@ class Sport extends Model
         'created_at' => [
             'searchable' => true,
         ],
+        'updated_at' => [
+            'searchable' => true,
+        ],
     ];
+
+    protected $dataTableRelationships = [
+        "belongsTo"     => [
+            "createdBy" => [
+                "model"       => User::class,
+                "foreign_key" => "created_by",
+                "columns"     => [
+                    "first_name" => [
+                        "searchable" => true,
+                        "orderable"  => true,
+                    ],
+                ],
+            ],
+        ],
+        "hasMany"       => [],
+        "belongsToMany" => [
+//            "sports" => [
+//                "model"       => Sport::class,
+//                "foreign_key" => "sport_id",
+//                "pivot"       => [
+//                    "table_name"  => "settlement_sport",
+//                    "primary_key" => "id",
+//                    "foreign_key" => "sport_id",
+//                    "local_key"   => "settlement_id",
+//                ],
+//                "order_by"    => "name",
+//                "columns"     => [
+//                    "name" => [
+//                        "searchable" => true,
+//                        "orderable"  => true,
+//                    ],
+//                ],
+//            ],
+        ],
+    ];
+
+    public function settlements()
+    {
+        return $this->belongsToMany(Settlement::class);
+    }
+
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }

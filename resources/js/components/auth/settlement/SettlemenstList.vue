@@ -56,7 +56,7 @@ export default {
                         'btn-sm': true,
                     },
                     event: "click",
-                    handler: this.editTeam,
+                    handler: this.editSettlement,
                     component: EditTeamButton,
                 },
             ],
@@ -66,7 +66,7 @@ export default {
         EditTeamButton,
     },
     methods: {
-        editTeam(data) {
+      editSettlement(data) {
             window.location = 'settlement/edit/' + data.id
         },
     },

@@ -1,4 +1,4 @@
-import {required, minLength} from 'vuelidate/lib/validators';
+import {required, minLength, maxLength} from 'vuelidate/lib/validators';
 
 export default {
     data() {
@@ -14,14 +14,24 @@ export default {
     validations: {
         sport: {
             required,
-            minLength: minLength(2)
+            minLength: minLength(2),
+            maxLength: maxLength(50),
         }
     },
     props: {
         route: {
             required: true,
             type: String,
-        }
+        },
+        actionType:{
+            required: true,
+            type: String,
+        },
+        sportEdit:{
+            required: false,
+            type: String,
+            default: false,
+        },
     },
     methods: {
         create() {
@@ -35,8 +45,7 @@ export default {
                 this.errors      = {};
                 axios.post(this.route, {name: this.sport})
                      .then(response => {
-                         this.success = true;
-                         this.sendAllowed = true;
+                         window.location = response.data.route
                      })
                      .catch(error => {
                          if (error.response.status === 422) {
@@ -50,4 +59,11 @@ export default {
             }
         }
     },
+    created() {
+        if (this.sportEdit != null) {
+            this.sport = this.sportEdit.name;
+            return;
+        }
+        this.sport = '';
+    }
 }

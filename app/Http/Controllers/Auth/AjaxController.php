@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Sport;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AjaxController extends Controller
 {
@@ -13,8 +15,26 @@ class AjaxController extends Controller
         return User::trainers()->with(['sport', 'settlement'])->get()->toJson();
     }
 
-    public function getSports()
+    public function getSports(Request $request)
     {
-        return Sport::select('id', 'name')->get()->toJson();
+        $request->validate(['settlement_id' => 'nullable', 'exists:users,id']);
+
+        $sports = Sport::select('id', 'name')->get();
+
+        $currentSports = DB::table('settlement_sport')->where('settlement_id', $request->input('settlement_id'))->get();
+
+        if ($currentSports) {
+            foreach ($sports as $sport) {
+                $sport->checked = false;
+                foreach ($currentSports as $currentSport) {
+                    if ($sport->id == $currentSport->sport_id) {
+                        $sport->checked = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return $sports->toJson();
     }
 }

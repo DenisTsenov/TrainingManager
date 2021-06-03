@@ -54,8 +54,6 @@ class SettlementController extends Controller
 
     public function edit(Settlement $settlement)
     {
-        $settlement->load('sports');
-
         $route = route('admin.settlement.update', ['settlement' => $settlement]);
 
         return view('auth.admin.settlements.create_edit', compact('route', 'settlement'));

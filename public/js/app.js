@@ -58289,39 +58289,51 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.sportsToSend,
-                              expression: "sportsToSend"
+                              value: _vm.sports.checked,
+                              expression: "sports.checked"
                             }
                           ],
                           staticClass: "form-check-input",
                           attrs: { type: "checkbox", id: sport.name },
                           domProps: {
-                            value: sport.id,
-                            checked: Array.isArray(_vm.sportsToSend)
-                              ? _vm._i(_vm.sportsToSend, sport.id) > -1
-                              : _vm.sportsToSend
+                            checked: Array.isArray(_vm.sports.checked)
+                              ? _vm._i(_vm.sports.checked, null) > -1
+                              : _vm.sports.checked
                           },
                           on: {
-                            change: function($event) {
-                              var $$a = _vm.sportsToSend,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = sport.id,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    (_vm.sportsToSend = $$a.concat([$$v]))
+                            change: [
+                              function($event) {
+                                var $$a = _vm.sports.checked,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        _vm.sports,
+                                        "checked",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        _vm.sports,
+                                        "checked",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
                                 } else {
-                                  $$i > -1 &&
-                                    (_vm.sportsToSend = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
+                                  _vm.$set(_vm.sports, "checked", $$c)
                                 }
-                              } else {
-                                _vm.sportsToSend = $$c
+                              },
+                              function($event) {
+                                return _vm.check(sport.id)
                               }
-                            }
+                            ]
                           }
                         }),
                         _vm._v(" "),
@@ -74575,8 +74587,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       settlement: '',
-      sports: {},
-      sportsToSend: [],
+      sports: [],
       hasBeenSend: false,
       errors: {},
       sendAllowed: true,
@@ -74612,13 +74623,22 @@ __webpack_require__.r(__webpack_exports__);
       this.hasBeenSend = true;
       this.$v.$touch();
       if (this.$v.$invalid) return;
+      this.sports = this.sports.filter(function (sport) {
+        return sport.checked;
+      });
+      var sportsToSend = [];
+      this.sports.forEach(function (sport) {
+        if (!sportsToSend.includes(sport)) {
+          sportsToSend.push(sport.id);
+        }
+      });
 
       if (this.sendAllowed) {
         this.sendAllowed = false;
         this.errors = {};
         axios.post(this.route, {
           name: this.settlement,
-          sports: this.sportsToSend
+          sports: sportsToSend
         }).then(function (response) {
           window.location = response.data.route;
         })["catch"](function (error) {
@@ -74635,11 +74655,20 @@ __webpack_require__.r(__webpack_exports__);
     getSports: function getSports() {
       var _this2 = this;
 
-      axios.get('/admin/sports/get').then(function (response) {
+      var settlement = null;
+      if (this.settlementEdit != null) settlement = this.settlementEdit.id;
+      axios.get('/admin/sports/get', {
+        params: {
+          settlement_id: settlement
+        }
+      }).then(function (response) {
         _this2.sports = response.data;
       })["catch"](function (error) {
         _this2.serverErr = true;
       });
+    },
+    check: function check(id) {
+      this.sports[id - 1]['checked'] = true;
     }
   },
   created: function created() {
@@ -74648,7 +74677,6 @@ __webpack_require__.r(__webpack_exports__);
 
     if (this.settlementEdit != null) {
       this.settlement = this.settlementEdit.name;
-      this.sportsToSend = this.settlementEdit.sports;
     }
   }
 });
@@ -75161,9 +75189,9 @@ Vue.component('review-user-button', _components_main_ReviewUserButton__WEBPACK_I
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/trainingmanager/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/trainingmanager/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/trainingmanager/resources/sass/custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

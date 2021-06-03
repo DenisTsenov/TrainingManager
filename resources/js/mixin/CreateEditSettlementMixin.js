@@ -4,8 +4,7 @@ export default {
     data() {
         return {
             settlement: '',
-            sports: {},
-            sportsToSend: [],
+            sports: [],
             hasBeenSend: false,
             errors: {},
             sendAllowed: true,
@@ -40,11 +39,21 @@ export default {
             this.$v.$touch();
 
             if (this.$v.$invalid) return;
+            this.sports = this.sports.filter(sport => {
+                return sport.checked;
+            })
+
+            let sportsToSend = [];
+            this.sports.forEach((sport) => {
+                if (!sportsToSend.includes(sport)) {
+                    sportsToSend.push(sport.id);
+                }
+            });
 
             if (this.sendAllowed) {
                 this.sendAllowed = false;
                 this.errors      = {};
-                axios.post(this.route, {name: this.settlement, sports: this.sportsToSend})
+                axios.post(this.route, {name: this.settlement, sports: sportsToSend})
                      .then(response => {
                          window.location = response.data.route;
                      })
@@ -60,13 +69,23 @@ export default {
             }
         },
         getSports() {
-            axios.get('/admin/sports/get')
+            let settlement = null;
+
+            if (this.settlementEdit != null) settlement = this.settlementEdit.id
+            axios.get('/admin/sports/get', {
+                params: {
+                    settlement_id: settlement
+                }
+            })
                  .then(response => {
                      this.sports = response.data;
                  }).catch(error => {
                 this.serverErr = true;
             });
         },
+        check(id) {
+            this.sports[id - 1]['checked'] = true;
+        }
     },
     created() {
         this.getSports();
@@ -74,7 +93,6 @@ export default {
 
         if (this.settlementEdit != null) {
             this.settlement   = this.settlementEdit.name;
-            this.sportsToSend = this.settlementEdit.sports;
         }
     },
 }

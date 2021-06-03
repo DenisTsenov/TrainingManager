@@ -46,9 +46,9 @@
                                     <div class="form-check ml-5">
                                         <input type="checkbox"
                                                class="form-check-input"
-                                               v-model="sportsToSend"
-                                               :value="sport.id"
-                                               :id="sport.name">
+                                               v-model="sports.checked"
+                                               :id="sport.name"
+                                               @change="check(sport.id)">
                                         <label class="form-check-label" :for="sport.name">{{ sport.name }}</label>
                                     </div>
                                 </div>

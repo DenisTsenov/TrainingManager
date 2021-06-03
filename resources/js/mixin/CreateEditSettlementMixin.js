@@ -1,12 +1,13 @@
-import {required, minLength, maxLength} from 'vuelidate/lib/validators';
+import {maxLength, minLength, required} from 'vuelidate/lib/validators';
 
 export default {
     data() {
         return {
             settlement: '',
+            sports: {},
+            sportsToSend: [],
             hasBeenSend: false,
             errors: {},
-            success: false,
             sendAllowed: true,
             serverErr: false,
         }
@@ -43,7 +44,7 @@ export default {
             if (this.sendAllowed) {
                 this.sendAllowed = false;
                 this.errors      = {};
-                axios.post(this.route, {name: this.settlement})
+                axios.post(this.route, {name: this.settlement, sports: this.sportsToSend})
                      .then(response => {
                          window.location = response.data.route;
                      })
@@ -57,13 +58,23 @@ export default {
                      });
                 this.hasBeenSend = false;
             }
-        }
+        },
+        getSports() {
+            axios.get('/admin/sports/get')
+                 .then(response => {
+                     this.sports = response.data;
+                 }).catch(error => {
+                this.serverErr = true;
+            });
+        },
     },
     created() {
+        this.getSports();
+        this.settlement = '';
+
         if (this.settlementEdit != null) {
-            this.settlement = this.settlementEdit.name;
-            return;
+            this.settlement   = this.settlementEdit.name;
+            this.sportsToSend = this.settlementEdit.sports;
         }
-        this.settlement = ''
     },
 }

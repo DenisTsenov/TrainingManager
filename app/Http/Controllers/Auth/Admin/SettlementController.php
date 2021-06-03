@@ -45,13 +45,17 @@ class SettlementController extends Controller
 
     public function store(SettlementRequest $request)
     {
-        Settlement::create($request->validated());
+        $settlement = Settlement::create(['name' => $request->input('name')]);
+
+        $settlement->sports()->attach($request->input('sports'));
 
         return response()->json(['route' => route('admin.settlement')]);
     }
 
     public function edit(Settlement $settlement)
     {
+        $settlement->load('sports');
+
         $route = route('admin.settlement.update', ['settlement' => $settlement]);
 
         return view('auth.admin.settlements.create_edit', compact('route', 'settlement'));
@@ -66,9 +70,7 @@ class SettlementController extends Controller
 
     public function sports(Request $request): JsonResponse
     {
-        $request->validate([
-            'settlement_id' => ['required', 'exists:settlements,id'],
-        ]);
+        $request->validate(['settlement_id' => ['required', 'exists:settlements,id'],]);
 
         $sports = Settlement::find($request->input('settlement_id'))->sports()->pluck('sports.name', 'sports.id');
 

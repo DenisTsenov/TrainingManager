@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\Admin\ManageUserRoleController;
-use App\Http\Controllers\Auth\Admin\ManageRoleController;
 use App\Http\Controllers\Auth\Admin\ManagePermissionController;
-use App\Http\Controllers\Auth\DashboardController;
-use App\Http\Controllers\Auth\TeamController;
-use App\Http\Controllers\Auth\AjaxController;
+use App\Http\Controllers\Auth\Admin\ManageRoleController;
+use App\Http\Controllers\Auth\Admin\ManageUserRoleController;
 use App\Http\Controllers\Auth\Admin\SettlementController;
 use App\Http\Controllers\Auth\Admin\SportController;
+use App\Http\Controllers\Auth\AjaxController;
+use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\TeamController;
+use Illuminate\Support\Facades\Route;
 
 /*
  * User Roles Routes
@@ -69,7 +69,12 @@ Route::get('/for-distribution', [DashboardController::class, 'forDistribution'])
      ->name('admin.for-distribution');
 
 Route::get('/team/trainers', [AjaxController::class, 'getTrainers'])
-     ->name('admin.trainers');
+     ->name('admin.trainers')
+     ->middleware('ajax');
+
+Route::get('/sports/get', [AjaxController::class, 'getSports'])
+     ->name('admin.sports')
+     ->middleware('ajax');
 
 /*
  * Settlements and sports

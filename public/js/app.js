@@ -2676,6 +2676,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_CreateEditSettlementMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -58152,106 +58177,179 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row justify-content-center mt-3" }, [
-    _c("div", { staticClass: "col-6" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _c("p", { staticClass: "h3 text-center" }, [
-            _vm._v(_vm._s(_vm.actionType) + " settlement")
+  return _c("div", [
+    _c(
+      "form",
+      {
+        staticClass: "form",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.create($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "row justify-content-center mt-3" }, [
+          _c("div", { staticClass: "col-6" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _c("p", { staticClass: "h3 text-center" }, [
+                  _vm._v(_vm._s(_vm.actionType) + " settlement")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "settlement" } }, [
+                    _vm._v("Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.settlement,
+                        expression: "settlement"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "settlement",
+                      name: "settlement"
+                    },
+                    domProps: { value: _vm.settlement },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.settlement = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.hasBeenSend && !_vm.$v.settlement.required
+                    ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                        _vm._v(
+                          "\n                                Settlement field is required.\n                            "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.hasBeenSend && !_vm.$v.settlement.minLength
+                    ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                        _vm._v(
+                          "\n                                The name must be at least 2 characters.\n                            "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.hasBeenSend && !_vm.$v.settlement.maxLength
+                    ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                        _vm._v(
+                          "\n                                The name may not be greater than 50 characters.\n                            "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.errors && _vm.errors.name
+                    ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(_vm.errors.name[0]) +
+                            "\n                            "
+                        )
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ])
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c(
-            "form",
-            {
-              staticClass: "form",
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.create($event)
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "settlement" } }, [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.settlement,
-                      expression: "settlement"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", id: "settlement", name: "settlement" },
-                  domProps: { value: _vm.settlement },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.settlement = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm.hasBeenSend && !_vm.$v.settlement.required
-                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                      _vm._v(
-                        "\n              Settlement field is required.\n            "
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.hasBeenSend && !_vm.$v.settlement.minLength
-                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                      _vm._v(
-                        "\n              The name must be at least 2 characters.\n            "
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.hasBeenSend && !_vm.$v.settlement.maxLength
-                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                      _vm._v(
-                        "\n              The name may not be greater than 50 characters.\n            "
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.errors && _vm.errors.name
-                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                      _vm._v(
-                        "\n              " +
-                          _vm._s(_vm.errors.name[0]) +
-                          "\n            "
-                      )
-                    ])
-                  : _vm._e()
-              ]),
+        _c("div", { staticClass: "row justify-content-center mt-3" }, [
+          _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(1),
               _vm._v(" "),
-              _vm._m(0)
-            ]
-          )
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-inline" },
+                  _vm._l(_vm.sports, function(sport, id) {
+                    return _c("div", { key: id }, [
+                      _c("div", { staticClass: "form-check ml-5" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.sportsToSend,
+                              expression: "sportsToSend"
+                            }
+                          ],
+                          staticClass: "form-check-input",
+                          attrs: { type: "checkbox", id: sport.name },
+                          domProps: {
+                            value: sport.id,
+                            checked: Array.isArray(_vm.sportsToSend)
+                              ? _vm._i(_vm.sportsToSend, sport.id) > -1
+                              : _vm.sportsToSend
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.sportsToSend,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = sport.id,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.sportsToSend = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.sportsToSend = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.sportsToSend = $$c
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-check-label",
+                            attrs: { for: sport.name }
+                          },
+                          [_vm._v(_vm._s(sport.name))]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ])
+            ])
+          ])
         ])
-      ]),
-      _vm._v(" "),
-      _vm.success
-        ? _c("div", { staticClass: "alert alert-success mt-3" }, [
-            _vm._v("\n      Operation pass successfully\n    ")
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.serverErr
-        ? _c("div", { staticClass: "alert alert-danger" }, [
-            _vm._v("Something went wrong. Please try again later..")
-          ])
-        : _vm._e()
-    ])
+      ]
+    ),
+    _vm._v(" "),
+    _vm.serverErr
+      ? _c("div", { staticClass: "alert alert-danger" }, [
+          _vm._v("Something went wrong. Please try again later..")
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -58265,6 +58363,14 @@ var staticRenderFns = [
         { staticClass: "btn btn-primary w-50", attrs: { type: "submit" } },
         [_vm._v("Create")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header bg-primary" }, [
+      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Sports")])
     ])
   }
 ]
@@ -74469,9 +74575,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       settlement: '',
+      sports: {},
+      sportsToSend: [],
       hasBeenSend: false,
       errors: {},
-      success: false,
       sendAllowed: true,
       serverErr: false
     };
@@ -74510,7 +74617,8 @@ __webpack_require__.r(__webpack_exports__);
         this.sendAllowed = false;
         this.errors = {};
         axios.post(this.route, {
-          name: this.settlement
+          name: this.settlement,
+          sports: this.sportsToSend
         }).then(function (response) {
           window.location = response.data.route;
         })["catch"](function (error) {
@@ -74523,15 +74631,25 @@ __webpack_require__.r(__webpack_exports__);
         });
         this.hasBeenSend = false;
       }
+    },
+    getSports: function getSports() {
+      var _this2 = this;
+
+      axios.get('/admin/sports/get').then(function (response) {
+        _this2.sports = response.data;
+      })["catch"](function (error) {
+        _this2.serverErr = true;
+      });
     }
   },
   created: function created() {
+    this.getSports();
+    this.settlement = '';
+
     if (this.settlementEdit != null) {
       this.settlement = this.settlementEdit.name;
-      return;
+      this.sportsToSend = this.settlementEdit.sports;
     }
-
-    this.settlement = '';
   }
 });
 

@@ -24,7 +24,9 @@ class SettlementRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:50', 'unique:settlements,name'],
+            'name'     => ['required', 'max:50', 'unique:settlements,name'],
+            'sports'   => ['nullable', 'array'],
+            'sports.*' => ['numeric', 'exists:sports,id'],
         ];
     }
 }

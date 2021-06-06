@@ -7,10 +7,18 @@ use App\Http\Requests\Auth\Admin\SettlementRequest;
 use App\Models\Settlement;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
 class SettlementController extends Controller
 {
+    public function __construct()
+    {
+        View::composer('auth.admin.settlements.create_edit', function ($view) {
+            $view->with('sportsUrl', route('admin.sports'));
+        });
+    }
+
     public function withSports(): JsonResponse
     {
         $settlements = Settlement::has('sports')->orderBy('name')->pluck('name', 'id');
@@ -61,7 +69,11 @@ class SettlementController extends Controller
 
     public function update(SettlementRequest $request, Settlement $settlement)
     {
-        $settlement->update($request->validated());
+        $settlement->update([
+            'name' => $request->input('name'),
+        ]);
+
+        $settlement->sports()->sync($request->input('sports'));
 
         return response()->json(['route' => route('admin.settlement')]);
     }

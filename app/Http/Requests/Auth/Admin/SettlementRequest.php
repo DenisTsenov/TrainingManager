@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Auth\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SettlementRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class SettlementRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'        => ['required', 'max:50', 'unique:settlements,name'],
+            'name'        => ['required', 'max:50', Rule::unique('settlements')->ignore($this->settlement)],
             'sports'      => ['nullable', 'array'],
             'sports.*.id' => ['nullable', 'numeric', 'exists:sports,id'],
         ];

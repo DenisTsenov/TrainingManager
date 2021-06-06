@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Auth\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SportRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class SportRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:50', 'unique:sports,name'],
+            'name' => ['required', 'max:50', Rule::unique('sports')->ignore($this->sport)],
         ];
     }
 }

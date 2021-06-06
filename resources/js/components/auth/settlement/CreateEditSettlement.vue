@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary w-50">Create</button>
+                                <button type="submit" class="btn btn-primary w-50">{{ actionType }}</button>
                             </div>
 
                         </div>
@@ -46,9 +46,8 @@
                                     <div class="form-check ml-5">
                                         <input type="checkbox"
                                                class="form-check-input"
-                                               v-model="sports.checked"
-                                               :id="sport.name"
-                                               @change="check(sport.id)">
+                                               v-model="sport.checked"
+                                               :id="sport.name">
                                         <label class="form-check-label" :for="sport.name">{{ sport.name }}</label>
                                     </div>
                                 </div>

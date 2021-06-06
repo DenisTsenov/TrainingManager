@@ -3,6 +3,7 @@
 @section('content')
     <create-edit-settlement :settlement-edit='@json($settlement ?? null)'
                             action-type="{{ isset($settlement) ? 'Edit' : 'Create' }}"
-                            route="{{ $route }}">
+                            route="{{ $route }}"
+                            url="{{ $sportsUrl }}">
     </create-edit-settlement>
 @endsection

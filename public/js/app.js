@@ -2700,7 +2700,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_CreateEditSettlementMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -2800,9 +2799,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixin_CreateEditSportMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../mixin/CreateEditSportMixin */ "./resources/js/mixin/CreateEditSportMixin.js");
-//
-//
-//
 //
 //
 //
@@ -58266,7 +58262,16 @@ var render = function() {
                     : _vm._e()
                 ]),
                 _vm._v(" "),
-                _vm._m(0)
+                _c("div", { staticClass: "form-group text-center" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary w-50",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v(_vm._s(_vm.actionType))]
+                  )
+                ])
               ])
             ])
           ])
@@ -58275,7 +58280,7 @@ var render = function() {
         _c("div", { staticClass: "row justify-content-center mt-3" }, [
           _c("div", { staticClass: "col-12" }, [
             _c("div", { staticClass: "card" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c(
@@ -58289,51 +58294,46 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.sports.checked,
-                              expression: "sports.checked"
+                              value: sport.checked,
+                              expression: "sport.checked"
                             }
                           ],
                           staticClass: "form-check-input",
                           attrs: { type: "checkbox", id: sport.name },
                           domProps: {
-                            checked: Array.isArray(_vm.sports.checked)
-                              ? _vm._i(_vm.sports.checked, null) > -1
-                              : _vm.sports.checked
+                            checked: Array.isArray(sport.checked)
+                              ? _vm._i(sport.checked, null) > -1
+                              : sport.checked
                           },
                           on: {
-                            change: [
-                              function($event) {
-                                var $$a = _vm.sports.checked,
-                                  $$el = $event.target,
-                                  $$c = $$el.checked ? true : false
-                                if (Array.isArray($$a)) {
-                                  var $$v = null,
-                                    $$i = _vm._i($$a, $$v)
-                                  if ($$el.checked) {
-                                    $$i < 0 &&
-                                      _vm.$set(
-                                        _vm.sports,
-                                        "checked",
-                                        $$a.concat([$$v])
-                                      )
-                                  } else {
-                                    $$i > -1 &&
-                                      _vm.$set(
-                                        _vm.sports,
-                                        "checked",
-                                        $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1))
-                                      )
-                                  }
+                            change: function($event) {
+                              var $$a = sport.checked,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      sport,
+                                      "checked",
+                                      $$a.concat([$$v])
+                                    )
                                 } else {
-                                  _vm.$set(_vm.sports, "checked", $$c)
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      sport,
+                                      "checked",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
                                 }
-                              },
-                              function($event) {
-                                return _vm.check(sport.id)
+                              } else {
+                                _vm.$set(sport, "checked", $$c)
                               }
-                            ]
+                            }
                           }
                         }),
                         _vm._v(" "),
@@ -58365,18 +58365,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group text-center" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary w-50", attrs: { type: "submit" } },
-        [_vm._v("Create")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -58522,17 +58510,20 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _vm._m(0)
+              _c("div", { staticClass: "form-group text-center" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary w-50",
+                    attrs: { type: "submit" }
+                  },
+                  [_vm._v(_vm._s(_vm.actionType))]
+                )
+              ])
             ]
           )
         ])
       ]),
-      _vm._v(" "),
-      _vm.success
-        ? _c("div", { staticClass: "alert alert-success mt-3" }, [
-            _vm._v("\n      Operation pass successfully\n    ")
-          ])
-        : _vm._e(),
       _vm._v(" "),
       _vm.serverErr
         ? _c("div", { staticClass: "alert alert-danger" }, [
@@ -58542,20 +58533,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group text-center" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary w-50", attrs: { type: "submit" } },
-        [_vm._v("Create")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -74606,6 +74584,10 @@ __webpack_require__.r(__webpack_exports__);
       required: true,
       type: String
     },
+    url: {
+      required: true,
+      type: String
+    },
     actionType: {
       required: true,
       type: String
@@ -74620,15 +74602,13 @@ __webpack_require__.r(__webpack_exports__);
     create: function create() {
       var _this = this;
 
+      var sportsToEdit = this.sports;
+      var sportsToSend = [];
       this.hasBeenSend = true;
       this.$v.$touch();
       if (this.$v.$invalid) return;
       this.sports = this.sports.filter(function (sport) {
-        return sport.checked;
-      });
-      var sportsToSend = [];
-      this.sports.forEach(function (sport) {
-        if (!sportsToSend.includes(sport)) {
+        if (!sportsToSend.includes(sport) && sport.checked) {
           sportsToSend.push(sport.id);
         }
       });
@@ -74642,6 +74622,8 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (response) {
           window.location = response.data.route;
         })["catch"](function (error) {
+          _this.sports = sportsToEdit;
+
           if (error.response.status === 422) {
             _this.sendAllowed = true;
             _this.errors = error.response.data.errors || {};
@@ -74657,18 +74639,16 @@ __webpack_require__.r(__webpack_exports__);
 
       var settlement = null;
       if (this.settlementEdit != null) settlement = this.settlementEdit.id;
-      axios.get('/admin/sports/get', {
+      axios.get(this.url, {
         params: {
           settlement_id: settlement
         }
       }).then(function (response) {
         _this2.sports = response.data;
+        _this2.sportsEdit = response.data;
       })["catch"](function (error) {
         _this2.serverErr = true;
       });
-    },
-    check: function check(id) {
-      this.sports[id - 1]['checked'] = true;
     }
   },
   created: function created() {
@@ -74701,7 +74681,6 @@ __webpack_require__.r(__webpack_exports__);
       sport: '',
       hasBeenSend: false,
       errors: {},
-      success: false,
       sendAllowed: true,
       serverErr: false
     };

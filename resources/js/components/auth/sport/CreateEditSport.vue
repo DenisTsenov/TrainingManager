@@ -24,13 +24,10 @@
               </div>
             </div>
             <div class="form-group text-center">
-              <button type="submit" class="btn btn-primary w-50">Create</button>
+              <button type="submit" class="btn btn-primary w-50">{{ actionType }}</button>
             </div>
           </form>
         </div>
-      </div>
-      <div v-if="success" class="alert alert-success mt-3">
-        Operation pass successfully
       </div>
       <div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again later..</div>
     </div>

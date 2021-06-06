@@ -41,7 +41,7 @@ class SportController extends Controller
     {
         Sport::create($request->validated());
 
-        return response()->json(['route' => route('admin.sport.create')]);
+        return response()->json(['route' => route('admin.sport')]);
     }
 
     public function edit(Sport $sport)

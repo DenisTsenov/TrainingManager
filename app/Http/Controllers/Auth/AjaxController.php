@@ -23,9 +23,8 @@ class AjaxController extends Controller
 
         $currentSports = DB::table('settlement_sport')->where('settlement_id', $request->input('settlement_id'))->get();
 
-        if ($currentSports) {
+        if ($currentSports->isNotEmpty()) {
             foreach ($sports as $sport) {
-                $sport->checked = false;
                 foreach ($currentSports as $currentSport) {
                     if ($sport->id == $currentSport->sport_id) {
                         $sport->checked = true;

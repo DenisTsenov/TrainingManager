@@ -6,7 +6,6 @@ export default {
             sport: '',
             hasBeenSend: false,
             errors: {},
-            success: false,
             sendAllowed: true,
             serverErr: false,
         }

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\SettlementController;
+use App\Http\Controllers\Auth\Admin\SettlementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,17 +23,19 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])
 Route::get('/register', [RegisterController::class, 'create'])
      ->name('register.show');
 
-Route::post('/store', [RegisterController::class, 'store'])
-     ->name('register.store');
+Route::middleware('ajax')->group(function () {
+    Route::post('/store', [RegisterController::class, 'store'])
+         ->name('register.store');
 
-Route::post('/login', [LoginController::class, 'login'])
-     ->name('login');
+    Route::post('/login', [LoginController::class, 'login'])
+         ->name('login');
 
-Route::get('/settlements', [SettlementController::class, 'index'])
-     ->name('settlements');
+    Route::get('/settlements', [SettlementController::class, 'withSports'])
+         ->name('settlements.with_sports');
 
-Route::get('/settlement/sports', [SettlementController::class, 'sports'])
-     ->name('settlement.sports');
+    Route::get('/settlement/sports', [SettlementController::class, 'sports'])
+         ->name('settlement.sports');
+});
 
 Route::namespace('Auth')
      ->middleware(['auth'])

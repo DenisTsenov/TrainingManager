@@ -3,13 +3,13 @@
         <a class="btn btn-success btn-xl mb-3 text-white" :href="route">New team</a>
         <data-table
             :columns="columns"
-            url="http://trainingmanager.test/admin/teams-list">
+            url="http://trainingmanager.test/admin/team/list">
         </data-table>
     </div>
 </template>
 
 <script>
-import EditTeamButton from "./EditTeamButton";
+import EditButton from "../EditButton";
 
 export default {
     name: "TeamsList",
@@ -28,8 +28,8 @@ export default {
                 },
                 {
                     label: 'Trainer',
-                    name: 'trainer.first_name',
-                    columnName: 'users.first_name',
+                    name: 'trainer.full_name',
+                    columnName: 'users.full_name',
                     orderable: true,
                 },
                 {
@@ -60,13 +60,13 @@ export default {
                     },
                     event: "click",
                     handler: this.editTeam,
-                    component: EditTeamButton,
+                    component: EditButton,
                 },
             ],
         }
     },
     components: {
-        EditTeamButton,
+        EditButton,
     },
     methods: {
         editTeam(data) {

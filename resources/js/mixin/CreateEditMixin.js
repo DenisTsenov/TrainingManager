@@ -1,4 +1,4 @@
-import {required, minLength} from 'vuelidate/lib/validators';
+import {minLength, required} from 'vuelidate/lib/validators';
 import WaitingCompetitorsList from '../components/auth/teams/WaitingCompetitorsList';
 
 export default {
@@ -15,6 +15,21 @@ export default {
             hasBeenSend: false,
             serverErr: false,
         }
+    },
+    props: {
+        team: {
+            required: false,
+            type: Object,
+            default: false,
+        },
+        actionType: {
+            required: true,
+            type: String,
+        },
+        route: {
+            required: true,
+            type: String,
+        },
     },
     validations: {
         name: {required, minLength: minLength(2)},
@@ -40,17 +55,17 @@ export default {
             this.hasBeenSend = true;
             this.$v.$touch();
 
+            if (this.$v.$invalid) return;
+
             if (this.sendAllowed) {
                 this.sendAllowed = false;
                 this.errors      = {};
-                axios.post('/admin/team/store', {
+                axios.post(this.route, {
                     'name': this.name,
-                    'trainer_id': this.trainer.id,
-                    'sport_id': this.trainer.sport_id,
-                    'settlement_id': this.trainer.settlement_id
+                    'trainer_id': this.trainer,
                 })
                      .then(response => {
-                         window.location = response.data.route
+                         window.location = response.data.route;
                      }).catch(error => {
                     if (error.response.status === 422) {
                         this.sendAllowed = true;
@@ -60,10 +75,13 @@ export default {
                     }
                 });
             }
-            this.hasBeenSend = false;
         },
     },
-    created: function () {
+    created() {
         this.loadTrainers();
+        if (this.team != null) {
+            this.name    = this.team.name;
+            this.trainer = this.team.trainer.id;
+        }
     },
 }

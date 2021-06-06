@@ -33,7 +33,8 @@
                                 </a>
                             </li>
                             <li class="dropdown-item">
-                                <a class="dropdown-item btn btn-light" href="{{ route('admin.manage_role_permission') }}">
+                                <a class="dropdown-item btn btn-light"
+                                   href="{{ route('admin.manage_role_permission') }}">
                                     <i class="fas fa-tasks"></i> Manage role permission
                                 </a>
                             </li>
@@ -41,6 +42,65 @@
                                 <a class="dropdown-item btn btn-light" href="{{ route('admin.team') }}">
                                     <i class="fas fa-users"></i> Teams
                                 </a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item btn btn-light" tabindex="-1" href="#">
+                                    <i class="fas fa-city ml-4"></i> Settlements
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <a class="dropdown-item btn btn-light" href="{{ route('admin.settlement.create') }}">
+                                        <i class="fas fa-plus"></i> Add
+                                    </a>
+                                    <a class="dropdown-item btn btn-light" href="{{ route('admin.settlement') }}">
+                                        <i class="fas fa-list"></i> List
+                                    </a>
+{{--                                    <li class="dropdown-submenu">--}}
+{{--                                        <a class="dropdown-item" href="#">Even More..</a>--}}
+{{--                                        <ul class="dropdown-menu">--}}
+{{--                                            <li class="dropdown-item"><a href="#">3rd level</a></li>--}}
+{{--                                            <li class="dropdown-submenu"><a class="dropdown-item" href="#">another--}}
+{{--                                                    level</a>--}}
+{{--                                                <ul class="dropdown-menu">--}}
+{{--                                                    <li class="dropdown-item"><a href="#">4th level</a></li>--}}
+{{--                                                    <li class="dropdown-item"><a href="#">4th level</a></li>--}}
+{{--                                                    <li class="dropdown-item"><a href="#">4th level</a></li>--}}
+{{--                                                </ul>--}}
+{{--                                            </li>--}}
+{{--                                            <li class="dropdown-item"><a href="#">3rd level</a></li>--}}
+{{--                                        </ul>--}}
+{{--                                    </li>--}}
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item btn btn-light" tabindex="-1" href="#">
+                                    <i class="fas fa-table-tennis ml-4"></i> Sports
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <a class="dropdown-item btn btn-light" href="{{ route('admin.sport.create') }}">
+                                        <i class="fas fa-plus"></i> Add sport
+                                    </a>
+                                    <a class="dropdown-item btn btn-light" href="{{ route('admin.sport') }}">
+                                        <i class="fas fa-list"></i> List
+                                    </a>
+                                    {{--                                    <li class="dropdown-submenu">--}}
+                                    {{--                                        <a class="dropdown-item" href="#">Even More..</a>--}}
+                                    {{--                                        <ul class="dropdown-menu">--}}
+                                    {{--                                            <li class="dropdown-item"><a href="#">3rd level</a></li>--}}
+                                    {{--                                            <li class="dropdown-submenu"><a class="dropdown-item" href="#">another--}}
+                                    {{--                                                    level</a>--}}
+                                    {{--                                                <ul class="dropdown-menu">--}}
+                                    {{--                                                    <li class="dropdown-item"><a href="#">4th level</a></li>--}}
+                                    {{--                                                    <li class="dropdown-item"><a href="#">4th level</a></li>--}}
+                                    {{--                                                    <li class="dropdown-item"><a href="#">4th level</a></li>--}}
+                                    {{--                                                </ul>--}}
+                                    {{--                                            </li>--}}
+                                    {{--                                            <li class="dropdown-item"><a href="#">3rd level</a></li>--}}
+                                    {{--                                        </ul>--}}
+                                    {{--                                    </li>--}}
+
+                                </ul>
                             </li>
                         </ul>
                     </li>

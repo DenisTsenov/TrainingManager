@@ -16,6 +16,8 @@ class CreateSettlementsTable extends Migration
         Schema::create('settlements', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

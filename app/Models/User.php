@@ -15,6 +15,8 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes, LaravelVueDatatableTrait;
 
+    const SEED = 20;
+
     protected $table = 'users';
 
     /**
@@ -42,7 +44,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'is_admin'   => 'boolean',
-        'created_at' => 'datetime:Y-m-d H:i',
+        'created_at' => 'datetime:Y-m-d',
     ];
 
     protected $dataTableColumns = [
@@ -150,10 +152,5 @@ class User extends Authenticatable
     public function setPasswordAttribute($value): void
     {
         $this->attributes['password'] = Hash::make($value);
-    }
-
-    public function getFullNameAttribute(): string
-    {
-        return $this->first_name . ' ' . $this->last_name;
     }
 }

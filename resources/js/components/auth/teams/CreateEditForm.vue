@@ -3,7 +3,7 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-header">
-                    <p class="h3 text-center">Create team</p>
+                    <p class="h3 text-center">{{ actionType }} team</p>
                 </div>
                 <div class="card-body">
                     <form class="form" @submit.prevent="send">
@@ -12,10 +12,10 @@
                             <input type="text" class="form-control" name="name" id="name"
                                    v-model="name"/>
                             <div v-if="hasBeenSend && !$v.name.required" class="alert alert-danger mt-3">
-                                Last Name is required.
+                              The name field is required.
                             </div>
                             <div v-if="hasBeenSend && !$v.name.minLength" class="alert alert-danger mt-3">
-                               Min length is 2 chars.
+                              The name must be at least 2 characters.
                             </div>
                             <div v-if="errors && errors.name" class="alert alert-danger mt-3">
                                 {{ errors.name[0] }}
@@ -27,12 +27,12 @@
                             <select name="trainer_id" id="trainer" class="form-control"
                                     @change='getCompetitors($event, trainer)'
                                     v-model="trainer">
-                                <option v-for="trainer in trainers" :value="trainer" :key="trainer.id">
-                                    {{ trainer.first_name + trainer.last_name + ' (' + trainer.sport.name + '/' + trainer.settlement.name + ')' }}
+                                <option v-for="trainer in trainers"  :key="trainer.id" :value="trainer.id">
+                                    {{ trainer.full_name + ' (' + trainer.sport.name + '/' + trainer.settlement.name + ')' }}
                                 </option>
                             </select>
                             <div v-if="hasBeenSend && !$v.trainer.required" class="alert alert-danger mt-3">
-                                Trainer is required.
+                                Trainer field is required.
                             </div>
                             <div v-if="errors && errors.trainer" class="alert alert-danger mt-3">
                                 {{ errors.trainer[0] }}

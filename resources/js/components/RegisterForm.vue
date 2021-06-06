@@ -62,7 +62,7 @@
                         <div class="form-group">
                             <label for="sport">Sport</label>
                             <select name="sport_id" id="sport" class="form-control" v-model="sport" @change="setSport($event, sport)">
-                                <option v-if="!settlementSelected" value="0" selected="selected">
+                                <option v-if="!settlementSelected" disabled>
                                     select settlement first...
                                 </option>
                                 <option v-for="(sport, id) in sports" :value="id" :key="id">{{ sport }}</option>

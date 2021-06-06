@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->truncate();
 
-        factory(User::class, 20)->create();
+        factory(User::class, User::SEED)->create();
 
         $settlementSports = \DB::table('settlement_sport')->inRandomOrder()->first();
 

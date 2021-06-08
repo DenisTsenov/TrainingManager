@@ -26,7 +26,7 @@ class TeamRequest extends FormRequest
     public function rules()
     {
         return [
-            "name"       => ['required', 'min:2', 'max:256'],
+            "name"       => ['required', 'min:2', 'max:250'],
             "trainer_id" => ['required',
                              Rule::exists('users', 'id')->where(function ($query) {
                                  return $query->where('role_id', Role::TRAINER);

@@ -2,10 +2,10 @@ import RolesCheckboxes from "../components/auth/admin/RolesCheckboxes";
 import RolePermissions from "../components/auth/admin/RolePermissions";
 import CreateEditForm from "../components/auth/teams/CreateEditForm";
 import WaitingCompetitorsList from "../components/auth/teams/WaitingCompetitorsList";
-import CreateEditSettlement from "../components/auth/settlement/CreateEditSettlement";
-import CreateEditSport from "../components/auth/sport/CreateEditSport";
-import SettlementsList from "../components/auth/settlement/SettlemenstList";
-import SportList from "../components/auth/sport/SportList";
+import CreateEditSettlement from "../components/auth/admin/settlement/CreateEditSettlement";
+import CreateEditSport from "../components/auth/admin/sport/CreateEditSport";
+import SettlementsList from "../components/auth/admin/settlement/SettlemenstList";
+import SportList from "../components/auth/admin/sport/SportList";
 
 Vue.component('roles-checkboxes', RolesCheckboxes);
 Vue.component('roles-permissions', RolePermissions);

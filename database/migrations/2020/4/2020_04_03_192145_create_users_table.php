@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('full_name')->virtualAs("CONCAT_WS(' ', first_name, last_name)");
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique('full_name');
         });
 
         Schema::table('settlements', function(Blueprint $table){

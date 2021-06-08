@@ -8,7 +8,7 @@
 </template>
 <script>
 
-import EditButton from "../EditButton";
+import EditButton from "../../EditButton";
 
 export default {
     name: "SettlementList",

@@ -40,6 +40,12 @@
 				</div>
 			</div>
 		</div>
+    <div v-if="errors && errors.permission" class="alert alert-danger mt-3">
+      {{ errors.permission[0] }}
+    </div>
+    <div v-if="serverErr" class="alert alert-danger">
+      Something went wrong! Please try again later..
+    </div>
 	</div>
 </template>
 
@@ -52,6 +58,8 @@
                 permissionsData: [],
                 loading: true,
                 roleId: false,
+                serverErr:false,
+                errors:{},
             }
         },
         mounted() {
@@ -94,7 +102,7 @@
                 });
             },
             assignPermission(permission, index) {
-                axios.post('/admin/role/assign-permission', {
+                axios.post('/admin/role/toggle-permission', {
                     role: this.roleId,
                     permission: permission.id,
                 }).then(response => {
@@ -115,7 +123,11 @@
                         this.roles[this.roleId - 1].permissions.push(permission)
                     }
                 }).catch(error => {
-                    console.log(error)
+                  if (error.response.status === 422) {
+                    this.errors      = error.response.data.errors || {};
+                  } else {
+                    this.serverErr = true;
+                  }
                 });
             },
             clearPermissions() {

@@ -37,9 +37,9 @@ Route::middleware('ajax')->group(function () {
     Route::get('/permission/manage-permission', [ManagePermissionController::class, 'index'])
          ->name('admin.permission.manage_permission');
 
-
     Route::post('/role/toggle-permission', [ManageRoleController::class, 'togglePermission'])
-         ->name('admin.role.toggle_permission');
+         ->name('admin.role.toggle_permission')
+         ->middleware('ajax');
 });
 
 /*
@@ -55,15 +55,15 @@ Route::get('/team/create', [TeamController::class, 'create'])
      ->name('admin.team.create');
 
 Route::post('/team/store', [TeamController::class, 'store'])
-     ->middleware('ajax')
-     ->name('admin.team.store');
+     ->name('admin.team.store')
+     ->middleware('ajax');
 
 Route::get('/team/edit/{team}', [TeamController::class, 'edit'])
      ->name('admin.team.edit');
 
 Route::post('/team/update/{team}', [TeamController::class, 'update'])
-     ->middleware('ajax')
-     ->name('admin.team.update');
+     ->name('admin.team.update')
+     ->middleware('ajax');
 
 Route::get('/for-distribution', [DashboardController::class, 'forDistribution'])
      ->name('admin.for-distribution');
@@ -89,15 +89,15 @@ Route::get('/settlement/create', [SettlementController::class, 'create'])
      ->name('admin.settlement.create');
 
 Route::post('/settlement/store', [SettlementController::class, 'store'])
-     ->middleware('ajax')
-     ->name('admin.settlement.store');
+     ->name('admin.settlement.store')
+     ->middleware('ajax');
 
 Route::get('/settlement/edit/{settlement}', [SettlementController::class, 'edit'])
      ->name('admin.settlement.edit');
 
 Route::post('/settlement/update/{settlement}', [SettlementController::class, 'update'])
-     ->middleware('ajax')
-     ->name('admin.settlement.update');
+     ->name('admin.settlement.update')
+     ->middleware('ajax');
 
 Route::get('/sports', [SportController::class, 'index'])
      ->name('admin.sport');
@@ -109,12 +109,12 @@ Route::get('/sport/create', [SportController::class, 'create'])
      ->name('admin.sport.create');
 
 Route::post('/sport/store', [SportController::class, 'store'])
-     ->middleware('ajax')
-     ->name('admin.sport.store');
+     ->name('admin.sport.store')
+     ->middleware('ajax');
 
 Route::get('/sport/edit/{sport}', [SportController::class, 'edit'])
      ->name('admin.sport.edit');
 
 Route::post('/sport/update/{sport}', [SportController::class, 'update'])
-     ->middleware('ajax')
-     ->name('admin.sport.update');
+     ->name('admin.sport.update')
+     ->middleware('ajax');

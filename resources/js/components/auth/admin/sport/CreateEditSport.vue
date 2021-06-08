@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import CreateEditSportMixin from "../../../mixin/CreateEditSportMixin";
+import CreateEditSportMixin from "../../../../mixin/CreateEditSportMixin";
 
 export default {
   mixins: [CreateEditSportMixin],

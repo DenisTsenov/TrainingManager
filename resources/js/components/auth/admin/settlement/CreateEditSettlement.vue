@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import CreateEditSettlementMixin from "../../../mixin/CreateEditSettlementMixin";
+import CreateEditSettlementMixin from "../../../../mixin/CreateEditSettlementMixin";
 
 export default {
     mixins: [CreateEditSettlementMixin],

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Settlement;
-use App\Models\Sport;
+use App\Models\Admin\Settlement;
+use App\Models\Admin\Sport;
 use Illuminate\Database\Seeder;
 
 class SettlementsSportsTableSeeder extends Seeder

@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
+use App\Models\User;
 
-class Sport extends Model
+class Settlement extends Model
 {
     use LaravelVueDatatableTrait;
 
-    protected $table = 'sports';
+    protected $table = 'settlements';
 
     protected $fillable = ['name'];
 
@@ -77,11 +78,10 @@ class Sport extends Model
         ],
     ];
 
-    public function settlements()
+    public function sports()
     {
-        return $this->belongsToMany(Settlement::class);
+        return $this->belongsToMany(Sport::class);
     }
-
 
     public function createdBy()
     {

@@ -8,6 +8,8 @@
     @include('layouts.partials._nav')
     <div id="app">
         <div class="container">
+            @include('auth.messages.error')
+            @include('auth.messages.success')
             @yield('content')
         </div>
     </div>

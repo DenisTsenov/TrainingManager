@@ -2868,6 +2868,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _EditButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../EditButton */ "./resources/js/components/auth/EditButton.vue");
+/* harmony import */ var _buttons_DeleteButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../buttons/DeleteButton */ "./resources/js/components/auth/buttons/DeleteButton.vue");
 //
 //
 //
@@ -2876,6 +2877,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SportList",
@@ -2908,7 +2913,7 @@ __webpack_require__.r(__webpack_exports__);
         orderable: true
       }, {
         label: 'Actions',
-        name: '',
+        name: 'Edit',
         orderable: false,
         classes: {
           'btn': true,
@@ -2918,19 +2923,90 @@ __webpack_require__.r(__webpack_exports__);
         event: "click",
         handler: this.editSport,
         component: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
-      }]
+      }, {
+        label: '',
+        name: 'Toggle',
+        orderable: false,
+        classes: {
+          'btn': true,
+          'btn-warning': true,
+          'btn-sm': true
+        },
+        event: "click",
+        handler: this.deleteSport,
+        component: _buttons_DeleteButton__WEBPACK_IMPORTED_MODULE_1__["default"]
+      }],
+      error: false
     };
   },
   components: {
-    EditButton: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+    EditButton: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"],
+    DeleteButton: _buttons_DeleteButton__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     editSport: function editSport(data) {
       window.location = 'sport/edit/' + data.id;
+    },
+    deleteSport: function deleteSport(data) {
+      var _this = this;
+
+      this.error = false;
+      axios.post('sport/toggle-disabled/' + data.id, {
+        'sport': data
+      }).then(function (response) {
+        window.location = response.data.route;
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this.error = true;
+        }
+      });
     }
   },
   props: {
     route: ''
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "DeleteButton",
+  props: {
+    data: {},
+    name: {},
+    click: {
+      type: Function,
+      "default": function _default() {}
+    },
+    classes: {
+      type: Object,
+      "default": function _default() {
+        return {
+          'btn': true,
+          'btn-warning': true,
+          'btn-sm': true
+        };
+      }
+    }
   }
 });
 
@@ -58589,12 +58665,63 @@ var render = function() {
           columns: _vm.columns,
           url: "http://trainingmanager.test/admin/sport/list"
         }
-      })
+      }),
+      _vm._v(" "),
+      _vm.error
+        ? _c("div", { staticClass: "warning" }, [
+            _vm._v("\n    Something went wrong! Please tray again later.\n  ")
+          ])
+        : _vm._e()
     ],
     1
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=template&id=30265c12&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=template&id=30265c12&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      class: _vm.classes,
+      attrs: { title: "Toggle" },
+      on: {
+        click: function($event) {
+          return _vm.click(_vm.data)
+        }
+      }
+    },
+    [_vm._m(0), _vm._v("\n   \n  " + _vm._s(_vm.name) + "\n")]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa fa-trash", attrs: { "aria-hidden": "true" } })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -74055,6 +74182,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/auth/buttons/DeleteButton.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/DeleteButton.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DeleteButton_vue_vue_type_template_id_30265c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteButton.vue?vue&type=template&id=30265c12&scoped=true& */ "./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=template&id=30265c12&scoped=true&");
+/* harmony import */ var _DeleteButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteButton.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DeleteButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DeleteButton_vue_vue_type_template_id_30265c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DeleteButton_vue_vue_type_template_id_30265c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "30265c12",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/auth/buttons/DeleteButton.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=template&id=30265c12&scoped=true&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=template&id=30265c12&scoped=true& ***!
+  \**********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteButton_vue_vue_type_template_id_30265c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteButton.vue?vue&type=template&id=30265c12&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=template&id=30265c12&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteButton_vue_vue_type_template_id_30265c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteButton_vue_vue_type_template_id_30265c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/auth/teams/CreateEditForm.vue":
 /*!***************************************************************!*\
   !*** ./resources/js/components/auth/teams/CreateEditForm.vue ***!
@@ -75091,6 +75287,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_admin_sport_CreateEditSport__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/admin/sport/CreateEditSport */ "./resources/js/components/auth/admin/sport/CreateEditSport.vue");
 /* harmony import */ var _components_auth_admin_settlement_SettlemenstList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/auth/admin/settlement/SettlemenstList */ "./resources/js/components/auth/admin/settlement/SettlemenstList.vue");
 /* harmony import */ var _components_auth_admin_sport_SportList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/auth/admin/sport/SportList */ "./resources/js/components/auth/admin/sport/SportList.vue");
+/* harmony import */ var _components_auth_buttons_DeleteButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/auth/buttons/DeleteButton */ "./resources/js/components/auth/buttons/DeleteButton.vue");
+
 
 
 
@@ -75107,6 +75305,7 @@ Vue.component('create-edit-settlement', _components_auth_admin_settlement_Create
 Vue.component('create-edit-sport', _components_auth_admin_sport_CreateEditSport__WEBPACK_IMPORTED_MODULE_5__["default"]);
 Vue.component('settlements-list', _components_auth_admin_settlement_SettlemenstList__WEBPACK_IMPORTED_MODULE_6__["default"]);
 Vue.component('sport-list', _components_auth_admin_sport_SportList__WEBPACK_IMPORTED_MODULE_7__["default"]);
+Vue.component('delete-button', _components_auth_buttons_DeleteButton__WEBPACK_IMPORTED_MODULE_8__["default"]);
 
 /***/ }),
 

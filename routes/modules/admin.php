@@ -118,3 +118,7 @@ Route::get('/sport/edit/{sport}', [SportController::class, 'edit'])
 Route::post('/sport/update/{sport}', [SportController::class, 'update'])
      ->name('admin.sport.update')
      ->middleware('ajax');
+
+Route::post('/sport/toggle-disabled/{sport}', [SportController::class, 'toggleDisabled'])
+     ->name('admin.sport.toggle_disabled')
+     ->middleware('ajax');

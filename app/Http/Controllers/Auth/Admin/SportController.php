@@ -57,4 +57,20 @@ class SportController extends Controller
 
         return response()->json(['route' => route('admin.sport')]);
     }
+
+    public function toggleDisabled(Sport $sport)
+    {
+        if (is_null($sport->deleted_at)) {
+            $sport->delete();
+        }
+
+        if ($sport->deleted_at <> null) {
+            $sport->deleted_at = null;
+            $sport->save();
+        }
+
+        session('success', 'Operation pass successfully!');
+
+        return response()->json(['route' => route('admin.sport')]);
+    }
 }

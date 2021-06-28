@@ -4,11 +4,15 @@
             :columns="columns"
             url="http://trainingmanager.test/admin/sport/list">
         </data-table>
+      <div v-if="error" class="warning">
+        Something went wrong! Please tray again later.
+      </div>
     </div>
 </template>
 <script>
 
 import EditButton from "../../EditButton";
+import DeleteButton from "../../buttons/DeleteButton";
 
 export default {
     name: "SportList",
@@ -47,28 +51,55 @@ export default {
                     orderable: true,
                 },
                 {
-                    label: 'Actions',
-                    name: '',
+                  label: 'Actions',
+                  name: 'Edit',
+                  orderable: false,
+                  classes: {
+                    'btn': true,
+                    'btn-success': true,
+                    'btn-sm': true,
+                  },
+                  event: "click",
+                  handler: this.editSport,
+                  component: EditButton,
+                },
+                {
+                    label: '',
+                    name: 'Toggle',
                     orderable: false,
                     classes: {
-                        'btn': true,
-                        'btn-success': true,
-                        'btn-sm': true,
+                      'btn': true,
+                      'btn-warning': true,
+                      'btn-sm': true,
                     },
                     event: "click",
-                    handler: this.editSport,
-                    component: EditButton,
+                    handler: this.deleteSport,
+                    component: DeleteButton,
                 },
             ],
+          error: false
         }
     },
     components: {
         EditButton,
+        DeleteButton,
     },
     methods: {
         editSport(data) {
             window.location = 'sport/edit/' + data.id
         },
+        deleteSport(data) {
+          this.error = false;
+            axios.post('sport/toggle-disabled/' + data.id, {'sport': data})
+                 .then(response => {
+                   window.location = response.data.route;
+                 })
+                 .catch(error => {
+                   if (error.response.status === 422) {
+                      this.error = true;
+                   }
+                 });
+        }
     },
     props: {
         route: ''

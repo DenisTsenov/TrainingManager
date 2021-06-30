@@ -4,15 +4,15 @@
             :columns="columns"
             url="http://trainingmanager.test/admin/sport/list">
         </data-table>
-      <div v-if="error" class="warning">
-        Something went wrong! Please tray again later.
-      </div>
+        <div v-if="error" class="warning">
+            Something went wrong! Please tray again later.
+        </div>
     </div>
 </template>
 <script>
 
-import EditButton from "../../EditButton";
-import DeleteButton from "../../buttons/DeleteButton";
+import EditButton from "../../buttons/EditButton";
+import ToggleActivationButton from "../../buttons/ToggleActivationButton";
 
 export default {
     name: "SportList",
@@ -51,53 +51,47 @@ export default {
                     orderable: true,
                 },
                 {
-                  label: 'Actions',
-                  name: 'Edit',
-                  orderable: false,
-                  classes: {
-                    'btn': true,
-                    'btn-success': true,
-                    'btn-sm': true,
-                  },
-                  event: "click",
-                  handler: this.editSport,
-                  component: EditButton,
+                    label: 'Actions',
+                    name: 'Edit',
+                    orderable: false,
+                    classes: {
+                        'btn': true,
+                        'btn-success': true,
+                        'btn-sm': true,
+                    },
+                    event: "click",
+                    handler: this.editSport,
+                    component: EditButton,
                 },
                 {
                     label: '',
-                    name: 'Toggle',
                     orderable: false,
-                    classes: {
-                      'btn': true,
-                      'btn-warning': true,
-                      'btn-sm': true,
-                    },
                     event: "click",
-                    handler: this.deleteSport,
-                    component: DeleteButton,
+                    handler: this.toggleActivation,
+                    component: ToggleActivationButton,
                 },
             ],
-          error: false
+            error: false,
         }
     },
     components: {
         EditButton,
-        DeleteButton,
+        ToggleActivationButton,
     },
     methods: {
         editSport(data) {
             window.location = 'sport/edit/' + data.id
         },
-        deleteSport(data) {
-          this.error = false;
-            axios.post('sport/toggle-disabled/' + data.id, {'sport': data})
+        toggleActivation(data) {
+            this.error = false;
+            axios.post('sport/toggle-activation/' + data.id, {'sport': data})
                  .then(response => {
-                   window.location = response.data.route;
+                     window.location = response.data.route;
                  })
                  .catch(error => {
-                   if (error.response.status === 422) {
-                      this.error = true;
-                   }
+                     if (error.response.status === 422) {
+                         this.error = true;
+                     }
                  });
         }
     },

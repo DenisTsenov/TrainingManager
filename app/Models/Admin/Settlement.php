@@ -2,13 +2,15 @@
 
 namespace App\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
-use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 
 class Settlement extends Model
 {
     use LaravelVueDatatableTrait;
+    use SoftDeletes;
 
     protected $table = 'settlements';
 
@@ -28,7 +30,7 @@ class Settlement extends Model
         });
     }
 
-    protected $dataTableColumns = [
+    protected array $dataTableColumns = [
         'id'         => [
             'searchable' => false,
         ],
@@ -43,7 +45,7 @@ class Settlement extends Model
         ],
     ];
 
-    protected $dataTableRelationships = [
+    protected array $dataTableRelationships = [
         "belongsTo"     => [
             "createdBy" => [
                 "model"       => User::class,

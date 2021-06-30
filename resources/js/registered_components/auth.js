@@ -3,7 +3,7 @@ import LoginForm from "./../components/LoginForm";
 import EditForm from "../components/auth/EditForm";
 import DistributeCompetitors from "../components/auth/DistributeCompetitors";
 import TeamsList from "../components/auth/teams/TeamsList";
-import EditButton from "../components/auth/EditButton";
+import EditButton from "../components/auth/buttons/EditButton";
 
 Vue.component('register-form', RegisterForm);
 Vue.component('login-form', LoginForm);

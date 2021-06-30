@@ -69,9 +69,7 @@ class SettlementController extends Controller
 
     public function update(SettlementRequest $request, Settlement $settlement)
     {
-        $settlement->update([
-            'name' => $request->input('name'),
-        ]);
+        $settlement->update(['name' => $request->input('name'),]);
 
         $settlement->sports()->sync($request->input('sports'));
 

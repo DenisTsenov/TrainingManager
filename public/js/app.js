@@ -2238,49 +2238,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/EditButton.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/EditButton.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "EditButton",
-  props: {
-    data: {},
-    name: {},
-    click: {
-      type: Function,
-      "default": function _default() {}
-    },
-    classes: {
-      type: Object,
-      "default": function _default() {
-        return {
-          'btn': true,
-          'btn-success': true,
-          'btn-sm': true
-        };
-      }
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/EditForm.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/EditForm.vue?vue&type=script&lang=js& ***!
@@ -2732,7 +2689,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EditButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../EditButton */ "./resources/js/components/auth/EditButton.vue");
+/* harmony import */ var _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../buttons/EditButton */ "./resources/js/components/auth/buttons/EditButton.vue");
 //
 //
 //
@@ -2773,7 +2730,7 @@ __webpack_require__.r(__webpack_exports__);
         orderable: true
       }, {
         label: 'Actions',
-        name: '',
+        name: 'Edit',
         orderable: false,
         classes: {
           'btn': true,
@@ -2782,12 +2739,12 @@ __webpack_require__.r(__webpack_exports__);
         },
         event: "click",
         handler: this.editSettlement,
-        component: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+        component: _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
       }]
     };
   },
   components: {
-    EditButton: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+    EditButton: _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
     editSettlement: function editSettlement(data) {
@@ -2867,8 +2824,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EditButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../EditButton */ "./resources/js/components/auth/EditButton.vue");
-/* harmony import */ var _buttons_DeleteButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../buttons/DeleteButton */ "./resources/js/components/auth/buttons/DeleteButton.vue");
+/* harmony import */ var _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../buttons/EditButton */ "./resources/js/components/auth/buttons/EditButton.vue");
+/* harmony import */ var _buttons_ToggleActivationButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../buttons/ToggleActivationButton */ "./resources/js/components/auth/buttons/ToggleActivationButton.vue");
 //
 //
 //
@@ -2922,36 +2879,30 @@ __webpack_require__.r(__webpack_exports__);
         },
         event: "click",
         handler: this.editSport,
-        component: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+        component: _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
       }, {
         label: '',
-        name: 'Toggle',
         orderable: false,
-        classes: {
-          'btn': true,
-          'btn-warning': true,
-          'btn-sm': true
-        },
         event: "click",
-        handler: this.deleteSport,
-        component: _buttons_DeleteButton__WEBPACK_IMPORTED_MODULE_1__["default"]
+        handler: this.toggleActivation,
+        component: _buttons_ToggleActivationButton__WEBPACK_IMPORTED_MODULE_1__["default"]
       }],
       error: false
     };
   },
   components: {
-    EditButton: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"],
-    DeleteButton: _buttons_DeleteButton__WEBPACK_IMPORTED_MODULE_1__["default"]
+    EditButton: _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__["default"],
+    ToggleActivationButton: _buttons_ToggleActivationButton__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     editSport: function editSport(data) {
       window.location = 'sport/edit/' + data.id;
     },
-    deleteSport: function deleteSport(data) {
+    toggleActivation: function toggleActivation(data) {
       var _this = this;
 
       this.error = false;
-      axios.post('sport/toggle-disabled/' + data.id, {
+      axios.post('sport/toggle-activation/' + data.id, {
         'sport': data
       }).then(function (response) {
         window.location = response.data.route;
@@ -2969,10 +2920,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/EditButton.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/EditButton.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2989,7 +2940,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "DeleteButton",
+  name: "EditButton",
   props: {
     data: {},
     name: {},
@@ -3002,11 +2953,70 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return {
           'btn': true,
+          'btn-success': true,
+          'btn-sm': true
+        };
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "ToggleActivationButton",
+  data: function data() {
+    return {
+      classes: {
+        'btn': true,
+        'btn-danger': true,
+        'btn-sm': true
+      },
+      title: 'Deactivate'
+    };
+  },
+  props: {
+    data: {},
+    name: {},
+    click: {
+      type: Function,
+      "default": function _default() {}
+    }
+  },
+  methods: {
+    resolveActive: function resolveActive() {
+      if (this.data.deleted_at != null) {
+        this.title = 'Activate';
+        this.classes = {
+          'btn': true,
           'btn-warning': true,
           'btn-sm': true
         };
       }
     }
+  },
+  created: function created() {
+    this.resolveActive();
   }
 });
 
@@ -3094,7 +3104,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EditButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../EditButton */ "./resources/js/components/auth/EditButton.vue");
+/* harmony import */ var _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../buttons/EditButton */ "./resources/js/components/auth/buttons/EditButton.vue");
 //
 //
 //
@@ -3148,12 +3158,12 @@ __webpack_require__.r(__webpack_exports__);
         },
         event: "click",
         handler: this.editTeam,
-        component: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+        component: _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
       }]
     };
   },
   components: {
-    EditButton: _EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+    EditButton: _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
     editTeam: function editTeam(data) {
@@ -57631,51 +57641,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/EditButton.vue?vue&type=template&id=1023b3c8&scoped=true&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/EditButton.vue?vue&type=template&id=1023b3c8&scoped=true& ***!
-  \******************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      class: _vm.classes,
-      attrs: { title: "Edit" },
-      on: {
-        click: function($event) {
-          return _vm.click(_vm.data)
-        }
-      }
-    },
-    [_vm._m(0), _vm._v("\n     \n    " + _vm._s(_vm.name) + "\n")]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [
-      _c("i", { staticClass: "fa fa-edit", attrs: { "aria-hidden": "true" } })
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/EditForm.vue?vue&type=template&id=a21db04c&scoped=true&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/EditForm.vue?vue&type=template&id=a21db04c&scoped=true& ***!
@@ -58669,7 +58634,9 @@ var render = function() {
       _vm._v(" "),
       _vm.error
         ? _c("div", { staticClass: "warning" }, [
-            _vm._v("\n    Something went wrong! Please tray again later.\n  ")
+            _vm._v(
+              "\n        Something went wrong! Please tray again later.\n    "
+            )
           ])
         : _vm._e()
     ],
@@ -58683,10 +58650,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=template&id=30265c12&scoped=true&":
-/*!****************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=template&id=30265c12&scoped=true& ***!
-  \****************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/EditButton.vue?vue&type=template&id=520c1fd4&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/EditButton.vue?vue&type=template&id=520c1fd4&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -58702,14 +58669,14 @@ var render = function() {
     "button",
     {
       class: _vm.classes,
-      attrs: { title: "Toggle" },
+      attrs: { title: "Edit" },
       on: {
         click: function($event) {
           return _vm.click(_vm.data)
         }
       }
     },
-    [_vm._m(0), _vm._v("\n   \n  " + _vm._s(_vm.name) + "\n")]
+    [_vm._m(0), _vm._v("\n     \n    " + _vm._s(_vm.name) + "\n")]
   )
 }
 var staticRenderFns = [
@@ -58718,10 +58685,55 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", [
-      _c("i", { staticClass: "fa fa-trash", attrs: { "aria-hidden": "true" } })
+      _c("i", { staticClass: "fa fa-edit", attrs: { "aria-hidden": "true" } })
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=template&id=11173e96&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=template&id=11173e96&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      class: _vm.classes,
+      attrs: { title: _vm.title },
+      on: {
+        click: function($event) {
+          return _vm.click(_vm.data)
+        }
+      }
+    },
+    [
+      _c("span", [
+        _c("i", {
+          staticClass: "fa fa-trash",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v("\n        " + _vm._s(this.title) + "\n    ")
+      ]),
+      _vm._v("\n     \n    " + _vm._s(_vm.name) + "\n")
+    ]
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -73630,75 +73642,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/EditButton.vue":
-/*!*****************************************************!*\
-  !*** ./resources/js/components/auth/EditButton.vue ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EditButton_vue_vue_type_template_id_1023b3c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditButton.vue?vue&type=template&id=1023b3c8&scoped=true& */ "./resources/js/components/auth/EditButton.vue?vue&type=template&id=1023b3c8&scoped=true&");
-/* harmony import */ var _EditButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditButton.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/EditButton.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _EditButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _EditButton_vue_vue_type_template_id_1023b3c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _EditButton_vue_vue_type_template_id_1023b3c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "1023b3c8",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/auth/EditButton.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/auth/EditButton.vue?vue&type=script&lang=js&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/auth/EditButton.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/EditButton.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/auth/EditButton.vue?vue&type=template&id=1023b3c8&scoped=true&":
-/*!************************************************************************************************!*\
-  !*** ./resources/js/components/auth/EditButton.vue?vue&type=template&id=1023b3c8&scoped=true& ***!
-  \************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_template_id_1023b3c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditButton.vue?vue&type=template&id=1023b3c8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/EditButton.vue?vue&type=template&id=1023b3c8&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_template_id_1023b3c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_template_id_1023b3c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/auth/EditForm.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/auth/EditForm.vue ***!
@@ -74182,17 +74125,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/buttons/DeleteButton.vue":
-/*!***************************************************************!*\
-  !*** ./resources/js/components/auth/buttons/DeleteButton.vue ***!
-  \***************************************************************/
+/***/ "./resources/js/components/auth/buttons/EditButton.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/EditButton.vue ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _DeleteButton_vue_vue_type_template_id_30265c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteButton.vue?vue&type=template&id=30265c12&scoped=true& */ "./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=template&id=30265c12&scoped=true&");
-/* harmony import */ var _DeleteButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteButton.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=script&lang=js&");
+/* harmony import */ var _EditButton_vue_vue_type_template_id_520c1fd4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditButton.vue?vue&type=template&id=520c1fd4&scoped=true& */ "./resources/js/components/auth/buttons/EditButton.vue?vue&type=template&id=520c1fd4&scoped=true&");
+/* harmony import */ var _EditButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditButton.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/buttons/EditButton.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -74202,50 +74145,119 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _DeleteButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _DeleteButton_vue_vue_type_template_id_30265c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _DeleteButton_vue_vue_type_template_id_30265c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _EditButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditButton_vue_vue_type_template_id_520c1fd4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditButton_vue_vue_type_template_id_520c1fd4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "30265c12",
+  "520c1fd4",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/auth/buttons/DeleteButton.vue"
+component.options.__file = "resources/js/components/auth/buttons/EditButton.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************!*\
-  !*** ./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************/
+/***/ "./resources/js/components/auth/buttons/EditButton.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/EditButton.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/EditButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=template&id=30265c12&scoped=true&":
-/*!**********************************************************************************************************!*\
-  !*** ./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=template&id=30265c12&scoped=true& ***!
-  \**********************************************************************************************************/
+/***/ "./resources/js/components/auth/buttons/EditButton.vue?vue&type=template&id=520c1fd4&scoped=true&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/EditButton.vue?vue&type=template&id=520c1fd4&scoped=true& ***!
+  \********************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteButton_vue_vue_type_template_id_30265c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteButton.vue?vue&type=template&id=30265c12&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/DeleteButton.vue?vue&type=template&id=30265c12&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteButton_vue_vue_type_template_id_30265c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_template_id_520c1fd4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditButton.vue?vue&type=template&id=520c1fd4&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/EditButton.vue?vue&type=template&id=520c1fd4&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_template_id_520c1fd4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteButton_vue_vue_type_template_id_30265c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditButton_vue_vue_type_template_id_520c1fd4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/buttons/ToggleActivationButton.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/ToggleActivationButton.vue ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ToggleActivationButton_vue_vue_type_template_id_11173e96_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ToggleActivationButton.vue?vue&type=template&id=11173e96&scoped=true& */ "./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=template&id=11173e96&scoped=true&");
+/* harmony import */ var _ToggleActivationButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ToggleActivationButton.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ToggleActivationButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ToggleActivationButton_vue_vue_type_template_id_11173e96_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ToggleActivationButton_vue_vue_type_template_id_11173e96_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "11173e96",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/auth/buttons/ToggleActivationButton.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ToggleActivationButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ToggleActivationButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ToggleActivationButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=template&id=11173e96&scoped=true&":
+/*!********************************************************************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=template&id=11173e96&scoped=true& ***!
+  \********************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ToggleActivationButton_vue_vue_type_template_id_11173e96_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ToggleActivationButton.vue?vue&type=template&id=11173e96&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=template&id=11173e96&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ToggleActivationButton_vue_vue_type_template_id_11173e96_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ToggleActivationButton_vue_vue_type_template_id_11173e96_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -75287,7 +75299,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_admin_sport_CreateEditSport__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/admin/sport/CreateEditSport */ "./resources/js/components/auth/admin/sport/CreateEditSport.vue");
 /* harmony import */ var _components_auth_admin_settlement_SettlemenstList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/auth/admin/settlement/SettlemenstList */ "./resources/js/components/auth/admin/settlement/SettlemenstList.vue");
 /* harmony import */ var _components_auth_admin_sport_SportList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/auth/admin/sport/SportList */ "./resources/js/components/auth/admin/sport/SportList.vue");
-/* harmony import */ var _components_auth_buttons_DeleteButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/auth/buttons/DeleteButton */ "./resources/js/components/auth/buttons/DeleteButton.vue");
+/* harmony import */ var _components_auth_buttons_ToggleActivationButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/auth/buttons/ToggleActivationButton */ "./resources/js/components/auth/buttons/ToggleActivationButton.vue");
 
 
 
@@ -75305,7 +75317,7 @@ Vue.component('create-edit-settlement', _components_auth_admin_settlement_Create
 Vue.component('create-edit-sport', _components_auth_admin_sport_CreateEditSport__WEBPACK_IMPORTED_MODULE_5__["default"]);
 Vue.component('settlements-list', _components_auth_admin_settlement_SettlemenstList__WEBPACK_IMPORTED_MODULE_6__["default"]);
 Vue.component('sport-list', _components_auth_admin_sport_SportList__WEBPACK_IMPORTED_MODULE_7__["default"]);
-Vue.component('delete-button', _components_auth_buttons_DeleteButton__WEBPACK_IMPORTED_MODULE_8__["default"]);
+Vue.component('toggle-activation-button', _components_auth_buttons_ToggleActivationButton__WEBPACK_IMPORTED_MODULE_8__["default"]);
 
 /***/ }),
 
@@ -75323,7 +75335,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_EditForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/auth/EditForm */ "./resources/js/components/auth/EditForm.vue");
 /* harmony import */ var _components_auth_DistributeCompetitors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/auth/DistributeCompetitors */ "./resources/js/components/auth/DistributeCompetitors.vue");
 /* harmony import */ var _components_auth_teams_TeamsList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/auth/teams/TeamsList */ "./resources/js/components/auth/teams/TeamsList.vue");
-/* harmony import */ var _components_auth_EditButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/EditButton */ "./resources/js/components/auth/EditButton.vue");
+/* harmony import */ var _components_auth_buttons_EditButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/buttons/EditButton */ "./resources/js/components/auth/buttons/EditButton.vue");
 
 
 
@@ -75335,7 +75347,7 @@ Vue.component('login-form', _components_LoginForm__WEBPACK_IMPORTED_MODULE_1__["
 Vue.component('edit-from', _components_auth_EditForm__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.component('distribute-competitors', _components_auth_DistributeCompetitors__WEBPACK_IMPORTED_MODULE_3__["default"]);
 Vue.component('team-list', _components_auth_teams_TeamsList__WEBPACK_IMPORTED_MODULE_4__["default"]);
-Vue.component('edit-button', _components_auth_EditButton__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('edit-button', _components_auth_buttons_EditButton__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
 /***/ }),
 
@@ -75393,9 +75405,9 @@ Vue.component('review-user-button', _components_main_ReviewUserButton__WEBPACK_I
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /var/www/trainingmanager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/trainingmanager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /var/www/trainingmanager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

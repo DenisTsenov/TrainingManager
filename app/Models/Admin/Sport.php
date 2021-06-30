@@ -2,13 +2,15 @@
 
 namespace App\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
-use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 
 class Sport extends Model
 {
     use LaravelVueDatatableTrait;
+    use SoftDeletes;
 
     protected $table = 'sports';
 
@@ -37,6 +39,9 @@ class Sport extends Model
         ],
         'created_at' => [
             'searchable' => true,
+        ],
+        'deleted_at' => [
+            'searchable' => false,
         ],
         'updated_at' => [
             'searchable' => true,

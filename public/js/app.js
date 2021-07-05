@@ -2884,7 +2884,6 @@ __webpack_require__.r(__webpack_exports__);
         label: '',
         orderable: false,
         event: "click",
-        handler: this.toggleActivation,
         component: _buttons_ToggleActivationButton__WEBPACK_IMPORTED_MODULE_1__["default"]
       }],
       error: false
@@ -2897,20 +2896,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     editSport: function editSport(data) {
       window.location = 'sport/edit/' + data.id;
-    },
-    toggleActivation: function toggleActivation(data) {
-      var _this = this;
-
-      this.error = false;
-      axios.post('sport/toggle-activation/' + data.id, {
-        'sport': data
-      }).then(function (response) {
-        window.location = response.data.route;
-      })["catch"](function (error) {
-        if (error.response.status === 422) {
-          _this.error = true;
-        }
-      });
     }
   },
   props: {
@@ -2997,11 +2982,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     data: {},
-    name: {},
-    click: {
-      type: Function,
-      "default": function _default() {}
-    }
+    name: {}
   },
   methods: {
     resolveActive: function resolveActive() {
@@ -3013,6 +2994,34 @@ __webpack_require__.r(__webpack_exports__);
           'btn-sm': true
         };
       }
+    },
+    toggleActivation: function toggleActivation() {
+      var _this = this;
+
+      axios.post('sport/toggle-activation/' + this.data.id, {
+        'sport': this.data
+      }).then(function (response) {
+        if (response.data.deleted) {
+          _this.title = 'Activate';
+          _this.classes = {
+            'btn': true,
+            'btn-warning': true,
+            'btn-sm': true
+          };
+          return;
+        }
+
+        _this.title = 'Deactivate';
+        _this.classes = {
+          'btn': true,
+          'btn-danger': true,
+          'btn-sm': true
+        };
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this.error = true;
+        }
+      });
     }
   },
   created: function created() {
@@ -58717,7 +58726,7 @@ var render = function() {
       attrs: { title: _vm.title },
       on: {
         click: function($event) {
-          return _vm.click(_vm.data)
+          return _vm.toggleActivation()
         }
       }
     },
@@ -75405,9 +75414,9 @@ Vue.component('review-user-button', _components_main_ReviewUserButton__WEBPACK_I
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/trainingmanager/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/trainingmanager/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/trainingmanager/resources/sass/custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

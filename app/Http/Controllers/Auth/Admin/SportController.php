@@ -28,7 +28,7 @@ class SportController extends Controller
                       ->withCount('settlements')
                       ->withTrashed();
 
-        $data  = $query->paginate($length);
+        $data = $query->paginate($length);
 
         return new DataTableCollectionResource($data);
     }
@@ -63,13 +63,13 @@ class SportController extends Controller
 
     public function toggleActivation(Sport $sport)
     {
-        if (is_null($sport->deleted_at)) {
+        if ($deleted = is_null($sport->deleted_at)) {
             $sport->delete();
         } else {
-            $sport->deleted_at = null;
+            $deleted = $sport->deleted_at = null;
             $sport->save();
         }
 
-        return response()->json(['route' => route('admin.sport')]);
+        return response()->json(compact('deleted'));
     }
 }

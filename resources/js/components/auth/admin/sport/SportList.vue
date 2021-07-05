@@ -67,7 +67,6 @@ export default {
                     label: '',
                     orderable: false,
                     event: "click",
-                    handler: this.toggleActivation,
                     component: ToggleActivationButton,
                 },
             ],
@@ -82,18 +81,6 @@ export default {
         editSport(data) {
             window.location = 'sport/edit/' + data.id
         },
-        toggleActivation(data) {
-            this.error = false;
-            axios.post('sport/toggle-activation/' + data.id, {'sport': data})
-                 .then(response => {
-                     window.location = response.data.route;
-                 })
-                 .catch(error => {
-                     if (error.response.status === 422) {
-                         this.error = true;
-                     }
-                 });
-        }
     },
     props: {
         route: ''

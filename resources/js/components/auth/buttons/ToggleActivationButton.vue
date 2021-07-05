@@ -1,5 +1,5 @@
 <template>
-    <button :class="classes" @click="click(data)" v-bind:title="title">
+    <button :class="classes" @click="toggleActivation()" :title="title">
         <span>
             <i class="fa fa-trash" aria-hidden="true"></i>
             {{ this.title }}
@@ -19,17 +19,12 @@ export default {
                 'btn-danger': true,
                 'btn-sm': true,
             },
-            title: 'Deactivate'
+            title: 'Deactivate',
         }
     },
     props: {
         data: {},
         name: {},
-        click: {
-            type: Function,
-            default: () => {
-            }
-        },
     },
     methods: {
         resolveActive() {
@@ -41,6 +36,32 @@ export default {
                     'btn-sm': true,
                 }
             }
+        },
+        toggleActivation() {
+          axios.post('sport/toggle-activation/' + this.data.id, {'sport': this.data})
+               .then(response => {
+                   if (response.data.deleted){
+                       this.title = 'Activate';
+                       this.classes = {
+                         'btn': true,
+                         'btn-warning': true,
+                         'btn-sm': true,
+                       };
+                       return;
+                   }
+
+                 this.title = 'Deactivate';
+                 this.classes = {
+                   'btn': true,
+                   'btn-danger': true,
+                   'btn-sm': true,
+                 };
+               })
+               .catch(error => {
+                 if (error.response.status === 422) {
+                   this.error = true;
+                 }
+               });
         }
     },
     created() {

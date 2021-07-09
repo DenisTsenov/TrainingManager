@@ -75,7 +75,8 @@ export default {
         getSports() {
             let settlement = null;
 
-            if (this.settlementEdit != null) settlement = this.settlementEdit.id
+            if (this.settlementEdit != null) settlement = this.settlementEdit.id;
+
             axios.get(this.url, {
                 params: {
                     settlement_id: settlement

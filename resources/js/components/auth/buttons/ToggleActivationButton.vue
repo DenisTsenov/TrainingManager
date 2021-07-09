@@ -1,7 +1,7 @@
 <template>
     <button :class="classes" @click="toggleActivation()" :title="title">
         <span>
-            <i class="fa fa-trash" aria-hidden="true"></i>
+            <i :class="icon" aria-hidden="true"></i>
             {{ this.title }}
         </span>
         &nbsp;
@@ -20,6 +20,7 @@ export default {
                 'btn-sm': true,
             },
             title: 'Deactivate',
+            icon: 'fa fa-trash',
         }
     },
     props: {
@@ -30,9 +31,10 @@ export default {
         resolveActive() {
             if (this.data.deleted_at != null) {
                 this.title   = 'Activate';
+                this.icon = 'fas fa-plug',
                 this.classes = {
                     'btn': true,
-                    'btn-warning': true,
+                    'btn-primary': true,
                     'btn-sm': true,
                 }
             }
@@ -42,15 +44,17 @@ export default {
                .then(response => {
                    if (response.data.deleted){
                        this.title = 'Activate';
+                       this.icon = 'fas fa-plug';
                        this.classes = {
                          'btn': true,
-                         'btn-warning': true,
+                         'btn-primary': true,
                          'btn-sm': true,
                        };
                        return;
                    }
 
                  this.title = 'Deactivate';
+                 this.icon = 'fa fa-trash';
                  this.classes = {
                    'btn': true,
                    'btn-danger': true,

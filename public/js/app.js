@@ -2669,6 +2669,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_CreateEditSettlementMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -2977,7 +2978,8 @@ __webpack_require__.r(__webpack_exports__);
         'btn-danger': true,
         'btn-sm': true
       },
-      title: 'Deactivate'
+      title: 'Deactivate',
+      icon: 'fa fa-trash'
     };
   },
   props: {
@@ -2988,9 +2990,9 @@ __webpack_require__.r(__webpack_exports__);
     resolveActive: function resolveActive() {
       if (this.data.deleted_at != null) {
         this.title = 'Activate';
-        this.classes = {
+        this.icon = 'fas fa-plug', this.classes = {
           'btn': true,
-          'btn-warning': true,
+          'btn-primary': true,
           'btn-sm': true
         };
       }
@@ -3003,15 +3005,17 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         if (response.data.deleted) {
           _this.title = 'Activate';
+          _this.icon = 'fas fa-plug';
           _this.classes = {
             'btn': true,
-            'btn-warning': true,
+            'btn-primary': true,
             'btn-sm': true
           };
           return;
         }
 
         _this.title = 'Deactivate';
+        _this.icon = 'fa fa-trash';
         _this.classes = {
           'btn': true,
           'btn-danger': true,
@@ -58375,7 +58379,11 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-check-input",
-                          attrs: { type: "checkbox", id: sport.name },
+                          attrs: {
+                            type: "checkbox",
+                            disabled: sport.deleted_at != null,
+                            id: sport.name
+                          },
                           domProps: {
                             checked: Array.isArray(sport.checked)
                               ? _vm._i(sport.checked, null) > -1
@@ -58732,10 +58740,7 @@ var render = function() {
     },
     [
       _c("span", [
-        _c("i", {
-          staticClass: "fa fa-trash",
-          attrs: { "aria-hidden": "true" }
-        }),
+        _c("i", { class: _vm.icon, attrs: { "aria-hidden": "true" } }),
         _vm._v("\n        " + _vm._s(this.title) + "\n    ")
       ]),
       _vm._v("\n     \n    " + _vm._s(_vm.name) + "\n")

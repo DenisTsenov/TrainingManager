@@ -47,6 +47,7 @@
                                         <input type="checkbox"
                                                class="form-check-input"
                                                v-model="sport.checked"
+                                               :disabled="sport.deleted_at != null"
                                                :id="sport.name">
                                         <label class="form-check-label" :for="sport.name">{{ sport.name }}</label>
                                     </div>

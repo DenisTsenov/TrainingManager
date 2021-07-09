@@ -19,7 +19,7 @@ class AjaxController extends Controller
     {
         $request->validate(['settlement_id' => 'nullable', 'exists:users,id']);
 
-        $sports = Sport::select('id', 'name')->get();
+        $sports = Sport::withTrashed()->select('id', 'name', 'deleted_at')->get();
 
         $currentSports = DB::table('settlement_sport')->where('settlement_id', $request->input('settlement_id'))->get();
 

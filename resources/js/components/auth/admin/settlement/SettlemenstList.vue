@@ -8,7 +8,7 @@
 </template>
 <script>
 
-import EditButton from "../../EditButton";
+import EditButton from "../../buttons/EditButton";
 
 export default {
     name: "SettlementList",
@@ -48,7 +48,7 @@ export default {
                 },
                 {
                     label: 'Actions',
-                    name: '',
+                    name: 'Edit',
                     orderable: false,
                     classes: {
                         'btn': true,

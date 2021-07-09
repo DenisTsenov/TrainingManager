@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import EditButton from "../EditButton";
+import EditButton from "../buttons/EditButton";
 
 export default {
     name: "TeamsList",

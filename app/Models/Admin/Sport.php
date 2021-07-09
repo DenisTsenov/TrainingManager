@@ -2,13 +2,15 @@
 
 namespace App\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
-use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 
 class Sport extends Model
 {
     use LaravelVueDatatableTrait;
+    use SoftDeletes;
 
     protected $table = 'sports';
 
@@ -23,9 +25,7 @@ class Sport extends Model
     {
         parent::boot();
 
-        static::creating(function ($team) {
-            $team->created_by = \Auth::id();
-        });
+        static::creating(fn($team) => $team->created_by = \Auth::id());
     }
 
     protected $dataTableColumns = [
@@ -37,6 +37,9 @@ class Sport extends Model
         ],
         'created_at' => [
             'searchable' => true,
+        ],
+        'deleted_at' => [
+            'searchable' => false,
         ],
         'updated_at' => [
             'searchable' => true,
@@ -82,7 +85,6 @@ class Sport extends Model
     {
         return $this->belongsToMany(Settlement::class);
     }
-
 
     public function createdBy()
     {

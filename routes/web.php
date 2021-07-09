@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\Admin\SettlementController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\Auth\Admin\SettlementController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +45,5 @@ Route::namespace('Auth')
          Route::namespace('Admin')
               ->middleware('admin')
               ->prefix('admin')
-              ->group(function () {
-                  require 'modules/admin.php';
-              });
+              ->group(fn() => Route::name('admin.')->group(fn() => require 'modules/admin.php'));
      });

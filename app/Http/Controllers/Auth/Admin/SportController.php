@@ -24,8 +24,11 @@ class SportController extends Controller
         $orderBy = $request->input('dir', 'asc');
         $search  = $request->input('search');
 
-        $query = Sport::eloquentQuery($sortBy, $orderBy, $search, ['createdBy'])->withCount('settlements');
-        $data  = $query->paginate($length);
+        $query = Sport::eloquentQuery($sortBy, $orderBy, $search, ['createdBy'])
+                      ->withCount('settlements')
+                      ->withTrashed();
+
+        $data = $query->paginate($length);
 
         return new DataTableCollectionResource($data);
     }
@@ -56,5 +59,17 @@ class SportController extends Controller
         $sport->update($request->validated());
 
         return response()->json(['route' => route('admin.sport')]);
+    }
+
+    public function toggleActivation(Sport $sport)
+    {
+        if ($deleted = is_null($sport->deleted_at)) {
+            $sport->delete();
+        } else {
+            $deleted = $sport->deleted_at = null;
+            $sport->save();
+        }
+
+        return response()->json(compact('deleted'));
     }
 }

@@ -4,11 +4,15 @@
             :columns="columns"
             url="http://trainingmanager.test/admin/sport/list">
         </data-table>
+        <div v-if="error" class="warning">
+            Something went wrong! Please tray again later.
+        </div>
     </div>
 </template>
 <script>
 
-import EditButton from "../../EditButton";
+import EditButton from "../../buttons/EditButton";
+import ToggleActivationButton from "../../buttons/ToggleActivationButton";
 
 export default {
     name: "SportList",
@@ -48,7 +52,7 @@ export default {
                 },
                 {
                     label: 'Actions',
-                    name: '',
+                    name: 'Edit',
                     orderable: false,
                     classes: {
                         'btn': true,
@@ -59,11 +63,19 @@ export default {
                     handler: this.editSport,
                     component: EditButton,
                 },
+                {
+                    label: '',
+                    orderable: false,
+                    event: "click",
+                    component: ToggleActivationButton,
+                },
             ],
+            error: false,
         }
     },
     components: {
         EditButton,
+        ToggleActivationButton,
     },
     methods: {
         editSport(data) {

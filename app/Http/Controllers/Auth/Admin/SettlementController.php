@@ -14,14 +14,12 @@ class SettlementController extends Controller
 {
     public function __construct()
     {
-        View::composer('auth.admin.settlements.create_edit', function ($view) {
-            $view->with('sportsUrl', route('admin.sports'));
-        });
+        View::composer('auth.admin.settlements.create_edit', fn($view) => $view->with('sportsUrl', route('admin.sports')));
     }
 
     public function withSports(): JsonResponse
     {
-        $settlements = Settlement::has('sports')->orderBy('name')->pluck('name', 'id');
+        $settlements = Settlement::with('sports')->has('sports')->orderBy('name')->pluck('name', 'id');
 
         return response()->json($settlements);
     }
@@ -38,8 +36,10 @@ class SettlementController extends Controller
         $orderBy = $request->input('dir', 'desc');
         $search  = $request->input('search');
 
-        $query = Settlement::eloquentQuery($sortBy, $orderBy, $search, ['createdBy'])->withCount('sports');
-        $data  = $query->paginate($length);
+        $query = Settlement::eloquentQuery($sortBy, $orderBy, $search, ['createdBy'])
+                           ->withCount(['sports' => fn($query) => $query->withTrashed()]);
+        
+        $data = $query->paginate($length);
 
         return new DataTableCollectionResource($data);
     }
@@ -69,9 +69,7 @@ class SettlementController extends Controller
 
     public function update(SettlementRequest $request, Settlement $settlement)
     {
-        $settlement->update([
-            'name' => $request->input('name'),
-        ]);
+        $settlement->update(['name' => $request->input('name'),]);
 
         $settlement->sports()->sync($request->input('sports'));
 

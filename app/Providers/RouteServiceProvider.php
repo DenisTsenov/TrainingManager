@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Admin\Sport;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Route::bind('sport', fn($value) => Sport::withTrashed()->findOrFail($value));
 
         parent::boot();
     }

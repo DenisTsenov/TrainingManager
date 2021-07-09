@@ -25,9 +25,7 @@ class Settlement extends Model
     {
         parent::boot();
 
-        static::creating(function ($team) {
-            $team->created_by = \Auth::id();
-        });
+        static::creating(fn($team) => $team->created_by = \Auth::id());
     }
 
     protected array $dataTableColumns = [

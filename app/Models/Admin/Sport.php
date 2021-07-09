@@ -25,9 +25,7 @@ class Sport extends Model
     {
         parent::boot();
 
-        static::creating(function ($team) {
-            $team->created_by = \Auth::id();
-        });
+        static::creating(fn($team) => $team->created_by = \Auth::id());
     }
 
     protected $dataTableColumns = [
@@ -87,7 +85,6 @@ class Sport extends Model
     {
         return $this->belongsToMany(Settlement::class);
     }
-
 
     public function createdBy()
     {

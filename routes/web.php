@@ -45,9 +45,5 @@ Route::namespace('Auth')
          Route::namespace('Admin')
               ->middleware('admin')
               ->prefix('admin')
-              ->group(function () {
-                  Route::name('admin.')->group(function () {
-                      require 'modules/admin.php';
-                  });
-              });
+              ->group(fn() => Route::name('admin.')->group(fn() => require 'modules/admin.php'));
      });

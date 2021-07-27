@@ -57,6 +57,8 @@ class SettlementController extends Controller
 
         $settlement->sports()->attach($request->input('sports'));
 
+        session()->flash('success', 'Operation done successfully!');
+
         return response()->json(['route' => route('admin.settlement')]);
     }
 
@@ -72,6 +74,8 @@ class SettlementController extends Controller
         $settlement->update(['name' => $request->input('name'),]);
 
         $settlement->sports()->sync($request->input('sports'));
+
+        session()->flash('success', 'Operation done successfully!');
 
         return response()->json(['route' => route('admin.settlement')]);
     }

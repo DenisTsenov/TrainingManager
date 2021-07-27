@@ -44,6 +44,8 @@ class SportController extends Controller
     {
         Sport::create($request->validated());
 
+        session()->flash('success', 'Operation done successfully!');
+
         return response()->json(['route' => route('admin.sport')]);
     }
 
@@ -57,6 +59,8 @@ class SportController extends Controller
     public function update(SportRequest $request, Sport $sport)
     {
         $sport->update($request->validated());
+
+        session()->flash('success', 'Operation done successfully!');
 
         return response()->json(['route' => route('admin.sport')]);
     }

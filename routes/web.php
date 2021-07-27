@@ -42,14 +42,6 @@ Route::namespace('Auth')
      ->group(function () {
          require 'modules/auth.php';
 
-         Route::get('test', function(){
-             $value = \Illuminate\Support\Facades\Cache::remember('users', 60, function () {
-                 return DB::table('users')->get();
-             });
-
-             dd($value);
-         });
-
          Route::namespace('Admin')
               ->middleware('admin')
               ->prefix('admin')

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth\Admin;
 
+use App\Events\SportToggled;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Admin\SportRequest;
 use App\Models\Admin\Sport;
@@ -73,6 +74,8 @@ class SportController extends Controller
             $deleted = $sport->deleted_at = null;
             $sport->save();
         }
+
+        event(new SportToggled());
 
         return response()->json(compact('deleted'));
     }

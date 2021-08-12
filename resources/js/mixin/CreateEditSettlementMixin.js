@@ -83,12 +83,24 @@ export default {
                 }
             })
                  .then(response => {
-                     this.sports     = response.data;
-                     this.sportsEdit = response.data;
+                     this.sports = response.data;
                  }).catch(error => {
                 this.serverErr = true;
             });
         },
+        refreshSports() {
+            this.sports.forEach(function (sport) {
+                sport.disabled = sport.deleted_at != null;
+            })
+        }
+    },
+    mounted() {
+        let self = this;
+        Echo.private('sport')
+            .listen('SportToggled', function (event) {
+                this.sports = event;
+                self.refreshSports();
+            });
     },
     created() {
         this.getSports();

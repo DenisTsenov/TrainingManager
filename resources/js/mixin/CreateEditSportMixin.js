@@ -22,11 +22,11 @@ export default {
             required: true,
             type: String,
         },
-        actionType:{
+        actionType: {
             required: true,
             type: String,
         },
-        sportEdit:{
+        sportEdit: {
             required: false,
             type: String,
             default: false,

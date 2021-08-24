@@ -88,18 +88,26 @@ export default {
                 this.serverErr = true;
             });
         },
-        refreshSports() {
+        refreshSports(sports) {
             this.sports.forEach(function (sport) {
-                sport.disabled = sport.deleted_at != null;
-            })
+                let key = 0;
+                for (key; key < sports.length; key++) {
+
+                    if (sports[key]['id'] == sport.id && sport.checked) {
+                        sports[key]['checked'] = sport.checked;
+                        return;
+                    }
+                }
+            });
+
+            this.sports = sports;
         }
     },
     mounted() {
         let self = this;
         Echo.private('sport')
-            .listen('SportToggled', function (event) {
-                this.sports = event;
-                self.refreshSports();
+            .listen('SportToggled', function (sports) {
+                self.refreshSports(sports);
             });
     },
     created() {

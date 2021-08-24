@@ -83,12 +83,32 @@ export default {
                 }
             })
                  .then(response => {
-                     this.sports     = response.data;
-                     this.sportsEdit = response.data;
+                     this.sports = response.data;
                  }).catch(error => {
                 this.serverErr = true;
             });
         },
+        refreshSports(sports) {
+            this.sports.forEach(function (sport) {
+                let key = 0;
+                for (key; key < sports.length; key++) {
+
+                    if (sports[key]['id'] == sport.id && sport.checked) {
+                        sports[key]['checked'] = sport.checked;
+                        return;
+                    }
+                }
+            });
+
+            this.sports = sports;
+        }
+    },
+    mounted() {
+        let self = this;
+        Echo.private('sport')
+            .listen('SportToggled', function (sports) {
+                self.refreshSports(sports);
+            });
     },
     created() {
         this.getSports();

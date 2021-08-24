@@ -33,6 +33,11 @@
                                 </a>
                             </li>
                             <li class="dropdown-item">
+                                <a class="dropdown-item" target="_blank" href="/laravel-websockets">
+                                    <i class="fas fa-magnet"></i> WebSockets Dashboard
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
                                 <a class="dropdown-item btn btn-light"
                                    href="{{ route('admin.manage_role_permission') }}">
                                     <i class="fas fa-tasks"></i> Manage role permission
@@ -48,27 +53,28 @@
                                     <i class="fas fa-city ml-4"></i> Settlements
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <a class="dropdown-item btn btn-light" href="{{ route('admin.settlement.create') }}">
+                                    <a class="dropdown-item btn btn-light"
+                                       href="{{ route('admin.settlement.create') }}">
                                         <i class="fas fa-plus"></i> Add
                                     </a>
                                     <a class="dropdown-item btn btn-light" href="{{ route('admin.settlement') }}">
                                         <i class="fas fa-list"></i> List
                                     </a>
-{{--                                    <li class="dropdown-submenu">--}}
-{{--                                        <a class="dropdown-item" href="#">Even More..</a>--}}
-{{--                                        <ul class="dropdown-menu">--}}
-{{--                                            <li class="dropdown-item"><a href="#">3rd level</a></li>--}}
-{{--                                            <li class="dropdown-submenu"><a class="dropdown-item" href="#">another--}}
-{{--                                                    level</a>--}}
-{{--                                                <ul class="dropdown-menu">--}}
-{{--                                                    <li class="dropdown-item"><a href="#">4th level</a></li>--}}
-{{--                                                    <li class="dropdown-item"><a href="#">4th level</a></li>--}}
-{{--                                                    <li class="dropdown-item"><a href="#">4th level</a></li>--}}
-{{--                                                </ul>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="dropdown-item"><a href="#">3rd level</a></li>--}}
-{{--                                        </ul>--}}
-{{--                                    </li>--}}
+                                    {{--                                    <li class="dropdown-submenu">--}}
+                                    {{--                                        <a class="dropdown-item" href="#">Even More..</a>--}}
+                                    {{--                                        <ul class="dropdown-menu">--}}
+                                    {{--                                            <li class="dropdown-item"><a href="#">3rd level</a></li>--}}
+                                    {{--                                            <li class="dropdown-submenu"><a class="dropdown-item" href="#">another--}}
+                                    {{--                                                    level</a>--}}
+                                    {{--                                                <ul class="dropdown-menu">--}}
+                                    {{--                                                    <li class="dropdown-item"><a href="#">4th level</a></li>--}}
+                                    {{--                                                    <li class="dropdown-item"><a href="#">4th level</a></li>--}}
+                                    {{--                                                    <li class="dropdown-item"><a href="#">4th level</a></li>--}}
+                                    {{--                                                </ul>--}}
+                                    {{--                                            </li>--}}
+                                    {{--                                            <li class="dropdown-item"><a href="#">3rd level</a></li>--}}
+                                    {{--                                        </ul>--}}
+                                    {{--                                    </li>--}}
 
                                 </ul>
                             </li>

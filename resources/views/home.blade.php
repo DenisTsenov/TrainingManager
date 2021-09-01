@@ -5,7 +5,7 @@
 @section('content')
     <br>
     @admin
-        <distribute-competitors><distribute-competitors>
+        <distribute-users-list><distribute-users-list>
     @endadmin
 
     @if(\Illuminate\Support\Facades\Auth::user()->doesntHave('membership')->get())

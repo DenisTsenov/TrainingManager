@@ -9,7 +9,7 @@
 import ReviewUserButton from "../main/ReviewUserButton";
 
 export default {
-    name: "DistributeCompetitor",
+    name: "DistributeUsersList",
     data() {
         return {
             columns: [
@@ -60,7 +60,7 @@ export default {
                         'btn-sm': true,
                     },
                     event: "click",
-                    handler: this.showTeams,
+                    handler: this.showUser,
                     component: ReviewUserButton,
                 },
             ],
@@ -70,8 +70,8 @@ export default {
         ReviewUserButton,
     },
     methods: {
-        showTeams(data) {
-            alert(`You clicked row ${data.id}`);
+        showUser(data) {
+            window.location = `admin/distribute-user/create/${data.id}`
         },
     },
 }

@@ -114,12 +114,12 @@ class User extends Authenticatable
 
     public function settlement()
     {
-        return $this->belongsTo(Settlement::class);
+        return $this->belongsTo(Settlement::class)->withTrashed();
     }
 
     public function sport()
     {
-        return $this->belongsTo(Sport::class);
+        return $this->belongsTo(Sport::class)->withTrashed();
     }
 
     /**
@@ -143,7 +143,7 @@ class User extends Authenticatable
         return $query->where('role_id', Role::TRAINER)->orderBy('first_name');
     }
 
-    public function scopeUnactiveTrainers($query)
+    public function scopeInactiveTrainers($query)
     {
         return $query->trainers()->whereNotNull('deleted_at');
     }

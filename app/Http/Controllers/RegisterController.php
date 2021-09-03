@@ -37,7 +37,9 @@ class RegisterController extends Controller
     {
         $user = User::create($request->validated());
 
-        Auth::user()->notify(new NewUserRegistered($user));
+        $admin = User::firstWhere('is_admin', 1);
+
+        $admin->notify(new NewUserRegistered($user));
 
         return response()->json();
     }

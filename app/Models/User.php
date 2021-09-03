@@ -129,7 +129,7 @@ class User extends Authenticatable
      */
     public function scopeWhereLike($query, string $identifier)
     {
-        return $query->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", "$identifier%")
+        return $query->whereRaw("full_name LIKE ?", "$identifier%")
                      ->orWhereRaw("email LIKE ?", "$identifier%");
     }
 

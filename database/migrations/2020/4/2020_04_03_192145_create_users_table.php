@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique('full_name');
+            $table->index('full_name');
         });
 
         Schema::table('settlements', function(Blueprint $table){

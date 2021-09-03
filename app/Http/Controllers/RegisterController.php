@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
+use App\Notifications\User\NewUserRegistered;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -33,8 +35,10 @@ class RegisterController extends Controller
      */
     public function store(RegisterRequest $request)
     {
-        User::create($request->validated());
+        $user = User::create($request->validated());
 
-        return response()->json(null, 200);
+        Auth::user()->notify(new NewUserRegistered($user));
+
+        return response()->json();
     }
 }

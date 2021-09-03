@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ReviewUserButton from "../main/ReviewUserButton";
+import ReviewUserButton from "../../main/ReviewUserButton";
 
 export default {
     name: "DistributeUsersList",

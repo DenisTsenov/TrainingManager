@@ -155,4 +155,15 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
+    /**
+     * Route notifications for the Mobica channel.
+     *
+     * @param \Illuminate\Notifications\Notification $notification
+     * @return string|null
+     */
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
+    }
 }

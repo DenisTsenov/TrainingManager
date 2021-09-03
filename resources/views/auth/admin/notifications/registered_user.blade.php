@@ -1,0 +1,1 @@
+<p>New account was created: <a href="{{ $route }}">View the user</a></p>

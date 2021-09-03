@@ -7,6 +7,7 @@ import CreateEditSport from "../components/auth/admin/sport/CreateEditSport";
 import SettlementsList from "../components/auth/admin/settlement/SettlemenstList";
 import SportList from "../components/auth/admin/sport/SportList";
 import ToggleActivationButton from "../components/auth/buttons/ToggleActivationButton";
+import DistributeUsersList from "../components/auth/distribution/DistributeUsersList";
 
 Vue.component('roles-checkboxes', RolesCheckboxes);
 Vue.component('roles-permissions', RolePermissions);
@@ -17,3 +18,4 @@ Vue.component('create-edit-sport', CreateEditSport);
 Vue.component('settlements-list', SettlementsList);
 Vue.component('sport-list', SportList);
 Vue.component('toggle-activation-button', ToggleActivationButton);
+Vue.component('distribute-users-list', DistributeUsersList);

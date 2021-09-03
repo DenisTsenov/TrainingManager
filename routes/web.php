@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\Admin\SettlementController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Notifications\User\NewUserRegistered;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +43,12 @@ Route::namespace('Auth')
      ->middleware(['auth'])
      ->group(function () {
          require 'modules/auth.php';
+
+         $user = \App\Models\User::first();
+
+         Route::get('test', function() use($user){
+             Auth::user()->notify(new NewUserRegistered($user));
+         });
 
          Route::namespace('Admin')
               ->middleware('admin')

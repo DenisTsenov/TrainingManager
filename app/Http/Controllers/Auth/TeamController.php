@@ -38,7 +38,7 @@ class TeamController extends Controller
 
     public function store(TeamRequest $request)
     {
-        $trainer = User::firstWhere('id', $request->input('trainer_id'));
+        $trainer = User::find($request->input('trainer_id'));
 
         Team::create([
             'name'          => $request->input('name'),
@@ -60,7 +60,7 @@ class TeamController extends Controller
 
     public function update(TeamRequest $request, Team $team)
     {
-        $trainer = User::firstWhere('id', $request->input('trainer_id'));
+        $trainer = User::find('id', $request->input('trainer_id'));
 
         $team->update([
             'name'          => $request->input('name'),

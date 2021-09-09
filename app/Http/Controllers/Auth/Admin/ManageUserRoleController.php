@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Admin\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ManageUserRoleController extends Controller
 {
@@ -43,9 +43,7 @@ class ManageUserRoleController extends Controller
      */
     public function changeRole(User $user, Request $request)
     {
-        $request->validate([
-            'role' => ['required', 'integer', 'exists:roles,id'],
-        ]);
+        $request->validate(['role' => ['required', 'integer', 'exists:roles,id']]);
 
         $role     = $request->input('role');
         $response = 'new role';

@@ -11,6 +11,7 @@ export default {
             trainer: '',
             trainers: {},
             errors: {},
+            members:{},
             sendAllowed: true,
             hasBeenSend: false,
             serverErr: false,

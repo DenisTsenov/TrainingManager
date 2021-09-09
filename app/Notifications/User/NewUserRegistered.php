@@ -48,18 +48,19 @@ class NewUserRegistered extends Notification implements ShouldBroadcast
     /**
      * Get the mail representation of the notification.
      *
-     * @param mixed $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @param User $notifiable
+     * @return MailMessage
      */
-    public function toMail($notifiable): MailMessage
+    public function toMail(User $notifiable): MailMessage
     {
         return (new MailMessage)
             ->from('denis@test.com')
             ->subject('New user registered')
+            ->line("Hello $notifiable->full_name")
             ->line('New account was created.')
             ->line('User name: ' . $this->user->full_name)
             ->line('Settlement: ' . $this->user->settlement->name)
             ->line('Sport: ' . $this->user->sport->name)
-            ->action('Notification Action', url('/'));
+            ->action('Show user', route('admin.distribute.create', ['user' => $this->user->id]));
     }
 }

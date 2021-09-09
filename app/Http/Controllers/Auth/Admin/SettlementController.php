@@ -37,8 +37,9 @@ class SettlementController extends Controller
         $search  = $request->input('search');
 
         $query = Settlement::eloquentQuery($sortBy, $orderBy, $search, ['createdBy'])
-                           ->withCount(['sports' => fn($query) => $query->withTrashed()]);
-        
+                           ->withCount(['sports' => fn($query) => $query->withTrashed()])
+                           ->when($sortBy == 'sports_count', fn($query) => $query->reorder($sortBy, $orderBy));
+
         $data = $query->paginate($length);
 
         return new DataTableCollectionResource($data);

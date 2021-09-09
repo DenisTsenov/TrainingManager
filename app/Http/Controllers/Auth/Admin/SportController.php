@@ -26,7 +26,8 @@ class SportController extends Controller
         $search  = $request->input('search');
 
         $query = Sport::eloquentQuery($sortBy, $orderBy, $search, ['createdBy'])
-                      ->withCount('settlements')
+                      ->withCount(['settlements' => fn($query) => $query->withTrashed()])
+                      ->when($sortBy == 'settlements_count', fn($query) => $query->reorder($sortBy, $orderBy))
                       ->withTrashed();
 
         $data = $query->paginate($length);

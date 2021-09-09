@@ -3097,6 +3097,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_CreateEditMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -64922,28 +64947,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row justify-content-center mt-3" }, [
-    _c("div", { staticClass: "col-6" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _c("p", { staticClass: "h3 text-center" }, [
-            _vm._v(_vm._s(_vm.actionType) + " team")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c(
-            "form",
-            {
-              staticClass: "form",
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.send($event)
-                }
-              }
-            },
-            [
+  return _c(
+    "form",
+    {
+      staticClass: "form",
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.send($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "row justify-content-center mt-3" }, [
+        _c("div", { staticClass: "col-6" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _c("p", { staticClass: "h3 text-center" }, [
+                _vm._v(_vm._s(_vm.actionType) + " team")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
               _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "name" } }, [_vm._v("Team name")]),
                 _vm._v(" "),
@@ -64972,7 +64997,7 @@ var render = function() {
                 _vm.hasBeenSend && !_vm.$v.name.required
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
                       _vm._v(
-                        "\n                          The name field is required.\n                        "
+                        "\n                            The name field is required.\n                        "
                       )
                     ])
                   : _vm._e(),
@@ -64980,7 +65005,7 @@ var render = function() {
                 _vm.hasBeenSend && !_vm.$v.name.minLength
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
                       _vm._v(
-                        "\n                          The name must be at least 2 characters.\n                        "
+                        "\n                            The name must be at least 2 characters.\n                        "
                       )
                     ])
                   : _vm._e(),
@@ -64997,7 +65022,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "trainer" } }, [_vm._v("Trainer")]),
+                _c("label", { attrs: { for: _vm.trainer } }, [
+                  _vm._v("Trainer")
+                ]),
                 _vm._v(" "),
                 _c(
                   "select",
@@ -65076,18 +65103,94 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm._m(0)
-            ]
-          )
+            ])
+          ]),
+          _vm._v(" "),
+          _vm.serverErr
+            ? _c("div", { staticClass: "alert alert-danger" }, [
+                _vm._v("Something went wrong. Please try again later..")
+              ])
+            : _vm._e()
         ])
       ]),
       _vm._v(" "),
-      _vm.serverErr
-        ? _c("div", { staticClass: "alert alert-danger" }, [
-            _vm._v("Something went wrong. Please try again later..")
+      _c("div", { staticClass: "row justify-content-center mt-3" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "card" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "div",
+                { staticClass: "form-inline" },
+                _vm._l(_vm.sports, function(sport, id) {
+                  return _c("div", { key: id }, [
+                    _c("div", { staticClass: "form-check ml-5" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: sport.checked,
+                            expression: "sport.checked"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "checkbox",
+                          disabled: sport.deleted_at != null,
+                          id: sport.name
+                        },
+                        domProps: {
+                          checked: Array.isArray(sport.checked)
+                            ? _vm._i(sport.checked, null) > -1
+                            : sport.checked
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = sport.checked,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(sport, "checked", $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    sport,
+                                    "checked",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(sport, "checked", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: sport.name }
+                        },
+                        [_vm._v(_vm._s(sport.name))]
+                      )
+                    ])
+                  ])
+                }),
+                0
+              )
+            ])
           ])
-        : _vm._e()
-    ])
-  ])
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -65100,6 +65203,14 @@ var staticRenderFns = [
         { staticClass: "btn btn-primary w-50", attrs: { type: "submit" } },
         [_vm._v("Send")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header bg-primary" }, [
+      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Members")])
     ])
   }
 ]
@@ -80876,6 +80987,7 @@ __webpack_require__.r(__webpack_exports__);
       trainer: '',
       trainers: {},
       errors: {},
+      members: {},
       sendAllowed: true,
       hasBeenSend: false,
       serverErr: false
@@ -81598,9 +81710,9 @@ Vue.component('review-user-button', _components_main_ReviewUserButton__WEBPACK_I
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /var/www/trainingmanager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/trainingmanager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /var/www/trainingmanager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

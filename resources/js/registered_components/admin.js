@@ -1,7 +1,7 @@
 import RolesCheckboxes from "../components/auth/admin/RolesCheckboxes";
 import RolePermissions from "../components/auth/admin/RolePermissions";
-import CreateEditForm from "../components/auth/teams/CreateEditForm";
-import WaitingCompetitorsList from "../components/auth/teams/WaitingCompetitorsList";
+import CreateEditTeam from "../components/auth/teams/CreateEditTeam";
+import TeamMemberCard from "../components/auth/teams/TeamMemberCard";
 import CreateEditSettlement from "../components/auth/admin/settlement/CreateEditSettlement";
 import CreateEditSport from "../components/auth/admin/sport/CreateEditSport";
 import SettlementsList from "../components/auth/admin/settlement/SettlemenstList";
@@ -11,8 +11,8 @@ import DistributeUsersList from "../components/auth/distribution/DistributeUsers
 
 Vue.component('roles-checkboxes', RolesCheckboxes);
 Vue.component('roles-permissions', RolePermissions);
-Vue.component('create-edit-form', CreateEditForm);
-Vue.component('waiting-competitors-list', WaitingCompetitorsList);
+Vue.component('create-edit-team', CreateEditTeam);
+Vue.component('team-member-card', TeamMemberCard);
 Vue.component('create-edit-settlement', CreateEditSettlement);
 Vue.component('create-edit-sport', CreateEditSport);
 Vue.component('settlements-list', SettlementsList);

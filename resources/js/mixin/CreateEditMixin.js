@@ -1,17 +1,14 @@
 import {minLength, required} from 'vuelidate/lib/validators';
-import WaitingCompetitorsList from '../components/auth/teams/WaitingCompetitorsList';
 
 export default {
-    components: {
-        WaitingCompetitorsList
-    },
     data() {
         return {
             name: '',
             trainer: '',
             trainers: {},
             errors: {},
-            members:{},
+            users: {},
+            members: [],
             sendAllowed: true,
             hasBeenSend: false,
             serverErr: false,
@@ -49,8 +46,18 @@ export default {
                 }
             });
         },
-        getCompetitors(e, trainer) {
-
+        getUsers(e, trainerId) {
+            axios.get('/admin/team/users/' + trainerId,)
+                 .then(response => {
+                     this.members = [];
+                     this.users   = response.data;
+                 }).catch(error => {
+                if (error.response.status === 422) {
+                    this.errors = error.response.data.errors || {};
+                } else {
+                    this.serverErr = true;
+                }
+            });
         },
         send() {
             this.hasBeenSend = true;
@@ -64,10 +71,10 @@ export default {
                 axios.post(this.route, {
                     'name': this.name,
                     'trainer_id': this.trainer,
-                })
-                     .then(response => {
-                         window.location = response.data.route;
-                     }).catch(error => {
+                    'members': this.members
+                }).then(response => {
+                    window.location = response.data.route;
+                }).catch(error => {
                     if (error.response.status === 422) {
                         this.sendAllowed = true;
                         this.errors      = error.response.data.errors || {};

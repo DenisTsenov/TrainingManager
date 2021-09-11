@@ -23,12 +23,10 @@ class ManageUserRoleController extends Controller
      */
     public function findUser(Request $request)
     {
-        $request->validate([
-            'term' => ['required', 'string',],
-        ]);
+        $request->validate(['term' => ['required', 'string',],]);
 
-        $users = User::selectRaw("id, CONCAT(first_name, ' ', last_name) as full_name, role_id")
-                     ->whereLike($request->input('term'))
+        $users = User::selectRaw("id, full_name, role_id")
+                     ->like($request->input('term'))
                      ->orderByRaw('first_name ASC, last_name ASC')
                      ->limit(5)
                      ->get();

@@ -127,7 +127,7 @@ class User extends Authenticatable
      * @param string $identifier
      * @return mixed
      */
-    public function scopeWhereLike($query, string $identifier)
+    public function scopeLike($query, string $identifier)
     {
         return $query->whereRaw("full_name LIKE ?", "$identifier%")
                      ->orWhereRaw("email LIKE ?", "$identifier%");
@@ -141,6 +141,19 @@ class User extends Authenticatable
     public function scopeTrainers($query)
     {
         return $query->where('role_id', Role::TRAINER)->orderBy('first_name');
+    }
+
+    public function scopeNotTrainers($query)
+    {
+        return $query->where(function ($query) {
+            $query->where('role_id', '<>', Role::TRAINER)
+                  ->orWhere('role_id', null);
+        })->orderBy('first_name');
+    }
+
+    public function scopeForDistribution($query)
+    {
+        return $query->doesntHave('membership')->notAdmin()->notTrainers();
     }
 
     public function scopeInactiveTrainers($query)

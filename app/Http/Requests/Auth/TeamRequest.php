@@ -30,6 +30,8 @@ class TeamRequest extends FormRequest
             "trainer_id" => ['required',
                              Rule::exists('users', 'id')->where(fn($query) => $query->where('role_id', Role::TRAINER)),
             ],
+            "members"    => ['array'],
+            "members.*"  => ['exists:users,id'],
         ];
     }
 

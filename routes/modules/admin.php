@@ -75,11 +75,15 @@ Route::post('/distribute-user/store', [TeamController::class, 'storeDistribution
      ->name('distribute.store')
      ->middleware('ajax');
 
-Route::get('/team/trainers', [AjaxController::class, 'getTrainers'])
+Route::get('/team/trainers', [AjaxController::class, 'trainers'])
      ->name('trainers')
      ->middleware('ajax');
 
-Route::get('/sports/get', [AjaxController::class, 'getSports'])
+Route::get('/team/users/{trainer}', [AjaxController::class, 'teamUsers'])
+     ->name('team.users')
+     ->middleware('ajax');
+
+Route::get('/sports/get', [AjaxController::class, 'sports'])
      ->name('sports')
      ->middleware('ajax');
 

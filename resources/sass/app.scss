@@ -12,3 +12,7 @@
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import '~vue-select/dist/vue-select.css';
+.scroll-h-400-px {
+    height:400px;
+    overflow-y: scroll;
+}

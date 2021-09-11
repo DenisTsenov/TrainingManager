@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <label :for="trainer">Trainer</label>
                             <select name="trainer_id" id="trainer" class="form-control"
-                                    @change='getCompetitors($event, trainer)'
+                                    @change='getUsers($event, trainer)'
                                     v-model="trainer">
                                 <option v-for="trainer in trainers" :key="trainer.id" :value="trainer.id">
                                     {{
@@ -49,24 +49,19 @@
                 <div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again later..</div>
             </div>
         </div>
-        <div class="row justify-content-center mt-3">
+        <div class="row justify-content-center mt-3 mb-3">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header bg-primary">
                         <p class="h3 text-center">Members</p>
                     </div>
-                    <div class="card-body">
-                        <div class="form-inline">
-                            <div v-for="(sport, id) in sports" :key="id">
-                                <div class="form-check ml-5">
-                                    <input type="checkbox"
-                                           class="form-check-input"
-                                           v-model="sport.checked"
-                                           :disabled="sport.deleted_at != null"
-                                           :id="sport.name">
-                                    <label class="form-check-label" :for="sport.name">{{ sport.name }}</label>
-                                </div>
-                            </div>
+                    <div class="card-body scroll-h-400-px">
+                        <div class="form-inline" v-if="users !== {}">
+                         <!-- от тук започва попълването на карти -->
+                        <team-member-card v-for="user in users" :members="members"
+                                          v-bind:key="user.id"
+                                          v-bind:user="user">
+                        </team-member-card>
                         </div>
                     </div>
                 </div>
@@ -77,10 +72,12 @@
 
 <script>
 import CreateEditMixin from "../../../mixin/CreateEditMixin";
+import TeamMemberCard from "./TeamMemberCard";
 
 export default {
     mixins: [CreateEditMixin],
-    name: 'CreateEditForm',
+    components:{TeamMemberCard},
+    name: 'CreateEditTeam',
     data() {
         return {}
     }

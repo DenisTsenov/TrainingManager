@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class AjaxController extends Controller
 {
-    public function getTrainers()
+    public function trainers(): string
     {
         return User::trainers()->with(['sport', 'settlement'])->get()->toJson();
     }
 
-    public function getSports(Request $request)
+    public function sports(Request $request): string
     {
         $request->validate(['settlement_id' => 'nullable', 'exists:users,id']);
 
@@ -35,5 +35,15 @@ class AjaxController extends Controller
         }
 
         return $sports->toJson();
+    }
+
+    public function teamUsers(User $trainer)
+    {
+        return User::with('sport', 'settlement')
+                   ->where('settlement_id', $trainer->settlement_id)
+                   ->where('sport_id', $trainer->sport_id)
+                   ->forDistribution()
+                   ->get()
+                   ->toJson();
     }
 }

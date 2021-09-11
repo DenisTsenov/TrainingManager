@@ -8,6 +8,7 @@ use App\Models\Admin\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
+use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
 {
@@ -40,12 +41,24 @@ class TeamController extends Controller
     {
         $trainer = User::find($request->input('trainer_id'));
 
-        Team::create([
-            'name'          => $request->input('name'),
-            'trainer_id'    => $request->input('trainer_id'),
-            'sport_id'      => $trainer->sport->id,
-            'settlement_id' => $trainer->settlement->id,
-        ]);
+        DB::transaction(function () use ($request) {
+            $trainer = User::find($request->input('trainer_id'));
+
+            $team = Team::create([
+                'name'          => $request->input('name'),
+                'trainer_id'    => $request->input('trainer_id'),
+                'sport_id'      => $trainer->sport->id,
+                'settlement_id' => $trainer->settlement->id,
+            ]);
+
+            $members = [];
+
+            foreach ($request->input('members') as $member) {
+                array_push($members, ['competitor_id' => $member]);
+            }
+
+            $team->members()->createMany($members);
+        }, 5);
 
         return response()->json(['route' => route('admin.team')]);
     }

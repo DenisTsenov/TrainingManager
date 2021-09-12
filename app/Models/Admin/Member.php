@@ -4,7 +4,6 @@ namespace App\Models\Admin;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
 class Member extends Model
 {

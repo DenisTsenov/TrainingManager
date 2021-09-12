@@ -39,8 +39,6 @@ class TeamController extends Controller
 
     public function store(TeamRequest $request)
     {
-        $trainer = User::find($request->input('trainer_id'));
-
         DB::transaction(function () use ($request) {
             $trainer = User::find($request->input('trainer_id'));
 
@@ -65,7 +63,7 @@ class TeamController extends Controller
 
     public function edit(Team $team)
     {
-        $team->load('trainer');
+        $team->load('trainer', 'members.competitors');
         $route = route('admin.team.update', compact('team'));
 
         return view('auth.team.create_edit', compact('team', 'route'));

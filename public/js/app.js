@@ -3117,7 +3117,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3162,11 +3161,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "team-user-card",
+  name: "team-member-card",
   data: function data() {
     return {};
   },
   props: {
+    title: {
+      required: false,
+      type: String
+    },
     user: {
       required: false,
       type: Object
@@ -3183,8 +3186,18 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.members.splice(this.members.indexOf(member), 1);
       }
+    }
+  },
+  computed: {
+    fullName: function fullName() {
+      var name = this.user.full_name;
 
-      console.log(this.members);
+      if (name.length > 20) {
+        this.title = name;
+        return name.substr(0, 20) + '...';
+      }
+
+      return name;
     }
   }
 });
@@ -65224,9 +65237,18 @@ var render = function() {
       staticStyle: { "max-width": "18rem" }
     },
     [
-      _c("div", { staticClass: "card-header" }, [
-        _vm._v("Name: " + _vm._s(_vm.user.full_name))
-      ]),
+      _c(
+        "div",
+        {
+          staticClass: "card-header",
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "top",
+            title: _vm.title
+          }
+        },
+        [_vm._v("Name: " + _vm._s(_vm.fullName))]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("h5", { staticClass: "card-title" }, [
@@ -81038,11 +81060,12 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    loadTrainers: function loadTrainers() {
+    getUsers: function getUsers(e, trainerId) {
       var _this = this;
 
-      axios.get('/admin/team/trainers').then(function (response) {
-        _this.trainers = response.data;
+      axios.get('/admin/team/users/' + trainerId).then(function (response) {
+        _this.members = [];
+        _this.users = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this.errors = error.response.data.errors || {};
@@ -81051,22 +81074,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    getUsers: function getUsers(e, trainerId) {
-      var _this2 = this;
-
-      axios.get('/admin/team/users/' + trainerId).then(function (response) {
-        _this2.members = [];
-        _this2.users = response.data;
-      })["catch"](function (error) {
-        if (error.response.status === 422) {
-          _this2.errors = error.response.data.errors || {};
-        } else {
-          _this2.serverErr = true;
-        }
-      });
-    },
     send: function send() {
-      var _this3 = this;
+      var _this2 = this;
 
       this.hasBeenSend = true;
       this.$v.$touch();
@@ -81083,19 +81092,34 @@ __webpack_require__.r(__webpack_exports__);
           window.location = response.data.route;
         })["catch"](function (error) {
           if (error.response.status === 422) {
-            _this3.sendAllowed = true;
-            _this3.errors = error.response.data.errors || {};
+            _this2.sendAllowed = true;
+            _this2.errors = error.response.data.errors || {};
           } else {
-            _this3.serverErr = true;
+            _this2.serverErr = true;
           }
         });
       }
+    },
+    loadTrainers: function loadTrainers() {
+      var _this3 = this;
+
+      axios.get('/admin/team/trainers').then(function (response) {
+        _this3.trainers = response.data;
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this3.errors = error.response.data.errors || {};
+        } else {
+          _this3.serverErr = true;
+        }
+      });
     }
   },
   created: function created() {
     this.loadTrainers();
 
     if (this.team != null) {
+      console.log(this.team.members.competitors);
+      this.users = this.team.members;
       this.name = this.team.name;
       this.trainer = this.team.trainer.id;
     }

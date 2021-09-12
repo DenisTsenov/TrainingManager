@@ -1,6 +1,6 @@
 <template>
     <div class="card text-dark bg-light mb-3 ml-3" style="max-width: 18rem;">
-        <div class="card-header">Name: {{ user.full_name }}</div>
+        <div class="card-header" data-toggle="tooltip" data-placement="top" :title="title">Name: {{ fullName }}</div>
         <div class="card-body">
             <h5 class="card-title">Sport: {{ user.sport.name }}</h5>
             <p class="card-text">Created at: {{ user.created_at }}</p>
@@ -19,11 +19,15 @@
 
 <script>
 export default {
-    name: "team-user-card",
+    name: "team-member-card",
     data() {
       return {}
     },
     props: {
+        title:{
+          required: false,
+          type: String,
+        },
         user: {
           required: false,
           type: Object,
@@ -39,8 +43,17 @@ export default {
             } else {
               this.members.splice(this.members.indexOf(member), 1);
             }
-            console.log(this.members)
         },
+    },
+    computed:{
+        fullName() {
+            let name = this.user.full_name;
+            if (name.length > 20) {
+                this.title = name;
+                return name.substr(0, 20) + '...';
+            }
+            return name;
+        }
     }
 }
 </script>

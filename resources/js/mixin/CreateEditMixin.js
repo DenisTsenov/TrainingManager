@@ -34,18 +34,6 @@ export default {
         trainer: {required}
     },
     methods: {
-        loadTrainers() {
-            axios.get('/admin/team/trainers')
-                 .then(response => {
-                     this.trainers = response.data;
-                 }).catch(error => {
-                if (error.response.status === 422) {
-                    this.errors = error.response.data.errors || {};
-                } else {
-                    this.serverErr = true;
-                }
-            });
-        },
         getUsers(e, trainerId) {
             axios.get('/admin/team/users/' + trainerId,)
                  .then(response => {
@@ -84,10 +72,24 @@ export default {
                 });
             }
         },
+        loadTrainers() {
+            axios.get('/admin/team/trainers')
+                 .then(response => {
+                     this.trainers = response.data;
+                 }).catch(error => {
+                if (error.response.status === 422) {
+                    this.errors = error.response.data.errors || {};
+                } else {
+                    this.serverErr = true;
+                }
+            });
+        },
     },
     created() {
         this.loadTrainers();
         if (this.team != null) {
+            console.log(this.team.members.competitors)
+            this.users   = this.team.members;
             this.name    = this.team.name;
             this.trainer = this.team.trainer.id;
         }

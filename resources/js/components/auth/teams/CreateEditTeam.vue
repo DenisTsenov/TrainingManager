@@ -57,7 +57,6 @@
                     </div>
                     <div class="card-body scroll-h-400-px">
                         <div class="form-inline" v-if="users !== {}">
-                         <!-- от тук започва попълването на карти -->
                         <team-member-card v-for="user in users" :members="members"
                                           v-bind:key="user.id"
                                           v-bind:user="user">

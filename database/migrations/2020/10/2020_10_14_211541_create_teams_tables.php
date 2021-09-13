@@ -23,14 +23,8 @@ class CreateTeamsTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('team_members', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('team_id')->constrained('teams');
-            $table->foreignId('competitor_id')->constrained('users');
-            $table->date('joined_at');
-            $table->date('left_at');
-
-            $table->unique(['team_id', 'competitor_id']);
+        Schema::table('users', function(Blueprint $table){
+            $table->foreign('team_id')->references('id')->on('teams');
         });
     }
 
@@ -41,7 +35,6 @@ class CreateTeamsTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('team_members');
         Schema::dropIfExists('teams');
     }
 }

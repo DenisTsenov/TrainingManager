@@ -7,7 +7,7 @@
     @admin
         <distribute-users-list><distribute-users-list>
     @else
-        @if(\Illuminate\Support\Facades\Auth::user()->doesntHave('membership')->get())
+        @if(\Illuminate\Support\Facades\Auth::user()->whereNull('team_id')->get())
             <div class="text-info text-center">You are still not distributed for a team</div>
         @endif
     @endadmin

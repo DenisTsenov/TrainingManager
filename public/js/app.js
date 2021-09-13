@@ -3115,8 +3115,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3160,6 +3158,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "team-member-card",
   data: function data() {
@@ -3170,9 +3172,13 @@ __webpack_require__.r(__webpack_exports__);
       required: false,
       type: String
     },
+    users: {
+      required: false,
+      type: Array | Object
+    },
     user: {
       required: false,
-      type: Object
+      type: Array | Object
     },
     members: {
       required: false,
@@ -3180,7 +3186,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    toggleMember: function toggleMember(member) {
+    toggle: function toggle(member) {
       if (!this.members.includes(member)) {
         this.members.push(member);
       } else {
@@ -3189,17 +3195,27 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
-    fullName: function fullName() {
-      var name = this.user.full_name;
-
-      if (name.length > 20) {
-        this.title = name;
-        return name.substr(0, 20) + '...';
-      }
-
-      return name;
+    // fullName() {
+    //     let name = this.user.full_name;
+    //     if (name.length > 15) {
+    //         this.title = name;
+    //         return name.substr(0, 15) + '...';
+    //     }
+    //     return name;
+    // },
+    // tooltipTitle() {
+    //     if (this.user.full_name.length > 15) {
+    //         return this.title = this.user.full_name;
+    //     }
+    //     return this.title = '';
+    // },
+    usersComputed: function usersComputed() {
+      return this.users;
     }
-  }
+  } // created(){
+  //     console.log(this.userss);
+  // }
+
 });
 
 /***/ }),
@@ -65171,12 +65187,11 @@ var render = function() {
                 ? _c(
                     "div",
                     { staticClass: "form-inline" },
-                    _vm._l(_vm.users, function(user) {
-                      return _c("team-member-card", {
-                        key: user.id,
-                        attrs: { members: _vm.members, user: user }
+                    [
+                      _c("team-member-card", {
+                        attrs: { members: _vm.members, users: _vm.users }
                       })
-                    }),
+                    ],
                     1
                   )
                 : _vm._e()
@@ -65232,62 +65247,67 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "card text-dark bg-light mb-3 ml-3",
-      staticStyle: { "max-width": "18rem" }
-    },
-    [
-      _c(
+    _vm._l(_vm.usersComputed, function(user) {
+      return _c(
         "div",
         {
-          staticClass: "card-header",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "top",
-            title: _vm.title
-          }
+          staticClass: "card text-dark bg-light mb-3 ml-3",
+          staticStyle: { "max-width": "18rem" }
         },
-        [_vm._v("Name: " + _vm._s(_vm.fullName))]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("h5", { staticClass: "card-title" }, [
-          _vm._v("Sport: " + _vm._s(_vm.user.sport.name))
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "card-text" }, [
-          _vm._v("Created at: " + _vm._s(_vm.user.created_at))
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "card-text" }, [
-          _vm._v("Settlement: " + _vm._s(_vm.user.settlement.name))
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row ml-1" }, [
-          _c("div", { staticClass: "custom-control custom-switch" }, [
-            _c("input", {
-              staticClass: "custom-control-input",
-              attrs: { type: "checkbox", id: _vm.user.id },
-              domProps: { value: _vm.user.id },
-              on: {
-                change: function($event) {
-                  return _vm.toggleMember(_vm.user.id)
-                }
+        [
+          _c(
+            "div",
+            {
+              staticClass: "card-header",
+              attrs: {
+                "data-toggle": "tooltip",
+                "data-placement": "top",
+                title: _vm.tooltipTitle
               }
-            }),
+            },
+            [_vm._v("Name: " + _vm._s(user.full_name) + "\n        ")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("h5", { staticClass: "card-title" }, [
+              _vm._v("Sport: " + _vm._s(user.sport.name))
+            ]),
             _vm._v(" "),
-            _c(
-              "label",
-              {
-                staticClass: "custom-control-label",
-                attrs: { for: _vm.user.id }
-              },
-              [_vm._v("In team")]
-            )
+            _c("p", { staticClass: "card-text" }, [
+              _vm._v("Created at: " + _vm._s(user.created_at))
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "card-text" }, [
+              _vm._v("Settlement: " + _vm._s(user.settlement.name))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row ml-1" }, [
+              _c("div", { staticClass: "custom-control custom-switch" }, [
+                _c("input", {
+                  staticClass: "custom-control-input",
+                  attrs: { type: "checkbox", id: user.id },
+                  on: {
+                    change: function($event) {
+                      return _vm.toggle(user.id)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "custom-control-label",
+                    attrs: { for: user.id }
+                  },
+                  [_vm._v("In team")]
+                )
+              ])
+            ])
           ])
-        ])
-      ])
-    ]
+        ]
+      )
+    }),
+    0
   )
 }
 var staticRenderFns = []
@@ -81118,10 +81138,9 @@ __webpack_require__.r(__webpack_exports__);
     this.loadTrainers();
 
     if (this.team != null) {
-      console.log(this.team.members.competitors);
-      this.users = this.team.members;
       this.name = this.team.name;
       this.trainer = this.team.trainer.id;
+      this.users = this.team.members;
     }
   }
 });
@@ -81768,9 +81787,9 @@ Vue.component('review-user-button', _components_main_ReviewUserButton__WEBPACK_I
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /var/www/trainingmanager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/trainingmanager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /var/www/trainingmanager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

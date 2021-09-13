@@ -7,8 +7,8 @@ use App\Http\Requests\Auth\TeamRequest;
 use App\Models\Admin\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
-use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 use Illuminate\Support\Facades\DB;
+use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
 class TeamController extends Controller
 {
@@ -49,13 +49,7 @@ class TeamController extends Controller
                 'settlement_id' => $trainer->settlement->id,
             ]);
 
-            $members = [];
-
-            foreach ($request->input('members') as $member) {
-                array_push($members, ['competitor_id' => $member]);
-            }
-
-            $team->members()->createMany($members);
+            DB::table('users')->whereIn('id', $request->input('members'))->update(['team_id' => $team->id,]);
         }, 5);
 
         return response()->json(['route' => route('admin.team')]);
@@ -63,7 +57,13 @@ class TeamController extends Controller
 
     public function edit(Team $team)
     {
-        $team->load('trainer', 'members.competitors');
+        $team->load([
+            'trainer',
+            'members:id,full_name,sport_id,settlement_id,team_id,created_at',
+            'members.sport',
+            'members.settlement',
+        ]);
+
         $route = route('admin.team.update', compact('team'));
 
         return view('auth.team.create_edit', compact('team', 'route'));

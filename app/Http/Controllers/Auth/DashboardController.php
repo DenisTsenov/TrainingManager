@@ -19,8 +19,8 @@ class DashboardController extends Controller
 
         $query = User::eloquentQuery($sortBy, $orderBy, $search, ['sport', 'settlement'])
                      ->notAdmin()
-                     ->whereNull('role_id')
-                     ->doesntHave('membership');
+                     ->whereNull('team_id')
+                     ->whereNull('role_id');
 
         $data = $query->paginate($length);
 

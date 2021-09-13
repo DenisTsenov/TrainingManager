@@ -57,9 +57,7 @@
                     </div>
                     <div class="card-body scroll-h-400-px">
                         <div class="form-inline" v-if="users !== {}">
-                        <team-member-card v-for="user in users" :members="members"
-                                          v-bind:key="user.id"
-                                          v-bind:user="user">
+                        <team-member-card  :members="members" :users="users">
                         </team-member-card>
                         </div>
                     </div>

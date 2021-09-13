@@ -93,6 +93,6 @@ class Team extends Model
 
     public function members()
     {
-        return $this->hasMany(Member::class);
+        return $this->hasMany(User::class);
     }
 }

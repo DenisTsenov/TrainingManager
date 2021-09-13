@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Admin\Member;
 use App\Models\Admin\Role;
 use App\Models\Admin\Team;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -107,11 +106,6 @@ class User extends Authenticatable
         return $this->hasOne(Team::class, 'trainer_id');
     }
 
-    public function membership()
-    {
-        return $this->belongsTo(Member::class, 'id', 'competitor_id');
-    }
-
     public function settlement()
     {
         return $this->belongsTo(Settlement::class)->withTrashed();
@@ -153,7 +147,7 @@ class User extends Authenticatable
 
     public function scopeForDistribution($query)
     {
-        return $query->doesntHave('membership')->notAdmin()->notTrainers();
+        return $query->whereNull('team_id')->notAdmin()->notTrainers();
     }
 
     public function scopeInactiveTrainers($query)

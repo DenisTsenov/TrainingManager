@@ -88,10 +88,9 @@ export default {
     created() {
         this.loadTrainers();
         if (this.team != null) {
-            console.log(this.team.members.competitors)
-            this.users   = this.team.members;
             this.name    = this.team.name;
             this.trainer = this.team.trainer.id;
+            this.users   = this.team.members;
         }
     },
 }

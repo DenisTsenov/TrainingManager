@@ -10,8 +10,26 @@ use Illuminate\Support\Facades\DB;
 
 class AjaxController extends Controller
 {
-    public function trainers(): string
+    public function trainers(Request $request): string
     {
+        $request->validate(['trainer_id' => 'nullable|exists:users,id',]);
+
+        if ($request->has('trainer_id')) {
+            $trainer = User::firstWhere('id', $request->trainer_id);
+
+            if ($trainer->exists) {
+                return User::query()
+                           ->trainers()
+                           ->where(function ($query) use ($trainer) {
+                               $query->where('sport_id', $trainer->sport_id)
+                                     ->where('settlement_id', $trainer->settlement_id);
+                           })
+                           ->with(['sport', 'settlement'])
+                           ->get()
+                           ->toJson();
+            }
+        }
+
         return User::trainers()->with(['sport', 'settlement'])->get()->toJson();
     }
 

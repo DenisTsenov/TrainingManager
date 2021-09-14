@@ -66,7 +66,7 @@ class TeamController extends Controller
 
         $route = route('admin.team.update', compact('team'));
 
-        return view('auth.team.create_edit', compact('team', 'route'));
+        return view('auth.team.create_edit', ['team' => $team, 'route' => $route, 'edit' => true]);
     }
 
     public function update(TeamRequest $request, Team $team)

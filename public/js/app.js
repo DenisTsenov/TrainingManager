@@ -65183,7 +65183,8 @@ var render = function() {
                         attrs: {
                           members: _vm.members,
                           users: _vm.users,
-                          team: _vm.team
+                          team: _vm.team,
+                          edit: _vm.edit
                         }
                       })
                     ],
@@ -81073,6 +81074,10 @@ __webpack_require__.r(__webpack_exports__);
     route: {
       required: true,
       type: String
+    },
+    edit: {
+      required: false,
+      type: Boolean | String
     }
   },
   validations: {
@@ -81088,6 +81093,7 @@ __webpack_require__.r(__webpack_exports__);
     getUsers: function getUsers(e, trainerId) {
       var _this = this;
 
+      if (this.edit) return;
       axios.get('/admin/team/users/' + trainerId).then(function (response) {
         _this.members = [];
         _this.users = response.data;
@@ -81128,7 +81134,17 @@ __webpack_require__.r(__webpack_exports__);
     loadTrainers: function loadTrainers() {
       var _this3 = this;
 
-      axios.get('/admin/team/trainers').then(function (response) {
+      var params = false;
+
+      if (this.edit && this.team.members.length > 0) {
+        params = {
+          trainer_id: this.team.trainer.id
+        };
+      }
+
+      axios.get('/admin/team/trainers', {
+        params: params
+      }).then(function (response) {
         _this3.trainers = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
@@ -81799,9 +81815,9 @@ Vue.component('review-user-button', _components_main_ReviewUserButton__WEBPACK_I
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/trainingmanager/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/trainingmanager/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/trainingmanager/resources/sass/custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

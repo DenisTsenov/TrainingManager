@@ -28,6 +28,10 @@ export default {
             required: true,
             type: String,
         },
+        edit: {
+            required: false,
+            type: Boolean|String
+        },
     },
     validations: {
         name: {required, minLength: minLength(2)},
@@ -35,6 +39,8 @@ export default {
     },
     methods: {
         getUsers(e, trainerId) {
+            if (this.edit) return;
+
             axios.get('/admin/team/users/' + trainerId,)
                  .then(response => {
                      this.members = [];
@@ -73,7 +79,12 @@ export default {
             }
         },
         loadTrainers() {
-            axios.get('/admin/team/trainers')
+            let params = false;
+
+            if (this.edit && this.team.members.length > 0) {
+                params = {trainer_id: this.team.trainer.id}
+            }
+            axios.get('/admin/team/trainers', {params})
                  .then(response => {
                      this.trainers = response.data;
                  }).catch(error => {

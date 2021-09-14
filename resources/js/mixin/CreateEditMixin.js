@@ -91,6 +91,12 @@ export default {
             this.name    = this.team.name;
             this.trainer = this.team.trainer.id;
             this.users   = this.team.members;
+
+            this.users.forEach((user) => {
+                if (user.team_id == this.team.id) {
+                    this.members.push(user.id);
+                }
+            })
         }
     },
 }

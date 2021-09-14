@@ -81140,12 +81140,19 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    var _this4 = this;
+
     this.loadTrainers();
 
     if (this.team != null) {
       this.name = this.team.name;
       this.trainer = this.team.trainer.id;
       this.users = this.team.members;
+      this.users.forEach(function (user) {
+        if (user.team_id == _this4.team.id) {
+          _this4.members.push(user.id);
+        }
+      });
     }
   }
 });

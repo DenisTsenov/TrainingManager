@@ -64,7 +64,7 @@ export default {
     computed: {
         computedUsers() {
             return this.users;
-        }
+        },
     },
 }
 </script>

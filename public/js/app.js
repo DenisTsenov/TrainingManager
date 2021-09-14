@@ -3161,7 +3161,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "team-member-card",
   data: function data() {
@@ -3176,13 +3175,14 @@ __webpack_require__.r(__webpack_exports__);
       required: false,
       type: Array | Object
     },
-    user: {
-      required: false,
-      type: Array | Object
-    },
     members: {
       required: false,
       type: Array
+    },
+    team: {
+      required: false,
+      type: Object,
+      "default": false
     }
   },
   methods: {
@@ -3192,30 +3192,21 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.members.splice(this.members.indexOf(member), 1);
       }
+
+      console.log(this.members);
+    },
+    userName: function userName(name) {
+      return name.length > 15 ? name.substr(0, 15) + '...' : name;
+    },
+    tooltipTitle: function tooltipTitle(name) {
+      return name.length > 15 ? name : '';
     }
   },
   computed: {
-    // fullName() {
-    //     let name = this.user.full_name;
-    //     if (name.length > 15) {
-    //         this.title = name;
-    //         return name.substr(0, 15) + '...';
-    //     }
-    //     return name;
-    // },
-    // tooltipTitle() {
-    //     if (this.user.full_name.length > 15) {
-    //         return this.title = this.user.full_name;
-    //     }
-    //     return this.title = '';
-    // },
-    usersComputed: function usersComputed() {
+    computedUsers: function computedUsers() {
       return this.users;
     }
-  } // created(){
-  //     console.log(this.userss);
-  // }
-
+  }
 });
 
 /***/ }),
@@ -65189,7 +65180,11 @@ var render = function() {
                     { staticClass: "form-inline" },
                     [
                       _c("team-member-card", {
-                        attrs: { members: _vm.members, users: _vm.users }
+                        attrs: {
+                          members: _vm.members,
+                          users: _vm.users,
+                          team: _vm.team
+                        }
                       })
                     ],
                     1
@@ -65247,7 +65242,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.usersComputed, function(user) {
+    { staticClass: "row" },
+    _vm._l(_vm.computedUsers, function(user) {
       return _c(
         "div",
         {
@@ -65262,10 +65258,16 @@ var render = function() {
               attrs: {
                 "data-toggle": "tooltip",
                 "data-placement": "top",
-                title: _vm.tooltipTitle
+                title: _vm.tooltipTitle(user.full_name)
               }
             },
-            [_vm._v("Name: " + _vm._s(user.full_name) + "\n        ")]
+            [
+              _vm._v(
+                "\n            Name: " +
+                  _vm._s(_vm.userName(user.full_name)) +
+                  "\n        "
+              )
+            ]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
@@ -65286,6 +65288,9 @@ var render = function() {
                 _c("input", {
                   staticClass: "custom-control-input",
                   attrs: { type: "checkbox", id: user.id },
+                  domProps: {
+                    checked: _vm.team !== null && _vm.team.id === user.team_id
+                  },
                   on: {
                     change: function($event) {
                       return _vm.toggle(user.id)

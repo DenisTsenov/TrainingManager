@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Sport;
+use App\Models\Admin\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,8 @@ class AjaxController extends Controller
     public function trainers(Request $request): string
     {
         $request->validate(['trainer_id' => 'nullable|exists:users,id',]);
+
+        $teamsIds = Team::pluck('trainer_id'); // do tuk
 
         if ($request->has('trainer_id')) {
             $trainer = User::firstWhere('id', $request->trainer_id);

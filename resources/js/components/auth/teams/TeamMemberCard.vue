@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="card text-dark bg-light mb-3 ml-3" style="max-width: 18rem;" v-for="user in computedUsers">
+        <div class="card text-dark bg-light mb-3 ml-5" style="max-width: 18rem;" v-for="user in computedUsers">
             <div class="card-header" data-toggle="tooltip" data-placement="top" :title="tooltipTitle(user.full_name)">
                 Name: {{ userName(user.full_name) }}
             </div>
@@ -52,7 +52,6 @@ export default {
             } else {
                 this.members.splice(this.members.indexOf(member), 1);
             }
-            console.log(this.members)
         },
         userName(name) {
             return name.length > 15 ? name.substr(0, 15) + '...' : name;

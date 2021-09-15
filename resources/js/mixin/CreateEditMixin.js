@@ -30,7 +30,7 @@ export default {
         },
         edit: {
             required: false,
-            type: Boolean|String
+            type: Boolean | String
         },
     },
     validations: {
@@ -66,9 +66,10 @@ export default {
                     'name': this.name,
                     'trainer_id': this.trainer,
                     'members': this.members
-                }).then(response => {
-                    window.location = response.data.route;
-                }).catch(error => {
+                })
+                     .then(response => {
+                         window.location = response.data.route;
+                     }).catch(error => {
                     if (error.response.status === 422) {
                         this.sendAllowed = true;
                         this.errors      = error.response.data.errors || {};

@@ -44,6 +44,15 @@
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary w-50">Send</button>
                         </div>
+
+                        <div class="form-group text-center" v-if="actionType == 'Create'">
+                            <span class="d-inline-block text-danger" tabindex="0" data-toggle="tooltip"
+                                  title="Please, pay attention to trainer's settlement and sport. Once trainer is selected, you will be able to see trainers and members/users only for this settlement and sport.">
+                                <span>
+                                  <i class="fas fa-exclamation-circle fa-lg"></i>
+                                </span>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again later..</div>
@@ -53,12 +62,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header bg-primary">
-                        <p class="h3 text-center">Members</p>
+                        <p class="h3 text-center">Members/Users</p>
                     </div>
                     <div class="card-body scroll-h-400-px">
                         <div class="form-inline" v-if="users !== {}">
-                        <team-member-card :members="members" :users="users" :team="team" :edit="edit">
-                        </team-member-card>
+                            <team-member-card :members="members" :users="users" :team="team" :edit="edit">
+                            </team-member-card>
                         </div>
                     </div>
                 </div>
@@ -73,7 +82,7 @@ import TeamMemberCard from "./TeamMemberCard";
 
 export default {
     mixins: [CreateEditMixin],
-    components:{TeamMemberCard},
+    components: {TeamMemberCard},
     name: 'CreateEditTeam',
     data() {
         return {}

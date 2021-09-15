@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Models\Admin\Role;
+use App\Models\Admin\Settlement;
+use App\Models\Admin\Sport;
 use App\Models\Admin\Team;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
-use App\Models\Admin\Sport;
-use App\Models\Admin\Settlement;
 
 class User extends Authenticatable
 {
@@ -142,7 +142,7 @@ class User extends Authenticatable
         return $query->where(function ($query) {
             $query->where('role_id', '<>', Role::TRAINER)
                   ->orWhere('role_id', null);
-        })->orderBy('first_name');
+        });
     }
 
     public function scopeForDistribution($query)
@@ -163,8 +163,21 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($value);
     }
 
+    public static function createOrUpdateMembership(array $members, int $teamId): void
+    {
+        $excludeFromTeam = collect(self::where('team_id', $teamId)->pluck('id'))->diff($members);
+
+        if (count($members)) {
+            self::whereIn('id', $members)->update(['team_id' => $teamId]);
+        }
+
+        if ($excludeFromTeam->count()) {
+            self::whereIn('id', $excludeFromTeam)->update(['team_id' => null]);
+        }
+    }
+
     /**
-     * Route notifications for the Mobica channel.
+     * Route notifications for the Mail channel.
      *
      * @param \Illuminate\Notifications\Notification $notification
      * @return string|null

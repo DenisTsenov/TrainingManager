@@ -3115,6 +3115,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3192,8 +3201,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.members.splice(this.members.indexOf(member), 1);
       }
-
-      console.log(this.members);
     },
     userName: function userName(name) {
       return name.length > 15 ? name.substr(0, 15) + '...' : name;
@@ -65156,7 +65163,13 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _vm._m(0)
+              _vm._m(0),
+              _vm._v(" "),
+              _vm.actionType == "Create"
+                ? _c("div", { staticClass: "form-group text-center" }, [
+                    _vm._m(1)
+                  ])
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
@@ -65171,7 +65184,7 @@ var render = function() {
       _c("div", { staticClass: "row justify-content-center mt-3 mb-3" }, [
         _c("div", { staticClass: "col-12" }, [
           _c("div", { staticClass: "card" }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "card-body scroll-h-400-px" }, [
               _vm.users !== {}
@@ -65215,8 +65228,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass: "d-inline-block text-danger",
+        attrs: {
+          tabindex: "0",
+          "data-toggle": "tooltip",
+          title:
+            "Please, pay attention to trainer's settlement and sport. Once trainer is selected, you will be able to see trainers and members/users only for this settlement and sport."
+        }
+      },
+      [
+        _c("span", [
+          _c("i", { staticClass: "fas fa-exclamation-circle fa-lg" })
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-primary" }, [
-      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Members")])
+      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Members/Users")])
     ])
   }
 ]
@@ -65248,7 +65283,7 @@ var render = function() {
       return _c(
         "div",
         {
-          staticClass: "card text-dark bg-light mb-3 ml-3",
+          staticClass: "card text-dark bg-light mb-3 ml-5",
           staticStyle: { "max-width": "18rem" }
         },
         [
@@ -81815,9 +81850,9 @@ Vue.component('review-user-button', _components_main_ReviewUserButton__WEBPACK_I
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /var/www/trainingmanager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/trainingmanager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /var/www/trainingmanager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

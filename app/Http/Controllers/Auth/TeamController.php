@@ -49,7 +49,7 @@ class TeamController extends Controller
                 'settlement_id' => $trainer->settlement->id,
             ]);
 
-            DB::table('users')->whereIn('id', $request->input('members'))->update(['team_id' => $team->id,]);
+            User::createOrUpdateMembership($request->input('members'), $team->id);
         }, 5);
 
         return response()->json(['route' => route('admin.team')]);
@@ -57,12 +57,23 @@ class TeamController extends Controller
 
     public function edit(Team $team)
     {
-        $team->load([
-            'trainer',
-            'members:id,full_name,sport_id,settlement_id,team_id,created_at',
-            'members.sport',
-            'members.settlement',
-        ]);
+        $team->load(['trainer']);
+
+        $membersAndUsers = User::selectRaw('id,full_name,sport_id,settlement_id,team_id,created_at')
+                               ->where(function ($query) use ($team) {
+                                   $query->where('team_id', $team->id)
+                                         ->orWhere(function ($query) use ($team) {
+                                             $query->whereNull('team_id')
+                                                   ->where('sport_id', $team->sport_id)
+                                                   ->where('settlement_id', $team->settlement_id);
+                                         })
+                                         ->notAdmin()
+                                         ->notTrainers();
+                               })
+                               ->with(['sport', 'settlement'])
+                               ->get();
+
+        $team->members = $membersAndUsers;
 
         $route = route('admin.team.update', compact('team'));
 
@@ -71,14 +82,18 @@ class TeamController extends Controller
 
     public function update(TeamRequest $request, Team $team)
     {
-        $trainer = User::find('id', $request->input('trainer_id'));
+        DB::transaction(function () use ($request, $team) {
+            $trainer = User::find($request->input('trainer_id'));
 
-        $team->update([
-            'name'          => $request->input('name'),
-            'trainer_id'    => $request->input('trainer_id'),
-            'sport_id'      => $trainer->sport->id,
-            'settlement_id' => $trainer->settlement->id,
-        ]);
+            $team->update([
+                'name'          => $request->input('name'),
+                'trainer_id'    => $request->input('trainer_id'),
+                'sport_id'      => $trainer->sport->id,
+                'settlement_id' => $trainer->settlement->id,
+            ]);
+
+            User::createOrUpdateMembership($request->input('members'), $team->id);
+        }, 5);
 
         return response()->json(['route' => route('admin.team')]);
     }

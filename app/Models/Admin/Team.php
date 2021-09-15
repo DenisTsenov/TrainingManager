@@ -2,8 +2,6 @@
 
 namespace App\Models\Admin;
 
-use App\Models\Admin\Settlement;
-use App\Models\AdminSport;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;

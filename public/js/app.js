@@ -3170,6 +3170,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "team-member-card",
   data: function data() {
@@ -3192,6 +3197,11 @@ __webpack_require__.r(__webpack_exports__);
       required: false,
       type: Object,
       "default": false
+    },
+    distribution: {
+      required: false,
+      type: Boolean,
+      "default": true
     }
   },
   methods: {
@@ -3212,6 +3222,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     computedUsers: function computedUsers() {
       return this.users;
+    },
+    computedDistribution: function computedDistribution() {
+      return this.distribution;
     }
   }
 });
@@ -3228,7 +3241,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../buttons/EditButton */ "./resources/js/components/auth/buttons/EditButton.vue");
-//
 //
 //
 //
@@ -3292,9 +3304,6 @@ __webpack_require__.r(__webpack_exports__);
     editTeam: function editTeam(data) {
       window.location = 'team/edit/' + data.id;
     }
-  },
-  props: {
-    route: ''
   }
 });
 
@@ -65197,7 +65206,7 @@ var render = function() {
                           members: _vm.members,
                           users: _vm.users,
                           team: _vm.team,
-                          edit: _vm.edit
+                          distribution: _vm.distribution
                         }
                       })
                     ],
@@ -65276,80 +65285,96 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "row" },
-    _vm._l(_vm.computedUsers, function(user) {
-      return _c(
+  return _vm.computedDistribution
+    ? _c(
         "div",
-        {
-          staticClass: "card text-dark bg-light mb-3 ml-5",
-          staticStyle: { "max-width": "18rem" }
-        },
-        [
-          _c(
+        { staticClass: "row" },
+        _vm._l(_vm.computedUsers, function(user) {
+          return _c(
             "div",
             {
-              staticClass: "card-header",
-              attrs: {
-                "data-toggle": "tooltip",
-                "data-placement": "top",
-                title: _vm.tooltipTitle(user.full_name)
-              }
+              staticClass: "card text-dark bg-light mb-3 ml-5",
+              staticStyle: { "max-width": "18rem" }
             },
             [
-              _vm._v(
-                "\n            Name: " +
-                  _vm._s(_vm.userName(user.full_name)) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("h5", { staticClass: "card-title" }, [
-              _vm._v("Sport: " + _vm._s(user.sport.name))
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _vm._v("Created at: " + _vm._s(user.created_at))
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _vm._v("Settlement: " + _vm._s(user.settlement.name))
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row ml-1" }, [
-              _c("div", { staticClass: "custom-control custom-switch" }, [
-                _c("input", {
-                  staticClass: "custom-control-input",
-                  attrs: { type: "checkbox", id: user.id },
-                  domProps: {
-                    checked: _vm.team !== null && _vm.team.id === user.team_id
-                  },
-                  on: {
-                    change: function($event) {
-                      return _vm.toggle(user.id)
-                    }
+              _c(
+                "div",
+                {
+                  staticClass: "card-header",
+                  attrs: {
+                    "data-toggle": "tooltip",
+                    "data-placement": "top",
+                    title: _vm.tooltipTitle(user.full_name)
                   }
-                }),
+                },
+                [
+                  _vm._v(
+                    "\n              Name: " +
+                      _vm._s(_vm.userName(user.full_name)) +
+                      "\n          "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("h5", { staticClass: "card-title" }, [
+                  _vm._v("Sport: " + _vm._s(user.sport.name))
+                ]),
                 _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "custom-control-label",
-                    attrs: { for: user.id }
-                  },
-                  [_vm._v("In team")]
-                )
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v("Created at: " + _vm._s(user.created_at))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v("Settlement: " + _vm._s(user.settlement.name))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row ml-1" }, [
+                  _c("div", { staticClass: "custom-control custom-switch" }, [
+                    _c("input", {
+                      staticClass: "custom-control-input",
+                      attrs: { type: "checkbox", id: user.id },
+                      domProps: {
+                        checked:
+                          _vm.team !== null && _vm.team.id === user.team_id
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.toggle(user.id)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-control-label",
+                        attrs: { for: user.id }
+                      },
+                      [_vm._v("In team")]
+                    )
+                  ])
+                ])
               ])
-            ])
-          ])
-        ]
+            ]
+          )
+        }),
+        0
       )
-    }),
-    0
-  )
+    : _c("div", [
+        _c(
+          "div",
+          {
+            staticClass: "alert alert-primary text-center",
+            attrs: { role: "alert" }
+          },
+          [
+            _vm._v(
+              "\n      There are no users waiting for distribution or without team.\n    "
+            )
+          ]
+        )
+      ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -65376,15 +65401,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-success btn-xl mb-3 text-white",
-          attrs: { href: _vm.route }
-        },
-        [_vm._v("New team")]
-      ),
-      _vm._v(" "),
       _c("data-table", {
         attrs: {
           columns: _vm.columns,
@@ -81113,6 +81129,11 @@ __webpack_require__.r(__webpack_exports__);
     edit: {
       required: false,
       type: Boolean | String
+    },
+    distribution: {
+      required: false,
+      type: Boolean,
+      "default": true
     }
   },
   validations: {
@@ -81131,6 +81152,11 @@ __webpack_require__.r(__webpack_exports__);
       if (this.edit) return;
       axios.get('/admin/team/users/' + trainerId).then(function (response) {
         _this.members = [];
+
+        if (response.data.length == 0) {
+          _this.distribution = false;
+        }
+
         _this.users = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
@@ -81850,9 +81876,9 @@ Vue.component('review-user-button', _components_main_ReviewUserButton__WEBPACK_I
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/trainingmanager/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/trainingmanager/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/trainingmanager/resources/sass/custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

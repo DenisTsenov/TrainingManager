@@ -32,6 +32,11 @@ export default {
             required: false,
             type: Boolean | String
         },
+        distribution: {
+            required: false,
+            type: Boolean,
+            default: true,
+        },
     },
     validations: {
         name: {required, minLength: minLength(2)},
@@ -44,7 +49,11 @@ export default {
             axios.get('/admin/team/users/' + trainerId,)
                  .then(response => {
                      this.members = [];
-                     this.users   = response.data;
+
+                     if (response.data.length == 0) {
+                         this.distribution = false;
+                     }
+                     this.users = response.data;
                  }).catch(error => {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors || {};

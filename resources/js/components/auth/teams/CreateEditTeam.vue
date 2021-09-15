@@ -66,7 +66,7 @@
                     </div>
                     <div class="card-body scroll-h-400-px">
                         <div class="form-inline" v-if="users !== {}">
-                            <team-member-card :members="members" :users="users" :team="team" :edit="edit">
+                            <team-member-card :members="members" :users="users" :team="team" :distribution="distribution">
                             </team-member-card>
                         </div>
                     </div>

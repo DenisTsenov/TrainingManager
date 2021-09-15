@@ -52,7 +52,8 @@ Route::get('/team/list', [TeamController::class, 'list'])
      ->name('teams.list');
 
 Route::get('/team/create', [TeamController::class, 'create'])
-     ->name('team.create');
+     ->name('team.create')
+     ->middleware('can:create,' . App\Models\Admin\Team::class);
 
 Route::post('/team/store', [TeamController::class, 'store'])
      ->name('team.store')

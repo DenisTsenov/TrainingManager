@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row" v-if="computedDistribution">
         <div class="card text-dark bg-light mb-3 ml-5" style="max-width: 18rem;" v-for="user in computedUsers">
             <div class="card-header" data-toggle="tooltip" data-placement="top" :title="tooltipTitle(user.full_name)">
                 Name: {{ userName(user.full_name) }}
@@ -18,6 +18,11 @@
             </div>
         </div>
     </div>
+  <div v-else>
+      <div class="alert alert-primary text-center" role="alert">
+        There are no users waiting for distribution or without team.
+      </div>
+  </div>
 </template>
 
 <script>
@@ -43,7 +48,12 @@ export default {
             required: false,
             type: Object,
             default: false,
-        }
+        },
+        distribution: {
+            required: false,
+            type: Boolean,
+            default: true
+        },
     },
     methods: {
         toggle(member) {
@@ -64,6 +74,9 @@ export default {
         computedUsers() {
             return this.users;
         },
+      computedDistribution(){
+          return this.distribution;
+      }
     },
 }
 </script>

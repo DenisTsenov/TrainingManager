@@ -15,16 +15,20 @@ class AjaxController extends Controller
     {
         $request->validate(['trainer_id' => 'nullable|exists:users,id',]);
 
-        $teamsIds = Team::pluck('trainer_id'); // do tuk
-
         if ($request->has('trainer_id')) {
-            $trainer = User::firstWhere('id', $request->trainer_id);
+            $trainer       = User::firstWhere('id', $request->trainer_id);
+            $takenTrainers = Team::where('trainer_id', '<>', $trainer->id)
+                                 ->where('sport_id', $trainer->sport_id)
+                                 ->where('settlement_id', $trainer->settlement_id)
+                                 ->distinct('trainer_id')
+                                 ->pluck('trainer_id');
 
             if ($trainer->exists) {
                 return User::query()
                            ->trainers()
-                           ->where(function ($query) use ($trainer) {
-                               $query->where('sport_id', $trainer->sport_id)
+                           ->where(function ($query) use ($trainer, $takenTrainers) {
+                               $query->whereNotIn('id', $takenTrainers)
+                                     ->where('sport_id', $trainer->sport_id)
                                      ->where('settlement_id', $trainer->settlement_id);
                            })
                            ->with(['sport', 'settlement'])
@@ -33,7 +37,13 @@ class AjaxController extends Controller
             }
         }
 
-        return User::trainers()->with(['sport', 'settlement'])->get()->toJson();
+        $trainersIds = Team::distinct('trainer_id')->pluck('trainer_id');
+
+        return User::trainers()
+                   ->whereNotIn('id', $trainersIds)
+                   ->with(['sport', 'settlement'])
+                   ->get()
+                   ->toJson();
     }
 
     public function sports(Request $request): string

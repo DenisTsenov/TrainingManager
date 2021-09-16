@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Admin\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ManageUserRoleController extends Controller
 {
@@ -23,12 +23,10 @@ class ManageUserRoleController extends Controller
      */
     public function findUser(Request $request)
     {
-        $request->validate([
-            'term' => ['required', 'string',],
-        ]);
+        $request->validate(['term' => ['required', 'string',],]);
 
-        $users = User::selectRaw("id, CONCAT(first_name, ' ', last_name) as full_name, role_id")
-                     ->whereLike($request->input('term'))
+        $users = User::selectRaw("id, full_name, role_id")
+                     ->like($request->input('term'))
                      ->orderByRaw('first_name ASC, last_name ASC')
                      ->limit(5)
                      ->get();
@@ -43,9 +41,7 @@ class ManageUserRoleController extends Controller
      */
     public function changeRole(User $user, Request $request)
     {
-        $request->validate([
-            'role' => ['required', 'integer', 'exists:roles,id'],
-        ]);
+        $request->validate(['role' => ['required', 'integer', 'exists:roles,id']]);
 
         $role     = $request->input('role');
         $response = 'new role';

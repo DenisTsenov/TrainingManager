@@ -32,13 +32,14 @@ class SettlementController extends Controller
     public function list(Request $request)
     {
         $length  = $request->input('length');
-        $sortBy  = $request->input('column');
-        $orderBy = $request->input('dir', 'desc');
+        $orderBy = $request->input('column');
+        $dir     = $request->input('dir', 'desc');
         $search  = $request->input('search');
 
-        $query = Settlement::eloquentQuery($sortBy, $orderBy, $search, ['createdBy'])
-                           ->withCount(['sports' => fn($query) => $query->withTrashed()]);
-        
+        $query = Settlement::eloquentQuery($orderBy, $dir, $search, ['createdBy'])
+                           ->withCount(['sports' => fn($query) => $query->withTrashed()])
+                           ->when($orderBy == 'sports_count', fn($query) => $query->reorder($orderBy, $dir));
+
         $data = $query->paginate($length);
 
         return new DataTableCollectionResource($data);

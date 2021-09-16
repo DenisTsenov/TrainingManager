@@ -1,16 +1,14 @@
 import {minLength, required} from 'vuelidate/lib/validators';
-import WaitingCompetitorsList from '../components/auth/teams/WaitingCompetitorsList';
 
 export default {
-    components: {
-        WaitingCompetitorsList
-    },
     data() {
         return {
             name: '',
             trainer: '',
             trainers: {},
             errors: {},
+            users: {},
+            members: [],
             sendAllowed: true,
             hasBeenSend: false,
             serverErr: false,
@@ -30,16 +28,32 @@ export default {
             required: true,
             type: String,
         },
+        edit: {
+            required: false,
+            type: Boolean | String
+        },
+        distribution: {
+            required: false,
+            type: Boolean,
+            default: true,
+        },
     },
     validations: {
         name: {required, minLength: minLength(2)},
         trainer: {required}
     },
     methods: {
-        loadTrainers() {
-            axios.get('/admin/team/trainers')
+        getUsers(e, trainerId) {
+            if (this.edit) return;
+
+            axios.get('/admin/team/users/' + trainerId,)
                  .then(response => {
-                     this.trainers = response.data;
+                     this.members = [];
+
+                     if (response.data.length == 0) {
+                         this.distribution = false;
+                     }
+                     this.users = response.data;
                  }).catch(error => {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors || {};
@@ -47,9 +61,6 @@ export default {
                     this.serverErr = true;
                 }
             });
-        },
-        getCompetitors(e, trainer) {
-
         },
         send() {
             this.hasBeenSend = true;
@@ -63,6 +74,7 @@ export default {
                 axios.post(this.route, {
                     'name': this.name,
                     'trainer_id': this.trainer,
+                    'members': this.members
                 })
                      .then(response => {
                          window.location = response.data.route;
@@ -76,12 +88,36 @@ export default {
                 });
             }
         },
+        loadTrainers() {
+            let params = false;
+
+            if (this.edit && this.team.members.length > 0) {
+                params = {trainer_id: this.team.trainer.id}
+            }
+            axios.get('/admin/team/trainers', {params})
+                 .then(response => {
+                     this.trainers = response.data;
+                 }).catch(error => {
+                if (error.response.status === 422) {
+                    this.errors = error.response.data.errors || {};
+                } else {
+                    this.serverErr = true;
+                }
+            });
+        },
     },
     created() {
         this.loadTrainers();
         if (this.team != null) {
             this.name    = this.team.name;
             this.trainer = this.team.trainer.id;
+            this.users   = this.team.members;
+
+            this.users.forEach((user) => {
+                if (user.team_id == this.team.id) {
+                    this.members.push(user.id);
+                }
+            })
         }
     },
 }

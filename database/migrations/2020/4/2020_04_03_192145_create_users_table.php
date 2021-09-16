@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('sport_id')->constrained();
             $table->foreignId('settlement_id')->constrained();
             $table->unsignedBigInteger('role_id')->nullable();
+            $table->unsignedBigInteger('team_id')->nullable();
             $table->string('full_name')->virtualAs("CONCAT_WS(' ', first_name, last_name)");
             $table->timestamps();
             $table->softDeletes();

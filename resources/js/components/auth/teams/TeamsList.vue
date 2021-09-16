@@ -1,6 +1,5 @@
 <template>
     <div>
-        <a class="btn btn-success btn-xl mb-3 text-white" :href="route">New team</a>
         <data-table
             :columns="columns"
             url="http://trainingmanager.test/admin/team/list">
@@ -73,9 +72,6 @@ export default {
             window.location = 'team/edit/' + data.id
         },
     },
-    props:{
-        route: ''
-    }
 }
 </script>
 

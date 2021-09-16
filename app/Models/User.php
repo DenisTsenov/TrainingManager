@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use App\Models\Admin\Member;
 use App\Models\Admin\Role;
+use App\Models\Admin\Settlement;
+use App\Models\Admin\Sport;
 use App\Models\Admin\Team;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
-use App\Models\Admin\Sport;
-use App\Models\Admin\Settlement;
 
 class User extends Authenticatable
 {
@@ -27,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'role_id', 'settlement_id', 'sport_id',
+        'first_name', 'last_name', 'email', 'password', 'role_id', 'settlement_id', 'sport_id', 'team_id'
     ];
 
     /**
@@ -104,12 +103,7 @@ class User extends Authenticatable
 
     public function team()
     {
-        return $this->hasOne(Team::class, 'trainer_id');
-    }
-
-    public function membership()
-    {
-        return $this->belongsTo(Member::class, 'id', 'competitor_id');
+        return $this->belongsTo(Team::class, 'team_id');
     }
 
     public function settlement()
@@ -127,7 +121,7 @@ class User extends Authenticatable
      * @param string $identifier
      * @return mixed
      */
-    public function scopeWhereLike($query, string $identifier)
+    public function scopeLike($query, string $identifier)
     {
         return $query->whereRaw("full_name LIKE ?", "$identifier%")
                      ->orWhereRaw("email LIKE ?", "$identifier%");
@@ -143,6 +137,19 @@ class User extends Authenticatable
         return $query->where('role_id', Role::TRAINER)->orderBy('first_name');
     }
 
+    public function scopeNotTrainers($query)
+    {
+        return $query->where(function ($query) {
+            $query->where('role_id', '<>', Role::TRAINER)
+                  ->orWhere('role_id', null);
+        });
+    }
+
+    public function scopeForDistribution($query)
+    {
+        return $query->whereNull('team_id')->notAdmin()->notTrainers();
+    }
+
     public function scopeInactiveTrainers($query)
     {
         return $query->trainers()->whereNotNull('deleted_at');
@@ -156,8 +163,21 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($value);
     }
 
+    public static function createOrUpdateMembership(array $members, int $teamId): void
+    {
+        $excludeFromTeam = collect(self::where('team_id', $teamId)->pluck('id'))->diff($members);
+
+        if (count($members)) {
+            self::whereIn('id', $members)->update(['team_id' => $teamId]);
+        }
+
+        if ($excludeFromTeam->count()) {
+            self::whereIn('id', $excludeFromTeam)->notTrainers()->update(['team_id' => null]);
+        }
+    }
+
     /**
-     * Route notifications for the Mobica channel.
+     * Route notifications for the Mail channel.
      *
      * @param \Illuminate\Notifications\Notification $notification
      * @return string|null

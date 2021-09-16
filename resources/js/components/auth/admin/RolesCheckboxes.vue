@@ -24,7 +24,7 @@
         name: "RolesCheckboxes",
         data() {
             return {
-                name: 'role',
+              name: 'role',
               loading: false,
             }
         },

@@ -21,12 +21,13 @@ class SportController extends Controller
     public function list(Request $request)
     {
         $length  = $request->input('length');
-        $sortBy  = $request->input('column');
-        $orderBy = $request->input('dir', 'asc');
+        $orderBy = $request->input('column');
+        $dir     = $request->input('dir', 'desc');
         $search  = $request->input('search');
 
-        $query = Sport::eloquentQuery($sortBy, $orderBy, $search, ['createdBy'])
-                      ->withCount('settlements')
+        $query = Sport::eloquentQuery($orderBy, $dir, $search, ['createdBy'])
+                      ->withCount(['settlements' => fn($query) => $query->withTrashed()])
+                      ->when($orderBy == 'settlements_count', fn($query) => $query->reorder($orderBy, $dir))
                       ->withTrashed();
 
         $data = $query->paginate($length);

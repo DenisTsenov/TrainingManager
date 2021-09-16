@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Create team')
 @section('content')
-    <create-edit-form :team='@json($team ?? null)'
+    <create-edit-team :team='@json($team ?? null)'
                       action-type="{{ isset($team) ? 'Edit' : 'Create' }}"
+                      edit="{{ $edit ?? false }}"
                       route="{{ $route }}">
-    </create-edit-form>
+    </create-edit-team>
 @endsection

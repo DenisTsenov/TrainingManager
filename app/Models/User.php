@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'role_id', 'settlement_id', 'sport_id',
+        'first_name', 'last_name', 'email', 'password', 'role_id', 'settlement_id', 'sport_id', 'team_id'
     ];
 
     /**
@@ -103,7 +103,7 @@ class User extends Authenticatable
 
     public function team()
     {
-        return $this->hasOne(Team::class, 'trainer_id');
+        return $this->belongsTo(Team::class, 'team_id');
     }
 
     public function settlement()
@@ -172,7 +172,7 @@ class User extends Authenticatable
         }
 
         if ($excludeFromTeam->count()) {
-            self::whereIn('id', $excludeFromTeam)->update(['team_id' => null]);
+            self::whereIn('id', $excludeFromTeam)->notTrainers()->update(['team_id' => null]);
         }
     }
 

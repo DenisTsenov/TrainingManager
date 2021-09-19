@@ -27,9 +27,12 @@ class TeamRequest extends FormRequest
     public function rules()
     {
         return [
-            "name"       => ['required', 'min:2', 'max:250'],
-            "trainer_id" => ['required',
+            "name"       => ['bail', 'required', 'min:2', 'max:250'],
+            "trainer_id" => ['bail', 'required',
                              Rule::exists('users', 'id')->where(fn($query) => $query->where('role_id', Role::TRAINER)),
+            ],
+            'team_id'    => [
+                'bail', 'nullable', Rule::when(fn($input) => $input->team_id > 0, ['required', 'exists:teams,id']),
             ],
             "members"    => ['nullable', 'array'],
             "members.*"  => ['nullable', 'exists:users,id'],
@@ -41,14 +44,15 @@ class TeamRequest extends FormRequest
         if (!$validator->errors()->count() && !empty($this->input('members'))) {
             $validator->after(function ($validator) {
 
-                $trainer = User::find($this->trainer_id);
+                $teamId  = $this->input('team_id');
                 $members = User::with('team')->notTrainers()->whereIn('id', $this->input('members'))->get();
 
                 foreach ($members as $member) {
                     $memberTeamId = $member->team_id;
 
-                    if ($memberTeamId && $memberTeamId <> $trainer->team_id) {
-                        $validator->errors()->add("name", "User $member->full_name all ready in team {$member->team->name}. Please uncheck");
+                    if ($memberTeamId && $memberTeamId <> $teamId) {
+                        $validator->errors()
+                                  ->add("name", "User $member->full_name all ready in team {$member->team->name}. Please uncheck");
                     }
                 }
             });

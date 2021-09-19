@@ -6,11 +6,14 @@
 import Vue from 'vue';
 import Vuelidate from "vuelidate";
 import DataTable from "laravel-vue-datatable";
+import VueConfirmDialog from "vue-confirm-dialog";
 
 require('./bootstrap');
 
 Vue.use(Vuelidate);
 Vue.use(DataTable);
+Vue.use(VueConfirmDialog);
+Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 
 require('./registered_components/auth');
 require('./registered_components/main');

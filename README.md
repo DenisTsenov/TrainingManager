@@ -1,3 +1,11 @@
+<h1 align="center">Steps to run the project</h1>
+<p align="center">composer install</p>
+<p align="center">php artisan migrate:fresh --seed</p>
+<p align="center">1) php artisan websocket:serve --port=6002</p>
+<p align="center">2) php artisan queue:work</p>
+<p align="center">3) yarn run watch-poll</p>
+<p align="center">Requirements: PHP 8, php redis extension</p>
+<p align="center">Credentials -> email: denis@test.bg, pass: password</p>
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">

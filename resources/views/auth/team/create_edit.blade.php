@@ -4,6 +4,9 @@
     <create-edit-team :team='@json($team ?? null)'
                       action-type="{{ isset($team) ? 'Edit' : 'Create' }}"
                       edit="{{ $edit ?? false }}"
-                      route="{{ $route }}">
+                      route="{{ $route }}"
+                      team-id="{{ $team->id ?? null }}"
+                      destroy-route="{{ $destroyRoute ?? null }}"
+                      can-destroy="{{ $canDestroy ?? false }}">
     </create-edit-team>
 @endsection

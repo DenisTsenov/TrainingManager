@@ -20,11 +20,18 @@ class TeamPolicy
         //
     }
 
-    public function create(User $user)
+    public function create(User $user): bool
     {
         $trainers    = User::trainers()->pluck('id');
         $trainersIds = Team::distinct('trainer_id')->pluck('trainer_id');
 
         return $trainers->diff($trainersIds)->isNotEmpty();
+    }
+
+    public function delete(User $user, Team $team): bool
+    {
+        $members = User::notTrainers()->where('team_id', $team->id)->get();
+
+        return $members->count() == 0 && now()->diffInDays($team->created_at) > 1;
     }
 }

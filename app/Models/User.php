@@ -134,7 +134,7 @@ class User extends Authenticatable
 
     public function scopeTrainers($query)
     {
-        return $query->where('role_id', Role::TRAINER)->orderBy('first_name');
+        return $query->where('role_id', Role::TRAINER);
     }
 
     public function scopeNotTrainers($query)

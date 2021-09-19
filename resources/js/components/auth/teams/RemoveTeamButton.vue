@@ -5,7 +5,7 @@
     </div>
   <div v-else>
     <button class="btn btn-danger w-50" tabindex="0" data-toggle="tooltip"
-            title="There are users in this team or it is created before less than a day." disabled>Remove team <i class="far fa-trash-alt"></i></button>
+            title="There are members in this team or it is created before less than a day." disabled>Remove team <i class="far fa-trash-alt"></i></button>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
         },
         canDestroy: {
             required: false,
-            type: Boolean,
+            type: Boolean|String,
         }
     },
     methods:{

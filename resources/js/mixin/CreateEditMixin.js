@@ -48,7 +48,7 @@ export default {
         },
         canDestroy: {
             required: false,
-            type: Boolean,
+            type: Boolean | String,
         }
     },
     validations: {

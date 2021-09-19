@@ -3180,7 +3180,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     canDestroy: {
       required: false,
-      type: Boolean
+      type: Boolean | String
     }
   },
   methods: {
@@ -66229,7 +66229,7 @@ var staticRenderFns = [
           tabindex: "0",
           "data-toggle": "tooltip",
           title:
-            "There are users in this team or it is created before less than a day.",
+            "There are members in this team or it is created before less than a day.",
           disabled: ""
         }
       },
@@ -82193,7 +82193,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     canDestroy: {
       required: false,
-      type: Boolean
+      type: Boolean | String
     }
   },
   validations: {

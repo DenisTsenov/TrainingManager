@@ -37,6 +37,19 @@ export default {
             type: Boolean,
             default: true,
         },
+        teamId: {
+            required: false,
+            type: Number | String,
+            default: 0,
+        },
+        destroyRoute: {
+            required: false,
+            type: String,
+        },
+        canDestroy: {
+            required: false,
+            type: Boolean | String,
+        }
     },
     validations: {
         name: {required, minLength: minLength(2)},
@@ -50,9 +63,8 @@ export default {
                  .then(response => {
                      this.members = [];
 
-                     if (response.data.length == 0) {
-                         this.distribution = false;
-                     }
+                     this.distribution = response.data.length == 0 ? false : true;
+
                      this.users = response.data;
                  }).catch(error => {
                 if (error.response.status === 422) {
@@ -74,7 +86,8 @@ export default {
                 axios.post(this.route, {
                     'name': this.name,
                     'trainer_id': this.trainer,
-                    'members': this.members
+                    'members': this.members,
+                    'team_id': this.team !== undefined && this.team != null ? this.team.id : this.teamId
                 })
                      .then(response => {
                          window.location = response.data.route;
@@ -91,9 +104,8 @@ export default {
         loadTrainers() {
             let params = false;
 
-            if (this.edit && this.team.members.length > 0) {
-                params = {trainer_id: this.team.trainer.id}
-            }
+            if (this.edit && this.team.members.length > 0) params = {trainer_id: this.team.trainer.id}
+
             axios.get('/admin/team/trainers', {params})
                  .then(response => {
                      this.trainers = response.data;

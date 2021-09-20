@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
@@ -56,6 +57,8 @@ class TeamController extends Controller
             User::createOrUpdateMembership($request->input('members'), $team->id);
         }, 5);
 
+        session()->flash('success', 'Operation done successfully!');
+
         return response()->json(['route' => route('admin.team')]);
     }
 
@@ -79,25 +82,44 @@ class TeamController extends Controller
 
         $team->members = $membersAndUsers;
 
-        $route = route('admin.team.update', compact('team'));
+        $route        = route('admin.team.update', compact('team'));
+        $destroyRoute = route('admin.team.destroy', compact('team'));
+        $canDestroy   = Auth::user()->can('delete', $team);
 
-        return view('auth.team.create_edit', ['team' => $team, 'route' => $route, 'edit' => true]);
+        return view('auth.team.create_edit', [
+            'team'         => $team,
+            'route'        => $route,
+            'destroyRoute' => $destroyRoute,
+            'canDestroy'   => $canDestroy,
+            'edit'         => true,
+        ]);
     }
 
     public function update(TeamRequest $request, Team $team): JsonResponse
     {
         DB::transaction(function () use ($request, $team) {
-            $trainer = User::find($request->input('trainer_id'));
-
             $team->update([
-                'name'          => $request->input('name'),
-                'trainer_id'    => $request->input('trainer_id'),
-                'sport_id'      => $trainer->sport->id,
-                'settlement_id' => $trainer->settlement->id,
+                'name'       => $request->input('name'),
+                'trainer_id' => $request->input('trainer_id'),
             ]);
 
             User::createOrUpdateMembership($request->input('members'), $team->id);
         }, 5);
+
+        session()->flash('success', 'Operation done successfully!');
+
+        return response()->json(['route' => route('admin.team')]);
+    }
+
+    public function destroy(Team $team)
+    {
+        DB::transaction(function () use ($team) {
+            User::where('team_id', $team->id)->update(['team_id' => null]);
+
+            $team->delete();
+        }, 5);
+
+        session()->flash('success', 'Operation done successfully!');
 
         return response()->json(['route' => route('admin.team')]);
     }

@@ -74,9 +74,9 @@ export default {
         computedUsers() {
             return this.users;
         },
-      computedDistribution(){
-          return this.distribution;
-      }
+        computedDistribution(){
+            return this.distribution;
+        }
     },
 }
 </script>

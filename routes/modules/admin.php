@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
  * User Roles Routes
+ * All route names have admin. prefix
  */
 Route::get('/manage-user-roles', [ManageUserRoleController::class, 'index'])
      ->name('manage_user_roles');
@@ -43,7 +44,7 @@ Route::middleware('ajax')->group(function () {
 });
 
 /*
- * Distribution users. Create teams
+ * Distribution users. Teams
  */
 Route::get('/team', [TeamController::class, 'index'])
      ->name('team');
@@ -75,6 +76,10 @@ Route::get('/distribute-user/create/{user}', [DashboardController::class, 'creat
 Route::post('/distribute-user/store', [TeamController::class, 'storeDistribution'])
      ->name('distribute.store')
      ->middleware('ajax');
+
+Route::post('/team/destroy/{team}', [TeamController::class, 'destroy'])
+     ->name('team.destroy')
+     ->middleware(['can:delete,team','ajax']);
 
 Route::get('/team/trainers', [AjaxController::class, 'trainers'])
      ->name('trainers')

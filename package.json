@@ -29,6 +29,7 @@
         "@fortawesome/fontawesome-free": "^5.13.0",
         "laravel-vue-datatable": "^0.6.0",
         "util": "^0.12.4",
+        "vue-confirm-dialog": "^1.0.2",
         "vue-select": "^3.10.3",
         "vuelidate": "^0.7.5"
     }

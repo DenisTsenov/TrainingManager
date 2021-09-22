@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -26,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'role_id', 'settlement_id', 'sport_id', 'team_id'
+        'first_name', 'last_name', 'email', 'password', 'role_id', 'settlement_id', 'sport_id', 'team_id',
     ];
 
     /**
@@ -116,6 +117,18 @@ class User extends Authenticatable
         return $this->belongsTo(Sport::class)->withTrashed();
     }
 
+    public function membershipHistory()
+    {
+        return $this->belongsToMany(Team::class, 'team_member_history')
+                    ->withPivot('joined_at', 'left_at');
+//                    ->as('membership');
+    }
+
+    public function lastTeam()
+    {
+        return $this->belongsToMany(Team::class, 'team_member_history')->orderByDesc('id');
+    }
+
     /**
      * @param        $query
      * @param string $identifier
@@ -173,6 +186,46 @@ class User extends Authenticatable
 
         if ($excludeFromTeam->count()) {
             self::whereIn('id', $excludeFromTeam)->notTrainers()->update(['team_id' => null]);
+        }
+    }
+
+    public static function createOrUpdateHistory(Team $team, array $members, ?int $requestTrainerId = null)
+    {
+        if ($requestTrainerId) {
+            if ($team->trainer_id <> $requestTrainerId) {
+                $lastTeam = $team->trainer->lastTeam->first();
+
+                $lastTeam->pivot->update(['left_at' => now()]);
+
+                User::firstWhere('id', $requestTrainerId)->membershipHistory()
+                    ->attach($team->id, ['joined_at' => now()]);
+            }
+
+            $excludeFromTeam = collect(self::where('team_id', $team->id)->pluck('id'))->diff($members); // TODO: start from here
+//
+//            if (count($members)) {
+//                $members = self::whereIn('id', $members)->get();
+//
+//                foreach ($members as $member) {
+//                    $member->membershipHistory()->attach($team->id, ['joined_at' => now()]);
+//                }
+//            }
+
+            if ($excludeFromTeam->count()) {
+                $members = self::whereIn('id', $excludeFromTeam)->notTrainers()->get();
+
+                foreach ($members as $member) {
+                    $member->lastTeam->first()->pivot->update(['left_at' => now()]);
+                }
+            }
+
+            return;
+        }
+
+        $members = $team->members();
+
+        foreach ($members as $member) {
+            $member->membershipHistory()->attach($team->id, ['joined_at' => now()]);
         }
     }
 

@@ -21,6 +21,7 @@ class CreateTeamsTables extends Migration
             $table->foreignId('settlement_id')->constrained('settlements');
             $table->foreignId('created_by')->constrained('users');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('users', function(Blueprint $table){

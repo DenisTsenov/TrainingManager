@@ -89,16 +89,16 @@ export default {
                     'members': this.members,
                     'team_id': this.team !== undefined && this.team != null ? this.team.id : this.teamId
                 })
-                     .then(response => {
-                         window.location = response.data.route;
-                     }).catch(error => {
-                    if (error.response.status === 422) {
-                        this.sendAllowed = true;
-                        this.errors      = error.response.data.errors || {};
-                    } else {
-                        this.serverErr = true;
-                    }
-                });
+                //      .then(response => {
+                //          window.location = response.data.route;
+                //      }).catch(error => {
+                //     if (error.response.status === 422) {
+                //         this.sendAllowed = true;
+                //         this.errors      = error.response.data.errors || {};
+                //     } else {
+                //         this.serverErr = true;
+                //     }
+                // });
             }
         },
         loadTrainers() {

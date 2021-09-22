@@ -4,11 +4,12 @@ namespace App\Models\Admin;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 
 class Team extends Model
 {
-    use LaravelVueDatatableTrait;
+    use LaravelVueDatatableTrait, SoftDeletes;
 
     protected $table = 'teams';
 
@@ -91,6 +92,6 @@ class Team extends Model
 
     public function members()
     {
-        return $this->hasMany(User::class);
+        return User::where('team_id', $this->id)->get();
     }
 }

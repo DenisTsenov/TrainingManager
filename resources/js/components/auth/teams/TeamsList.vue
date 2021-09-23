@@ -19,34 +19,40 @@ export default {
                     label: 'ID',
                     name: 'id',
                     orderable: false,
+                    width: 5,
                 },
                 {
                     label: 'Name',
                     name: 'name',
                     orderable: true,
+                    width: 10,
                 },
                 {
                     label: 'Trainer',
                     name: 'trainer.full_name',
                     columnName: 'users.full_name',
                     orderable: true,
+                    width: 10,
                 },
                 {
                     label: 'Sport',
                     name: 'sport.name',
                     columnName: 'sports.name',
                     orderable: true,
+                    width: 10,
                 },
                 {
                     label: 'Settlement',
                     name: 'settlement.name',
                     columnName: 'settlements.name',
                     orderable: true,
+                    width: 10,
                 },
                 {
                     label: 'Created at',
                     name: 'created_at',
                     orderable: true,
+                    width: 10,
                 },
                 {
                     label: 'Actions',
@@ -60,6 +66,7 @@ export default {
                     event: "click",
                     handler: this.editTeam,
                     component: EditButton,
+                    width: 10,
                 },
             ],
         }

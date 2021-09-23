@@ -100,7 +100,6 @@ class TeamController extends Controller
     {
         DB::transaction(function () use ($request, $team) {
             $requestTrainer = $request->input('trainer_id');
-
             User::createOrUpdateHistory($team, $request->input('members'), $requestTrainer);
 
             if ($team->trainer_id <> $requestTrainer) {

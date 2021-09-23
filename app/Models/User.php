@@ -124,12 +124,9 @@ class User extends Authenticatable
 //                    ->as('membership');
     }
 
-    public function lastTeam()
+    public function membershipHistoryOrderByDesc()
     {
-        return $this->belongsToMany(Team::class, 'team_member_history')
-                    ->withPivot('joined_at', 'left_at')
-                    ->as('history')
-                    ->orderByDesc('id');
+        return $this->membershipHistory()->as('history')->orderByDesc('id');
     }
 
     /**
@@ -196,10 +193,11 @@ class User extends Authenticatable
     {
         if ($requestTrainerId) {
             if ($team->trainer_id <> $requestTrainerId) {
-                $lastTeam = $team->trainer->lastTeam->first();
-                $lastTeam->history->update(['left_at' => now()]);
+                $teamTrainerHistory = $team->trainer->membershipHistoryOrderByDesc->first();
+                $teamTrainerHistory->history->update(['left_at' => now()]);
 
-                User::firstWhere('id', $requestTrainerId)->membershipHistory()
+                User::firstWhere('id', $requestTrainerId)
+                    ->membershipHistory()
                     ->attach($team->id, ['joined_at' => now()]);
             }
 
@@ -212,6 +210,7 @@ class User extends Authenticatable
             if (count($members)) {
                 self::joinTeam($team, $members);
             }
+
             return;
         }
 
@@ -222,7 +221,7 @@ class User extends Authenticatable
         }
     }
 
-    public static function leftTeam(Team $team, array $leftMembers)
+    private static function leftTeam(Team $team, array $leftMembers)
     {
         $leftMembers = self::whereIn('id', $leftMembers)->notTrainers()->get();
         foreach ($leftMembers as $member) {
@@ -234,15 +233,14 @@ class User extends Authenticatable
         }
     }
 
-    public static function joinTeam(Team $team, array $members)
+    private static function joinTeam(Team $team, array $members)
     {
         $members = self::whereIn('id', $members)->get();
         foreach ($members as $member) {
-            $memberCurrentTeamHistory = optional($member->lastTeam->whereNotNull('left_at')->first())->history;
+            // If user is already in the team there is no need to perform any action
+            if ($team->id == $member->team_id) continue;
 
-            if ($team->id == $member->team_id) continue; // TODO: I have to think for better solution
-
-            if (!$memberCurrentTeamHistory) {
+            if (!optional($member->membershipHistoryOrderByDesc->whereNotNull('left_at')->first())->history) {
                 $member->membershipHistory()->attach($team->id, ['joined_at' => now()]);
             }
         }

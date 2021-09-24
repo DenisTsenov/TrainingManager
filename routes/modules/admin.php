@@ -68,7 +68,7 @@ Route::post('/team/update/{team}', [TeamController::class, 'update'])
      ->middleware('ajax');
 
 Route::get('/for-distribution', [DashboardController::class, 'forDistribution'])
-     ->name('for-distribution');
+     ->name('for_distribution');
 
 Route::get('/distribute-user/create/{user}', [DashboardController::class, 'createDistribution'])
      ->name('distribute.create');

@@ -29,6 +29,7 @@ export default {
         }
     },
     props: {
+        required: true,
         user: Object,
     },
     methods: {

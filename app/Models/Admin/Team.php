@@ -80,6 +80,11 @@ class Team extends Model
         return $this->belongsTo(User::class, 'trainer_id');
     }
 
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
     public function sport()
     {
         return $this->belongsTo(Sport::class);
@@ -88,6 +93,16 @@ class Team extends Model
     public function settlement()
     {
         return $this->belongsTo(Settlement::class);
+    }
+
+    public function history()
+    {
+        return $this->belongsToMany(User::class, 'team_member_history')->withPivot('joined_at', 'left_at');
+    }
+
+    public function exMembers()
+    {
+        return $this->history()->whereNotNull('left_at');
     }
 
     public function members()

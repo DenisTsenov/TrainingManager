@@ -48,6 +48,8 @@ export default {
                           alert('Something went wrong! Please try again later');
                         });
                     }
+
+                  window.location = you;
                 }
             });
         }

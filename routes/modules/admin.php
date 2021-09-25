@@ -81,6 +81,9 @@ Route::post('/team/destroy/{team}', [TeamController::class, 'destroy'])
      ->name('team.destroy')
      ->middleware(['can:delete,team','ajax']);
 
+Route::get('/team/history/{team}', [TeamController::class, 'history'])
+     ->name('team.history');
+
 Route::get('/team/trainers', [AjaxController::class, 'trainers'])
      ->name('trainers')
      ->middleware('ajax');

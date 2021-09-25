@@ -121,7 +121,6 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Team::class, 'team_member_history')
                     ->withPivot('joined_at', 'left_at');
-//                    ->as('membership');
     }
 
     public function membershipHistoryOrderByDesc()

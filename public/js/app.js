@@ -2310,6 +2310,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MembershipHistory",
@@ -2326,6 +2327,15 @@ __webpack_require__.r(__webpack_exports__);
     timeSpent: function timeSpent(from, to) {
       if (to == null) to = new Date();
       return Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["differenceInCalendarDays"])(new Date(to), new Date(from));
+    },
+    leftBefore: function leftBefore(leftAt) {
+      if (leftAt == null) {
+        return 'Still in team';
+      }
+
+      return Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["formatDistance"])(Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["subDays"])(new Date(), this.timeSpent(leftAt)), new Date(), {
+        addSuffix: true
+      });
     }
   },
   computed: {
@@ -2933,6 +2943,49 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/RedirectButton.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/RedirectButton.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "RedirectButton",
+  props: {
+    data: {},
+    name: {},
+    click: {
+      type: Function,
+      "default": function _default() {}
+    },
+    classes: {
+      type: Object,
+      "default": function _default() {
+        return {
+          'btn': true,
+          'btn-warning': true,
+          'btn-sm': true
+        };
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=script&lang=js& ***!
@@ -3270,8 +3323,81 @@ __webpack_require__.r(__webpack_exports__);
               alert('Something went wrong! Please try again later');
             });
           }
+
+          window.location = you;
         }
       });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/TeamHistory.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/TeamHistory.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/index.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "TeamHistory",
+  props: {
+    team: {
+      required: true,
+      type: Object | Array
+    }
+  },
+  methods: {
+    timeSpent: function timeSpent(from) {
+      return Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["differenceInCalendarDays"])(new Date(), new Date(from));
+    },
+    createdBefore: function createdBefore() {
+      var distance = Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["formatDistance"])(Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["subDays"])(new Date(), this.timeSpent(this.team.created_at)), new Date(), {
+        addSuffix: true
+      });
+      return distance + ' at ' + Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["format"])(new Date(this.team.created_at), 'MM-dd-yyyy');
+    },
+    leftBefore: function leftBefore(leftAt) {
+      return Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["formatDistance"])(Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["subDays"])(new Date(), this.timeSpent(leftAt)), new Date(), {
+        addSuffix: true
+      });
+    }
+  },
+  computed: {
+    last: function last() {
+      return Object.keys(this.team.ex_members).length - 1;
     }
   }
 });
@@ -3380,6 +3506,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../buttons/EditButton */ "./resources/js/components/auth/buttons/EditButton.vue");
+/* harmony import */ var _buttons_RedirectButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../buttons/RedirectButton */ "./resources/js/components/auth/buttons/RedirectButton.vue");
 //
 //
 //
@@ -3389,6 +3516,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TeamsList",
@@ -3429,7 +3557,7 @@ __webpack_require__.r(__webpack_exports__);
         width: 10
       }, {
         label: 'Actions',
-        name: '',
+        name: 'Edit',
         orderable: false,
         classes: {
           'btn': true,
@@ -3439,16 +3567,32 @@ __webpack_require__.r(__webpack_exports__);
         event: "click",
         handler: this.editTeam,
         component: _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__["default"],
-        width: 10
+        width: 3
+      }, {
+        label: '',
+        name: 'History',
+        orderable: false,
+        classes: {
+          'btn': true,
+          'btn-warning': true,
+          'btn-sm': true
+        },
+        handler: this.teamHistory,
+        component: _buttons_RedirectButton__WEBPACK_IMPORTED_MODULE_1__["default"],
+        width: 5
       }]
     };
   },
   components: {
-    EditButton: _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+    EditButton: _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__["default"],
+    RedirectButton: _buttons_RedirectButton__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     editTeam: function editTeam(data) {
       window.location = 'team/edit/' + data.id;
+    },
+    teamHistory: function teamHistory(data) {
+      window.location = 'team/history/' + data.id;
     }
   }
 });
@@ -85453,7 +85597,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h1", [
+    _c("h3", [
       _vm._v(
         _vm._s(_vm.user.full_name) +
           ", (" +
@@ -85487,6 +85631,13 @@ var render = function() {
                               ? team.pivot.left_at
                               : "Still in team"
                           )
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-group-item" }, [
+                      _vm._v(
+                        "Left before: " +
+                          _vm._s(_vm.leftBefore(team.pivot.left_at))
                       )
                     ]),
                     _vm._v(" "),
@@ -86257,6 +86408,54 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/RedirectButton.vue?vue&type=template&id=1d9d8b30&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/RedirectButton.vue?vue&type=template&id=1d9d8b30&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      class: _vm.classes,
+      attrs: { title: "History" },
+      on: {
+        click: function($event) {
+          return _vm.click(_vm.data)
+        }
+      }
+    },
+    [_vm._m(0), _vm._v("\n   \n  " + _vm._s(_vm.name) + "\n")]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", {
+        staticClass: "fas fa-history",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=template&id=11173e96&scoped=true&":
 /*!**************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/ToggleActivationButton.vue?vue&type=template&id=11173e96&scoped=true& ***!
@@ -86679,6 +86878,95 @@ var staticRenderFns = [
     )
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/TeamHistory.vue?vue&type=template&id=a468f73c&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/teams/TeamHistory.vue?vue&type=template&id=a468f73c&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.team.ex_members.length > 0
+      ? _c("div", [
+          _c("h3", [
+            _vm._v(
+              _vm._s(_vm.team.name) +
+                ", Created " +
+                _vm._s(_vm.createdBefore()) +
+                " by " +
+                _vm._s(_vm.team.created_by.full_name)
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c(
+              "div",
+              { staticClass: "col-12" },
+              _vm._l(_vm.team.ex_members, function(exMember, id) {
+                return _c("div", { key: id, staticClass: "mb-3" }, [
+                  _c("ul", { staticClass: "list-group" }, [
+                    _c(
+                      "li",
+                      { staticClass: "list-group-item active bg-primary" },
+                      [_vm._v("Name: " + _vm._s(exMember.full_name))]
+                    ),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-group-item" }, [
+                      _vm._v("Joined at: " + _vm._s(exMember.pivot.joined_at))
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-group-item" }, [
+                      _vm._v("Left at: " + _vm._s(exMember.pivot.left_at))
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-group-item" }, [
+                      _vm._v(
+                        "Left before: " +
+                          _vm._s(_vm.leftBefore(exMember.pivot.left_at))
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-group-item" }, [
+                      _vm._v(
+                        "Days spent in the team: " +
+                          _vm._s(_vm.timeSpent(exMember.pivot.joined_at))
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  id != _vm.last ? _c("span", [_c("hr")]) : _vm._e()
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      : _c("div", [
+          _c(
+            "div",
+            {
+              staticClass: "row justify-content-center text-center alert-info"
+            },
+            [_vm._v("This team do not have left members history")]
+          )
+        ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -102023,6 +102311,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/auth/buttons/RedirectButton.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/RedirectButton.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RedirectButton_vue_vue_type_template_id_1d9d8b30_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RedirectButton.vue?vue&type=template&id=1d9d8b30&scoped=true& */ "./resources/js/components/auth/buttons/RedirectButton.vue?vue&type=template&id=1d9d8b30&scoped=true&");
+/* harmony import */ var _RedirectButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RedirectButton.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/buttons/RedirectButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RedirectButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RedirectButton_vue_vue_type_template_id_1d9d8b30_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RedirectButton_vue_vue_type_template_id_1d9d8b30_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "1d9d8b30",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/auth/buttons/RedirectButton.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/buttons/RedirectButton.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/RedirectButton.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RedirectButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./RedirectButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/RedirectButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RedirectButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/buttons/RedirectButton.vue?vue&type=template&id=1d9d8b30&scoped=true&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/RedirectButton.vue?vue&type=template&id=1d9d8b30&scoped=true& ***!
+  \************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RedirectButton_vue_vue_type_template_id_1d9d8b30_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./RedirectButton.vue?vue&type=template&id=1d9d8b30&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/RedirectButton.vue?vue&type=template&id=1d9d8b30&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RedirectButton_vue_vue_type_template_id_1d9d8b30_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RedirectButton_vue_vue_type_template_id_1d9d8b30_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/auth/buttons/ToggleActivationButton.vue":
 /*!*************************************************************************!*\
   !*** ./resources/js/components/auth/buttons/ToggleActivationButton.vue ***!
@@ -102294,6 +102651,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RemoveTeamButton_vue_vue_type_template_id_57b99ab8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RemoveTeamButton_vue_vue_type_template_id_57b99ab8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/teams/TeamHistory.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/auth/teams/TeamHistory.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TeamHistory_vue_vue_type_template_id_a468f73c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TeamHistory.vue?vue&type=template&id=a468f73c&scoped=true& */ "./resources/js/components/auth/teams/TeamHistory.vue?vue&type=template&id=a468f73c&scoped=true&");
+/* harmony import */ var _TeamHistory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TeamHistory.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/teams/TeamHistory.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TeamHistory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TeamHistory_vue_vue_type_template_id_a468f73c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TeamHistory_vue_vue_type_template_id_a468f73c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "a468f73c",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/auth/teams/TeamHistory.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/teams/TeamHistory.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/auth/teams/TeamHistory.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamHistory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TeamHistory.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/TeamHistory.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamHistory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/teams/TeamHistory.vue?vue&type=template&id=a468f73c&scoped=true&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/components/auth/teams/TeamHistory.vue?vue&type=template&id=a468f73c&scoped=true& ***!
+  \*******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamHistory_vue_vue_type_template_id_a468f73c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TeamHistory.vue?vue&type=template&id=a468f73c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/teams/TeamHistory.vue?vue&type=template&id=a468f73c&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamHistory_vue_vue_type_template_id_a468f73c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamHistory_vue_vue_type_template_id_a468f73c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -103331,13 +103757,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_admin_RolePermissions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/auth/admin/RolePermissions */ "./resources/js/components/auth/admin/RolePermissions.vue");
 /* harmony import */ var _components_auth_teams_CreateEditTeam__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/auth/teams/CreateEditTeam */ "./resources/js/components/auth/teams/CreateEditTeam.vue");
 /* harmony import */ var _components_auth_teams_TeamMemberCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/auth/teams/TeamMemberCard */ "./resources/js/components/auth/teams/TeamMemberCard.vue");
-/* harmony import */ var _components_auth_admin_settlement_CreateEditSettlement__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/auth/admin/settlement/CreateEditSettlement */ "./resources/js/components/auth/admin/settlement/CreateEditSettlement.vue");
-/* harmony import */ var _components_auth_admin_sport_CreateEditSport__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/admin/sport/CreateEditSport */ "./resources/js/components/auth/admin/sport/CreateEditSport.vue");
-/* harmony import */ var _components_auth_admin_settlement_SettlemenstList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/auth/admin/settlement/SettlemenstList */ "./resources/js/components/auth/admin/settlement/SettlemenstList.vue");
-/* harmony import */ var _components_auth_admin_sport_SportList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/auth/admin/sport/SportList */ "./resources/js/components/auth/admin/sport/SportList.vue");
-/* harmony import */ var _components_auth_buttons_ToggleActivationButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/auth/buttons/ToggleActivationButton */ "./resources/js/components/auth/buttons/ToggleActivationButton.vue");
-/* harmony import */ var _components_auth_distribution_DistributeUsersList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/auth/distribution/DistributeUsersList */ "./resources/js/components/auth/distribution/DistributeUsersList.vue");
-/* harmony import */ var _components_auth_teams_RemoveTeamButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/auth/teams/RemoveTeamButton */ "./resources/js/components/auth/teams/RemoveTeamButton.vue");
+/* harmony import */ var _components_auth_teams_TeamsList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/auth/teams/TeamsList */ "./resources/js/components/auth/teams/TeamsList.vue");
+/* harmony import */ var _components_auth_admin_settlement_CreateEditSettlement__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/admin/settlement/CreateEditSettlement */ "./resources/js/components/auth/admin/settlement/CreateEditSettlement.vue");
+/* harmony import */ var _components_auth_admin_sport_CreateEditSport__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/auth/admin/sport/CreateEditSport */ "./resources/js/components/auth/admin/sport/CreateEditSport.vue");
+/* harmony import */ var _components_auth_admin_settlement_SettlemenstList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/auth/admin/settlement/SettlemenstList */ "./resources/js/components/auth/admin/settlement/SettlemenstList.vue");
+/* harmony import */ var _components_auth_admin_sport_SportList__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/auth/admin/sport/SportList */ "./resources/js/components/auth/admin/sport/SportList.vue");
+/* harmony import */ var _components_auth_buttons_ToggleActivationButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/auth/buttons/ToggleActivationButton */ "./resources/js/components/auth/buttons/ToggleActivationButton.vue");
+/* harmony import */ var _components_auth_distribution_DistributeUsersList__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/auth/distribution/DistributeUsersList */ "./resources/js/components/auth/distribution/DistributeUsersList.vue");
+/* harmony import */ var _components_auth_teams_RemoveTeamButton__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/auth/teams/RemoveTeamButton */ "./resources/js/components/auth/teams/RemoveTeamButton.vue");
+/* harmony import */ var _components_auth_teams_TeamHistory__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/auth/teams/TeamHistory */ "./resources/js/components/auth/teams/TeamHistory.vue");
+
+
 
 
 
@@ -103353,13 +103783,15 @@ Vue.component('roles-checkboxes', _components_auth_admin_RolesCheckboxes__WEBPAC
 Vue.component('roles-permissions', _components_auth_admin_RolePermissions__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Vue.component('create-edit-team', _components_auth_teams_CreateEditTeam__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.component('team-member-card', _components_auth_teams_TeamMemberCard__WEBPACK_IMPORTED_MODULE_3__["default"]);
-Vue.component('create-edit-settlement', _components_auth_admin_settlement_CreateEditSettlement__WEBPACK_IMPORTED_MODULE_4__["default"]);
-Vue.component('create-edit-sport', _components_auth_admin_sport_CreateEditSport__WEBPACK_IMPORTED_MODULE_5__["default"]);
-Vue.component('settlements-list', _components_auth_admin_settlement_SettlemenstList__WEBPACK_IMPORTED_MODULE_6__["default"]);
-Vue.component('sport-list', _components_auth_admin_sport_SportList__WEBPACK_IMPORTED_MODULE_7__["default"]);
-Vue.component('toggle-activation-button', _components_auth_buttons_ToggleActivationButton__WEBPACK_IMPORTED_MODULE_8__["default"]);
-Vue.component('distribute-users-list', _components_auth_distribution_DistributeUsersList__WEBPACK_IMPORTED_MODULE_9__["default"]);
-Vue.component('remove-team-button', _components_auth_teams_RemoveTeamButton__WEBPACK_IMPORTED_MODULE_10__["default"]);
+Vue.component('team-list', _components_auth_teams_TeamsList__WEBPACK_IMPORTED_MODULE_4__["default"]);
+Vue.component('create-edit-settlement', _components_auth_admin_settlement_CreateEditSettlement__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('create-edit-sport', _components_auth_admin_sport_CreateEditSport__WEBPACK_IMPORTED_MODULE_6__["default"]);
+Vue.component('settlements-list', _components_auth_admin_settlement_SettlemenstList__WEBPACK_IMPORTED_MODULE_7__["default"]);
+Vue.component('sport-list', _components_auth_admin_sport_SportList__WEBPACK_IMPORTED_MODULE_8__["default"]);
+Vue.component('toggle-activation-button', _components_auth_buttons_ToggleActivationButton__WEBPACK_IMPORTED_MODULE_9__["default"]);
+Vue.component('distribute-users-list', _components_auth_distribution_DistributeUsersList__WEBPACK_IMPORTED_MODULE_10__["default"]);
+Vue.component('remove-team-button', _components_auth_teams_RemoveTeamButton__WEBPACK_IMPORTED_MODULE_11__["default"]);
+Vue.component('team-history', _components_auth_teams_TeamHistory__WEBPACK_IMPORTED_MODULE_12__["default"]);
 
 /***/ }),
 
@@ -103375,9 +103807,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_RegisterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/RegisterForm */ "./resources/js/components/RegisterForm.vue");
 /* harmony import */ var _components_LoginForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../components/LoginForm */ "./resources/js/components/LoginForm.vue");
 /* harmony import */ var _components_auth_EditForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/auth/EditForm */ "./resources/js/components/auth/EditForm.vue");
-/* harmony import */ var _components_auth_teams_TeamsList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/auth/teams/TeamsList */ "./resources/js/components/auth/teams/TeamsList.vue");
-/* harmony import */ var _components_auth_buttons_EditButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/auth/buttons/EditButton */ "./resources/js/components/auth/buttons/EditButton.vue");
-/* harmony import */ var _components_auth_MembershipHistory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/MembershipHistory */ "./resources/js/components/auth/MembershipHistory.vue");
+/* harmony import */ var _components_auth_buttons_EditButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/auth/buttons/EditButton */ "./resources/js/components/auth/buttons/EditButton.vue");
+/* harmony import */ var _components_auth_MembershipHistory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/auth/MembershipHistory */ "./resources/js/components/auth/MembershipHistory.vue");
+/* harmony import */ var _components_auth_buttons_RedirectButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/buttons/RedirectButton */ "./resources/js/components/auth/buttons/RedirectButton.vue");
 
 
 
@@ -103387,9 +103819,9 @@ __webpack_require__.r(__webpack_exports__);
 Vue.component('register-form', _components_RegisterForm__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component('login-form', _components_LoginForm__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Vue.component('edit-from', _components_auth_EditForm__WEBPACK_IMPORTED_MODULE_2__["default"]);
-Vue.component('team-list', _components_auth_teams_TeamsList__WEBPACK_IMPORTED_MODULE_3__["default"]);
-Vue.component('edit-button', _components_auth_buttons_EditButton__WEBPACK_IMPORTED_MODULE_4__["default"]);
-Vue.component('membership-history', _components_auth_MembershipHistory__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('edit-button', _components_auth_buttons_EditButton__WEBPACK_IMPORTED_MODULE_3__["default"]);
+Vue.component('membership-history', _components_auth_MembershipHistory__WEBPACK_IMPORTED_MODULE_4__["default"]);
+Vue.component('redirect-button', _components_auth_buttons_RedirectButton__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
 /***/ }),
 

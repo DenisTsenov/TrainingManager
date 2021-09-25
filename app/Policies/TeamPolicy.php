@@ -32,6 +32,6 @@ class TeamPolicy
     {
         $members = User::notTrainers()->where('team_id', $team->id)->get();
 
-        return $members->count() == 0 && now()->diffInDays($team->created_at) > 1;
+        return $members->count() == 0 && now()->diffInDays($team->created_at) >= 1;
     }
 }

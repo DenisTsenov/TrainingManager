@@ -132,4 +132,11 @@ class TeamController extends Controller
 
         return response()->json(['route' => route('admin.team')]);
     }
+
+    public function history(Team $team)
+    {
+        $team->load('exMembers', 'createdBy');
+
+        return view('auth.team.history', compact('team'));
+    }
 }

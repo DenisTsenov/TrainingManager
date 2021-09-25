@@ -9,6 +9,7 @@
 
 <script>
 import EditButton from "../buttons/EditButton";
+import RedirectButton from "../buttons/RedirectButton";
 
 export default {
     name: "TeamsList",
@@ -56,7 +57,7 @@ export default {
                 },
                 {
                     label: 'Actions',
-                    name: '',
+                    name: 'Edit',
                     orderable: false,
                     classes: {
                         'btn': true,
@@ -66,17 +67,33 @@ export default {
                     event: "click",
                     handler: this.editTeam,
                     component: EditButton,
-                    width: 10,
+                    width: 3,
+                },
+                {
+                  label: '',
+                  name: 'History',
+                  orderable: false,
+                  classes: {
+                    'btn': true,
+                    'btn-warning': true,
+                    'btn-sm': true,
+                  },
+                  handler: this.teamHistory,
+                  component: RedirectButton,
+                  width: 5,
                 },
             ],
         }
     },
     components: {
-        EditButton,
+        EditButton, RedirectButton,
     },
     methods: {
         editTeam(data) {
             window.location = 'team/edit/' + data.id
+        },
+        teamHistory(data) {
+            window.location = 'team/history/' + data.id
         },
     },
 }

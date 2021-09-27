@@ -27,6 +27,7 @@ class ManageUserRoleController extends Controller
 
         $users = User::selectRaw("id, full_name, role_id")
                      ->like($request->input('term'))
+                     ->whereNull('team_id')
                      ->orderByRaw('first_name ASC, last_name ASC')
                      ->limit(5)
                      ->get();

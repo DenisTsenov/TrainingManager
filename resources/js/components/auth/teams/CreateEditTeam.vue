@@ -47,12 +47,7 @@
                           </div>
 
                           <div class="form-group text-center" v-if="actionType == 'Create'">
-                              <span class="d-inline-block text-danger fa-pulse" tabindex="0" data-toggle="tooltip"
-                                    title="Please, pay attention to trainer's settlement and sport. Once team is created, you will be able to see only (in edit functionality) trainers and members/users only for trainer's settlement and sport selected in this step.">
-                                  <span>
-                                    <i class="fas fa-exclamation-circle fa-lg"></i>
-                                  </span>
-                              </span>
+                              <note></note>
                           </div>
                       </div>
                   </div>

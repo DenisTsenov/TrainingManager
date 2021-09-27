@@ -1,22 +1,22 @@
 <template>
-	<div class="input-group">
-		<div v-if="loading">
-			<div class="text-center">
-				<loading></loading>
-			</div>
-		</div>
-		<div class="row" v-if="loading === false">
-			<div class="ml-3" v-for="role in roles" :key="role.id">
-				<div class="custom-control custom-switch my-1 mr-sm-2">
-					<input type="checkbox" class="custom-control-input"
-						   v-on:click="changeRole(role.id)"
-						   :id="role.name.toLowerCase()"
-						   :checked="selected_user !== null && role.id === selected_user.role_id"/>
-					<label class="custom-control-label" :for="role.name.toLowerCase()">{{ role.name }}</label>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="input-group">
+        <div v-if="loading">
+            <div class="text-center">
+              <loading></loading>
+            </div>
+        </div>
+        <div class="row" v-if="loading === false">
+            <div class="ml-3" v-for="role in roles" :key="role.id">
+                <div class="custom-control custom-switch my-1 mr-sm-2">
+                    <input type="checkbox" class="custom-control-input"
+                         v-on:click="changeRole(role.id)"
+                         :id="role.name.toLowerCase()"
+                         :checked="selected_user !== null && role.id === selected_user.role_id"/>
+                    <label class="custom-control-label" :for="role.name.toLowerCase()">{{ role.name }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>

@@ -3241,6 +3241,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -3252,7 +3253,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   name: 'CreateEditTeam',
   data: function data() {
-    return {};
+    return {
+      noteBaseStyles: {
+        'd-inline-block': true,
+        'text-warning': true,
+        'fa-pulse': true
+      }
+    };
   }
 });
 
@@ -3641,9 +3648,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     text: {
+      required: true,
+      type: String
+    },
+    baseStyle: {
       required: false,
-      type: String,
-      "default": "Please, pay attention to trainer\'s settlement and sport. Once team is created, you will be able to see only (in edit functionality) trainers and members/users only for trainer\'s settlement and sport selected in this step."
+      type: Object,
+      "default": 'd-inline-block text-danger fa-pulse'
     }
   }
 });
@@ -86734,7 +86745,14 @@ var render = function() {
                   ? _c(
                       "div",
                       { staticClass: "form-group text-center" },
-                      [_c("note")],
+                      [
+                        _c("note", {
+                          attrs: {
+                            text:
+                              "Please, pay attention to trainer's settlement and sport. Once team is created, you will be able to see only (in edit functionality) trainers and members/users only for trainer's settlement and sport selected in this step."
+                          }
+                        })
+                      ],
                       1
                     )
                   : _vm._e()
@@ -86752,7 +86770,24 @@ var render = function() {
         _c("div", { staticClass: "row justify-content-center mt-3 mb-3" }, [
           _c("div", { staticClass: "col-12" }, [
             _c("div", { staticClass: "card" }, [
-              _vm._m(1),
+              _c(
+                "div",
+                { staticClass: "card-header bg-primary" },
+                [
+                  _c("note", {
+                    attrs: {
+                      "base-style": _vm.noteBaseStyles,
+                      text:
+                        "If the member/user has no role, he/she will be registered as a competitor"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "h3 text-center" }, [
+                    _vm._v("Members/Users")
+                  ])
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "card-body scroll-h-400-px" }, [
                 _vm.users !== {}
@@ -86808,14 +86843,6 @@ var staticRenderFns = [
         { staticClass: "btn btn-primary w-50", attrs: { type: "submit" } },
         [_vm._v("Send")]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header bg-primary" }, [
-      _c("p", { staticClass: "h3 text-center" }, [_vm._v("Members/Users")])
     ])
   }
 ]
@@ -87183,7 +87210,7 @@ var render = function() {
   return _c(
     "span",
     {
-      staticClass: "d-inline-block text-danger fa-pulse",
+      class: _vm.baseStyle,
       attrs: { tabindex: "0", "data-toggle": "tooltip", title: _vm.text }
     },
     [_vm._m(0)]

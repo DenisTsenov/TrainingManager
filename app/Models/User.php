@@ -120,7 +120,7 @@ class User extends Authenticatable
     public function membershipHistory()
     {
         return $this->belongsToMany(Team::class, 'team_member_history')
-                    ->withPivot('joined_at', 'left_at');
+                    ->withPivot('joined_at', 'left_at', 'current_role');
     }
 
     public function membershipHistoryOrderByDesc()
@@ -180,7 +180,19 @@ class User extends Authenticatable
         $leftMembers = collect(self::where('team_id', $teamId)->pluck('id'))->diff($members);
 
         if (count($members)) {
-            self::whereIn('id', $members)->update(['team_id' => $teamId]);
+            $members = self::whereIn('id', $members)->get();
+
+            foreach ($members as $member) {
+                if (!$member->role_id) {
+                    $member->update([
+                        'team_id' => $teamId,
+                        'role_id' => Role::COMPETITOR,
+                    ]);
+                    continue;
+                }
+                $member->update(['team_id' => $teamId]);
+            }
+
         }
 
         if ($leftMembers->count()) {
@@ -197,7 +209,10 @@ class User extends Authenticatable
 
                 User::firstWhere('id', $requestTrainerId)
                     ->membershipHistory()
-                    ->attach($team->id, ['joined_at' => now()]);
+                    ->attach($team->id, [
+                        'joined_at'    => now(),
+                        'current_role' => config('constants.roles.' . Role::TRAINER),
+                    ]);
             }
 
             $leftMembers = collect(self::where('team_id', $team->id)->notTrainers()->pluck('id'))->diff($members);
@@ -216,7 +231,10 @@ class User extends Authenticatable
         $members = $team->members();
 
         foreach ($members as $member) {
-            $member->membershipHistory()->attach($team->id, ['joined_at' => now()]);
+            $member->membershipHistory()->attach($team->id, [
+                'joined_at'    => now(),
+                'current_role' => config('constants.roles.' . ($member->role_id ?? Role::COMPETITOR)),
+            ]);
         }
     }
 
@@ -239,9 +257,10 @@ class User extends Authenticatable
             // If user is already in the team there is no need to perform any action
             if ($team->id == $member->team_id) continue;
 
-            if (!optional($member->membershipHistoryOrderByDesc->whereNotNull('left_at')->first())->history) {
-                $member->membershipHistory()->attach($team->id, ['joined_at' => now()]);
-            }
+            $member->membershipHistory()->attach($team->id, [
+                'joined_at'    => now(),
+                'current_role' => config('constants.roles.' . ($member->role_id ?? Role::COMPETITOR)),
+            ]);
         }
     }
 

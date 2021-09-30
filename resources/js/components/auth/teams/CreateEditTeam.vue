@@ -47,7 +47,7 @@
                           </div>
 
                           <div class="form-group text-center" v-if="actionType == 'Create'">
-                              <note></note>
+                              <note text="Please, pay attention to trainer's settlement and sport. Once team is created, you will be able to see only (in edit functionality) trainers and members/users only for trainer's settlement and sport selected in this step."></note>
                           </div>
                       </div>
                   </div>
@@ -58,7 +58,8 @@
               <div class="col-12">
                   <div class="card">
                       <div class="card-header bg-primary">
-                          <p class="h3 text-center">Members/Users</p>
+                          <note :base-style="noteBaseStyles" text="If the member/user has no role, he/she will be registered as a competitor"></note>
+                        <p class="h3 text-center">Members/Users</p>
                       </div>
                       <div class="card-body scroll-h-400-px">
                           <div class="form-inline" v-if="users !== {}">
@@ -86,7 +87,13 @@ export default {
     components: {TeamMemberCard, RemoveTeamButton},
     name: 'CreateEditTeam',
     data() {
-        return {}
+        return {
+            noteBaseStyles: {
+                'd-inline-block': true,
+                'text-warning': true,
+                'fa-pulse': true,
+            }
+        }
     }
 }
 </script>

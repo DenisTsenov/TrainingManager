@@ -17,6 +17,7 @@ class CreateTeamMemberHistoryTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('team_id')->constrained();
+            $table->string('current_role', 50);
             $table->timestamp('joined_at');
             $table->timestamp('left_at')->nullable();
         });

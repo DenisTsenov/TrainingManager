@@ -4,11 +4,12 @@ namespace App\Models\Admin;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 
 class Team extends Model
 {
-    use LaravelVueDatatableTrait;
+    use LaravelVueDatatableTrait, SoftDeletes;
 
     protected $table = 'teams';
 
@@ -79,6 +80,11 @@ class Team extends Model
         return $this->belongsTo(User::class, 'trainer_id');
     }
 
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
     public function sport()
     {
         return $this->belongsTo(Sport::class);
@@ -89,8 +95,18 @@ class Team extends Model
         return $this->belongsTo(Settlement::class);
     }
 
+    public function history()
+    {
+        return $this->belongsToMany(User::class, 'team_member_history')->withPivot('joined_at', 'left_at', 'current_role');
+    }
+
+    public function exMembers()
+    {
+        return $this->history()->whereNotNull('left_at');
+    }
+
     public function members()
     {
-        return $this->hasMany(User::class);
+        return User::where('team_id', $this->id)->get();
     }
 }

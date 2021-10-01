@@ -24,6 +24,13 @@ class AuthController extends Controller
         return view('auth.profile');
     }
 
+    public function membershipHistory()
+    {
+        $user = User::with(['membershipHistory', 'sport', 'settlement'])->firstWhere('id', auth()->id());
+
+        return view('auth.membershit_history', compact('user'));
+    }
+
     /**
      * Update the specified resource in storage.
      *

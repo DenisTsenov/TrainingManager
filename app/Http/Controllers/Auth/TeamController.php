@@ -55,6 +55,7 @@ class TeamController extends Controller
             $trainer->update(['team_id' => $team->id]);
 
             User::createOrUpdateMembership($request->input('members'), $team->id);
+            User::createOrUpdateHistory($team, $request->input('members'));
         }, 5);
 
         session()->flash('success', 'Operation done successfully!');
@@ -98,6 +99,14 @@ class TeamController extends Controller
     public function update(TeamRequest $request, Team $team): JsonResponse
     {
         DB::transaction(function () use ($request, $team) {
+            $requestTrainer = $request->input('trainer_id');
+            User::createOrUpdateHistory($team, $request->input('members'), $requestTrainer);
+
+            if ($team->trainer_id <> $requestTrainer) {
+                User::where('id', $team->trainer_id)->update(['team_id' => null]);
+                User::where('id', $requestTrainer)->update(['team_id' => $team->id]);
+            }
+
             $team->update([
                 'name'       => $request->input('name'),
                 'trainer_id' => $request->input('trainer_id'),
@@ -122,5 +131,12 @@ class TeamController extends Controller
         session()->flash('success', 'Operation done successfully!');
 
         return response()->json(['route' => route('admin.team')]);
+    }
+
+    public function history(Team $team)
+    {
+        $team->load('exMembers', 'createdBy');
+
+        return view('auth.team.history', compact('team'));
     }
 }

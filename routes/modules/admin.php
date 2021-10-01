@@ -68,7 +68,7 @@ Route::post('/team/update/{team}', [TeamController::class, 'update'])
      ->middleware('ajax');
 
 Route::get('/for-distribution', [DashboardController::class, 'forDistribution'])
-     ->name('for-distribution');
+     ->name('for_distribution');
 
 Route::get('/distribute-user/create/{user}', [DashboardController::class, 'createDistribution'])
      ->name('distribute.create');
@@ -80,6 +80,9 @@ Route::post('/distribute-user/store', [TeamController::class, 'storeDistribution
 Route::post('/team/destroy/{team}', [TeamController::class, 'destroy'])
      ->name('team.destroy')
      ->middleware(['can:delete,team','ajax']);
+
+Route::get('/team/history/{team}', [TeamController::class, 'history'])
+     ->name('team.history');
 
 Route::get('/team/trainers', [AjaxController::class, 'trainers'])
      ->name('trainers')

@@ -18,6 +18,11 @@
                         </a>
                     </li>
                     <li class="dropdown-item">
+                        <a class="dropdown-item btn btn-light" href="{{ route('profile.membership_history') }}">
+                            <i class="fas fa-history"></i> History
+                        </a>
+                    </li>
+                    <li class="dropdown-item">
                         <a class="dropdown-item btn btn-light" v-on:click="logout">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </a>

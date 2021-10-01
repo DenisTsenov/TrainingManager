@@ -2263,6 +2263,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_EditMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -85475,6 +85500,124 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "settlement" } }, [
+                  _vm._v("Settlement")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.settlement,
+                        expression: "settlement"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "settlement_id", id: "settlement" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.settlement = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
+                          return _vm.setSettlement(_vm.settlement)
+                        }
+                      ]
+                    }
+                  },
+                  _vm._l(_vm.settlements, function(settlement, id) {
+                    return _c("option", { key: id, domProps: { value: id } }, [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(settlement) +
+                          "\n                            "
+                      )
+                    ])
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.settlement_id
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.errors.settlement_id[0]) +
+                          "\n                        "
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "sport" } }, [_vm._v("Sport")]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.sport,
+                        expression: "sport"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "sport_id", id: "sport" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.sport = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
+                          return _vm.setSport($event, _vm.sport)
+                        }
+                      ]
+                    }
+                  },
+                  _vm._l(_vm.sports, function(sport, id) {
+                    return _c("option", { key: id, domProps: { value: id } }, [
+                      _vm._v(_vm._s(sport))
+                    ])
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.sport_id
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.errors.sport_id[0]) +
+                          "\n                        "
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "password" } }, [
                   _vm._v("Password")
                 ]),
@@ -103634,12 +103777,18 @@ __webpack_require__.r(__webpack_exports__);
         'first_name': this.user.first_name,
         'last_name': this.user.last_name,
         'email': this.user.email,
+        'settlement_id': this.user.settlement_id,
+        'sport_id': this.user.sport_id,
         'password': this.password,
         'password_confirmation': this.password_confirmation
       },
       password: '',
       password_confirmation: '',
       errors: {},
+      settlements: {},
+      settlement: '',
+      sports: {},
+      sport: '',
       success: false,
       sendAllowed: true,
       hasBeenSend: false,
@@ -103652,6 +103801,12 @@ __webpack_require__.r(__webpack_exports__);
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
       },
       last_name: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      settlement_id: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      sport_id: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
       },
       email: {
@@ -103670,7 +103825,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     required: true,
-    user: Object
+    user: Object | Array
   },
   methods: {
     submit: function submit() {
@@ -103686,6 +103841,8 @@ __webpack_require__.r(__webpack_exports__);
         axios.put('/profile/' + this.user.id + '/update', this.userData).then(function (response) {
           _this.userData.password = '';
           _this.userData.password_confirmation = '';
+          _this.userData.settlement = '';
+          _this.userData.sport = '';
           _this.sendAllowed = true;
           _this.success = true;
           _this.hasBeenSend = false; // if back end validation do not pass we shall be able to send the form again with front end validation
@@ -103701,7 +103858,56 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
+    },
+    loadSettlements: function loadSettlements() {
+      var _this2 = this;
+
+      var settlement = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      axios.get('/settlements').then(function (response) {
+        _this2.settlements = response.data;
+
+        if (settlement) {
+          return _this2.loadSports(settlement);
+        }
+
+        _this2.loadSports(_this2.userData.sport_id);
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this2.errors = error.response.data.errors || {};
+        } else {
+          _this2.serverErr = true;
+        }
+      });
+    },
+    loadSports: function loadSports(settlement) {
+      var _this3 = this;
+
+      axios.get('/settlement/sports', {
+        params: {
+          settlement_id: settlement
+        }
+      }).then(function (response) {
+        _this3.sports = response.data; // this.sport  = this.userData.sport_id;
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this3.errors = error.response.data.errors || {};
+        } else {
+          _this3.serverErr = true;
+        }
+      });
+    },
+    setSettlement: function setSettlement(settlement) {
+      this.userData.settlement_id = settlement;
+      this.loadSettlements(settlement);
+    },
+    setSport: function setSport(sport) {
+      this.userData.sport_id = sport;
     }
+  },
+  created: function created() {
+    this.loadSettlements();
+    this.settlement = this.userData.settlement_id;
+    this.sport = this.userData.sport_id;
   }
 });
 

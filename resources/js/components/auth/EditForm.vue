@@ -46,6 +46,31 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="settlement">Settlement</label>
+                            <select name="settlement_id" id="settlement" class="form-control"
+                                    @change='setSettlement(settlement)'
+                                    v-model="settlement">
+                                <option v-for="(settlement, id) in settlements" :value="id" :key="id">
+                                    {{ settlement }}
+                                </option>
+                            </select>
+                            <div v-if="errors && errors.settlement_id" class="alert alert-danger mt-3">
+                                {{ errors.settlement_id[0] }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sport">Sport</label>
+                            <select name="sport_id" id="sport" class="form-control"
+                                    @change="setSport($event, sport)"
+                                    v-model="sport">
+                                <option v-for="(sport, id) in sports" :value="id" :key="id">{{ sport }}</option>
+                            </select>
+                            <div v-if="errors && errors.sport_id" class="alert alert-danger mt-3">
+                                {{ errors.sport_id[0] }}
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" name="password" id="password"
                                    v-model="userData.password"/>

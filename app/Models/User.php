@@ -227,7 +227,6 @@ class User extends Authenticatable
 
             return;
         }
-
         $members = $team->members();
 
         foreach ($members as $member) {

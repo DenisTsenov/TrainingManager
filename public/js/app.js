@@ -2311,6 +2311,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MembershipHistory",
@@ -3345,6 +3352,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/index.js");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -85659,17 +85672,24 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("li", { staticClass: "list-group-item" }, [
-                      _vm._v("Joined at: " + _vm._s(team.pivot.joined_at))
+                      _vm._v(
+                        "Joined at: " +
+                          _vm._s(team.pivot.joined_at) +
+                          "\n                            at position " +
+                          _vm._s(team.pivot.current_role) +
+                          "\n                        "
+                      )
                     ]),
                     _vm._v(" "),
                     _c("li", { staticClass: "list-group-item" }, [
                       _vm._v(
-                        "Left at: " +
+                        "Left at:\n                            " +
                           _vm._s(
                             team.pivot.left_at != null
                               ? team.pivot.left_at
                               : "Still in team"
-                          )
+                          ) +
+                          "\n                        "
                       )
                     ]),
                     _vm._v(" "),
@@ -85682,13 +85702,14 @@ var render = function() {
                     _vm._v(" "),
                     _c("li", { staticClass: "list-group-item" }, [
                       _vm._v(
-                        "Days spent in the team: " +
+                        "Days spent in the team:\n                            " +
                           _vm._s(
                             _vm.timeSpent(
                               team.pivot.joined_at,
                               team.pivot.left_at
                             )
-                          )
+                          ) +
+                          "\n                        "
                       )
                     ])
                   ]),
@@ -85706,7 +85727,7 @@ var render = function() {
             {
               staticClass: "row justify-content-center text-center alert-info"
             },
-            [_vm._v("You do not have any team membership history")]
+            [_vm._v("You do not have any team membership history\n        ")]
           )
         ])
   ])
@@ -86962,7 +86983,13 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("li", { staticClass: "list-group-item" }, [
-                      _vm._v("Joined at: " + _vm._s(exMember.pivot.joined_at))
+                      _vm._v(
+                        "Joined at: " +
+                          _vm._s(exMember.pivot.joined_at) +
+                          "\n                           at position " +
+                          _vm._s(exMember.pivot.current_role) +
+                          "\n                        "
+                      )
                     ]),
                     _vm._v(" "),
                     _c("li", { staticClass: "list-group-item" }, [
@@ -86979,7 +87006,8 @@ var render = function() {
                     _c("li", { staticClass: "list-group-item" }, [
                       _vm._v(
                         "Days spent in the team: " +
-                          _vm._s(_vm.timeSpent(exMember.pivot.joined_at))
+                          _vm._s(_vm.timeSpent(exMember.pivot.joined_at)) +
+                          "\n                        "
                       )
                     ])
                   ]),
@@ -86997,7 +87025,7 @@ var render = function() {
             {
               staticClass: "row justify-content-center text-center alert-info"
             },
-            [_vm._v("This team do not have left members history")]
+            [_vm._v("This team do not have left members history\n        ")]
           )
         ])
   ])
@@ -104027,9 +104055,9 @@ Vue.component('note', _components_main_Note__WEBPACK_IMPORTED_MODULE_4__["defaul
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /var/www/trainingmanager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/trainingmanager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /var/www/trainingmanager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

@@ -23,6 +23,8 @@ export default {
             sendAllowed: true,
             hasBeenSend: false,
             serverErr: false,
+            canChangeSettlementSport: '',
+            selectSport: false,
         }
     },
     validations: {
@@ -75,10 +77,10 @@ export default {
             axios.get('/settlements',)
                  .then(response => {
                      this.settlements = response.data;
-                     if (settlement) {
-                        return this.loadSports(settlement);
-                     }
-                     this.loadSports(this.userData.sport_id);
+
+                     if (settlement) return this.loadSports(settlement);
+
+                     this.loadSports(this.userData.settlement_id);
                  }).catch(error => {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors || {};
@@ -94,7 +96,7 @@ export default {
                 }
             }).then(response => {
                 this.sports = response.data;
-                // this.sport  = this.userData.sport_id;
+                if (!(this.userData.sport_id in this.sports)) this.userData.sport_id = '';
             }).catch(error => {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors || {};
@@ -107,13 +109,14 @@ export default {
             this.userData.settlement_id = settlement;
             this.loadSettlements(settlement);
         },
-        setSport(sport) {
+        setSport(e, sport) {
             this.userData.sport_id = sport;
         },
     },
     created() {
         this.loadSettlements();
-        this.settlement = this.userData.settlement_id;
-        this.sport      = this.userData.sport_id;
+        this.settlement                  = this.userData.settlement_id;
+        this.sport                       = this.userData.sport_id;
+        this.cannotChangeSettlementSport = this.user.team_id != null;
     }
 }

@@ -47,7 +47,11 @@
 
                         <div class="form-group">
                             <label for="settlement">Settlement</label>
+                            <span class="badge badge-warning" v-if="this.cannotChangeSettlementSport">
+                              This option is not editable if you are in a team
+                            </span>
                             <select name="settlement_id" id="settlement" class="form-control"
+                                    :disabled="this.cannotChangeSettlementSport"
                                     @change='setSettlement(settlement)'
                                     v-model="settlement">
                                 <option v-for="(settlement, id) in settlements" :value="id" :key="id">
@@ -61,11 +65,18 @@
 
                         <div class="form-group">
                             <label for="sport">Sport</label>
+                            <span class="badge badge-warning" v-if="this.cannotChangeSettlementSport">
+                              This option is not editable if you are in a team
+                            </span>
                             <select name="sport_id" id="sport" class="form-control"
+                                    :disabled="this.cannotChangeSettlementSport"
                                     @change="setSport($event, sport)"
                                     v-model="sport">
                                 <option v-for="(sport, id) in sports" :value="id" :key="id">{{ sport }}</option>
                             </select>
+                            <div v-if="hasBeenSend && !$v.userData.sport_id.required" class="alert alert-danger mt-3">
+                              Sport is required.
+                            </div>
                             <div v-if="errors && errors.sport_id" class="alert alert-danger mt-3">
                                 {{ errors.sport_id[0] }}
                             </div>

@@ -2288,6 +2288,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_EditMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -85504,6 +85515,14 @@ var render = function() {
                   _vm._v("Settlement")
                 ]),
                 _vm._v(" "),
+                this.cannotChangeSettlementSport
+                  ? _c("span", { staticClass: "badge badge-warning" }, [
+                      _vm._v(
+                        "\n                          This option is not editable if you are in a team\n                        "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _c(
                   "select",
                   {
@@ -85516,7 +85535,11 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { name: "settlement_id", id: "settlement" },
+                    attrs: {
+                      name: "settlement_id",
+                      id: "settlement",
+                      disabled: this.cannotChangeSettlementSport
+                    },
                     on: {
                       change: [
                         function($event) {
@@ -85564,6 +85587,14 @@ var render = function() {
               _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "sport" } }, [_vm._v("Sport")]),
                 _vm._v(" "),
+                this.cannotChangeSettlementSport
+                  ? _c("span", { staticClass: "badge badge-warning" }, [
+                      _vm._v(
+                        "\n                          This option is not editable if you are in a team\n                        "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _c(
                   "select",
                   {
@@ -85576,7 +85607,11 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { name: "sport_id", id: "sport" },
+                    attrs: {
+                      name: "sport_id",
+                      id: "sport",
+                      disabled: this.cannotChangeSettlementSport
+                    },
                     on: {
                       change: [
                         function($event) {
@@ -85605,6 +85640,14 @@ var render = function() {
                   }),
                   0
                 ),
+                _vm._v(" "),
+                _vm.hasBeenSend && !_vm.$v.userData.sport_id.required
+                  ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
+                      _vm._v(
+                        "\n                          Sport is required.\n                        "
+                      )
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _vm.errors && _vm.errors.sport_id
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
@@ -103792,7 +103835,9 @@ __webpack_require__.r(__webpack_exports__);
       success: false,
       sendAllowed: true,
       hasBeenSend: false,
-      serverErr: false
+      serverErr: false,
+      canChangeSettlementSport: '',
+      selectSport: false
     };
   },
   validations: {
@@ -103865,12 +103910,9 @@ __webpack_require__.r(__webpack_exports__);
       var settlement = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       axios.get('/settlements').then(function (response) {
         _this2.settlements = response.data;
+        if (settlement) return _this2.loadSports(settlement);
 
-        if (settlement) {
-          return _this2.loadSports(settlement);
-        }
-
-        _this2.loadSports(_this2.userData.sport_id);
+        _this2.loadSports(_this2.userData.settlement_id);
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this2.errors = error.response.data.errors || {};
@@ -103887,7 +103929,8 @@ __webpack_require__.r(__webpack_exports__);
           settlement_id: settlement
         }
       }).then(function (response) {
-        _this3.sports = response.data; // this.sport  = this.userData.sport_id;
+        _this3.sports = response.data;
+        if (!(_this3.userData.sport_id in _this3.sports)) _this3.userData.sport_id = '';
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this3.errors = error.response.data.errors || {};
@@ -103900,7 +103943,7 @@ __webpack_require__.r(__webpack_exports__);
       this.userData.settlement_id = settlement;
       this.loadSettlements(settlement);
     },
-    setSport: function setSport(sport) {
+    setSport: function setSport(e, sport) {
       this.userData.sport_id = sport;
     }
   },
@@ -103908,6 +103951,7 @@ __webpack_require__.r(__webpack_exports__);
     this.loadSettlements();
     this.settlement = this.userData.settlement_id;
     this.sport = this.userData.sport_id;
+    this.cannotChangeSettlementSport = this.user.team_id != null;
   }
 });
 
@@ -104261,9 +104305,9 @@ Vue.component('note', _components_main_Note__WEBPACK_IMPORTED_MODULE_4__["defaul
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/trainingmanager/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/trainingmanager/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/trainingmanager/resources/sass/custom.scss */"./resources/sass/custom.scss");
+__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/vagrant/www/TrainingManager/resources/sass/custom.scss */"./resources/sass/custom.scss");
 
 
 /***/ })

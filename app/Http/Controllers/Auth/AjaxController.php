@@ -13,7 +13,7 @@ class AjaxController extends Controller
 {
     public function trainers(Request $request): string
     {
-        $request->validate(['trainer_id' => 'nullable|exists:users,id',]);
+        $request->validate(['trainer_id' => ['nullable', 'exists:users,id']]);
 
         if ($request->has('trainer_id')) {
             $trainer       = User::firstWhere('id', $request->trainer_id);
@@ -48,7 +48,7 @@ class AjaxController extends Controller
 
     public function sports(Request $request): string
     {
-        $request->validate(['settlement_id' => 'nullable', 'exists:users,id']);
+        $request->validate(['settlement_id' => ['nullable', 'exists:settlements,id']]);
 
         $sports = Sport::withTrashed()->select('id', 'name', 'deleted_at')->get();
 

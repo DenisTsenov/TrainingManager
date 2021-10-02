@@ -89,12 +89,11 @@ export default {
                 params: {
                     settlement_id: settlementId
                 }
-            })
-                 .then(response => {
-                     this.settlementSelected     = true;
-                     this.userData.settlement_id = settlementId
-                     this.sports                 = response.data;
-                 }).catch(error => {
+            }).then(response => {
+                this.settlementSelected     = true;
+                this.userData.settlement_id = settlementId
+                this.sports                 = response.data;
+            }).catch(error => {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors || {};
                 } else {

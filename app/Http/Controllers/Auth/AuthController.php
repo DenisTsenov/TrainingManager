@@ -21,7 +21,9 @@ class AuthController extends Controller
      */
     public function edit()
     {
-        return view('auth.profile');
+        $user = Auth::user()->firstWhere('id', \auth()->id());
+
+        return view('auth.profile', compact('user'));
     }
 
     public function membershipHistory()

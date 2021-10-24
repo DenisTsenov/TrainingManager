@@ -35,9 +35,7 @@ class TeamController extends Controller
 
     public function create(): View
     {
-        $route = route('admin.team.store');
-
-        return view('auth.team.create_edit', compact('route'));
+        return view('auth.team.create_edit', ['route' => route('admin.team.store')]);
     }
 
     public function store(TeamRequest $request): JsonResponse
@@ -67,31 +65,25 @@ class TeamController extends Controller
     {
         $team->load(['trainer']);
 
-        $membersAndUsers = User::selectRaw('id,full_name,sport_id,settlement_id,team_id,created_at')
-                               ->where(function ($query) use ($team) {
-                                   $query->where('team_id', $team->id)
-                                         ->orWhere(function ($query) use ($team) {
-                                             $query->whereNull('team_id')
-                                                   ->where('sport_id', $team->sport_id)
-                                                   ->where('settlement_id', $team->settlement_id);
-                                         })
-                                         ->notAdmin()
-                                         ->notTrainers();
-                               })
-                               ->with(['sport', 'settlement'])
-                               ->get();
-
-        $team->members = $membersAndUsers;
-
-        $route        = route('admin.team.update', compact('team'));
-        $destroyRoute = route('admin.team.destroy', compact('team'));
-        $canDestroy   = Auth::user()->can('delete', $team);
+        $team->members = User::selectRaw('id,full_name,sport_id,settlement_id,team_id,created_at')
+                             ->where(function ($query) use ($team) {
+                                 $query->where('team_id', $team->id)
+                                       ->orWhere(function ($query) use ($team) {
+                                           $query->whereNull('team_id')
+                                                 ->where('sport_id', $team->sport_id)
+                                                 ->where('settlement_id', $team->settlement_id);
+                                       })
+                                       ->notAdmin()
+                                       ->notTrainers();
+                             })
+                             ->with(['sport', 'settlement'])
+                             ->get();
 
         return view('auth.team.create_edit', [
             'team'         => $team,
-            'route'        => $route,
-            'destroyRoute' => $destroyRoute,
-            'canDestroy'   => $canDestroy,
+            'route'        => route('admin.team.update', compact('team')),
+            'destroyRoute' => route('admin.team.destroy', compact('team')),
+            'canDestroy'   => Auth::user()->can('delete', $team),
             'edit'         => true,
         ]);
     }

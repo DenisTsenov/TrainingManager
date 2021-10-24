@@ -180,19 +180,10 @@ class User extends Authenticatable
         $leftMembers = collect(self::where('team_id', $teamId)->pluck('id'))->diff($members);
 
         if (count($members)) {
-            $members = self::whereIn('id', $members)->get();
-
-            foreach ($members as $member) {
-                if (!$member->role_id) {
-                    $member->update([
-                        'team_id' => $teamId,
-                        'role_id' => Role::COMPETITOR,
-                    ]);
-                    continue;
-                }
-                $member->update(['team_id' => $teamId]);
-            }
-
+            self::whereIn('id', $members)->update([
+                'team_id' => $teamId,
+                'role_id' => $member->role_id ?? Role::COMPETITOR,
+            ]);
         }
 
         if ($leftMembers->count()) {
@@ -204,8 +195,8 @@ class User extends Authenticatable
     {
         if ($requestTrainerId) {
             if ($team->trainer_id <> $requestTrainerId) {
-                $teamTrainerHistory = $team->trainer->membershipHistoryOrderByDesc->first();
-                $teamTrainerHistory->history->update(['left_at' => now()]);
+                $currentTrainer = $team->trainer->membershipHistoryOrderByDesc->first();
+                $currentTrainer->history->update(['left_at' => now()]);
 
                 User::firstWhere('id', $requestTrainerId)
                     ->membershipHistory()

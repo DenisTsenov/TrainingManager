@@ -21,16 +21,14 @@ class AuthController extends Controller
      */
     public function edit()
     {
-        $user = Auth::user()->firstWhere('id', \auth()->id());
-
-        return view('auth.profile', compact('user'));
+        return view('auth.profile', ['user' => Auth::user()->firstWhere('id', \auth()->id())]);
     }
 
     public function membershipHistory()
     {
-        $user = User::with(['membershipHistory', 'sport', 'settlement'])->firstWhere('id', auth()->id());
-
-        return view('auth.membershit_history', compact('user'));
+        return view('auth.membershit_history', [
+            'user' => User::with(['membershipHistory', 'sport', 'settlement'])->firstWhere('id', auth()->id()),
+        ]);
     }
 
     /**

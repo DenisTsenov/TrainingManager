@@ -32,12 +32,12 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function showLoginForm()
+    public function showLoginForm(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('auth.login');
     }
 
-    protected function sendLoginResponse(Request $request)
+    protected function sendLoginResponse(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->session()->regenerate();
 

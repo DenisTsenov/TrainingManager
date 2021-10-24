@@ -15,6 +15,8 @@ class Ajax
      */
     public function handle($request, Closure $next)
     {
+        if (env('APP_ENV') == 'testing') return $next($request);
+
         if (!$request->ajax()) {
             abort(404);
         }

@@ -13,16 +13,13 @@ class NewUserRegistered extends Notification implements ShouldBroadcast
 {
     use Queueable;
 
-    public User $user;
-
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(public User $user)
     {
-        $this->user = $user;
     }
 
     /**
@@ -38,10 +35,8 @@ class NewUserRegistered extends Notification implements ShouldBroadcast
 
     public function toBroadcast($notifiable): BroadcastMessage
     {
-        $route = route('admin.distribute.create', ['user' => $this->user->id]);
-
         return new BroadcastMessage([
-            'message' => view('auth.admin.notifications.registered_user', compact('route'))->render(),
+            'message' => view('auth.admin.notifications.registered_user', ['route' => route('admin.distribute.create', ['user' => $this->user->id])])->render(),
         ]);
     }
 

@@ -183,16 +183,11 @@ class User extends Authenticatable
             $members = self::whereIn('id', $members)->get();
 
             foreach ($members as $member) {
-                if (!$member->role_id) {
-                    $member->update([
-                        'team_id' => $teamId,
-                        'role_id' => Role::COMPETITOR,
-                    ]);
-                    continue;
-                }
-                $member->update(['team_id' => $teamId]);
+                $member->update([
+                    'team_id' => $teamId,
+                    'role_id' => $member->role_id ?? Role::COMPETITOR,
+                ]);
             }
-
         }
 
         if ($leftMembers->count()) {

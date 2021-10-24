@@ -4,12 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
 {
-//    use RefreshDatabase;
-
     /*
      * Before test testUserCannotViewLoginFormWhenAuthenticated() and testUserCanLoginWithCorrectCredentials() methods
      * go to database/factories/UserFactory.php and comment line 22 and set

@@ -13,9 +13,7 @@ class SportController extends Controller
 {
     public function index()
     {
-        $route = route('admin.sport.list');
-
-        return view('auth.admin.sports.list', compact('route'));
+        return view('auth.admin.sports.list', ['route' => route('admin.sport.list')]);
     }
 
     public function list(Request $request)
@@ -37,9 +35,7 @@ class SportController extends Controller
 
     public function create()
     {
-        $route = route('admin.sport.store');
-
-        return view('auth.admin.sports.create_edit', compact('route'));
+        return view('auth.admin.sports.create_edit', ['route' => route('admin.sport.store')]);
     }
 
     public function store(SportRequest $request)

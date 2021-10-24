@@ -47,9 +47,7 @@ class SettlementController extends Controller
 
     public function create()
     {
-        $route = route('admin.settlement.store');
-
-        return view('auth.admin.settlements.create_edit', compact('route'));
+        return view('auth.admin.settlements.create_edit', ['route' => route('admin.settlement.store')]);
     }
 
     public function store(SettlementRequest $request)

@@ -1,4 +1,5 @@
-<h1 align="center">Steps to run the project</h1>
+<h1 align="center"><u>This is practice/learn purpose project.</u></h1>
+<h1 align="center">Steps to setup the project</h1>
 <p align="center">composer install</p>
 <p align="center">php artisan migrate:fresh --seed</p>
 <p align="center">1) php artisan websocket:serve --port=6002</p>

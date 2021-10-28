@@ -6,7 +6,6 @@
                       edit="{{ $edit ?? false }}"
                       route="{{ $route }}"
                       team-id="{{ $team->id ?? null }}"
-                      destroy-route="{{ $destroyRoute ?? null }}"
-                      can-destroy="{{ $canDestroy ?? false }}">
+                      destroy-route="{{ $destroyRoute ?? null }}">
     </create-edit-team>
 @endsection

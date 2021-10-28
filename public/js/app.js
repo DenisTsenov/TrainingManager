@@ -2169,6 +2169,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixin_EditMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixin/EditMixin */ "./resources/js/mixin/EditMixin.js");
+/* harmony import */ var _buttons_DisableProfileButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./buttons/DisableProfileButton */ "./resources/js/components/auth/buttons/DisableProfileButton.vue");
+//
+//
+//
 //
 //
 //
@@ -2300,8 +2304,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin_EditMixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  components: {
+    DisableProfileButton: _buttons_DisableProfileButton__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   name: 'EditForm',
   data: function data() {
     return {};
@@ -2943,6 +2951,72 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/DisableProfileButton.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/DisableProfileButton.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'DisableProfileButton',
+  props: {
+    destroyRoute: {
+      required: true,
+      type: URL | null
+    }
+  },
+  methods: {
+    confirmDisable: function confirmDisable() {
+      var _this = this;
+
+      this.$confirm({
+        title: "Remove team",
+        message: "Are you sure you want to disable your profile?",
+        button: {
+          no: 'Cancel',
+          yes: 'Ok'
+        },
+
+        /**
+         * Callback Function
+         * @param {Boolean} confirm
+         */
+        callback: function callback(confirm) {
+          if (confirm) {
+            axios.post(_this.destroyRoute).then(function (response) {
+              window.location = response.data.login;
+            })["catch"](function (error) {
+              alert('Something went wrong! Please try again later');
+            });
+          }
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/EditButton.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/EditButton.vue?vue&type=script&lang=js& ***!
@@ -3285,6 +3359,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3328,6 +3408,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'RemoveTeamButton',
   props: {
@@ -3338,10 +3420,6 @@ __webpack_require__.r(__webpack_exports__);
     destroyRoute: {
       required: false,
       type: String
-    },
-    canDestroy: {
-      required: false,
-      type: Boolean | String
     }
   },
   methods: {
@@ -3368,8 +3446,6 @@ __webpack_require__.r(__webpack_exports__);
               alert('Something went wrong! Please try again later');
             });
           }
-
-          window.location = you;
         }
       });
     }
@@ -3577,12 +3653,12 @@ __webpack_require__.r(__webpack_exports__);
         label: 'ID',
         name: 'id',
         orderable: false,
-        width: 5
+        width: 4
       }, {
         label: 'Name',
         name: 'name',
         orderable: true,
-        width: 10
+        width: 8
       }, {
         label: 'Trainer',
         name: 'trainer.full_name',
@@ -3594,18 +3670,23 @@ __webpack_require__.r(__webpack_exports__);
         name: 'sport.name',
         columnName: 'sports.name',
         orderable: true,
-        width: 10
+        width: 8
       }, {
         label: 'Settlement',
         name: 'settlement.name',
         columnName: 'settlements.name',
         orderable: true,
-        width: 10
+        width: 9
+      }, {
+        label: 'Members',
+        name: 'members_count',
+        orderable: true,
+        width: 8
       }, {
         label: 'Created at',
         name: 'created_at',
         orderable: true,
-        width: 10
+        width: 11
       }, {
         label: 'Actions',
         name: 'Edit',
@@ -3618,7 +3699,7 @@ __webpack_require__.r(__webpack_exports__);
         event: "click",
         handler: this.editTeam,
         component: _buttons_EditButton__WEBPACK_IMPORTED_MODULE_0__["default"],
-        width: 3
+        width: 4
       }, {
         label: '',
         name: 'History',
@@ -3630,7 +3711,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         handler: this.teamHistory,
         component: _buttons_RedirectButton__WEBPACK_IMPORTED_MODULE_1__["default"],
-        width: 5
+        width: 6
       }]
     };
   },
@@ -85515,7 +85596,7 @@ var render = function() {
                   _vm._v("Settlement")
                 ]),
                 _vm._v(" "),
-                this.cannotChangeSettlementSport
+                this.isInTeam
                   ? _c("span", { staticClass: "badge badge-warning" }, [
                       _vm._v(
                         "\n                          This option is not editable if you are in a team\n                        "
@@ -85538,7 +85619,7 @@ var render = function() {
                     attrs: {
                       name: "settlement_id",
                       id: "settlement",
-                      disabled: this.cannotChangeSettlementSport
+                      disabled: this.isInTeam
                     },
                     on: {
                       change: [
@@ -85587,7 +85668,7 @@ var render = function() {
               _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "sport" } }, [_vm._v("Sport")]),
                 _vm._v(" "),
-                this.cannotChangeSettlementSport
+                this.isInTeam
                   ? _c("span", { staticClass: "badge badge-warning" }, [
                       _vm._v(
                         "\n                          This option is not editable if you are in a team\n                        "
@@ -85610,7 +85691,7 @@ var render = function() {
                     attrs: {
                       name: "sport_id",
                       id: "sport",
-                      disabled: this.cannotChangeSettlementSport
+                      disabled: this.isInTeam
                     },
                     on: {
                       change: [
@@ -85644,7 +85725,7 @@ var render = function() {
                 _vm.hasBeenSend && !_vm.$v.userData.sport_id.required
                   ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
                       _vm._v(
-                        "\n                          Sport is required.\n                        "
+                        "\n                            Sport is required.\n                        "
                       )
                     ])
                   : _vm._e(),
@@ -85774,6 +85855,17 @@ var render = function() {
           )
         ])
       ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group text-center mt-3" },
+        [
+          _c("disable-profile-button", {
+            attrs: { "destroy-route": _vm.destroyRoute }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _vm.serverErr
         ? _c("div", { staticClass: "alert alert-danger" }, [
@@ -86609,6 +86701,76 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/DisableProfileButton.vue?vue&type=template&id=c4310f26&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/DisableProfileButton.vue?vue&type=template&id=c4310f26&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return this.destroyRoute
+    ? _c(
+        "div",
+        [
+          _c("vue-confirm-dialog"),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger w-50",
+              on: {
+                click: function($event) {
+                  return _vm.confirmDisable()
+                }
+              }
+            },
+            [
+              _vm._v("\n        Disable profile\n        "),
+              _c("i", { staticClass: "far fa-trash-alt" })
+            ]
+          )
+        ],
+        1
+      )
+    : _c("div", [_vm._m(0)])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-danger w-50",
+        attrs: {
+          tabindex: "0",
+          "data-toggle": "tooltip",
+          title: "You are still in a team.",
+          disabled: ""
+        }
+      },
+      [
+        _vm._v("\n        Disable profile\n        "),
+        _c("i", { staticClass: "far fa-trash-alt" })
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/EditButton.vue?vue&type=template&id=520c1fd4&scoped=true&":
 /*!**************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/buttons/EditButton.vue?vue&type=template&id=520c1fd4&scoped=true& ***!
@@ -86968,7 +87130,9 @@ var render = function() {
             _vm._v(" "),
             _vm.serverErr
               ? _c("div", { staticClass: "alert alert-danger" }, [
-                  _vm._v("Something went wrong. Please try again later..")
+                  _vm._v(
+                    "Something went wrong. Please try again later..\n                "
+                  )
                 ])
               : _vm._e()
           ])
@@ -87027,11 +87191,7 @@ var render = function() {
           { staticClass: "form-group text-center" },
           [
             _c("remove-team-button", {
-              attrs: {
-                team: _vm.team,
-                "destroy-route": _vm.destroyRoute,
-                "can-destroy": _vm.canDestroy
-              }
+              attrs: { team: _vm.team, "destroy-route": _vm.destroyRoute }
             })
           ],
           1
@@ -87074,7 +87234,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.canDestroy
+  return _vm.destroyRoute
     ? _c(
         "div",
         [
@@ -102532,6 +102692,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/auth/buttons/DisableProfileButton.vue":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/DisableProfileButton.vue ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DisableProfileButton_vue_vue_type_template_id_c4310f26_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DisableProfileButton.vue?vue&type=template&id=c4310f26&scoped=true& */ "./resources/js/components/auth/buttons/DisableProfileButton.vue?vue&type=template&id=c4310f26&scoped=true&");
+/* harmony import */ var _DisableProfileButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DisableProfileButton.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/buttons/DisableProfileButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DisableProfileButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DisableProfileButton_vue_vue_type_template_id_c4310f26_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DisableProfileButton_vue_vue_type_template_id_c4310f26_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "c4310f26",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/auth/buttons/DisableProfileButton.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/buttons/DisableProfileButton.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/DisableProfileButton.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DisableProfileButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./DisableProfileButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/DisableProfileButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DisableProfileButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/buttons/DisableProfileButton.vue?vue&type=template&id=c4310f26&scoped=true&":
+/*!******************************************************************************************************************!*\
+  !*** ./resources/js/components/auth/buttons/DisableProfileButton.vue?vue&type=template&id=c4310f26&scoped=true& ***!
+  \******************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DisableProfileButton_vue_vue_type_template_id_c4310f26_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./DisableProfileButton.vue?vue&type=template&id=c4310f26&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/buttons/DisableProfileButton.vue?vue&type=template&id=c4310f26&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DisableProfileButton_vue_vue_type_template_id_c4310f26_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DisableProfileButton_vue_vue_type_template_id_c4310f26_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/auth/buttons/EditButton.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/auth/buttons/EditButton.vue ***!
@@ -103486,10 +103715,6 @@ __webpack_require__.r(__webpack_exports__);
     destroyRoute: {
       required: false,
       type: String
-    },
-    canDestroy: {
-      required: false,
-      type: Boolean | String
     }
   },
   validations: {
@@ -103870,7 +104095,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     required: true,
-    user: Object | Array
+    user: Object | Array,
+    destroyRoute: {
+      required: false,
+      type: String | null
+    }
   },
   methods: {
     submit: function submit() {
@@ -103951,7 +104180,7 @@ __webpack_require__.r(__webpack_exports__);
     this.loadSettlements();
     this.settlement = this.userData.settlement_id;
     this.sport = this.userData.sport_id;
-    this.cannotChangeSettlementSport = this.user.team_id != null;
+    this.isInTeam = this.user.team_id != null;
   }
 });
 
@@ -104233,6 +104462,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_buttons_EditButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/auth/buttons/EditButton */ "./resources/js/components/auth/buttons/EditButton.vue");
 /* harmony import */ var _components_auth_MembershipHistory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/auth/MembershipHistory */ "./resources/js/components/auth/MembershipHistory.vue");
 /* harmony import */ var _components_auth_buttons_RedirectButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/buttons/RedirectButton */ "./resources/js/components/auth/buttons/RedirectButton.vue");
+/* harmony import */ var _components_auth_buttons_DisableProfileButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/auth/buttons/DisableProfileButton */ "./resources/js/components/auth/buttons/DisableProfileButton.vue");
+
 
 
 
@@ -104245,6 +104476,7 @@ Vue.component('edit-from', _components_auth_EditForm__WEBPACK_IMPORTED_MODULE_2_
 Vue.component('edit-button', _components_auth_buttons_EditButton__WEBPACK_IMPORTED_MODULE_3__["default"]);
 Vue.component('membership-history', _components_auth_MembershipHistory__WEBPACK_IMPORTED_MODULE_4__["default"]);
 Vue.component('redirect-button', _components_auth_buttons_RedirectButton__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('disable-profile-button', _components_auth_buttons_DisableProfileButton__WEBPACK_IMPORTED_MODULE_6__["default"]);
 
 /***/ }),
 

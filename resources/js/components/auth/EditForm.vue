@@ -47,11 +47,11 @@
 
                         <div class="form-group">
                             <label for="settlement">Settlement</label>
-                            <span class="badge badge-warning" v-if="this.cannotChangeSettlementSport">
+                            <span class="badge badge-warning" v-if="this.isInTeam">
                               This option is not editable if you are in a team
                             </span>
                             <select name="settlement_id" id="settlement" class="form-control"
-                                    :disabled="this.cannotChangeSettlementSport"
+                                    :disabled="this.isInTeam"
                                     @change='setSettlement(settlement)'
                                     v-model="settlement">
                                 <option v-for="(settlement, id) in settlements" :value="id" :key="id">
@@ -65,17 +65,17 @@
 
                         <div class="form-group">
                             <label for="sport">Sport</label>
-                            <span class="badge badge-warning" v-if="this.cannotChangeSettlementSport">
+                            <span class="badge badge-warning" v-if="this.isInTeam">
                               This option is not editable if you are in a team
                             </span>
                             <select name="sport_id" id="sport" class="form-control"
-                                    :disabled="this.cannotChangeSettlementSport"
+                                    :disabled="this.isInTeam"
                                     @change="setSport($event, sport)"
                                     v-model="sport">
                                 <option v-for="(sport, id) in sports" :value="id" :key="id">{{ sport }}</option>
                             </select>
                             <div v-if="hasBeenSend && !$v.userData.sport_id.required" class="alert alert-danger mt-3">
-                              Sport is required.
+                                Sport is required.
                             </div>
                             <div v-if="errors && errors.sport_id" class="alert alert-danger mt-3">
                                 {{ errors.sport_id[0] }}
@@ -118,6 +118,9 @@
                     </form>
                 </div>
             </div>
+            <div class="form-group text-center mt-3">
+                <disable-profile-button :destroy-route="destroyRoute"></disable-profile-button>
+            </div>
             <div v-if="serverErr" class="alert alert-danger">Something went wrong. Please try again
                 later..
             </div>
@@ -130,9 +133,11 @@
 
 <script>
 import EditMixin from "../../mixin/EditMixin";
+import DisableProfileButton from "./buttons/DisableProfileButton";
 
 export default {
     mixins: [EditMixin],
+    components: {DisableProfileButton},
     name: 'EditForm',
     data() {
         return {}

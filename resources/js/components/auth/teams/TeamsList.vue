@@ -20,13 +20,13 @@ export default {
                     label: 'ID',
                     name: 'id',
                     orderable: false,
-                    width: 5,
+                    width: 4,
                 },
                 {
                     label: 'Name',
                     name: 'name',
                     orderable: true,
-                    width: 10,
+                    width: 8,
                 },
                 {
                     label: 'Trainer',
@@ -40,20 +40,26 @@ export default {
                     name: 'sport.name',
                     columnName: 'sports.name',
                     orderable: true,
-                    width: 10,
+                    width: 8,
                 },
                 {
                     label: 'Settlement',
                     name: 'settlement.name',
                     columnName: 'settlements.name',
                     orderable: true,
-                    width: 10,
+                    width: 9,
+                },
+                {
+                    label: 'Members',
+                    name: 'members_count',
+                    orderable: true,
+                    width: 8,
                 },
                 {
                     label: 'Created at',
                     name: 'created_at',
                     orderable: true,
-                    width: 10,
+                    width: 11,
                 },
                 {
                     label: 'Actions',
@@ -67,7 +73,7 @@ export default {
                     event: "click",
                     handler: this.editTeam,
                     component: EditButton,
-                    width: 3,
+                    width: 4,
                 },
                 {
                   label: '',
@@ -80,7 +86,7 @@ export default {
                   },
                   handler: this.teamHistory,
                   component: RedirectButton,
-                  width: 5,
+                  width: 6,
                 },
             ],
         }

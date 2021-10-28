@@ -41,6 +41,10 @@ export default {
     props: {
         required: true,
         user: Object | Array,
+        destroyRoute: {
+            required: false,
+            type: String | null,
+        },
     },
     methods: {
         submit() {
@@ -115,8 +119,8 @@ export default {
     },
     created() {
         this.loadSettlements();
-        this.settlement                  = this.userData.settlement_id;
-        this.sport                       = this.userData.sport_id;
-        this.cannotChangeSettlementSport = this.user.team_id != null;
+        this.settlement = this.userData.settlement_id;
+        this.sport      = this.userData.sport_id;
+        this.isInTeam   = this.user.team_id != null;
     }
 }

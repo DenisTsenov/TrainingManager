@@ -23,11 +23,14 @@ class TeamController extends Controller
     public function list(Request $request): DataTableCollectionResource
     {
         $length  = $request->input('length');
-        $sortBy  = $request->input('column');
-        $orderBy = $request->input('dir');
+        $orderBy = $request->input('column');
+        $dir     = $request->input('dir', 'desc');
         $search  = $request->input('search');
 
-        $query = Team::eloquentQuery($sortBy, $orderBy, $search, ['sport', 'trainer', 'settlement']);
+        $query = Team::eloquentQuery($orderBy, $dir, $search, ['sport', 'trainer', 'settlement', 'members'])
+                     ->withCount ('members')
+                     ->when($orderBy == 'members_count', fn($query) => $query->reorder($orderBy, $dir));
+
         $data  = $query->paginate($length);
 
         return new DataTableCollectionResource($data);
@@ -79,11 +82,14 @@ class TeamController extends Controller
                              ->with(['sport', 'settlement'])
                              ->get();
 
+        if (Auth::user()->can('delete', $team)) {
+            $destroyRoute = route('admin.team.destroy', compact('team'));
+        }
+
         return view('auth.team.create_edit', [
             'team'         => $team,
             'route'        => route('admin.team.update', compact('team')),
-            'destroyRoute' => route('admin.team.destroy', compact('team')),
-            'canDestroy'   => Auth::user()->can('delete', $team),
+            'destroyRoute' => $destroyRoute ?? null,
             'edit'         => true,
         ]);
     }
@@ -105,6 +111,7 @@ class TeamController extends Controller
             ]);
 
             User::createOrUpdateMembership($request->input('members'), $team->id);
+            $team->touch();
         }, 5);
 
         session()->flash('success', 'Operation done successfully!');
@@ -116,6 +123,8 @@ class TeamController extends Controller
     {
         DB::transaction(function () use ($team) {
             User::where('team_id', $team->id)->update(['team_id' => null]);
+
+            $team->history()->update(['left_at' => now()]);
 
             $team->delete();
         }, 5);

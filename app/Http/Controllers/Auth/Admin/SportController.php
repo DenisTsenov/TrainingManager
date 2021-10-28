@@ -16,7 +16,7 @@ class SportController extends Controller
         return view('auth.admin.sports.list', ['route' => route('admin.sport.list')]);
     }
 
-    public function list(Request $request)
+    public function list(Request $request): DataTableCollectionResource
     {
         $length  = $request->input('length');
         $orderBy = $request->input('column');
@@ -49,9 +49,10 @@ class SportController extends Controller
 
     public function edit(Sport $sport)
     {
-        $route = route('admin.sport.update', ['sport' => $sport]);
-
-        return view('auth.admin.sports.create_edit', compact('route', 'sport'));
+        return view('auth.admin.sports.create_edit', [
+            'route' => route('admin.sport.update', ['sport' => $sport]),
+            'sport' => $sport,
+        ]);
     }
 
     public function update(SportRequest $request, Sport $sport)

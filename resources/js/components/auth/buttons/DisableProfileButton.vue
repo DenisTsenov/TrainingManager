@@ -1,34 +1,34 @@
 <template>
-    <div v-if="destroyRoute">
+    <div v-if="this.destroyRoute">
         <vue-confirm-dialog></vue-confirm-dialog>
-        <button class="btn btn-danger w-50" @click="confirmRemove()">Remove team <i class="far fa-trash-alt"></i>
+        <button class="btn btn-danger w-50" @click="confirmDisable()">
+            Disable profile
+            <i class="far fa-trash-alt"></i>
         </button>
     </div>
     <div v-else>
         <button class="btn btn-danger w-50" tabindex="0" data-toggle="tooltip"
-                title="There are members in this team or it is created before less than a day." disabled>Remove team <i
-            class="far fa-trash-alt"></i></button>
+                title="You are still in a team." disabled>
+            Disable profile
+            <i class="far fa-trash-alt"></i>
+        </button>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'RemoveTeamButton',
+    name: 'DisableProfileButton',
     props: {
-        team: {
-            required: true,
-            type: Object,
-        },
         destroyRoute: {
-            required: false,
-            type: String,
+            required: true,
+            type: URL | null,
         },
     },
     methods: {
-        confirmRemove() {
+        confirmDisable() {
             this.$confirm({
                 title: `Remove team`,
-                message: `Are you sure you want to delete team ` + `"` + this.team.name + `"` + `?`,
+                message: `Are you sure you want to disable your profile?`,
                 button: {
                     no: 'Cancel',
                     yes: 'Ok'
@@ -38,12 +38,13 @@ export default {
                  * @param {Boolean} confirm
                  */
                 callback: confirm => {
+
                     if (confirm) {
                         axios.post(this.destroyRoute)
                              .then(response => {
-                                 window.location = response.data.route;
+                                 window.location = response.data.login;
                              }).catch(error => {
-                            alert('Something went wrong! Please try again later');
+                            alert('Something went wrong! Please try again later')
                         });
                     }
                 }

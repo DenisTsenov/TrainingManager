@@ -46,10 +46,6 @@ export default {
             required: false,
             type: String,
         },
-        canDestroy: {
-            required: false,
-            type: Boolean | String,
-        }
     },
     validations: {
         name: {required, minLength: minLength(2)},

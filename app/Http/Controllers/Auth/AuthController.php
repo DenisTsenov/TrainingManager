@@ -21,7 +21,16 @@ class AuthController extends Controller
      */
     public function edit()
     {
-        return view('auth.profile', ['user' => Auth::user()->firstWhere('id', \auth()->id())]);
+        $auth = Auth::user()->firstWhere('id', \auth()->id());
+
+        if (Auth::user()->can('deactivateProfile', $auth)) {
+            $destroyRoute = route('auth.destroy', [\auth()->id()]);
+        }
+
+        return view('auth.profile', [
+            'user'         => $auth,
+            'destroyRoute' => $destroyRoute ?? null,
+        ]);
     }
 
     public function membershipHistory()
@@ -48,12 +57,16 @@ class AuthController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        Auth::logout();
+        session()->flash('logout', 'Profile disabled successfully!');
+
+        return response()->json(['login' => route('login.show')]);
     }
 
     /**

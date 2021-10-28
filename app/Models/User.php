@@ -218,9 +218,10 @@ class User extends Authenticatable
 
             return;
         }
-        $members = $team->members();
 
-        foreach ($members as $member) {
+        $team->load('members');
+
+        foreach ($team->members as $member) {
             $member->membershipHistory()->attach($team->id, [
                 'joined_at'    => now(),
                 'current_role' => config('constants.roles.' . ($member->role_id ?? Role::COMPETITOR)),

@@ -3507,17 +3507,17 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    timeSpent: function timeSpent(from) {
-      return Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["differenceInCalendarDays"])(new Date(), new Date(from));
+    timeSpent: function timeSpent(from, to) {
+      return Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["differenceInDays"])(new Date(to), new Date(from));
     },
     createdBefore: function createdBefore() {
-      var distance = Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["formatDistance"])(Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["subDays"])(new Date(), this.timeSpent(this.team.created_at)), new Date(), {
+      var distance = Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["formatDistance"])(Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["subDays"])(new Date(), this.timeSpent(new Date(), this.team.created_at)), new Date(), {
         addSuffix: true
       });
       return distance + ' at ' + Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["format"])(new Date(this.team.created_at), 'MM-dd-yyyy');
     },
     leftBefore: function leftBefore(leftAt) {
-      return Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["formatDistance"])(Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["subDays"])(new Date(), this.timeSpent(leftAt)), new Date(), {
+      return Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["formatDistance"])(Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["subDays"])(new Date(), this.timeSpent(new Date(), leftAt)), new Date(), {
         addSuffix: true
       });
     }
@@ -87332,7 +87332,7 @@ var render = function() {
                       _vm._v(
                         "Joined at: " +
                           _vm._s(exMember.pivot.joined_at) +
-                          "\n                           at position " +
+                          "\n                            at position " +
                           _vm._s(exMember.pivot.current_role) +
                           "\n                        "
                       )
@@ -87352,7 +87352,12 @@ var render = function() {
                     _c("li", { staticClass: "list-group-item" }, [
                       _vm._v(
                         "Days spent in the team: " +
-                          _vm._s(_vm.timeSpent(exMember.pivot.joined_at)) +
+                          _vm._s(
+                            _vm.timeSpent(
+                              exMember.pivot.joined_at,
+                              exMember.pivot.left_at
+                            )
+                          ) +
                           "\n                        "
                       )
                     ])

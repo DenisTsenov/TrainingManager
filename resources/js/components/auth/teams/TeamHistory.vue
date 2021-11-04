@@ -8,12 +8,12 @@
                         <ul class="list-group">
                             <li class="list-group-item active bg-primary">Name: {{ exMember.full_name }}</li>
                             <li class="list-group-item">Joined at: {{ exMember.pivot.joined_at }}
-                               at position {{ exMember.pivot.current_role }}
+                                at position {{ exMember.pivot.current_role }}
                             </li>
                             <li class="list-group-item">Left at: {{ exMember.pivot.left_at }}</li>
                             <li class="list-group-item">Left before: {{ leftBefore(exMember.pivot.left_at) }}</li>
                             <li class="list-group-item">Days spent in the team: {{
-                                timeSpent(exMember.pivot.joined_at)
+                                    timeSpent(exMember.pivot.joined_at, exMember.pivot.left_at)
                                 }}
                             </li>
                         </ul>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {differenceInCalendarDays, format, formatDistance, subDays} from "date-fns";
+import {differenceInDays, format, formatDistance, subDays} from "date-fns";
 
 export default {
     name: "TeamHistory",
@@ -43,16 +43,16 @@ export default {
         },
     },
     methods: {
-        timeSpent(from) {
-            return differenceInCalendarDays(new Date(), new Date(from),);
+        timeSpent(from, to) {
+            return differenceInDays(new Date(to), new Date(from));
         },
         createdBefore() {
-            let distance = formatDistance(subDays(new Date(), this.timeSpent(this.team.created_at)), new Date(), {addSuffix: true});
+            let distance = formatDistance(subDays(new Date(), this.timeSpent(new Date(), this.team.created_at)), new Date(), {addSuffix: true});
 
             return distance + ' at ' + format(new Date(this.team.created_at), 'MM-dd-yyyy');
         },
         leftBefore(leftAt) {
-            return formatDistance(subDays(new Date(), this.timeSpent(leftAt)), new Date(), {addSuffix: true});
+            return formatDistance(subDays(new Date(), this.timeSpent(new Date(), leftAt)), new Date(), {addSuffix: true});
         }
     },
     computed: {

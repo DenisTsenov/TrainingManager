@@ -21,7 +21,7 @@ class AuthController extends Controller
      */
     public function edit()
     {
-        $auth = Auth::user()->firstWhere('id', \auth()->id());
+        $auth = Auth::user()->find(\auth()->id());
 
         if (Auth::user()->can('deactivateProfile', $auth)) {
             $destroyRoute = route('auth.destroy', [\auth()->id()]);
@@ -36,7 +36,7 @@ class AuthController extends Controller
     public function membershipHistory()
     {
         return view('auth.membershit_history', [
-            'user' => User::with(['membershipHistory', 'sport', 'settlement'])->firstWhere('id', auth()->id()),
+            'user' => User::with(['membershipHistory', 'sport', 'settlement'])->find(auth()->id()),
         ]);
     }
 

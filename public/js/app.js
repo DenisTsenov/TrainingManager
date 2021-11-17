@@ -3199,8 +3199,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/index.js");
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -3255,23 +3253,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DistributeUser",
   data: function data() {
     return {
       team: {},
-      errors: {},
+      validationError: false,
       serverErr: false,
       disabled: true,
       viewTeamData: false
     };
-  },
-  validations: {
-    team: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["required"]
-    }
   },
   props: {
     user: {
@@ -3281,6 +3278,10 @@ __webpack_require__.r(__webpack_exports__);
     teams: {
       required: false,
       type: Object | null
+    },
+    route: {
+      required: true,
+      type: String
     }
   },
   methods: {
@@ -3306,9 +3307,40 @@ __webpack_require__.r(__webpack_exports__);
     viewTeam: function viewTeam(teamId) {
       return window.open(window.location.origin + '/admin/team/edit/' + teamId, '_blank');
     },
-    distribute: function distribute() {}
-  },
-  created: function created() {}
+    distribute: function distribute() {
+      var _this = this;
+
+      this.$confirm({
+        title: "Distribute user",
+        message: "Are you sure you want to assign " + this.user.full_name + " to team" + ' "' + this.team.name + '" ' + "?",
+        button: {
+          no: 'Cancel',
+          yes: 'Ok'
+        },
+
+        /**
+         * Callback Function
+         * @param {Boolean} confirm
+         */
+        callback: function callback(confirm) {
+          if (confirm) {
+            axios.post(_this.route, {
+              user_id: _this.user.id,
+              team_id: _this.team.id
+            }).then(function (response) {
+              window.location = response.data.route;
+            })["catch"](function (error) {
+              if (error.response.status === 422) {
+                _this.validationError = error.response.data.errors.user_id[0];
+              } else {
+                _this.serverErr = true;
+              }
+            });
+          }
+        }
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -87067,151 +87099,164 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-5" }, [
-      _c(
-        "form",
-        {
-          staticClass: "form",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.distribute($event)
+    _c(
+      "div",
+      { staticClass: "col-5" },
+      [
+        _c(
+          "form",
+          {
+            staticClass: "form",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.distribute($event)
+              }
             }
-          }
-        },
-        [
-          _vm.teams
-            ? _c("div", [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "team" } }, [_vm._v("Teams")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.team,
-                          expression: "team"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { name: "team_id", id: "team" },
-                      on: {
-                        change: [
-                          function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.team = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          },
-                          function($event) {
-                            return _vm.showTeamData($event, _vm.team)
+          },
+          [
+            _vm.teams
+              ? _c("div", [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "team" } }, [_vm._v("Teams")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.team,
+                            expression: "team"
                           }
-                        ]
-                      }
-                    },
-                    _vm._l(_vm.teams, function(team) {
-                      return _c(
-                        "option",
-                        { key: team.id, domProps: { value: team } },
-                        [
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(team.name) +
-                              "\n                        "
-                          )
-                        ]
-                      )
-                    }),
-                    0
-                  ),
-                  _vm._v(" "),
-                  _vm.errors && _vm.errors.team
-                    ? _c("div", { staticClass: "alert alert-danger mt-3" }, [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(_vm.errors.team[0]) +
-                            "\n                    "
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "team_id", id: "team" },
+                        on: {
+                          change: [
+                            function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.team = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
+                            function($event) {
+                              return _vm.showTeamData($event, _vm.team)
+                            }
+                          ]
+                        }
+                      },
+                      _vm._l(_vm.teams, function(team) {
+                        return _c(
+                          "option",
+                          { key: team.id, domProps: { value: team } },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(team.name) +
+                                "\n                        "
+                            )
+                          ]
                         )
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group text-center" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary w-50",
-                      attrs: { type: "submit", disabled: _vm.disabled }
-                    },
-                    [_vm._v("Send")]
-                  )
+                      }),
+                      0
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group text-center" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary w-50",
+                        attrs: { type: "submit", disabled: _vm.disabled }
+                      },
+                      [_vm._v("Send")]
+                    )
+                  ])
                 ])
-              ])
-            : _c("div", [
-                _c("h3", { staticClass: "text-center font-weight-bold" }, [
-                  _vm._v(
-                    "There is no team matching sport and settlement for this\n                    user"
-                  )
+              : _c("div", [
+                  _c("h3", { staticClass: "text-center font-weight-bold" }, [
+                    _vm._v(
+                      "There is no team matching sport and settlement for this\n                    user"
+                    )
+                  ])
                 ])
-              ])
-        ]
-      )
-    ]),
+          ]
+        ),
+        _vm._v(" "),
+        _c("vue-confirm-dialog"),
+        _vm._v(" "),
+        _vm.serverErr
+          ? _c("div", { staticClass: "alert alert-danger text-center" }, [
+              _vm._v("Something went wrong. Please try again later\n        ")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.validationError
+          ? _c("div", { staticClass: "alert alert-danger mt-3 text-center" }, [
+              _vm._v(_vm._s(_vm.validationError))
+            ])
+          : _vm._e()
+      ],
+      1
+    ),
     _vm._v(" "),
     _vm.viewTeamData
       ? _c("div", { staticClass: "col-4" }, [
           _c("div", { staticClass: "form-group text-center" }, [
-            _c("div", [_vm._v("Name: " + _vm._s(_vm.team.name))]),
-            _vm._v(" "),
-            _c("div", [
-              _vm._v("Members count: " + _vm._s(_vm.team.members_count))
-            ]),
-            _vm._v(" "),
-            _c("div", [
-              _vm._v("Trainer: " + _vm._s(_vm.team.trainer.full_name))
-            ]),
-            _vm._v(" "),
-            _c("div", [_vm._v("Created at: " + _vm._s(_vm.team.created_at))]),
-            _vm._v(" "),
-            _c("div", [
-              _vm._v(
-                "Created before: " +
-                  _vm._s(_vm.timePassedSinceCreation(_vm.team.created_at))
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary w-50",
-                  attrs: { type: "submit" },
-                  on: {
-                    click: function($event) {
-                      return _vm.viewTeam(_vm.team.id)
-                    }
-                  }
-                },
-                [_vm._v("View team")]
-              )
-            ])
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "18rem" } },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", [_vm._v("Name: " + _vm._s(_vm.team.name))]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v("Members count: " + _vm._s(_vm.team.members_count))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v("Trainer: " + _vm._s(_vm.team.trainer.full_name))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v("Created at: " + _vm._s(_vm.team.created_at))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "Created before: " +
+                        _vm._s(_vm.timePassedSinceCreation(_vm.team.created_at))
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary w-50",
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.viewTeam(_vm.team.id)
+                          }
+                        }
+                      },
+                      [_vm._v("View team\n                        ")]
+                    )
+                  ])
+                ])
+              ]
+            )
           ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.serverErr
-      ? _c("div", { staticClass: "alert alert-danger" }, [
-          _vm._v("Something went wrong. Please try again later")
         ])
       : _vm._e()
   ])

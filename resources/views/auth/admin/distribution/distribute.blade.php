@@ -4,5 +4,9 @@
 
 @section('content')
     <br>
-   <distribute-user :user="{{ json_encode($user) }}" :teams="{{ json_encode($teams) }}"><distribute-user>
+    <distribute-user
+        :user="{{ json_encode($user) }}"
+        :teams="{{ json_encode($teams) }}"
+        :route="{{ json_encode($route) }}">
+    <distribute-user>
 @endsection

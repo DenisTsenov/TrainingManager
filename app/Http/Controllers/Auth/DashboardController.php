@@ -52,20 +52,20 @@ class DashboardController extends Controller
 
     public function storeDistribution(StoreDistributionRequest $request)
     {
-//        DB::transaction(function () use ($request) {
-//            $user = User::find($request->input('user_id'));
-//
-//            $user->update([
-//                'team_id' => $request->input('team_id'),
-//                'role_id' => $user->role_id ?? Role::COMPETITOR,
-//            ]);
-//
-//            $user->membershipHistory()
-//                 ->attach($request->input('team_id'), [
-//                     'joined_at'    => now(),
-//                     'current_role' => config('constants.roles.' . ($member->role_id ?? Role::COMPETITOR)),
-//                 ]);
-//        });
+        DB::transaction(function () use ($request) {
+            $user = User::find($request->input('user_id'));
+
+            $user->update([
+                'team_id' => $request->input('team_id'),
+                'role_id' => $user->role_id ?? Role::COMPETITOR,
+            ]);
+
+            $user->membershipHistory()
+                 ->attach($request->input('team_id'), [
+                     'joined_at'    => now(),
+                     'current_role' => config('constants.roles.' . ($member->role_id ?? Role::COMPETITOR)),
+                 ]);
+        });
 
         session()->flash('success', 'User was distributed successfully!');
 

@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Role;
+use App\Models\Admin\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
+use App\Http\Requests\Auth\Admin\StoreDistributionRequest;
 
 class DashboardController extends Controller
 {
@@ -29,11 +34,41 @@ class DashboardController extends Controller
 
     public function createDistribution(User $user): View
     {
-        return view('auth.admin.distribute', compact('user'));
+        $user->load('sport:id,name', 'settlement:id,name');
+        $teams = Team::withoutTrashed()
+                     ->select('id', 'name', 'trainer_id', 'created_at')
+                     ->with('trainer:id,full_name')
+                     ->withCount('members')
+                     ->where('sport_id', $user->sport_id)
+                     ->where('settlement_id', $user->settlement_id)
+                     ->get();
+
+        return view('auth.admin.distribution.distribute', [
+            'user'  => $user,
+            'teams' => $teams->count() ? $teams : null,
+            'route' => route('admin.distribute.store'),
+        ]);
     }
 
-    public function storeDistribution(Request $request)
+    public function storeDistribution(StoreDistributionRequest $request)
     {
+//        DB::transaction(function () use ($request) {
+//            $user = User::find($request->input('user_id'));
+//
+//            $user->update([
+//                'team_id' => $request->input('team_id'),
+//                'role_id' => $user->role_id ?? Role::COMPETITOR,
+//            ]);
+//
+//            $user->membershipHistory()
+//                 ->attach($request->input('team_id'), [
+//                     'joined_at'    => now(),
+//                     'current_role' => config('constants.roles.' . ($member->role_id ?? Role::COMPETITOR)),
+//                 ]);
+//        });
 
+        session()->flash('success', 'User was distributed successfully!');
+
+        return response()->json(['route' => route('welcome')]);
     }
 }

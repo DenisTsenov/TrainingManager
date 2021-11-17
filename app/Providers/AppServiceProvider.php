@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -28,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('admin', function () {
             return Auth::user()->is_admin ?? null;
         });
+
+        Model::preventLazyLoading(!$this->app->isProduction());
     }
 }

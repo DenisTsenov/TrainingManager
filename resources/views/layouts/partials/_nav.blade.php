@@ -43,6 +43,11 @@
                                 </a>
                             </li>
                             <li class="dropdown-item">
+                                <a class="dropdown-item" target="_blank" href="/telescope">
+                                    <i class="fab fa-tumblr"></i> Telescope
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
                                 <a class="dropdown-item btn btn-light"
                                    href="{{ route('admin.manage_role_permission') }}">
                                     <i class="fas fa-tasks"></i> Manage role permission

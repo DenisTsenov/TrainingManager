@@ -42,6 +42,13 @@ Route::namespace('Auth')
      ->group(function () {
          require 'modules/auth.php';
 
+         Route::get('test', function(){
+
+
+             $user = \Auth::user()->role->permissions->contains(12);
+             dd($user);
+         });
+
          Route::namespace('Admin')
               ->middleware('admin')
               ->prefix('admin')

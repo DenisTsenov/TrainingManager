@@ -7,8 +7,8 @@
     @admin
         <distribute-users-list><distribute-users-list>
     @else
-        @if(\Illuminate\Support\Facades\Auth::user()->whereNull('team_id')->get())
+        @can('distributedUser')
             <div class="text-info text-center">You are still not distributed for a team</div>
-        @endif
+        @endcan
     @endadmin
 @endsection

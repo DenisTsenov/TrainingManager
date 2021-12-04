@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Admin\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
@@ -28,6 +29,14 @@ class AppServiceProvider extends ServiceProvider
     {
         Blade::if('admin', function () {
             return Auth::user()->is_admin ?? null;
+        });
+
+        Blade::if('trainer', function () {
+            return Auth::user()->role_id == Role::TRAINER;
+        });
+
+        Blade::if('competitor', function () {
+            return Auth::user()->role_id == Role::COMPETITOR;
         });
 
         Model::preventLazyLoading(!$this->app->isProduction());

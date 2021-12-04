@@ -35,6 +35,7 @@ class AuthServiceProvider extends ServiceProvider
             foreach ($permissions as $id => $name) {
                 Gate::define($name, function ($user) use ($id) {
                     if ($user->is_admin) return true;
+                    if (!$user->role_id) return false;
 
                     return $user->role->permissions->contains($id);
                 });

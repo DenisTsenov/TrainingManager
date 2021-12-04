@@ -3,15 +3,16 @@
 use Illuminate\Support\Facades\Gate;
 
 if (!function_exists('can')) {
-    function can($permission)
+    function can(int $id): bool
     {
-        return Gate::allows($permission, \Auth::user());
+        $permission = \App\Models\Admin\Permission::find($id)->name;
+        return Gate::allows($permission);
     }
 }
 
 if (!function_exists('cannot')) {
-    function cannot($permission)
+    function cannot(int $id): bool
     {
-        return !can($permission, \Auth::user());
+        return !can($id);
     }
 }

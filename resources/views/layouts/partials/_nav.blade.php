@@ -120,6 +120,30 @@
                             </li>
                         </ul>
                     </li>
+                    @trainer
+                    <li class="dropdown-submenu text-center">
+                        <a class="dropdown-item" tabindex="-1" href="#"><i class="fas fa-dragon"></i>Trainer</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">
+                                <a class="dropdown-item btn btn-light" href="">
+                                    <i class="fas fa-users-cog"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @endtrainer
+                    @competitor
+                    <li class="dropdown-submenu text-center">
+                        <a class="dropdown-item" tabindex="-1" href="#"><i class="fas fa-user-shield"></i>Competitor</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">
+                                <a class="dropdown-item btn btn-light" href="">
+                                    <i class="fas fa-user"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @endcompetitor
                     @endadmin
                 </ul>
             </div>

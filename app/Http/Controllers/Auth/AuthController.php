@@ -33,10 +33,10 @@ class AuthController extends Controller
         ]);
     }
 
-    public function membershipHistory()
+    public function historyMembership()
     {
         return view('auth.membershit_history', [
-            'user' => User::with(['membershipHistory', 'sport', 'settlement'])->find(auth()->id()),
+            'user' => User::with(['historyMembership', 'sport', 'settlement'])->find(auth()->id()),
         ]);
     }
 

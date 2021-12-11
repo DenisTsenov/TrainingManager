@@ -117,15 +117,11 @@ class User extends Authenticatable
         return $this->belongsTo(Sport::class)->withTrashed();
     }
 
-    public function membershipHistory()
+    public function historyMembership()
     {
-        return $this->belongsToMany(Team::class, 'team_member_history')
-                    ->withPivot('joined_at', 'left_at', 'current_role');
-    }
-
-    public function membershipHistoryOrderByDesc()
-    {
-        return $this->membershipHistory()->as('history')->orderByDesc('id');
+        return $this->belongsToMany(Team::class, 'history_membership')
+                    ->withPivot('joined_at', 'left_at', 'current_role')
+                    ->as('history');
     }
 
     /**
@@ -195,18 +191,17 @@ class User extends Authenticatable
     {
         if ($requestTrainerId) {
             if ($team->trainer_id <> $requestTrainerId) {
-                $currentTrainer = $team->trainer->membershipHistoryOrderByDesc->first();
-                $currentTrainer->history->update(['left_at' => now()]);
+                $team->trainer->historyMembership->last()->history->update(['left_at' => now()]);
 
                 User::firstWhere('id', $requestTrainerId)
-                    ->membershipHistory()
+                    ->historyMembership()
                     ->attach($team->id, [
                         'joined_at'    => now(),
                         'current_role' => config('constants.roles.' . Role::TRAINER),
                     ]);
             }
 
-            $leftMembers = collect(self::where('team_id', $team->id)->notTrainers()->pluck('id'))->diff($members);
+            $leftMembers = self::find($team->id)->notTrainers()->pluck('id')->diff($members);
 
             if ($leftMembers->count()) {
                 self::leftTeam($team, $leftMembers->toArray());
@@ -222,7 +217,7 @@ class User extends Authenticatable
         $team->load('members');
 
         foreach ($team->members as $member) {
-            $member->membershipHistory()->attach($team->id, [
+            $member->historyMembership()->attach($team->id, [
                 'joined_at'    => now(),
                 'current_role' => config('constants.roles.' . ($member->role_id ?? Role::COMPETITOR)),
             ]);
@@ -233,7 +228,7 @@ class User extends Authenticatable
     {
         $leftMembers = self::whereIn('id', $leftMembers)->notTrainers()->get();
         foreach ($leftMembers as $member) {
-            DB::table('team_member_history')
+            DB::table('history_membership')
               ->where('team_id', $team->id)
               ->where('user_id', $member->id)
               ->whereNull('left_at')
@@ -248,7 +243,7 @@ class User extends Authenticatable
             // If user is already in the team there is no need to perform any action
             if ($team->id == $member->team_id) continue;
 
-            $member->membershipHistory()->attach($team->id, [
+            $member->historyMembership()->attach($team->id, [
                 'joined_at'    => now(),
                 'current_role' => config('constants.roles.' . ($member->role_id ?? Role::COMPETITOR)),
             ]);

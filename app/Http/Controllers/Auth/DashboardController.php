@@ -59,7 +59,7 @@ class DashboardController extends Controller
                 'role_id' => $user->role_id ?? Role::COMPETITOR,
             ]);
 
-            $user->membershipHistory()
+            $user->historyMembership()
                  ->attach($request->input('team_id'), [
                      'joined_at'    => now(),
                      'current_role' => config('constants.roles.' . ($member->role_id ?? Role::COMPETITOR)),

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTeamMemberHistoryTable extends Migration
+class CreateHistoryMembershipTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTeamMemberHistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('team_member_history', function (Blueprint $table) {
+        Schema::create('history_membership', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('team_id')->constrained();
@@ -30,6 +30,6 @@ class CreateTeamMemberHistoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('team_member_history');
+        Schema::dropIfExists('history_membership');
     }
 }

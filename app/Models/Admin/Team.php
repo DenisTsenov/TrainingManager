@@ -97,7 +97,7 @@ class Team extends Model
 
     public function history()
     {
-        return $this->belongsToMany(User::class, 'team_member_history')
+        return $this->belongsToMany(User::class, 'history_membership')
                     ->withPivot('joined_at', 'left_at', 'current_role');
     }
 

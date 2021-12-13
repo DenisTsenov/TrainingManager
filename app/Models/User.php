@@ -193,7 +193,7 @@ class User extends Authenticatable
             if ($team->trainer_id <> $requestTrainerId) {
                 $team->trainer->historyMembership->last()->history->update(['left_at' => now()]);
 
-                User::firstWhere('id', $requestTrainerId)
+                self::firstWhere('id', $requestTrainerId)
                     ->historyMembership()
                     ->attach($team->id, [
                         'joined_at'    => now(),

@@ -83,12 +83,12 @@ class TeamController extends Controller
                              ->get();
 
         if (Auth::user()->can('delete', $team)) {
-            $destroyRoute = route('admin.team.destroy', compact('team'));
+            $destroyRoute = route('admin.team.destroy', ['team' => $team]);
         }
 
         return view('auth.team.create_edit', [
             'team'         => $team,
-            'route'        => route('admin.team.update', compact('team')),
+            'route'        => route('admin.team.update', ['team'=> $team]),
             'destroyRoute' => $destroyRoute ?? null,
             'edit'         => true,
         ]);
@@ -138,6 +138,6 @@ class TeamController extends Controller
     {
         $team->load('exMembers', 'createdBy');
 
-        return view('auth.team.history', compact('team'));
+        return view('auth.team.history', ['team' => $team]);
     }
 }

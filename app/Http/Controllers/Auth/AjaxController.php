@@ -16,7 +16,7 @@ class AjaxController extends Controller
         $request->validate(['trainer_id' => ['nullable', 'exists:users,id']]);
 
         if ($request->has('trainer_id')) {
-            $trainer       = User::firstWhere('id', $request->trainer_id);
+            $trainer       = User::find($request->trainer_id);
             $takenTrainers = Team::where('trainer_id', '<>', $trainer->id)
                                  ->where('sport_id', $trainer->sport_id)
                                  ->where('settlement_id', $trainer->settlement_id)
@@ -68,7 +68,7 @@ class AjaxController extends Controller
         return $sports->toJson();
     }
 
-    public function teamUsers(User $trainer)
+    public function teamUsers(User $trainer): User
     {
         return User::with('sport', 'settlement')
                    ->where('settlement_id', $trainer->settlement_id)

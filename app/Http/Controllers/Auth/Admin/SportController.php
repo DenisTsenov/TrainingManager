@@ -75,6 +75,6 @@ class SportController extends Controller
 
         event(new SportToggled());
 
-        return response()->json(compact('deleted'));
+        return response()->json(['deleted' => $deleted]);
     }
 }

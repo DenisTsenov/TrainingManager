@@ -29,7 +29,7 @@ class SettlementController extends Controller
         return view('auth.admin.settlements.list');
     }
 
-    public function list(Request $request)
+    public function list(Request $request): DataTableCollectionResource
     {
         $length  = $request->input('length');
         $orderBy = $request->input('column');
@@ -52,10 +52,11 @@ class SettlementController extends Controller
 
     public function store(SettlementRequest $request)
     {
-        $settlement = Settlement::create(['name' => $request->input('name')]);
+        \DB::transaction(function () use ($request) {
+            $settlement = Settlement::create(['name' => $request->input('name')]);
 
-        $settlement->sports()->attach($request->input('sports'));
-
+            $settlement->sports()->attach($request->input('sports'));
+        });
         session()->flash('success', 'Operation done successfully!');
 
         return response()->json(['route' => route('admin.settlement')]);
@@ -65,15 +66,16 @@ class SettlementController extends Controller
     {
         $route = route('admin.settlement.update', ['settlement' => $settlement]);
 
-        return view('auth.admin.settlements.create_edit', compact('route', 'settlement'));
+        return view('auth.admin.settlements.create_edit', ['route' => $route, 'settlement' => $settlement]);
     }
 
     public function update(SettlementRequest $request, Settlement $settlement)
     {
-        $settlement->update(['name' => $request->input('name'),]);
+        \DB::transaction(function () use ($settlement, $request) {
+            $settlement->update(['name' => $request->input('name'),]);
 
-        $settlement->sports()->sync($request->input('sports'));
-
+            $settlement->sports()->sync($request->input('sports'));
+        });
         session()->flash('success', 'Operation done successfully!');
 
         return response()->json(['route' => route('admin.settlement')]);

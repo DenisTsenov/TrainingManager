@@ -68,7 +68,7 @@ class AjaxController extends Controller
         return $sports->toJson();
     }
 
-    public function teamUsers(User $trainer): User
+    public function teamUsers(User $trainer): string
     {
         return User::with('sport', 'settlement')
                    ->where('settlement_id', $trainer->settlement_id)

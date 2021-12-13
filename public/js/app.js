@@ -104180,6 +104180,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     send: function send() {
+      var _this2 = this;
+
       this.hasBeenSend = true;
       this.$v.$touch();
       if (this.$v.$invalid) return;
@@ -104192,20 +104194,20 @@ __webpack_require__.r(__webpack_exports__);
           'trainer_id': this.trainer,
           'members': this.members,
           'team_id': this.team !== undefined && this.team != null ? this.team.id : this.teamId
-        }); //      .then(response => {
-        //          window.location = response.data.route;
-        //      }).catch(error => {
-        //     if (error.response.status === 422) {
-        //         this.sendAllowed = true;
-        //         this.errors      = error.response.data.errors || {};
-        //     } else {
-        //         this.serverErr = true;
-        //     }
-        // });
+        }).then(function (response) {
+          window.location = response.data.route;
+        })["catch"](function (error) {
+          if (error.response.status === 422) {
+            _this2.sendAllowed = true;
+            _this2.errors = error.response.data.errors || {};
+          } else {
+            _this2.serverErr = true;
+          }
+        });
       }
     },
     loadTrainers: function loadTrainers() {
-      var _this2 = this;
+      var _this3 = this;
 
       var params = false;
       if (this.edit && this.team.members.length > 0) params = {
@@ -104214,18 +104216,18 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/admin/team/trainers', {
         params: params
       }).then(function (response) {
-        _this2.trainers = response.data;
+        _this3.trainers = response.data;
       })["catch"](function (error) {
         if (error.response.status === 422) {
-          _this2.errors = error.response.data.errors || {};
+          _this3.errors = error.response.data.errors || {};
         } else {
-          _this2.serverErr = true;
+          _this3.serverErr = true;
         }
       });
     }
   },
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
 
     this.loadTrainers();
 
@@ -104234,8 +104236,8 @@ __webpack_require__.r(__webpack_exports__);
       this.trainer = this.team.trainer.id;
       this.users = this.team.members;
       this.users.forEach(function (user) {
-        if (user.team_id == _this3.team.id) {
-          _this3.members.push(user.id);
+        if (user.team_id == _this4.team.id) {
+          _this4.members.push(user.id);
         }
       });
     }

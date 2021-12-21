@@ -21,11 +21,13 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])
      ->name('login.show');
 
 Route::get('/register', [RegisterController::class, 'create'])
-     ->name('register.show');
+     ->name('register.show')
+     ->middleware('guest');
 
 Route::middleware('ajax')->group(function () {
     Route::post('/store', [RegisterController::class, 'store'])
-         ->name('register.store');
+         ->name('register.store')
+         ->middleware('guest');
 
     Route::post('/login', [LoginController::class, 'login'])
          ->name('login');

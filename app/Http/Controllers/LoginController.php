@@ -30,6 +30,9 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->setActiveMenu(self::MENU_LOGIN);
+
+        parent::__construct();
     }
 
     public function showLoginForm(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

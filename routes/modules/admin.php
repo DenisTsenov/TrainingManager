@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AjaxController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\TeamController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 
 /*
  * User Roles Routes
@@ -28,8 +29,11 @@ Route::middleware('ajax')->group(function () {
 /*
  * Roles and Permissions Routes
  */
-Route::view('/manage-role-permission', 'auth.admin.manage_role_permission')
-     ->name('manage_role_permission');
+
+Route::view('/manage-role-permission', 'auth.admin.manage_role_permission', [
+    'activeMenu'    => Controller::MENU_ADMIN,
+    'activeSubMenu' => collect(Controller::SUB_MENU_MANAGE_ROLE_PERMISSIONS),
+])->name('manage_role_permission');
 
 Route::middleware('ajax')->group(function () {
     Route::get('/role/manage-role', [ManageRoleController::class, 'index'])
@@ -79,7 +83,7 @@ Route::post('/distribute-user/store', [DashboardController::class, 'storeDistrib
 
 Route::post('/team/destroy/{team}', [TeamController::class, 'destroy'])
      ->name('team.destroy')
-     ->middleware(['can:delete,team','ajax']);
+     ->middleware(['can:delete,team', 'ajax']);
 
 Route::get('/team/history/{team}', [TeamController::class, 'history'])
      ->name('team.history');

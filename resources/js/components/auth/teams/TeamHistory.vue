@@ -7,13 +7,13 @@
                     <div class="mb-3" v-for="(exMember, id) in team.ex_members" :key="id">
                         <ul class="list-group">
                             <li class="list-group-item active bg-primary">Name: {{ exMember.full_name }}</li>
-                            <li class="list-group-item">Joined at: {{ exMember.pivot.joined_at }}
-                                at position {{ exMember.pivot.current_role }}
+                            <li class="list-group-item">Joined at: {{ exMember.history.joined_at }}
+                                at position {{ exMember.history.current_role }}
                             </li>
-                            <li class="list-group-item">Left at: {{ exMember.pivot.left_at }}</li>
-                            <li class="list-group-item">Left before: {{ leftBefore(exMember.pivot.left_at) }}</li>
+                            <li class="list-group-item">Left at: {{ exMember.history.left_at }}</li>
+                            <li class="list-group-item">Left before: {{ leftBefore(exMember.history.left_at) }}</li>
                             <li class="list-group-item">Days spent in the team: {{
-                                    timeSpent(exMember.pivot.joined_at, exMember.pivot.left_at)
+                                    timeSpent(exMember.history.joined_at, exMember.history.left_at)
                                 }}
                             </li>
                         </ul>

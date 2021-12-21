@@ -1,21 +1,21 @@
 <template>
     <div>
         <h3>{{ user.full_name }}, ({{ user.sport.name + '/' + user.settlement.name }})</h3>
-        <div v-if="user.membership_history.length > 0">
+        <div v-if="user.history_membership.length > 0">
             <div class="row">
                 <div class="col-12">
-                    <div v-for="(team, id) in user.membership_history" :key="id">
+                    <div v-for="(team, id) in user.history_membership" :key="id">
                         <ul class="list-group">
                             <li class="list-group-item active">Team: {{ team.name }}</li>
-                            <li class="list-group-item">Joined at: {{ team.pivot.joined_at }}
-                                at position {{ team.pivot.current_role }}
+                            <li class="list-group-item">Joined at: {{ team.history.joined_at }}
+                                at position {{ team.history.current_role }}
                             </li>
                             <li class="list-group-item">Left at:
-                                {{ team.pivot.left_at != null ? team.pivot.left_at : 'Still in team' }}
+                                {{ team.history.left_at != null ? team.history.left_at : 'Still in team' }}
                             </li>
-                            <li class="list-group-item">Left before: {{ leftBefore(team.pivot.left_at) }}</li>
+                            <li class="list-group-item">Left before: {{ leftBefore(team.history.left_at) }}</li>
                             <li class="list-group-item">Days spent in the team:
-                                {{ timeSpent(team.pivot.joined_at, team.pivot.left_at) }}
+                                {{ timeSpent(team.history.joined_at, team.history.left_at) }}
                             </li>
                         </ul>
                         <div v-if="id != last">
@@ -60,9 +60,12 @@ export default {
     },
     computed: {
         last() {
-            return Object.keys(this.user.membership_history).length - 1;
+            return Object.keys(this.user.history_membership).length - 1;
         }
     },
+    created() {
+        console.log(this.user)
+    }
 }
 </script>
 

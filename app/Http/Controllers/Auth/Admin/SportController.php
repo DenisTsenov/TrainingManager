@@ -11,13 +11,24 @@ use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
 class SportController extends Controller
 {
+    public function __construct()
+    {
+        $this->setActiveMenu(self::MENU_ADMIN);
+
+        parent::__construct();
+    }
+
     public function index()
     {
+        $this->setActiveSubMenu(self::SUB_MENU_SPORTS, self::SUB_MENU_SPORTS_LIST);
+
         return view('auth.admin.sports.list', ['route' => route('admin.sport.list')]);
     }
 
     public function list(Request $request): DataTableCollectionResource
     {
+        $this->setActiveSubMenu(self::SUB_MENU_SPORTS, self::SUB_MENU_SPORTS_LIST);
+
         $length  = $request->input('length');
         $orderBy = $request->input('column');
         $dir     = $request->input('dir', 'desc');
@@ -35,6 +46,8 @@ class SportController extends Controller
 
     public function create()
     {
+        $this->setActiveSubMenu(self::SUB_MENU_SPORTS, self::SUB_MENU_SPORT_CREATE_EDIT);
+
         return view('auth.admin.sports.create_edit', ['route' => route('admin.sport.store')]);
     }
 
@@ -49,6 +62,8 @@ class SportController extends Controller
 
     public function edit(Sport $sport)
     {
+        $this->setActiveSubMenu(self::SUB_MENU_SPORTS, self::SUB_MENU_SPORT_CREATE_EDIT);
+
         return view('auth.admin.sports.create_edit', [
             'route' => route('admin.sport.update', ['sport' => $sport]),
             'sport' => $sport,

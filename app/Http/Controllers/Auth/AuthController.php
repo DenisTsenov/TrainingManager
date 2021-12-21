@@ -11,7 +11,9 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->setActiveMenu(self::MENU_PROFILE);
+
+        parent::__construct();
     }
 
     /**
@@ -21,6 +23,7 @@ class AuthController extends Controller
      */
     public function edit()
     {
+        $this->setActiveSubMenu(self::SUB_MENU_EDIT_PROFILE);
         $auth = Auth::user()->find(\auth()->id());
 
         if (Auth::user()->can('deactivateProfile', $auth)) {
@@ -35,6 +38,8 @@ class AuthController extends Controller
 
     public function historyMembership()
     {
+        $this->setActiveSubMenu(self::SUB_MENU_HISTORY);
+
         return view('auth.membershit_history', [
             'user' => User::with(['historyMembership', 'sport', 'settlement'])->find(auth()->id()),
         ]);

@@ -95,15 +95,16 @@ class Team extends Model
         return $this->belongsTo(Settlement::class);
     }
 
-    public function history()
+    public function historyMembership()
     {
         return $this->belongsToMany(User::class, 'history_membership')
-                    ->withPivot('joined_at', 'left_at', 'current_role');
+                    ->withPivot('joined_at', 'left_at', 'current_role')
+                    ->as('history');
     }
 
     public function exMembers()
     {
-        return $this->history()->whereNotNull('left_at');
+        return $this->historyMembership()->whereNotNull('left_at');
     }
 
     public function members()

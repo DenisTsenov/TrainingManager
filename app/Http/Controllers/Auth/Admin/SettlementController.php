@@ -15,6 +15,9 @@ class SettlementController extends Controller
     public function __construct()
     {
         View::composer('auth.admin.settlements.create_edit', fn($view) => $view->with('sportsUrl', route('admin.sports')));
+        $this->setActiveMenu(self::MENU_ADMIN);
+
+        parent::__construct();
     }
 
     public function withSports(): JsonResponse
@@ -26,11 +29,15 @@ class SettlementController extends Controller
 
     public function index()
     {
-        return view('auth.admin.settlements.list');
+        $this->setActiveSubMenu(self::SUB_MENU_SETTLEMENTS, self::SUB_MENU_SETTLEMENTS_LIST);
+
+        return view('auth.admin.settlements.list', ['activeSubMenu' => $this->getActiveSubMenu()]);
     }
 
     public function list(Request $request): DataTableCollectionResource
     {
+        $this->setActiveSubMenu(self::SUB_MENU_SETTLEMENTS, self::SUB_MENU_SETTLEMENTS_LIST);
+
         $length  = $request->input('length');
         $orderBy = $request->input('column');
         $dir     = $request->input('dir', 'desc');
@@ -47,6 +54,8 @@ class SettlementController extends Controller
 
     public function create()
     {
+        $this->setActiveSubMenu(self::SUB_MENU_SETTLEMENTS, self::SUB_MENU_SETTLEMENT_CREATE_EDIT);
+
         return view('auth.admin.settlements.create_edit', ['route' => route('admin.settlement.store')]);
     }
 
@@ -64,6 +73,8 @@ class SettlementController extends Controller
 
     public function edit(Settlement $settlement)
     {
+        $this->setActiveSubMenu(self::SUB_MENU_SETTLEMENTS, self::SUB_MENU_SETTLEMENT_CREATE_EDIT);
+
         $route = route('admin.settlement.update', ['settlement' => $settlement]);
 
         return view('auth.admin.settlements.create_edit', ['route' => $route, 'settlement' => $settlement]);

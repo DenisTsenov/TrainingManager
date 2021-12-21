@@ -2,27 +2,31 @@
 
 namespace App\Http\Controllers\Auth\Admin;
 
+use App\Http\Requests\Auth\Admin\SportToggleRequest;
 use App\Models\Admin\Role;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ManageRoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->setActiveMenu(self::MENU_ADMIN);
+
+        parent::__construct();
+    }
+
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
+        $this->setActiveSubMenu(self::SUB_MENU_MANAGE_ROLE_PERMISSIONS);
+
         return response()->json(['roles' => Role::all()]);
     }
 
-    public function togglePermission(Request $request)
+    public function togglePermission(SportToggleRequest $request): \Illuminate\Http\JsonResponse
     {
-        $request->validate([
-            'role'       => ['required', 'integer', 'exists:roles,id'],
-            'permission' => ['required', 'integer', 'exists:permissions,id'],
-        ]);
-
         Role::find($request->input('role'))->permissions()->toggle($request->input(['permission']));
 
         return response()->json(['success' => true]);

@@ -15,8 +15,17 @@ use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
+    public function __construct()
+    {
+        $this->setActiveMenu(self::MENU_ADMIN);
+
+        parent::__construct();
+    }
+
     public function index(): View
     {
+        $this->setActiveSubMenu(self::SUB_MENU_TEAM);
+
         return view('auth.team.index', ['route' => route('admin.team.create')]);
     }
 
@@ -38,6 +47,8 @@ class TeamController extends Controller
 
     public function create(): View
     {
+        $this->setActiveSubMenu(self::SUB_MENU_TEAM);
+
         return view('auth.team.create_edit', ['route' => route('admin.team.store')]);
     }
 
@@ -66,6 +77,7 @@ class TeamController extends Controller
 
     public function edit(Team $team): View
     {
+        $this->setActiveSubMenu(self::SUB_MENU_TEAM);
         $team->load(['trainer']);
 
         $team->members = User::selectRaw('id,full_name,sport_id,settlement_id,team_id,created_at')
@@ -136,6 +148,7 @@ class TeamController extends Controller
 
     public function history(Team $team)
     {
+        $this->setActiveSubMenu(self::SUB_MENU_TEAM);
         $team->load('exMembers', 'createdBy');
 
         return view('auth.team.history', ['team' => $team]);

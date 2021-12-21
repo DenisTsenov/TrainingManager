@@ -14,6 +14,13 @@ use App\Http\Requests\Auth\Admin\StoreDistributionRequest;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->setActiveMenu(self::MENU_WELCOME);
+
+        parent::__construct();
+    }
+
     public function forDistribution(Request $request): DataTableCollectionResource
     {
         $length  = $request->input('length');

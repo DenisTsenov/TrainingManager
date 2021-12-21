@@ -9,11 +9,20 @@ use Illuminate\Http\Request;
 
 class ManageUserRoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->setActiveMenu(self::MENU_ADMIN);
+
+        parent::__construct();
+    }
+
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
+        $this->setActiveSubMenu(self::SUB_MENU_MANAGE_USER_ROLES_PERMISSIONS);
+
         return view('auth.admin.manage_user_role', ['roles' => Role::get()]);
     }
 
@@ -21,9 +30,9 @@ class ManageUserRoleController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function findUser(Request $request)
+    public function findUser(Request $request): \Illuminate\Http\JsonResponse
     {
-        $request->validate(['term' => ['required', 'string',],]);
+        $request->validate(['term' => ['required', 'string']]);
 
         $users = User::selectRaw("id, full_name, role_id")
                      ->like($request->input('term'))
@@ -40,7 +49,7 @@ class ManageUserRoleController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function changeRole(User $user, Request $request)
+    public function changeRole(User $user, Request $request): \Illuminate\Http\JsonResponse
     {
         $request->validate(['role' => ['required', 'integer', 'exists:roles,id']]);
 

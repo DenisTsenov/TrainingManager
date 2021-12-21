@@ -14,7 +14,9 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->setActiveMenu(self::MENU_REGISTER);
+
+        parent::__construct();
     }
 
     /**

@@ -9,8 +9,7 @@ use App\Http\Controllers\Auth\AjaxController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\TeamController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
-
+use App\Enums\Menu;
 /*
  * User Roles Routes
  * All route names have admin. prefix
@@ -31,8 +30,8 @@ Route::middleware('ajax')->group(function () {
  */
 
 Route::view('/manage-role-permission', 'auth.admin.manage_role_permission', [
-    'activeMenu'    => Controller::MENU_ADMIN,
-    'activeSubMenu' => collect(Controller::SUB_MENU_MANAGE_ROLE_PERMISSIONS),
+    'activeMenu'    => Menu::ADMIN->value,
+    'activeSubMenu' => collect(Menu::SUB_MENU_MANAGE_ROLE_PERMISSIONS->value),
 ])->name('manage_role_permission');
 
 Route::middleware('ajax')->group(function () {

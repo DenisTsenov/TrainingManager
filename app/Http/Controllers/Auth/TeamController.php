@@ -12,19 +12,20 @@ use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use App\Enums\Menu;
 
 class TeamController extends Controller
 {
     public function __construct()
     {
-        $this->setActiveMenu(self::MENU_ADMIN);
+        $this->setActiveMenu(Menu::ADMIN->value);
 
         parent::__construct();
     }
 
     public function index(): View
     {
-        $this->setActiveSubMenu(self::SUB_MENU_TEAM);
+        $this->setActiveSubMenu(Menu::SUB_MENU_TEAM->value);
 
         return view('auth.team.index', ['route' => route('admin.team.create')]);
     }
@@ -47,7 +48,7 @@ class TeamController extends Controller
 
     public function create(): View
     {
-        $this->setActiveSubMenu(self::SUB_MENU_TEAM);
+        $this->setActiveSubMenu(Menu::SUB_MENU_TEAM->value);
 
         return view('auth.team.create_edit', ['route' => route('admin.team.store')]);
     }
@@ -77,7 +78,7 @@ class TeamController extends Controller
 
     public function edit(Team $team): View
     {
-        $this->setActiveSubMenu(self::SUB_MENU_TEAM);
+        $this->setActiveSubMenu(Menu::SUB_MENU_TEAM->value);
         $team->load(['trainer']);
 
         $team->members = User::selectRaw('id,full_name,sport_id,settlement_id,team_id,created_at')
@@ -148,7 +149,7 @@ class TeamController extends Controller
 
     public function history(Team $team)
     {
-        $this->setActiveSubMenu(self::SUB_MENU_TEAM);
+        $this->setActiveSubMenu(Menu::SUB_MENU_TEAM->value);
         $team->load('exMembers', 'createdBy');
 
         return view('auth.team.history', ['team' => $team]);

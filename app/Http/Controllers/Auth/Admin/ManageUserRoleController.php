@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Enums\Menu;
 
 class ManageUserRoleController extends Controller
 {
     public function __construct()
     {
-        $this->setActiveMenu(self::MENU_ADMIN);
+        $this->setActiveMenu(Menu::ADMIN->value);
 
         parent::__construct();
     }
@@ -21,7 +22,7 @@ class ManageUserRoleController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $this->setActiveSubMenu(self::SUB_MENU_MANAGE_USER_ROLES_PERMISSIONS);
+        $this->setActiveSubMenu(Menu::SUB_MENU_MANAGE_USER_ROLES_PERMISSIONS->value);
 
         return view('auth.admin.manage_user_role', ['roles' => Role::get()]);
     }

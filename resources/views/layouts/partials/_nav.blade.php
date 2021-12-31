@@ -1,27 +1,27 @@
 <div id="logout">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #00ff99;"> <!-- temporary color style-->
         @guest
-            <a class="navbar-brand btn btn-{{ $activeMenu == \App\Http\Controllers\Controller::MENU_LOGIN ? 'primary' : 'light' }} btn-sm"
+            <a class="navbar-brand btn btn-{{ $activeMenu == \App\Enums\Menu::LOGIN->value ? 'primary' : 'light' }} btn-sm"
                href="{{ route('login.show') }}">Login</a>
-            <a class="navbar-brand btn btn-{{ $activeMenu == \App\Http\Controllers\Controller::MENU_REGISTER ? 'primary' : 'light' }} btn-sm"
+            <a class="navbar-brand btn btn-{{ $activeMenu == \App\Enums\Menu::REGISTER->value ? 'primary' : 'light' }} btn-sm"
                href="{{ route('register.show') }}">Register</a>
         @endguest
         @auth
-            <a class="navbar-brand btn bg-{{ $activeMenu == \App\Http\Controllers\Controller::MENU_WELCOME ? 'primary': 'light'  }}"
+            <a class="navbar-brand btn bg-{{ $activeMenu == \App\Enums\Menu::WELCOME->value ? 'primary': 'light'  }}"
                href="{{ route('welcome') }}">Home</a>
             <div class="dropdown">
-                <a class="nav-link dropdown-toggle btn-{{ $activeMenu == \App\Http\Controllers\Controller::MENU_PROFILE ? 'primary' : 'light' }} rounded"
+                <a class="nav-link dropdown-toggle btn-{{ $activeMenu == \App\Enums\Menu::PROFILE->value ? 'primary' : 'light' }} rounded"
                    href="#" id="navbarDropdownMenuLink"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="far fa-user-circle"></i><span class="h5"> Profile</span>
                 </a>
                 <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                    <li class="dropdown-item bg-{{ $activeSubMenu->contains(\App\Http\Controllers\Controller::SUB_MENU_EDIT_PROFILE) ? 'primary' : 'light' }}">
+                    <li class="dropdown-item bg-{{ $activeSubMenu->contains(\App\Enums\Menu::SUB_MENU_EDIT_PROFILE->value) ? 'primary' : 'light' }}">
                         <a class="dropdown-item btn btn-light" href="{{ route('profile.edit') }}">
                             <i class="fas fa-edit"></i> Edit
                         </a>
                     </li>
-                    <li class="dropdown-item bg-{{ $activeSubMenu->contains(\App\Http\Controllers\Controller::SUB_MENU_HISTORY) ? 'primary' : 'light' }}">
+                    <li class="dropdown-item bg-{{ $activeSubMenu->contains(\App\Enums\Menu::SUB_MENU_HISTORY->value) ? 'primary' : 'light' }}">
                         <a class="dropdown-item btn btn-light" href="{{ route('profile.history_membership') }}">
                             <i class="fas fa-history"></i> History
                         </a>
@@ -35,42 +35,42 @@
             </div>
             @admin
             <div class="dropdown ml-3">
-                <a class="nav-link dropdown-toggle btn-{{ $activeMenu == \App\Http\Controllers\Controller::MENU_ADMIN ? 'primary' : 'light' }} rounded"
+                <a class="nav-link dropdown-toggle btn-{{ $activeMenu == \App\Enums\Menu::ADMIN->value ? 'primary' : 'light' }} rounded"
                    href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="far fa-user-circle"></i><span class="h5"> Admin</span>
                 </a>
                 <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                    <li class="dropdown-item bg-{{ $activeSubMenu->contains(\App\Http\Controllers\Controller::SUB_MENU_MANAGE_USER_ROLES_PERMISSIONS) ? 'primary' : 'light' }}">
+                    <li class="dropdown-item bg-{{ $activeSubMenu->contains(\App\Enums\Menu::SUB_MENU_MANAGE_USER_ROLES_PERMISSIONS->value) ? 'primary' : 'light' }}">
                         <a class="dropdown-item btn btn-light"
                            href="{{ route('admin.manage_user_roles') }}">
                             <i class="fas fa-users-cog"></i> Manage user role
                         </a>
                     </li>
 
-                    <li class="dropdown-item bg-{{ $activeSubMenu->contains(\App\Http\Controllers\Controller::SUB_MENU_MANAGE_ROLE_PERMISSIONS) ? 'primary' : 'light' }}">
+                    <li class="dropdown-item bg-{{ $activeSubMenu->contains(\App\Enums\Menu::SUB_MENU_MANAGE_ROLE_PERMISSIONS->value) ? 'primary' : 'light' }}">
                         <a class="dropdown-item btn btn-light"
                            href="{{ route('admin.manage_role_permission') }}">
                             <i class="fas fa-tasks"></i> Manage role permission
                         </a>
                     </li>
 
-                    <li class="dropdown-item bg-{{ $activeSubMenu->contains(\App\Http\Controllers\Controller::SUB_MENU_TEAM) ? 'primary' : 'light' }}">
+                    <li class="dropdown-item bg-{{ $activeSubMenu->contains(\App\Enums\Menu::SUB_MENU_TEAM->value) ? 'primary' : 'light' }}">
                         <a class="dropdown-item btn btn-light" href="{{ route('admin.team') }}">
                             <i class="fas fa-users"></i> Teams
                         </a>
                     </li>
 
                     <li class="dropdown-submenu">
-                        <a class="dropdown-item btn bg-{{ $activeSubMenu->contains(\App\Http\Controllers\Controller::SUB_MENU_SETTLEMENTS) ? 'primary' : 'light' }}"
+                        <a class="dropdown-item btn bg-{{ $activeSubMenu->contains(\App\Enums\Menu::SUB_MENU_SETTLEMENTS->value) ? 'primary' : 'light' }}"
                            tabindex="-1" href="#">
                             <i class="fas fa-city ml-4"></i> Settlements
                         </a>
                         <ul class="dropdown-menu">
-                            <a class="dropdown-item btn bg-{{ $activeSubMenu->contains(\App\Http\Controllers\Controller::SUB_MENU_SETTLEMENT_CREATE_EDIT) ? 'primary' : 'light' }}"
+                            <a class="dropdown-item btn bg-{{ $activeSubMenu->contains(\App\Enums\Menu::SUB_MENU_SETTLEMENT_CREATE_EDIT->value) ? 'primary' : 'light' }}"
                                href="{{ route('admin.settlement.create') }}">
                                 <i class="fas fa-plus"></i> Add
                             </a>
-                            <a class="dropdown-item btn bg-{{ $activeSubMenu->contains(\App\Http\Controllers\Controller::SUB_MENU_SETTLEMENTS_LIST) ? 'primary' : 'light' }}"
+                            <a class="dropdown-item btn bg-{{ $activeSubMenu->contains(\App\Enums\Menu::SUB_MENU_SETTLEMENTS_LIST->value) ? 'primary' : 'light' }}"
                                href="{{ route('admin.settlement') }}">
                                 <i class="fas fa-list"></i> List
                             </a>
@@ -78,17 +78,17 @@
                     </li>
 
                     <li class="dropdown-submenu">
-                        <a class="dropdown-item btn bg-{{ $activeSubMenu->contains(\App\Http\Controllers\Controller::SUB_MENU_SPORTS) ? 'primary' : 'light' }}"
+                        <a class="dropdown-item btn bg-{{ $activeSubMenu->contains(\App\Enums\Menu::SUB_MENU_SPORTS->value) ? 'primary' : 'light' }}"
                            tabindex="-1"
                            href="#">
                             <i class="fas fa-table-tennis ml-4"></i> Sports
                         </a>
                         <ul class="dropdown-menu">
-                            <a class="dropdown-item btn bg-{{ $activeSubMenu->contains(\App\Http\Controllers\Controller::SUB_MENU_SPORT_CREATE_EDIT) ? 'primary' : 'light' }}"
+                            <a class="dropdown-item btn bg-{{ $activeSubMenu->contains(\App\Enums\Menu::SUB_MENU_SPORT_CREATE_EDIT->value) ? 'primary' : 'light' }}"
                                href="{{ route('admin.sport.create') }}">
                                 <i class="fas fa-plus"></i> Add
                             </a>
-                            <a class="dropdown-item btn bg-{{ $activeSubMenu->contains(\App\Http\Controllers\Controller::SUB_MENU_SPORTS_LIST) ? 'primary' : 'light' }}"
+                            <a class="dropdown-item btn bg-{{ $activeSubMenu->contains(\App\Enums\Menu::SUB_MENU_SPORTS_LIST->value) ? 'primary' : 'light' }}"
                                href="{{ route('admin.sport') }}">
                                 <i class="fas fa-list"></i> List
                             </a>

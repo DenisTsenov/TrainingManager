@@ -8,26 +8,27 @@ use App\Http\Requests\Auth\Admin\SportRequest;
 use App\Models\Admin\Sport;
 use Illuminate\Http\Request;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
+use App\Enums\Menu;
 
 class SportController extends Controller
 {
     public function __construct()
     {
-        $this->setActiveMenu(self::MENU_ADMIN);
+        $this->setActiveMenu(Menu::ADMIN->value);
 
         parent::__construct();
     }
 
     public function index()
     {
-        $this->setActiveSubMenu(self::SUB_MENU_SPORTS, self::SUB_MENU_SPORTS_LIST);
+        $this->setActiveSubMenu(Menu::SUB_MENU_SPORTS->value, Menu::SUB_MENU_SPORTS_LIST->value);
 
         return view('auth.admin.sports.list', ['route' => route('admin.sport.list')]);
     }
 
     public function list(Request $request): DataTableCollectionResource
     {
-        $this->setActiveSubMenu(self::SUB_MENU_SPORTS, self::SUB_MENU_SPORTS_LIST);
+        $this->setActiveSubMenu(Menu::SUB_MENU_SPORTS->value, Menu::SUB_MENU_SPORTS_LIST->value);
 
         $length  = $request->input('length');
         $orderBy = $request->input('column');
@@ -46,7 +47,7 @@ class SportController extends Controller
 
     public function create()
     {
-        $this->setActiveSubMenu(self::SUB_MENU_SPORTS, self::SUB_MENU_SPORT_CREATE_EDIT);
+        $this->setActiveSubMenu(Menu::SUB_MENU_SPORTS->value, Menu::SUB_MENU_SPORT_CREATE_EDIT->value);
 
         return view('auth.admin.sports.create_edit', ['route' => route('admin.sport.store')]);
     }
@@ -62,7 +63,7 @@ class SportController extends Controller
 
     public function edit(Sport $sport)
     {
-        $this->setActiveSubMenu(self::SUB_MENU_SPORTS, self::SUB_MENU_SPORT_CREATE_EDIT);
+        $this->setActiveSubMenu(Menu::SUB_MENU_SPORTS->value, Menu::SUB_MENU_SPORT_CREATE_EDIT->value);
 
         return view('auth.admin.sports.create_edit', [
             'route' => route('admin.sport.update', ['sport' => $sport]),

@@ -11,25 +11,6 @@ use Illuminate\Support\Facades\View;
 
 class Controller extends BaseController
 {
-    const MENU_LOGIN    = 'login';
-    const MENU_REGISTER = 'register';
-    const MENU_WELCOME  = 'welcome';
-
-    const MENU_PROFILE          = 'profile';
-    const SUB_MENU_EDIT_PROFILE = 'edit-profile';
-    const SUB_MENU_HISTORY      = 'history';
-
-    const MENU_ADMIN                             = 'admin';
-    const SUB_MENU_MANAGE_USER_ROLES_PERMISSIONS = 'manage-user-roles';
-    const SUB_MENU_MANAGE_ROLE_PERMISSIONS       = 'manage-role-permissions';
-    const SUB_MENU_TEAM                          = 'team';
-    const SUB_MENU_SETTLEMENTS                   = 'settlements';
-    const SUB_MENU_SETTLEMENTS_LIST              = 'settlements-list';
-    const SUB_MENU_SETTLEMENT_CREATE_EDIT        = 'settlement-create-edit';
-    const SUB_MENU_SPORTS                        = 'sports';
-    const SUB_MENU_SPORTS_LIST                   = 'sports-list';
-    const SUB_MENU_SPORT_CREATE_EDIT             = 'sport-create-edit';
-
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**

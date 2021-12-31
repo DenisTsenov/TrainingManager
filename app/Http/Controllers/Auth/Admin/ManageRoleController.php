@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Auth\Admin;
 use App\Http\Requests\Auth\Admin\SportToggleRequest;
 use App\Models\Admin\Role;
 use App\Http\Controllers\Controller;
+use App\Enums\Menu;
 
 class ManageRoleController extends Controller
 {
     public function __construct()
     {
-        $this->setActiveMenu(self::MENU_ADMIN);
+        $this->setActiveMenu(Menu::ADMIN->value);
 
         parent::__construct();
     }
@@ -20,7 +21,7 @@ class ManageRoleController extends Controller
      */
     public function index(): \Illuminate\Http\JsonResponse
     {
-        $this->setActiveSubMenu(self::SUB_MENU_MANAGE_ROLE_PERMISSIONS);
+        $this->setActiveSubMenu(Menu::SUB_MENU_MANAGE_ROLE_PERMISSIONS->value);
 
         return response()->json(['roles' => Role::all()]);
     }

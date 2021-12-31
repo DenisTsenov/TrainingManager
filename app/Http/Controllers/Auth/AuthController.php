@@ -6,12 +6,13 @@ use App\Models\User;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Enums\Menu;
 
 class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->setActiveMenu(self::MENU_PROFILE);
+        $this->setActiveMenu(Menu::PROFILE->value);
 
         parent::__construct();
     }
@@ -23,7 +24,7 @@ class AuthController extends Controller
      */
     public function edit()
     {
-        $this->setActiveSubMenu(self::SUB_MENU_EDIT_PROFILE);
+        $this->setActiveSubMenu(Menu::SUB_MENU_EDIT_PROFILE->value);
         $auth = Auth::user()->find(\auth()->id());
 
         if (Auth::user()->can('deactivateProfile', $auth)) {
@@ -38,7 +39,7 @@ class AuthController extends Controller
 
     public function historyMembership()
     {
-        $this->setActiveSubMenu(self::SUB_MENU_HISTORY);
+        $this->setActiveSubMenu(Menu::SUB_MENU_HISTORY->value);
 
         return view('auth.membershit_history', [
             'user' => User::with(['historyMembership', 'sport', 'settlement'])->find(auth()->id()),

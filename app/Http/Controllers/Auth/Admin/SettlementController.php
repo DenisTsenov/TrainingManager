@@ -9,13 +9,14 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
+use App\Enums\Menu;
 
 class SettlementController extends Controller
 {
     public function __construct()
     {
         View::composer('auth.admin.settlements.create_edit', fn($view) => $view->with('sportsUrl', route('admin.sports')));
-        $this->setActiveMenu(self::MENU_ADMIN);
+        $this->setActiveMenu(Menu::ADMIN->value);
 
         parent::__construct();
     }
@@ -29,14 +30,14 @@ class SettlementController extends Controller
 
     public function index()
     {
-        $this->setActiveSubMenu(self::SUB_MENU_SETTLEMENTS, self::SUB_MENU_SETTLEMENTS_LIST);
+        $this->setActiveSubMenu(Menu::SUB_MENU_SETTLEMENTS->value, Menu::SUB_MENU_SETTLEMENTS_LIST->value);
 
         return view('auth.admin.settlements.list', ['activeSubMenu' => $this->getActiveSubMenu()]);
     }
 
     public function list(Request $request): DataTableCollectionResource
     {
-        $this->setActiveSubMenu(self::SUB_MENU_SETTLEMENTS, self::SUB_MENU_SETTLEMENTS_LIST);
+        $this->setActiveSubMenu(Menu::SUB_MENU_SETTLEMENTS->value, Menu::SUB_MENU_SETTLEMENTS_LIST->value);
 
         $length  = $request->input('length');
         $orderBy = $request->input('column');
@@ -54,7 +55,7 @@ class SettlementController extends Controller
 
     public function create()
     {
-        $this->setActiveSubMenu(self::SUB_MENU_SETTLEMENTS, self::SUB_MENU_SETTLEMENT_CREATE_EDIT);
+        $this->setActiveSubMenu(Menu::SUB_MENU_SETTLEMENTS->value, Menu::SUB_MENU_SETTLEMENT_CREATE_EDIT->value);
 
         return view('auth.admin.settlements.create_edit', ['route' => route('admin.settlement.store')]);
     }
@@ -73,7 +74,7 @@ class SettlementController extends Controller
 
     public function edit(Settlement $settlement)
     {
-        $this->setActiveSubMenu(self::SUB_MENU_SETTLEMENTS, self::SUB_MENU_SETTLEMENT_CREATE_EDIT);
+        $this->setActiveSubMenu(Menu::SUB_MENU_SETTLEMENTS->value, Menu::SUB_MENU_SETTLEMENT_CREATE_EDIT->value);
 
         $route = route('admin.settlement.update', ['settlement' => $settlement]);
 

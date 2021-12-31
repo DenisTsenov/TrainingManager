@@ -11,12 +11,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 use App\Http\Requests\Auth\Admin\StoreDistributionRequest;
+use App\Enums\Menu;
 
 class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->setActiveMenu(self::MENU_WELCOME);
+        $this->setActiveMenu(Menu::WELCOME->value);
 
         parent::__construct();
     }

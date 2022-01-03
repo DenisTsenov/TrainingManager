@@ -19,9 +19,9 @@ class Controller extends BaseController
     protected string $activeMenu = '';
 
     /**
-     * @var ?Collection
+     * @var Collection
      */
-    public ?Collection $activeSubMenu = null;
+    public Collection $activeSubMenu;
 
     public function __construct()
     {
@@ -55,9 +55,9 @@ class Controller extends BaseController
     }
 
     /**
-     * @return ?Collection
+     * @return Collection
      */
-    public function getActiveSubMenu(): ?Collection
+    public function getActiveSubMenu(): Collection
     {
         return $this->activeSubMenu->flatten();
     }

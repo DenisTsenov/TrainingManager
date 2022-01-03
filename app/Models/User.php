@@ -6,6 +6,7 @@ use App\Models\Admin\Role;
 use App\Models\Admin\Settlement;
 use App\Models\Admin\Sport;
 use App\Models\Admin\Team;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -163,12 +164,9 @@ class User extends Authenticatable
         return $query->trainers()->whereNotNull('deleted_at');
     }
 
-    /**
-     * @param $value
-     */
-    public function setPasswordAttribute($value): void
+    public function password(): Attribute
     {
-        $this->attributes['password'] = Hash::make($value);
+        return new Attribute(set: fn($value) => Hash::make($value));
     }
 
     public static function createOrUpdateMembership(array $members, int $teamId): void

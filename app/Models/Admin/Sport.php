@@ -46,7 +46,7 @@ class Sport extends Model
         ],
     ];
 
-    protected $dataTableRelationships = [
+    protected array $dataTableRelationships = [
         "belongsTo"     => [
             "createdBy" => [
                 "model"       => User::class,
@@ -88,6 +88,6 @@ class Sport extends Model
 
     public function createdBy()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(User::class, 'created_by')->withTrashed();
     }
 }

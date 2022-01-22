@@ -52,17 +52,15 @@ class ManageUserRoleController extends Controller
      */
     public function changeRole(User $user, Request $request): \Illuminate\Http\JsonResponse
     {
-        $request->validate(['role' => ['required', 'integer', 'exists:roles,id']]);
+        $request->validate(['role' => 'required|integer|exists:roles,id']);
 
         $role     = $request->input('role');
-        $response = 'new role';
+        $response = 'no role';
 
-        if ($request->input('role') == ($user->role->id ?? null)) {
-            $role     = null;
-            $response = 'no role';
+        if ($role <> ($user->role->id ?? null)) {
+            $user->update(['role_id' => $role]);
+            $response = 'new role';
         }
-
-        $user->update(['role_id' => $role]);
 
         return \response()->json($response);
     }

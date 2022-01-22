@@ -19,14 +19,14 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    $settlementSports = \DB::table('settlement_sport')->inRandomOrder()->first();
+//    $settlementSports = \DB::table('settlement_sport')->inRandomOrder()->first();
 
     return [
         'first_name'    => $faker->firstName,
         'last_name'     => $faker->lastName,
         'email'         => $faker->unique()->safeEmail,
         'password'      => 'password',
-        'settlement_id' => $settlementSports->settlement_id,
-        'sport_id'      => $settlementSports->sport_id,
+        'settlement_id' => 1,
+        'sport_id'      => 1,
     ];
 });

@@ -14,7 +14,7 @@ class UserTest extends TestCase
      * 'sport_id'      => 1,
      */
 
-    public function testLogin()
+    public function testLogin(): void
     {
         $response = $this->get('/login');
 
@@ -22,7 +22,7 @@ class UserTest extends TestCase
         $response->assertViewIs('auth.login');
     }
 
-    public function testUserCannotViewLoginFormWhenAuthenticated()
+    public function testUserCannotViewLoginFormWhenAuthenticated(): void
     {
         $user = factory(User::class)->make();
 
@@ -31,7 +31,7 @@ class UserTest extends TestCase
              ->assertRedirect('/welcome');
     }
 
-    public function testUserCanLoginWithCorrectCredentials()
+    public function testUserCanLoginWithCorrectCredentials(): void
     {
         $user = factory(User::class)->create([
             'password' => 'password',
@@ -47,7 +47,7 @@ class UserTest extends TestCase
         $user->forceDelete();
     }
 
-    public function testUserCannotLoginWithWrongPassword()
+    public function testUserCannotLoginWithWrongPassword(): void
     {
         $user = factory(User::class)->create([
             'password' => 'password',

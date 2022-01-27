@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'first_name'    => ['required', 'string', 'max:50'],
             'last_name'     => ['required', 'string', 'max:50'],
             'settlement_id' => ['required', 'exists:settlements,id',],
@@ -34,11 +34,9 @@ class RegisterRequest extends FormRequest
                                     ->where('sport_id', $this->input('sport_id'))
                                     ->where('settlement_id', $this->input('settlement_id')),
             ],
-            'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::id()),],
+            'email'         => ['required', 'string', 'email', Rule::unique('users')->ignore(Auth::id()),],
             'password'      => ['required', 'string', 'min:8', 'confirmed'],
         ];
-
-        return $rules;
     }
 
     public function messages()

@@ -27,7 +27,7 @@ export default {
     methods: {
         confirmDisable() {
             this.$confirm({
-                title: `Remove team`,
+                title: `Delete profile`,
                 message: `Are you sure you want to disable your profile?`,
                 button: {
                     no: 'Cancel',

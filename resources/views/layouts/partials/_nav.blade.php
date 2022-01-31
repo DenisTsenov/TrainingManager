@@ -131,16 +131,17 @@
             @endtrainer
             @competitor
             <div class="dropdown ml-3">
-                <li class="dropdown-submenu text-center">
-                    <a class="dropdown-item" tabindex="-1" href="#"><i class="fas fa-user-shield"></i>Competitor</a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-item">
-                            <a class="dropdown-item btn btn-light" href="">
-                                <i class="fas fa-user"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                <a class="nav-link dropdown-toggle btn-light rounded" href="#"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-users-cog"></i><span class="h5">Competitor</span>
+                </a>
+{{--                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">--}}
+{{--                    <li class="dropdown-item">--}}
+{{--                        <a class="dropdown-item btn btn-light" href="">--}}
+{{--                            <i class="fas fa-user"></i>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
             </div>
             @endcompetitor
             <span class="badge badge-danger" v-if="serverErr">Something went wrong</span>

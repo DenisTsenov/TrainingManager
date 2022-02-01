@@ -4,9 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Admin\Role;
 use App\Models\Admin\Settlement;
-use App\Models\Admin\Sport;
 use App\Models\Admin\Team;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Tests\TestCase;
 
@@ -48,7 +48,7 @@ class UserProfileTest extends TestCase
         $team = Team::find($this->teamId());
         $user = factory(User::class)->create(['team_id' => $team->id]);
 
-        $this->assertFalse($user->can('deactivateProfile', $user));
+        $this->assertFalse($user->can('deactivateProfile'));
         $response = $this->actingAs($user)->postJson("/profile/destroy/$user->id");
         $response->assertStatus(ResponseAlias::HTTP_FORBIDDEN);
         $user->forceDelete();
@@ -57,52 +57,103 @@ class UserProfileTest extends TestCase
 
     public function testCanEditProfile()
     {
-        $user = factory(User::class)->create(['team_id' => null]);
+        $settlement    = Settlement::with('sports')->first();
+        $newSettlement = Settlement::with('sports')->orderByDesc('id')->first();
+
+        $user = factory(User::class)->create([
+            'team_id'       => null,
+            'settlement_id' => $settlement->id,
+            'sport_id'      => $settlement->sports->first()->id,
+        ]);
+
+        $this->assertTrue($user->can('deactivateProfile', $user));
 
         $requestData = [
             'first_name'            => 'Denis',
             'last_name'             => 'Tsenov',
             'email'                 => 'some@test.bg',
-            'sport_id'              => \DB::table('sports')->inRandomOrder()->first()->id,
-            'settlement_id'         => \DB::table('settlements')->inRandomOrder()->first()->id,
+            'settlement_id'         => $newSettlement->id,
+            'sport_id'              => $newSettlement->sports->first()->id,
             'password'              => 'password',
             'password_confirmation' => 'password',
         ];
 
         $response = $this->actingAs($user)->putJson("profile/$user->id/update", $requestData);
         $response->assertStatus(ResponseAlias::HTTP_NO_CONTENT);
+
+        $user->refresh();
+
+        $this->assertTrue($user->first_name == $requestData['first_name']);
+        $this->assertTrue($user->last_name == $requestData['last_name']);
+        $this->assertTrue($user->email == $requestData['email']);
+        $this->assertTrue($user->settlement_id == $requestData['settlement_id']);
+        $this->assertTrue($user->sport_id == $requestData['sport_id']);
+        $this->assertTrue(Hash::check($requestData['password'], $user->password));
         $user->forceDelete();
     }
 
-    public function testCannotEditProfile()
+    private function teamId(): int
     {
-
-    }
-
-    private function teamId(User $user = null): int
-    {
-        $trainer    = $user ?? User::firstWhere('role_id', Role::TRAINER);
-        $sport      = $this->getSport($trainer->sport_id);
-        $settlement = $this->getSettlement($trainer->settlement_id);
+        $trainer = User::firstWhere('role_id', Role::TRAINER);
 
         return \DB::table('teams')->insertGetId([
             'name'          => 'Test',
             'trainer_id'    => $trainer->id,
-            'sport_id'      => $sport->id,
-            'settlement_id' => $settlement->id,
+            'sport_id'      => $trainer->sport_id,
+            'settlement_id' => $trainer->settlement_id,
             'created_by'    => $trainer->id,
             'created_at'    => now(),
             'updated_at'    => now(),
         ]);
     }
 
-    private function getSettlement(int $settlementId): Sport
+    public function testInvalidEdit()
     {
-        return Sport::find($settlementId);
+        $user = factory(User::class)->create();
+
+        foreach ($this->userInvalidCases() as $case) {
+            $response = $this->actingAs($user)->putJson("profile/$user->id/update", [
+                'first_name'            => $case['first_name'] ?? '',
+                'last_name'             => $case['last_name'] ?? '',
+                'email'                 => $case['email'] ?? '',
+                'settlement_id'         => $case['settlement_id'] ?? '',
+                'sport_id'              => $case['sport_id'] ?? '',
+                'password'              => $case['password'] ?? '',
+                'password_confirmation' => $case['password_confirmation'] ?? '',
+            ]);
+
+            $response->assertJsonValidationErrors($case['errors']);
+            $response->assertStatus(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $user->forceDelete();
     }
 
-    private function getSport(int $sportId): Settlement
+    public function testInvalidSettlementAndSport()
     {
-        return Settlement::find($sportId);
+        $team       = Team::find($this->teamId());
+        $settlement = Settlement::with('sports')->first();
+        $user       = factory(User::class)->create([
+            'team_id'       => $team->id,
+            'settlement_id' => $settlement->id,
+            'sport_id'      => $settlement->sports->first()->id,
+        ]);
+
+        $this->assertTrue($user->cannot('deactivateProfile', $user));
+
+        $response = $this->actingAs($user)->putJson("profile/$user->id/update", [
+            'first_name'            => 'Joe',
+            'last_name'             => 'Doe',
+            'email'                 => 'joe@doe.com',
+            'settlement_id'         => $settlement->id + 1,
+            'sport_id'              => $settlement->sports->first()->id,
+            'password'              => 'password',
+            'password_confirmation' => 'password',
+        ]);
+
+        $response->assertJsonValidationErrors(['sport_id' => 'wrong data']);
+        $response->assertStatus(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY);
+
+        $user->forceDelete();
     }
 }

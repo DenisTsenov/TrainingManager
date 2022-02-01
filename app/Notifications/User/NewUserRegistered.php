@@ -2,12 +2,12 @@
 
 namespace App\Notifications\User;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\Models\User;
 
 class NewUserRegistered extends Notification implements ShouldBroadcast
 {
@@ -53,7 +53,7 @@ class NewUserRegistered extends Notification implements ShouldBroadcast
             ->subject('New user registered')
             ->line("Hello $notifiable->full_name")
             ->line('New account was created.')
-            ->line('User name: ' . $this->user->full_name)
+            ->line('User name: ' . $this->user->first_name . ' ' . $this->user->last_name)
             ->line('Settlement: ' . $this->user->settlement->name)
             ->line('Sport: ' . $this->user->sport->name)
             ->action('Show user', route('admin.distribute.create', ['user' => $this->user->id]));

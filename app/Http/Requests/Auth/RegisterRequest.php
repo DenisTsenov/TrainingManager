@@ -39,6 +39,21 @@ class RegisterRequest extends FormRequest
         ];
     }
 
+    public function withValidator($validator)
+    {
+        if (!$validator->errors()->count()) {
+            $validator->after(function ($validator) {
+                $user = $this->route('user');
+
+                if ($user && $user->cannot('deactivateProfile', $user)) {
+                    if ($this->sport_id <> $user->sport_id || $this->settlement_id <> $user->settlement_id) {
+                        $validator->errors()->add('sport_id', 'wrong data');
+                    }
+                }
+            });
+        }
+    }
+
     public function messages()
     {
         return [

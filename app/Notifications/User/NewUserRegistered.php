@@ -36,7 +36,9 @@ class NewUserRegistered extends Notification implements ShouldBroadcast
     public function toBroadcast($notifiable): BroadcastMessage
     {
         return new BroadcastMessage([
-            'message' => view('auth.admin.notifications.registered_user', ['route' => route('admin.distribute.create', ['user' => $this->user->id])])->render(),
+            'message' => view('auth.admin.notifications.registered_user', [
+                'route' => route('admin.distribute.create', ['user' => $this->user->id]),
+            ])->render(),
         ]);
     }
 

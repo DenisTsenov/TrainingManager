@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Enums\Menu;
 use App\Models\Admin\Role;
 use App\Models\Admin\Team;
 use App\Models\User;
@@ -16,6 +17,7 @@ class ManageUserRoleTest extends TestCase
 
         $response = $this->actingAs($user)->get('/admin/manage-user-roles');
         $response->assertViewIs('auth.admin.manage_user_role')->assertStatus(ResponseAlias::HTTP_OK);
+        $this->view('auth.admin.manage_user_role', ['setActiveMenu' => Menu::ADMIN->value, 'roles' => Role::get()]);
     }
 
     public function testCannotBeAccessedByNoAdmin(): void

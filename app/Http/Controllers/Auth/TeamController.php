@@ -38,10 +38,10 @@ class TeamController extends Controller
         $search  = $request->input('search');
 
         $query = Team::eloquentQuery($orderBy, $dir, $search, ['sport', 'trainer', 'settlement', 'members'])
-                     ->withCount ('members')
+                     ->withCount('members')
                      ->when($orderBy == 'members_count', fn($query) => $query->reorder($orderBy, $dir));
 
-        $data  = $query->paginate($length);
+        $data = $query->paginate($length);
 
         return new DataTableCollectionResource($data);
     }
@@ -61,8 +61,8 @@ class TeamController extends Controller
             $team = Team::create([
                 'name'          => $request->input('name'),
                 'trainer_id'    => $request->input('trainer_id'),
-                'sport_id'      => $trainer->sport->id,
-                'settlement_id' => $trainer->settlement->id,
+                'sport_id'      => $trainer->sport_id,
+                'settlement_id' => $trainer->settlement_id,
             ]);
 
             $trainer->update(['team_id' => $team->id]);
@@ -101,7 +101,7 @@ class TeamController extends Controller
 
         return view('auth.team.create_edit', [
             'team'         => $team,
-            'route'        => route('admin.team.update', ['team'=> $team]),
+            'route'        => route('admin.team.update', ['team' => $team]),
             'destroyRoute' => $destroyRoute ?? null,
             'edit'         => true,
         ]);

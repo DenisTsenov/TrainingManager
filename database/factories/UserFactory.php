@@ -28,5 +28,6 @@ $factory->define(User::class, function (Faker $faker) {
         'password'      => 'password',
         'settlement_id' => $settlementSports->settlement_id,
         'sport_id'      => $settlementSports->sport_id,
+        'deleted_at'    => null,
     ];
 });
